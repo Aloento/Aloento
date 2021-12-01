@@ -103,4 +103,6 @@ theme: icarus
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: git@github.com:Aloento/Aloento.git
+  branch: gh-pages
