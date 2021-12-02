@@ -42,7 +42,7 @@ external_link:
 filename_case: 0
 render_drafts: true
 post_asset_folder: true
-relative_link: true
+relative_link: false
 future: false
 highlight:
   enable: true
