@@ -99,7 +99,7 @@ navbar:
         Archives: /archives
         Categories: /categories
         Tags: /tags
-        About: /Aloento
+        About: 'https://Q-Audio.org/Aloento'
     # Links to be shown on the right of the navigation bar
     links:
         Q-Audio:
