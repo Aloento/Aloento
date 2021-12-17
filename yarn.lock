@@ -1730,10 +1730,10 @@ hexo-cli@^4.0.0:
     resolve "^1.11.0"
     tildify "^2.0.0"
 
-hexo-component-inferno@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/hexo-component-inferno/-/hexo-component-inferno-0.13.0.tgz#e555a1d695442969a4ebe791f908bd5bea595475"
-  integrity sha512-q2R7sWK0ZzbslExxsQdOOUfilmIUYupO65A9HhO7FtygcP59vpt2gCp51dzxOE71yCX4FIHE2p8yKDxoW7H0YQ==
+hexo-component-inferno@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/hexo-component-inferno/-/hexo-component-inferno-0.14.0.tgz#ee5a99877559c3f92b4d4ace89e791bd812b1a3b"
+  integrity sha512-vjy9TVrcT5xFH7il3v6oav9iAxatIAklkQYiUorVVLQBKz4HDluPGw/xYLJ/fITsIm7jPezv7O5QL5AcLGpgwg==
   dependencies:
     ajv "^6.10.2"
     inferno "^7.3.3"
