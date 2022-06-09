@@ -314,3 +314,125 @@ Glance 支持多种 backend，包括
 
 ### Nova
 
+Compute Service Nova 是 OpenStack 最核心的服务，负责维护和管理云环境的计算资源。  
+OpenStack 作为 IaaS 的云操作系统，虚拟机生命周期管理也就是通过 Nova 来实现的。
+
+- nova-api
+  接收和响应客户的 API 调用， 还支持 Amazon EC2 API
+
+- nova-scheduler
+  虚机调度服务，负责决定在哪个计算节点上运行虚机
+
+- nova-compute
+  管理虚机的核心服务，通过调用 Hypervisor API 实现虚机生命周期管理
+
+- nova-conductor
+  nova-compute 经常需要更新数据库，比如更新虚机的状态  
+  出于安全性和伸缩性的考虑，nova-compute 并不会直接访问数据库
+
+- nova-console
+  用户可以通过多种方式访问虚机的控制台：  
+  nova-novncproxy，基于 Web 浏览器的 VNC 访问  
+  nova-spicehtml5proxy，基于 HTML5 浏览器的 SPICE 访问  
+  nova-xvpnvncproxy，基于 Java 客户端的 VNC 访问
+
+- nova-consoleauth
+  负责对访问虚机控制台请求提供 Token 认证
+
+- nova-cert
+  提供 x509 证书支持
+
+总之我越看越觉得 OpenStack 就是在 Hypervisor 上套了一层又一层  
+而且我个人对 Python 写的大型项目是完全没有好感
+
+> 理解 Nova 架构 – 每天 5 分钟玩转 OpenStack（23）
+
+#### 部署方案
+
+哪里有那么复杂，专门负责装 VPS 的 Hypervisor 就装 nova-compute  
+然后其他服务放别处就行了
+
+OpenStack 默认是用 RabbitMQ 作为 Message Queue，好评
+
+> Nova 组件如何协同工作 – 每天 5 分钟玩转 OpenStack（24）
+
+#### 设计思路
+
+说那么多到底还是解耦，疯狂解耦  
+然后各种抽象 API，疯狂增加项目体积  
+再加入各种调度，最离谱的是居然默认用 MySQL  
+当然对大型集群这都不算什么
+
+> OpenStack 通用设计思路 – 每天 5 分钟玩转 OpenStack（25）
+
+#### 组件
+
+> Nova 组件详解 – 每天 5 分钟玩转 OpenStack（26）
+
+flavor 就是 plan，选 VPS 配置
+
+- Filter scheduler 是 nova-scheduler 默认的调度器
+
+  1. 通过过滤器（filter）选择满足条件的计算节点
+  2. 通过权重计算（weighting）选择在最优（权重值最大）的计算节点上创建 Instance
+
+- RetryFilter 的作用是刷掉之前已经调度过的节点
+
+- 为提高容灾性和提供隔离服务，可以将计算节点划分到不同的 Availability Zone 中
+
+- RamFilter 将不能满足 flavor 内存需求的计算节点过滤掉
+
+- DiskFilter 将不能满足 flavor 磁盘需求的计算节点过滤掉
+
+- CoreFilter 将不能满足 flavor vCPU 需求的计算节点过滤掉
+
+- ComputeFilter 保证只有 nova-compute 服务正常工作的计算节点才能够被 nova-scheduler 调度
+
+- ComputeCapabilitiesFilter 根据计算节点的特性来筛选
+  可以从 Metadata 中筛选架构之类的
+
+- ImagePropertiesFilter 根据所选 image 的属性来筛选匹配的计算节点
+  镜像也带 Metadata，可以限定比如只能运行在 kvm 上之类的
+
+- ServerGroupAntiAffinityFilter 可以尽量将 Instance 分散部署到不同的节点上
+
+- ServerGroupAffinityFilter 会尽量将 instance 部署到同一个计算节点上
+
+nova-scheduler 的默认实现是根据计算节点空闲的内存量计算权重值：  
+空闲内存越多，权重越大，instance 将被部署到当前空闲内存最多的计算节点上
+
+> 看 Nova-Scheduler 如何选择计算节点 – 每天 5 分钟玩转 OpenStack（27）
+
+每隔一段时间，nova-compute 就会报告当前计算节点的资源使用情况和自己的状态
+
+这不就是微服务么，eureka 既视感
+
+instance 的 launch、shutdown、reboot、suspend、resume、terminate、resize、migration、snapshot
+
+> Nova-Compute 部署 Instance 详解 – 每天 5 分钟玩转 OpenStack（28）
+
+#### 生命周期
+
+OpenStack 的日志格式都是统一的，如下
+`<时间戳><日志等级><代码模块><Request ID><日志内容><源代码位置>`
+
+> 教你看懂 OpenStack 日志 – 每天 5 分钟玩转 OpenStack（29）
+> Launch 和 Shut Off 操作详解 – 每天 5 分钟玩转 OpenStack（30）
+> Start Instance 操作详解 – 每天 5 分钟玩转 OpenStack（31）
+> Nova reboot 和 lock 操作 – 每天 5 分钟玩转 OpenStack（32）
+> Terminate Instance 操作详解 – 每天 5 分钟玩转 OpenStack（33）
+> Pause/Resume Instance 操作详解 – 每天 5 分钟玩转 OpenStack（34）
+> Nova Suspend/Rescue 操作详解 – 每天 5 分钟玩转 OpenStack（35）
+> Snapshot Instance 操作详解 – 每天 5 分钟玩转 OpenStack（36）
+> Rebuild Instance 操作详解 – 每天 5 分钟玩转 OpenStack（37）
+> Shelve Instance 操作详解 – 每天 5 分钟玩转 OpenStack（38）
+> Unshelve Instance 操作详解 – 每天 5 分钟玩转 OpenStack（39）
+> Migrate Instance 操作详解 – 每天 5 分钟玩转 OpenStack（40）
+> Resize Instance 操作详解 – 每天 5 分钟玩转 OpenStack（41）
+> Live Migrate 操作 – 每天 5 分钟玩转 OpenStack（42）
+> 计算节点宕机了怎么办？Evacuate - 每天 5 分钟玩转 OpenStack（43）
+> 1 张图秒懂 Nova 16 种操作 – 每天 5 分钟玩转 OpenStack（44）
+
+上面这一大堆操作都是属于遇到了现查来得更快，而且很多都浅显易懂，盲猜也能用个大概
+
+### Cinder
