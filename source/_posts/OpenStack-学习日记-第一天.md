@@ -78,7 +78,7 @@ Hypervisor 作为操作系统中的一个程序或者模块运行
 ### KVM
 
 对我来说 KVM 已经是一个听过无数次的词了  
-OpenStack 对 KVM 的支持最好，全程叫 Kernel-based Virtual Machine  
+OpenStack 对 KVM 的支持最好，全称叫 Kernel-based Virtual Machine  
 也就是说它基于 Linux 的内核实现，它有一个模块叫 kvm.ko，只用于管理虚拟 CPU 和内存
 
 那我们就要问了，那 IO 虚拟化呢，这个交给 Linux 内核与 QEMU 实现
@@ -208,6 +208,8 @@ OpenStack 对数据中心的计算、存储和网络资源进行统一管理
 
 > 云计算与 OpenStack – 每天 5 分钟玩转 OpenStack（14）
 
+---
+
 ## OpenStack
 
 写日记的时候最新版本是 Yoga，下一个版本是 Zed
@@ -248,6 +250,7 @@ OpenStack 对数据中心的计算、存储和网络资源进行统一管理
 | aodh       | Telemetry Alarming services                                   | 遥测报警服务                                                                      |
 | ceilometer | Telemetry Data Collection service                             | 遥测数据采集服务                                                                  |
 
+https://www.openstack.org/software/project-navigator/  
 这么一大堆模块一时半会肯定是学不完的，我们挑重点学习  
 搞清楚 OpenStack 是图和对计算，网络，储存资源进行管理的
 
@@ -272,3 +275,42 @@ OpenStack 本身是一个分布式系统，不但各个服务可以分布部署�
 > 搭建 OpenStack 实验环境 – 每天 5 分钟玩转 OpenStack（16）
 
 > 部署 DevStack – 每天 5 分钟玩转 OpenStack（17）
+
+### Keystone
+
+对于天天跟 OAuth 打交道的我这部分其实可以跳过
+
+- Authentication 解决的是“你是谁？”的问题
+- Authorization 解决的是“你能干什么？”的问题
+- Keystone 负责管理和维护每个 Service 的 Endpoint
+- Service 通过 Endpoint 暴露自己的 API
+
+> 理解 Keystone 核心概念 – 每天 5 分钟玩转 OpenStack（18）
+
+> 通过例子学习 Keystone – 每天 5 分钟玩转 OpenStack（19）
+
+### Glance
+
+这玩意还储存快照
+
+Glance 支持多种 backend，包括
+
+- A directory on a local file system（这是默认配置）
+- GridFS
+- Ceph RBD
+- Amazon S3
+- Sheepdog
+- OpenStack Block Storage (Cinder)
+- OpenStack Object Storage (Swift)
+- VMware ESX
+
+没啥好讲的，需要用到时候现查，而且大部分操作都可以通过 GUI 完成
+
+> 理解 Glance – 每天 5 分钟玩转 OpenStack（20）
+
+> 创建 Image – 每天 5 分钟玩转 OpenStack（21）
+
+> 如何使用 OpenStack CLI – 每天 5 分钟玩转 OpenStack（22）
+
+### Nova
+
