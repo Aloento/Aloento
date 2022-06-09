@@ -11337,6 +11337,9 @@ figure.highlight .section {
   min-width: inherit;
   border-radius: inherit;
 }
+figure.highlight.foldable div.level-left {
+  cursor: pointer;
+}
 .gist table tr:hover {
   background: transparent;
 }
