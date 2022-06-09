@@ -416,23 +416,25 @@ instance 的 launch、shutdown、reboot、suspend、resume、terminate、resize�
 OpenStack 的日志格式都是统一的，如下
 `<时间戳><日志等级><代码模块><Request ID><日志内容><源代码位置>`
 
-> 教你看懂 OpenStack 日志 – 每天 5 分钟玩转 OpenStack（29）
-> Launch 和 Shut Off 操作详解 – 每天 5 分钟玩转 OpenStack（30）
-> Start Instance 操作详解 – 每天 5 分钟玩转 OpenStack（31）
-> Nova reboot 和 lock 操作 – 每天 5 分钟玩转 OpenStack（32）
-> Terminate Instance 操作详解 – 每天 5 分钟玩转 OpenStack（33）
-> Pause/Resume Instance 操作详解 – 每天 5 分钟玩转 OpenStack（34）
-> Nova Suspend/Rescue 操作详解 – 每天 5 分钟玩转 OpenStack（35）
-> Snapshot Instance 操作详解 – 每天 5 分钟玩转 OpenStack（36）
-> Rebuild Instance 操作详解 – 每天 5 分钟玩转 OpenStack（37）
-> Shelve Instance 操作详解 – 每天 5 分钟玩转 OpenStack（38）
-> Unshelve Instance 操作详解 – 每天 5 分钟玩转 OpenStack（39）
-> Migrate Instance 操作详解 – 每天 5 分钟玩转 OpenStack（40）
-> Resize Instance 操作详解 – 每天 5 分钟玩转 OpenStack（41）
-> Live Migrate 操作 – 每天 5 分钟玩转 OpenStack（42）
-> 计算节点宕机了怎么办？Evacuate - 每天 5 分钟玩转 OpenStack（43）
+> 教你看懂 OpenStack 日志 – 每天 5 分钟玩转 OpenStack（29）  
+> Launch 和 Shut Off 操作详解 – 每天 5 分钟玩转 OpenStack（30）  
+> Start Instance 操作详解 – 每天 5 分钟玩转 OpenStack（31）  
+> Nova reboot 和 lock 操作 – 每天 5 分钟玩转 OpenStack（32）  
+> Terminate Instance 操作详解 – 每天 5 分钟玩转 OpenStack（33）  
+> Pause/Resume Instance 操作详解 – 每天 5 分钟玩转 OpenStack（34）  
+> Nova Suspend/Rescue 操作详解 – 每天 5 分钟玩转 OpenStack（35）  
+> Snapshot Instance 操作详解 – 每天 5 分钟玩转 OpenStack（36）  
+> Rebuild Instance 操作详解 – 每天 5 分钟玩转 OpenStack（37）  
+> Shelve Instance 操作详解 – 每天 5 分钟玩转 OpenStack（38）  
+> Unshelve Instance 操作详解 – 每天 5 分钟玩转 OpenStack（39）  
+> Migrate Instance 操作详解 – 每天 5 分钟玩转 OpenStack（40）  
+> Resize Instance 操作详解 – 每天 5 分钟玩转 OpenStack（41）  
+> Live Migrate 操作 – 每天 5 分钟玩转 OpenStack（42）  
+> 计算节点宕机了怎么办？Evacuate - 每天 5 分钟玩转 OpenStack（43）  
 > 1 张图秒懂 Nova 16 种操作 – 每天 5 分钟玩转 OpenStack（44）
 
 上面这一大堆操作都是属于遇到了现查来得更快，而且很多都浅显易懂，盲猜也能用个大概
+
+---
 
 ### Cinder
