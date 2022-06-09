@@ -4,7 +4,7 @@ date: 2022-04-05 11:58:53
 toc: true
 categories:
   - [Program, FrontEnd, WebCodecs]
-tags: [编程, 前端, 翻译, 音视频, WebCodecs]
+tags: [编程, 前端, 翻译, 音视频, WebCodecs, JS]
 ---
 
 [原文](https://web.dev/webcodecs/) 更新于 2022-02-10，由 Aloento 翻译，具体以原文为准
