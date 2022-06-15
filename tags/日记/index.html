@@ -27,7 +27,240 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">日记</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-06-09T05:08:56.000Z" title="6/9/2022, 5:08:56 AM">2022-06-09</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-06-09T20:36:59.213Z" title="6/9/2022, 8:36:59 PM">2022-06-10</time></span><span class="level-item"><a class="link-muted" href="/categories/Cloud/">Cloud</a><span> / </span><a class="link-muted" href="/categories/Cloud/OpenStack/">OpenStack</a><span> / </span><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">28 minutes read (About 4136 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/">OpenStack 学习日记 | 第一天</a></h1><div class="content"><p>由于本人最近需要从事 OpenStack 相关工作，所以急需对 OpenStack 进行学习<br>本系列日记仅作为本人的学习记录<br>学习材料为 《每天 5 分钟玩转 OpenStack》</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">日记</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-06-15T09:05:43.000Z" title="6/15/2022, 9:05:43 AM">2022-06-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-06-15T19:56:42.075Z" title="6/15/2022, 7:56:42 PM">2022-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/Cloud/">Cloud</a><span> / </span><a class="link-muted" href="/categories/Cloud/OpenStack/">OpenStack</a><span> / </span><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">20 minutes read (About 2993 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E5%A4%A9/">OpenStack 学习日记 第二天</a></h1><div class="content"><h2 id="Cinder"><a href="#Cinder" class="headerlink" title="Cinder"></a>Cinder</h2><p>操作系统挂载储存空间的方法有：</p>
+<ol>
+<li>Block Storage 块储存：通过本地协议（SCSI、SAS）等挂载裸磁盘，每个磁盘叫做 Volume 卷</li>
+<li>文件系统储存：通过网络协议（NFS、CIFS）等挂载远程文件系统，分布式就是这种</li>
+</ol>
+<p>Block Storage Service 提供对 volume 从创建到删除整个生命周期的管理<br>从 instance 的角度看，挂载的每一个 Volume 都是一块硬盘</p>
+<p>Cinder：</p>
+<ol>
+<li>提供 REST API 使用户能够查询和管理 volume、volume snapshot 以及 volume type</li>
+<li>提供 scheduler 调度 volume 创建请求，合理优化存储资源的分配</li>
+<li>通过 driver 架构支持多种 back-end（后端）存储方式，包括 LVM，NFS，Ceph 和其他诸如 EMC、IBM 等商业存储产品和方案</li>
+</ol>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><ol>
+<li><p>cinder-api<br>接收 API 请求，调用 cinder-volume 执行操作</p>
+</li>
+<li><p>cinder-volume<br>管理 volume 的服务，与 volume provider 协调工作，管理 volume 的生命周期<br>运行 cinder-volume 服务的节点被称作为存储节点，LVM 是默认的 provider</p>
+</li>
+<li><p>cinder-scheduler<br>scheduler 通过调度算法选择最合适的存储节点创建 volume</p>
+</li>
+<li><p>volume provider<br>数据的存储设备，为 volume 提供物理存储空间<br>支持多种 volume provider，每种 provider 通过自己的 driver 与 cinder-volume 协调工作</p>
+</li>
+<li><p>Message Queue<br>Cinder 各个子服务通过消息队列实现进程间通信和相互协作<br>因为有了消息队列，子服务之间实现了解耦，这种松散的结构也是分布式系统的重要特征</p>
+</li>
+<li><p>Database<br>数据库是安装在控制节点上的</p>
+</li>
+</ol>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><blockquote>
+<p>理解 Cinder 架构 – 每天 5 分钟玩转 OpenStack（45）</p>
+</blockquote>
+<p>主要还是在讲传统分布式设计</p>
+<blockquote>
+<p>掌握 Cinder 的设计思想 – 每天 5 分钟玩转 OpenStack（46）</p>
+</blockquote>
+<p>cinder-api 是整个 Cinder 组件的门户，所有 cinder 的请求都首先由 nova-api 处理</p>
+<p>cinder-volume 在存储节点上运行，OpenStack 对 Volume 的操作，最后都是交给 cinder-volume 来完成的<br>cinder-volume 自身并不管理真正的存储设备，存储设备是由 volume provider 管理的。cinder-volume 与 volume provider 一起实现 volume 生命周期的管理</p>
+<blockquote>
+<p>Cinder 组件详解 – 每天 5 分钟玩转 OpenStack（47）</p>
+</blockquote>
+<h3 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h3><p>Filter scheduler 是 cinder-scheduler 默认的调度器</p>
+<ol>
+<li><p>AvailabilityZoneFilter<br>为提高容灾性和提供隔离服务，可以将存储节点和计算节点划分到不同的 Availability Zone 中</p>
+</li>
+<li><p>CapacityFilter<br>将存储空间不能满足 Volume 创建需求的存储节点过滤掉</p>
+</li>
+<li><p>CapabilitiesFilter<br>不同的 Volume Provider 有自己的特性（Capabilities），比如是否支持 thin provision 等<br>Cinder 允许用户创建 Volume 时通过 Volume Type 指定需要的 Capabilities</p>
+</li>
+<li><p>Weighter<br>通过 scheduler_default_weighers 指定计算权重的 weigher，默认为 CapacityWeigher<br>CapacityWeigher 基于存储节点的空闲容量计算权重值，空闲容量最大的胜出</p>
+</li>
+</ol>
+<blockquote>
+<p>掌握 cinder-scheduler 调度逻辑 – 每天 5 分钟玩转 OpenStack（48）</p>
+</blockquote>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><blockquote>
+<p>准备 LVM Volume Provider – 每天 5 分钟玩转 OpenStack（49）</p>
+</blockquote>
+<blockquote>
+<p>Create Volume 操作（Part I） – 每天 5 分钟玩转 OpenStack（50）</p>
+</blockquote>
+<blockquote>
+<p>Create Volume 操作（Part II） – 每天 5 分钟玩转 OpenStack（51）</p>
+</blockquote>
+<blockquote>
+<p>Create Volume 操作（Part III） – 每天 5 分钟玩转 OpenStack（52）</p>
+</blockquote>
+<blockquote>
+<p>Attach Volume 操作（Part I） – 每天 5 分钟玩转 OpenStack（53）</p>
+</blockquote>
+<blockquote>
+<p>Attach Volume 操作（Part II） – 每天 5 分钟玩转 OpenStack（54）</p>
+</blockquote>
+<blockquote>
+<p>Detach Volume 操作 – 每天 5 分钟玩转 OpenStack（55）</p>
+</blockquote>
+<blockquote>
+<p>Extend Volume 操作 – 每天 5 分钟玩转 OpenStack（56）</p>
+</blockquote>
+<blockquote>
+<p>Delete Volume 操作 – 每天 5 分钟玩转 OpenStack（57）</p>
+</blockquote>
+<blockquote>
+<p>Snapshot Volume 操作 – 每天 5 分钟玩转 OpenStack（58）</p>
+</blockquote>
+<blockquote>
+<p>Backup Volume 操作 – 每天 5 分钟玩转 OpenStack（59）</p>
+</blockquote>
+<blockquote>
+<p>Restore Volume 操作 – 每天 5 分钟玩转 OpenStack（60）</p>
+</blockquote>
+<blockquote>
+<p>Boot From Volume – 每天 5 分钟玩转 OpenStack（61）</p>
+</blockquote>
+<h3 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h3><blockquote>
+<p>NFS Volume Provider（Part I） – 每天 5 分钟玩转 OpenStack（62）</p>
+</blockquote>
+<blockquote>
+<p>NFS Volume Provider（Part II） – 每天 5 分钟玩转 OpenStack（63）</p>
+</blockquote>
+<blockquote>
+<p>NFS Volume Provider（Part III） – 每天 5 分钟玩转 OpenStack（64）</p>
+</blockquote>
+<hr>
+<h2 id="Neutron"><a href="#Neutron" class="headerlink" title="Neutron"></a>Neutron</h2><p>“软件定义网络（software-defined networking, SDN）”所具有的灵活性和自动化优势</p>
+<p>Neutron 的设计目标是实现“网络即服务（Networking as a Service）”<br>在设计上遵循了基于 SDN 实现网络虚拟化的原则，在实现上充分利用了 Linux 系统上的各种网络相关的技术</p>
+<p>Neutron 为整个 OpenStack 环境提供网络支持，包括二层交换，三层路由，负载均衡，防火墙和 VPN 等</p>
+<ol>
+<li><p>二层交换 Switching<br>Nova 的 Instance 是通过虚拟交换机连接到虚拟二层网络的<br>Neutron 支持多种虚拟交换机，包括 Linux 原生的 Linux Bridge 和 Open vSwitch<br>Neutron 除了可以创建传统的 VLAN 网络，还可以创建基于隧道技术的 Overlay 网络，比如 VxLAN 和 GRE</p>
+</li>
+<li><p>三层路由 Routing<br>Neutron 支持多种路由，包括 Linux 原生的 Linux Bridge 和 Open vSwitch<br>Instance 可以配置不同网段的 IP，Neutron 的 router（虚拟路由器）实现 instance 跨网段通信<br>router 通过 IP forwarding，iptables 等技术来实现路由和 NAT</p>
+</li>
+<li><p>负载均衡 Load Balancing<br>Load-Balancing-as-a-Service（LBaaS）<br>支持多种负载均衡产品和方案，不同的实现以 Plugin 的形式集成到 Neutron，目前默认的 Plugin 是 HAProxy。</p>
+</li>
+<li><p>防火墙 Firewalling<br>Security Group：通过 iptables 限制进出 instance 的网络包<br>FWaaS：限制进出虚拟路由器的网络包，也是通过 iptables 实现</p>
+</li>
+</ol>
+<blockquote>
+<p>Neutron 功能概述 – 每天 5 分钟玩转 OpenStack（65）</p>
+</blockquote>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Neutron 支持多种类型的 network，包括 local, flat, VLAN, VxLAN 和 GRE。</p>
+<ol>
+<li><p>local<br>local 网络与其他网络和节点隔离。local 网络中的 instance 只能与位于同一节点上同一网络的 instance 通信，local 网络主要用于单机测试</p>
+</li>
+<li><p>flat<br>flat 网络是无 vlan tagging 的网络。flat 网络中的 instance 能与位于同一网络的 instance 通信，并且可以跨多个节点。</p>
+</li>
+<li><p>vlan<br>vlan 网络是具有 802.1q tagging 的网络。vlan 是一个二层的广播域，同一 vlan 中的 instance 可以通信，不同 vlan 只能通过 router 通信。vlan 网络可以跨节点，是应用最广泛的网络类型</p>
+</li>
+<li><p>vxlan<br>vxlan 是基于隧道技术的 overlay 网络。vxlan 网络通过唯一的 segmentation ID（也叫 VNI）与其他 vxlan 网络区分<br>vxlan 中数据包会通过 VNI 封装成 UDP 包进行传输<br>因为二层的包通过封装在三层传输，能够克服 vlan 和物理网络基础设施的限制</p>
+</li>
+<li><p>gre<br>gre 是与 vxlan 类似的一种 overlay 网络。主要区别在于使用 IP 包而非 UDP 进行封装</p>
+</li>
+</ol>
+<blockquote>
+<p>Neutron 网络基本概念 – 每天 5 分钟玩转 OpenStack（66）</p>
+</blockquote>
+<h3 id="组件-1"><a href="#组件-1" class="headerlink" title="组件"></a>组件</h3><ol>
+<li><p>Neutron Server<br>对外提供 OpenStack 网络 API，接收请求，并调用 Plugin 处理请求。</p>
+</li>
+<li><p>Plugin<br>处理 Neutron Server 发来的请求，维护 OpenStack 逻辑网络的状态， 并调用 Agent 处理请求。</p>
+</li>
+<li><p>Agent<br>处理 Plugin 的请求，负责在 network provider 上真正实现各种网络功能。</p>
+</li>
+<li><p>network provider<br>提供网络服务的虚拟或物理网络设备，例如 Linux Bridge，Open vSwitch 或者其他支持 Neutron 的物理交换机。</p>
+</li>
+<li><p>Queue<br>Neutron Server，Plugin 和 Agent 之间通过 Messaging Queue 通信和调用。</p>
+</li>
+<li><p>Database<br>存放 OpenStack 的网络状态信息，包括 Network, Subnet, Port, Router 等。</p>
+</li>
+</ol>
+<blockquote>
+<p>Neutron 架构 – 每天 5 分钟玩转 OpenStack（67）</p>
+</blockquote>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><ol>
+<li><p>方案 1：控制节点 + 计算节点<br>控制节点：部署的服务包括：neutron server, core plugin 的 agent 和 service plugin 的 agent<br>计算节点：部署 core plugin 的 agent，负责提供二层网络功能。</p>
+</li>
+<li><p>方案 2：控制节点 + 网络节点 + 计算节点<br>控制节点：部署 neutron server 服务<br>网络节点：部署的服务包括：core plugin 的 agent 和 service plugin 的 agent<br>计算节点：部署 core plugin 的 agent，负责提供二层网络功能。</p>
+</li>
+</ol>
+<blockquote>
+<p>Neutron 物理部署方案 – 每天 5 分钟玩转 OpenStack（68）</p>
+</blockquote>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><ol>
+<li><p>Core API<br>对外提供管理 network, subnet 和 port 的 RESTful API。</p>
+</li>
+<li><p>Extension API<br>对外提供管理 router, load balance, firewall 等资源 的 RESTful API。</p>
+</li>
+<li><p>Commnon Service<br>认证和校验 API 请求。</p>
+</li>
+<li><p>Neutron Core<br>Neutron server 的核心处理程序，通过调用相应的 Plugin 处理请求。</p>
+</li>
+<li><p>Core Plugin API<br>定义了 Core Plgin 的抽象功能集合，Neutron Core 通过该 API 调用相应的 Core Plgin。</p>
+</li>
+<li><p>Extension Plugin API<br>定义了 Service Plgin 的抽象功能集合，Neutron Core 通过该 API 调用相应的 Service Plgin。</p>
+</li>
+<li><p>Core Plugin<br>实现了 Core Plugin API，在数据库中维护 network, subnet 和 port 的状态，并负责调用相应的 agent 在 network provider 上执行相关操作，比如创建 network。</p>
+</li>
+<li><p>Service Plugin<br>实现了 Extension Plugin API，在数据库中维护 router, load balance, security group 等资源的状态，并负责调用相应的 agent 在 network provider 上执行相关操作，比如创建 router。</p>
+</li>
+</ol>
+<blockquote>
+<p>理解 Neutron Server 分层模型 – 每天 5 分钟玩转 OpenStack（69）</p>
+</blockquote>
+<blockquote>
+<p>Neutron 如何支持多种 network provider – 每天 5 分钟玩转 OpenStack（70）</p>
+</blockquote>
+<h3 id="ML2"><a href="#ML2" class="headerlink" title="ML2"></a>ML2</h3><p>Moduler Layer 2（ML2）是 Neutron 在 Havana 版本实现的一个新的 core plugin，用于替代原有的 linux bridge plugin 和 open vswitch plugin</p>
+<p>传统 core plugin 存在两个突出的问题:</p>
+<ol>
+<li><p>无法同时使用多种 network provider</p>
+</li>
+<li><p>开发新的 core plugin 工作量大</p>
+</li>
+</ol>
+<blockquote>
+<p>详解 ML2 Core Plugin（I） – 每天 5 分钟玩转 OpenStack（71）</p>
+</blockquote>
+<p>ML2 对二层网络进行抽象和建模，引入了 type driver 和 mechanism driver<br>这两类 driver 解耦了 Neutron 所支持的网络类型（type）与访问这些网络类型的机制（mechanism）<br>其结果就是使得 ML2 具有非常好的弹性，易于扩展，能够灵活支持多种 type 和 mechanism。</p>
+<h4 id="Type-Driver"><a href="#Type-Driver" class="headerlink" title="Type Driver"></a>Type Driver</h4><p>Neutron 支持的每一种网络类型都有一个对应的 ML2 type driver。type driver 负责维护网络类型的状态，执行验证，创建网络等。ML2 支持的网络类型包括 local, flat, vlan, vxlan 和 gre</p>
+<h4 id="Mechanism-Driver"><a href="#Mechanism-Driver" class="headerlink" title="Mechanism Driver"></a>Mechanism Driver</h4><p>Neutron 支持的每一种网络机制都有一个对应的 ML2 mechanism driver</p>
+<p>mechanism driver 负责获取由 type driver 维护的网络状态，并确保在相应的网络设备（物理或虚拟）上正确实现这些状态</p>
+<p>mechanism driver 有三种类型</p>
+<ol>
+<li><p>Agent-based<br>包括 linux bridge, open vswitch 等</p>
+</li>
+<li><p>Controller-based<br>包括 OpenDaylight, VMWare NSX 等</p>
+</li>
+<li><p>基于物理交换机<br>包括 Cisco Nexus, Arista, Mellanox 等</p>
+</li>
+</ol>
+<blockquote>
+<p>详解 ML2 Core Plugin（II） – 每天 5 分钟玩转 OpenStack（72）</p>
+</blockquote>
+<h4 id="Service-Plugin"><a href="#Service-Plugin" class="headerlink" title="Service Plugin"></a>Service Plugin</h4><p>Core Plugin&#x2F;Agent 负责管理核心实体：net, subnet 和 port<br>而对于更高级的网络服务，则由 Service Plugin&#x2F;Agent 管理<br>Service Plugin 及其 Agent 提供更丰富的扩展功能，包括路由，load balance，firewall 等</p>
+<ol>
+<li><p>DHCP<br>dhcp agent 通过 dnsmasq 为 instance 提供 dhcp 服务</p>
+</li>
+<li><p>Routing<br>l3 agent 可以为 project（租户）创建 router，提供 Neutron subnet 之间的路由服务<br>路由功能默认通过 IPtables 实现</p>
+</li>
+<li><p>Firewall<br>l3 agent 可以在 router 上配置防火墙策略，提供网络安全防护<br>另一个与安全相关的功能是 Security Group，也是通过 IPtables 实现<br>Firewall 安全策略位于 router，保护的是某个 project 的所有 network<br>Security Group 安全策略位于 instance，保护的是单个 instance</p>
+</li>
+<li><p>Load Balance<br>Neutron 默认通过 HAProxy 为 project 中的多个 instance 提供 load balance 服务</p>
+</li>
+</ol>
+<blockquote>
+<p>Service Plugin &#x2F; Agent – 每天 5 分钟玩转 OpenStack（73）</p>
+</blockquote>
+<blockquote>
+<p>两张图总结 Neutron 架构 – 每天 5 分钟玩转 OpenStack（74）</p>
+</blockquote>
+<blockquote>
+<p>为 Neutron 准备物理基础设施（I） – 每天 5 分钟玩转 OpenStack（75）</p>
+</blockquote>
+<blockquote>
+<p>为 Neutron 准备物理基础设施（II） – 每天 5 分钟玩转 OpenStack（76）</p>
+</blockquote>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-06-09T05:08:56.000Z" title="6/9/2022, 5:08:56 AM">2022-06-09</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-06-15T19:56:42.075Z" title="6/15/2022, 7:56:42 PM">2022-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/Cloud/">Cloud</a><span> / </span><a class="link-muted" href="/categories/Cloud/OpenStack/">OpenStack</a><span> / </span><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">28 minutes read (About 4135 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/">OpenStack 学习日记 | 第一天</a></h1><div class="content"><p>由于本人最近需要从事 OpenStack 相关工作，所以急需对 OpenStack 进行学习<br>本系列日记仅作为本人的学习记录<br>学习材料为 《每天 5 分钟玩转 OpenStack》</p>
 <h2 id="学习前需要知道的"><a href="#学习前需要知道的" class="headerlink" title="学习前需要知道的"></a>学习前需要知道的</h2><h3 id="OpenStack-涉及的范围广"><a href="#OpenStack-涉及的范围广" class="headerlink" title="OpenStack 涉及的范围广"></a>OpenStack 涉及的范围广</h3><p>计算，储存，网络，虚拟化，可用性，安全性，灾备<br>等一些列关于 IT 基础设施的范围 OpenStack 都有涵盖</p>
 <h3 id="OpenStack-是一个平台"><a href="#OpenStack-是一个平台" class="headerlink" title="OpenStack 是一个平台"></a>OpenStack 是一个平台</h3><p>它的各个组件都采用了 Driver 架构，支持各种的具体实现。<br>比如 OpenStack 储存服务 Cinder 只定义抽象 API，而具体实现交给具体的 Driver<br>比如基于 LVM 的 iSCSI， EMC，或者开源的 Ceph，GlusterFS 等等</p>
 <p>这里我们可以类比到 Entity Framework，它只定义了上层的 API<br>而具体的数据库操作交给了你指定的 Driver，如 Npgsql</p>
@@ -443,7 +676,7 @@
 </blockquote>
 <p>上面这一大堆操作都是属于遇到了现查来得更快，而且很多都浅显易懂，盲猜也能用个大概</p>
 <hr>
-<h3 id="Cinder"><a href="#Cinder" class="headerlink" title="Cinder"></a>Cinder</h3></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-12-03T07:15:37.000Z" title="12/3/2021, 7:15:37 AM">2021-12-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-06-09T20:36:59.217Z" title="6/9/2022, 8:36:59 PM">2022-06-10</time></span><span class="level-item"><a class="link-muted" href="/categories/Program/">Program</a><span> / </span><a class="link-muted" href="/categories/Program/C/">C++</a><span> / </span><a class="link-muted" href="/categories/Diary/">Diary</a><span> / </span><a class="link-muted" href="/categories/Program/C/CLI/">CLI</a></span><span class="level-item">19 minutes read (About 2791 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Program/C/CLI/%E8%AE%BA%E5%A6%82%E4%BD%95%E5%9C%A8CPPCLI%E4%B8%AD%E4%BD%BF%E7%94%A8LINQ%E4%B9%8B%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A5%87%E5%A6%99%E7%9A%84CPP%E5%A4%A7%E4%BD%9C%E4%B8%9A/">论如何在C++/CLI中使用LINQ：记一次奇妙的C++大作业</a></h1><div class="content"><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">“救我，你一定要救我啊！” 我的同学对我如是说</span><br><span class="line">“¿”</span><br><span class="line">“C++要考试了！我整不来啊，我感觉挺简单的题”</span><br><span class="line">“......”</span><br><span class="line">“请你吃顿饭”</span><br><span class="line">“彳亍”</span><br></pre></td></tr></table></figure>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-12-03T07:15:37.000Z" title="12/3/2021, 7:15:37 AM">2021-12-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-06-15T19:56:42.079Z" title="6/15/2022, 7:56:42 PM">2022-06-16</time></span><span class="level-item"><a class="link-muted" href="/categories/Program/">Program</a><span> / </span><a class="link-muted" href="/categories/Program/C/">C++</a><span> / </span><a class="link-muted" href="/categories/Diary/">Diary</a><span> / </span><a class="link-muted" href="/categories/Program/C/CLI/">CLI</a></span><span class="level-item">19 minutes read (About 2791 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Program/C/CLI/%E8%AE%BA%E5%A6%82%E4%BD%95%E5%9C%A8CPPCLI%E4%B8%AD%E4%BD%BF%E7%94%A8LINQ%E4%B9%8B%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A5%87%E5%A6%99%E7%9A%84CPP%E5%A4%A7%E4%BD%9C%E4%B8%9A/">论如何在C++/CLI中使用LINQ：记一次奇妙的C++大作业</a></h1><div class="content"><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">“救我，你一定要救我啊！” 我的同学对我如是说</span><br><span class="line">“¿”</span><br><span class="line">“C++要考试了！我整不来啊，我感觉挺简单的题”</span><br><span class="line">“......”</span><br><span class="line">“请你吃顿饭”</span><br><span class="line">“彳亍”</span><br></pre></td></tr></table></figure>
 
 <p>然后我就收到了这么两道题目：</p>
 <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><hr>
@@ -551,7 +784,7 @@
 <h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> System;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Linq;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Collections::Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Aloento::CLILinq &#123;</span><br><span class="line">  <span class="keyword">public</span> ref <span class="keyword">class</span> <span class="title class_">CLILinq</span> sealed &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">static</span> List&lt;<span class="type">int</span>&gt;^ <span class="built_in">GetRandoms</span>(<span class="type">const</span> <span class="type">int</span> min, <span class="type">const</span> <span class="type">int</span> max, <span class="type">const</span> <span class="type">int</span> num) &#123;</span><br><span class="line">      <span class="keyword">if</span> (max / <span class="number">2</span> + max / <span class="number">5</span> - (min / <span class="number">2</span> + min / <span class="number">5</span>) &lt; num) &#123;</span><br><span class="line">        <span class="keyword">throw</span> gcnew <span class="built_in">ArgumentOutOfRangeException</span>();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">auto</span> random = Random::Shared;</span><br><span class="line">      <span class="keyword">auto</span> res = gcnew <span class="built_in">List</span>&lt;<span class="type">int</span>&gt;(num);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">auto</span> i = <span class="number">0</span>; i &lt; num;) &#123;</span><br><span class="line">        <span class="keyword">auto</span> r = random-&gt;<span class="built_in">Next</span>(min, max);</span><br><span class="line">        <span class="keyword">if</span> (!res-&gt;<span class="built_in">Contains</span>(r) &amp;&amp; (r % <span class="number">2</span> == <span class="number">0</span> || r % <span class="number">5</span> == <span class="number">0</span>)) &#123;</span><br><span class="line">          i++;</span><br><span class="line">          res-&gt;<span class="built_in">Add</span>(r);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">static</span> Dictionary&lt;Char, <span class="type">double</span>&gt;^ <span class="built_in">GetWagesList</span>() &#123;</span><br><span class="line">      <span class="keyword">auto</span> random = Random::Shared;</span><br><span class="line">      <span class="keyword">auto</span> dictionary = gcnew <span class="built_in">Dictionary</span>&lt;Char, <span class="type">double</span>&gt;();</span><br><span class="line">      Char c = <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">auto</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">auto</span> wage = random-&gt;<span class="built_in">NextDouble</span>() * <span class="number">1000</span>;</span><br><span class="line">        dictionary-&gt;<span class="built_in">Add</span>(c++, wage);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> dictionary;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">double</span> <span class="title">Select</span><span class="params">(KeyValuePair&lt;Char, <span class="type">double</span>&gt; a)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> a.Value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">Invoke</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">auto</span> randomList = <span class="built_in">GetRandoms</span>(<span class="number">1</span>, <span class="number">200</span>, <span class="number">20</span>);</span><br><span class="line">      <span class="function"><span class="keyword">for</span> <span class="title">each</span> <span class="params">(<span class="keyword">auto</span> num in randomList)</span> </span>&#123;</span><br><span class="line">        Console::<span class="built_in">WriteLine</span>(num);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      Console::<span class="built_in">WriteLine</span>(<span class="string">&quot;\n-------------------------------\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">auto</span> wageDic = <span class="built_in">GetWagesList</span>();</span><br><span class="line">      <span class="keyword">auto</span> v = wageDic-&gt;Values;</span><br><span class="line"></span><br><span class="line">      <span class="type">double</span> sum = <span class="number">0</span>;</span><br><span class="line">      <span class="function"><span class="keyword">for</span> <span class="title">each</span> <span class="params">(<span class="keyword">auto</span> num in v)</span> </span>&#123;</span><br><span class="line">        sum += num;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">auto</span> avg = sum / <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">auto</span> c = System::Globalization::CultureInfo::CultureInfo::<span class="built_in">CreateSpecificCulture</span>(<span class="string">&quot;eu-ES&quot;</span>);</span><br><span class="line">      Console::<span class="built_in">WriteLine</span>(<span class="string">&quot;Average: &quot;</span> + avg.<span class="built_in">ToString</span>(<span class="string">&quot;C&quot;</span>, c) + <span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">auto</span> ordered = Enumerable::<span class="built_in">OrderBy</span>(wageDic, gcnew Func&lt;KeyValuePair&lt;Char, <span class="type">double</span>&gt;, <span class="type">double</span>&gt;(Select));</span><br><span class="line">      <span class="function"><span class="keyword">for</span> <span class="title">each</span> <span class="params">(<span class="keyword">auto</span> one in ordered)</span> </span>&#123;</span><br><span class="line">        Console::<span class="built_in">WriteLine</span>(one.Key + <span class="string">&quot;: &quot;</span> + one.Value.<span class="built_in">ToString</span>(<span class="string">&quot;C&quot;</span>, c));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">15</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Diary/"><span class="level-start"><span class="level-item">Diary</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/FrontEnd/"><span class="level-start"><span class="level-item">FrontEnd</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/FrontEnd/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OrderBy/"><span class="tag">OrderBy</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E8%AE%B0/"><span class="tag">日记</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-06-09T05:08:56.000Z">2022-06-09</time></p><p class="title"><a href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/">OpenStack 学习日记 | 第一天</a></p><p class="categories"><a href="/categories/Cloud/">Cloud</a> / <a href="/categories/Cloud/OpenStack/">OpenStack</a> / <a href="/categories/Diary/">Diary</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-04-05T03:58:53.000Z">2022-04-05</time></p><p class="title"><a href="/Program/FrontEnd/WebCodecs/%E8%AE%BA%E4%BD%BF%E7%94%A8WebCodecs%E5%AF%B9%E8%A7%86%E9%A2%91%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86/">论使用WebCodecs对视频进行处理</a></p><p class="categories"><a href="/categories/Program/">Program</a> / <a href="/categories/Program/FrontEnd/">FrontEnd</a> / <a href="/categories/Program/FrontEnd/WebCodecs/">WebCodecs</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-03T07:15:37.000Z">2021-12-03</time></p><p class="title"><a href="/Program/C/CLI/%E8%AE%BA%E5%A6%82%E4%BD%95%E5%9C%A8CPPCLI%E4%B8%AD%E4%BD%BF%E7%94%A8LINQ%E4%B9%8B%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A5%87%E5%A6%99%E7%9A%84CPP%E5%A4%A7%E4%BD%9C%E4%B8%9A/">论如何在C++/CLI中使用LINQ：记一次奇妙的C++大作业</a></p><p class="categories"><a href="/categories/Program/">Program</a> / <a href="/categories/Program/C/">C++</a> / <a href="/categories/Diary/">Diary</a> / <a href="/categories/Program/C/CLI/">CLI</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2022 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://unpkg.com/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://unpkg.com/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">15</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Diary/"><span class="level-start"><span class="level-item">Diary</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/FrontEnd/"><span class="level-start"><span class="level-item">FrontEnd</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/FrontEnd/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OrderBy/"><span class="tag">OrderBy</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E8%AE%B0/"><span class="tag">日记</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-06-15T09:05:43.000Z">2022-06-15</time></p><p class="title"><a href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E5%A4%A9/">OpenStack 学习日记 第二天</a></p><p class="categories"><a href="/categories/Cloud/">Cloud</a> / <a href="/categories/Cloud/OpenStack/">OpenStack</a> / <a href="/categories/Diary/">Diary</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-06-09T05:08:56.000Z">2022-06-09</time></p><p class="title"><a href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/">OpenStack 学习日记 | 第一天</a></p><p class="categories"><a href="/categories/Cloud/">Cloud</a> / <a href="/categories/Cloud/OpenStack/">OpenStack</a> / <a href="/categories/Diary/">Diary</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-04-05T03:58:53.000Z">2022-04-05</time></p><p class="title"><a href="/Program/FrontEnd/WebCodecs/%E8%AE%BA%E4%BD%BF%E7%94%A8WebCodecs%E5%AF%B9%E8%A7%86%E9%A2%91%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86/">论使用WebCodecs对视频进行处理</a></p><p class="categories"><a href="/categories/Program/">Program</a> / <a href="/categories/Program/FrontEnd/">FrontEnd</a> / <a href="/categories/Program/FrontEnd/WebCodecs/">WebCodecs</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-03T07:15:37.000Z">2021-12-03</time></p><p class="title"><a href="/Program/C/CLI/%E8%AE%BA%E5%A6%82%E4%BD%95%E5%9C%A8CPPCLI%E4%B8%AD%E4%BD%BF%E7%94%A8LINQ%E4%B9%8B%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A5%87%E5%A6%99%E7%9A%84CPP%E5%A4%A7%E4%BD%9C%E4%B8%9A/">论如何在C++/CLI中使用LINQ：记一次奇妙的C++大作业</a></p><p class="categories"><a href="/categories/Program/">Program</a> / <a href="/categories/Program/C/">C++</a> / <a href="/categories/Diary/">Diary</a> / <a href="/categories/Program/C/CLI/">CLI</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2022 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://unpkg.com/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://unpkg.com/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
