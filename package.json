@@ -27,6 +27,6 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "inferno": "^7.4.11",
-    "inferno-create-element": "^7.4.11"
+    "inferno-create-element": "^8.0.1"
   }
 }
