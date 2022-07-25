@@ -1710,12 +1710,15 @@ hexo-cli@^4.3.0:
     resolve "^1.11.0"
     tildify "^2.0.0"
 
-hexo-component-inferno@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/hexo-component-inferno/-/hexo-component-inferno-1.1.0.tgz#b9176fb501728fbd1f50f125b49fa42511b1ba89"
-  integrity sha512-oLiPxrhO/KMU4kGrgVAF3R4DWdRjMXiD7qV7rDaSaMpADP4Nq0EJGvHVas4rzzx2WTQ5AZpGyB74jNV60PKfMA==
+hexo-component-inferno@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/hexo-component-inferno/-/hexo-component-inferno-1.2.0.tgz#0e7130905fe1e44b452397fd471ed65d1e5f48dc"
+  integrity sha512-UGrkw14QwnlOsMkLbdD6fA+ZJWYRwUaWojwN7f2wKP/wNZMCYWDDjiB02rqZXeOwOEXm4HNQmVboS/oQUEzYTw==
   dependencies:
     ajv "^8.8.2"
+    hexo "^6.0.0"
+    hexo-pagination "^2.0.0"
+    hexo-util "^2.2.0"
     inferno "^7.3.3"
     inferno-create-element "^7.3.3"
     js-yaml "^4.1.0"
@@ -1806,7 +1809,7 @@ hexo-pagination@1.0.0:
   resolved "https://registry.yarnpkg.com/hexo-pagination/-/hexo-pagination-1.0.0.tgz#c9c0ca3665267b9e9d0a89fc3edcaf3276907dc1"
   integrity sha512-miEVFgxchPr2qNWxw0JWpJ9R/Yaf7HjHBZVjvCCcqfbsLyYtCvIfJDxcEwz1sDOC/fLzYPqNnhUI73uNxBHRSA==
 
-hexo-pagination@2.0.0:
+hexo-pagination@2.0.0, hexo-pagination@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/hexo-pagination/-/hexo-pagination-2.0.0.tgz#41283f7daab56ea29f2a4c52f9b91e0cbf8a4bdb"
   integrity sha512-ZZQli5UwFWTW6bJNF4zwp2PCeGsipgoPxadud8+cPPxvygTP5GjTS5eVWcUTcfEaCluP+O1maxZCCWmYQoJkiQ==
@@ -1877,7 +1880,7 @@ hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.5.0:
     prismjs "^1.17.1"
     strip-indent "^3.0.0"
 
-hexo-util@^2.6.1:
+hexo-util@^2.2.0, hexo-util@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/hexo-util/-/hexo-util-2.6.1.tgz#19b79a1ec751a735ffe34766b65d8e2039c00519"
   integrity sha512-xj1jUrId2qTe8L/tRizWWRl+j7X1Zzh5rCVtffboOU0p/EfbPomxIxDvntTHT3fcqgvLHsncqJF9V5j7+buOqA==
@@ -1891,7 +1894,7 @@ hexo-util@^2.6.1:
     prismjs "^1.17.1"
     strip-indent "^3.0.0"
 
-hexo@^6.2.0:
+hexo@^6.0.0, hexo@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/hexo/-/hexo-6.2.0.tgz#5a62a4c731bf89431d2004326b07af0ec0490242"
   integrity sha512-HOpt3vUOz/T0rWTDb/CtWuBJwYARPwbpvGwsaz0RPu/l5I6AmKE+UA0lJZf14iPS3JIt/HiOcTZ3Qz22A+PE8w==
@@ -1993,7 +1996,7 @@ iconv-lite@0.6.3:
   dependencies:
     safer-buffer ">= 2.1.2 < 3.0.0"
 
-inferno-create-element@^7.3.3, inferno-create-element@^7.4.11:
+inferno-create-element@^7.3.3:
   version "7.4.11"
   resolved "https://registry.yarnpkg.com/inferno-create-element/-/inferno-create-element-7.4.11.tgz#1690b3ad28b61be93765b11b409dc9a9a35bf63a"
   integrity sha512-kE6XIx2hPAd5qpDli2iGjNXgubvuyxdLvoiW71WnSzIIxA+Uxa/s8lY8m03VyHHVypFV3n329ZY5dFvKc7UQMg==
@@ -2017,7 +2020,7 @@ inferno-vnode-flags@7.4.11:
   resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-7.4.11.tgz#642a835a8dde514f244296b27c176a2b8704fbac"
   integrity sha512-L7lslEQCq3IfwgT/b9zhuMf8fv6KXCNXXHZevk/WYxnqJsOWGDcKpJn0zkzXfvmj0otbB149iLUQVBq3oe2sfA==
 
-inferno@7.4.11, inferno@^7.3.3, inferno@^7.4.11:
+inferno@7.4.11, inferno@^7.3.3:
   version "7.4.11"
   resolved "https://registry.yarnpkg.com/inferno/-/inferno-7.4.11.tgz#fcee308cf0e4a2f6066d96da74e3b425583bfc66"
   integrity sha512-N+cs33ESWI8fdToCd98yMRYl7jkLnCkJskxov3FKKlaKOvk3PRlAttbhmUaYdWXlRvt2WeXi+J4MbzNj3V6G0w==
