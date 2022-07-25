@@ -1,7 +1,5 @@
 [![Aloento's GitHub stats](https://github-readme-stats.vercel.app/api?username=Aloento&count_private=true&show_icons=true&title_color=fff&text_color=fff&icon_color=fff&bg_color=35,ff5db1,4b88ac&hide_border=true)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Aloento&layout=compact&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
-
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
