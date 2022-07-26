@@ -1,5 +1,8 @@
 [![Aloento's GitHub stats](https://github-readme-stats.vercel.app/api?username=Aloento&count_private=true&show_icons=true&title_color=fff&text_color=fff&icon_color=fff&bg_color=35,ff5db1,4b88ac&hide_border=true)](https://github.com/anuraghazra/github-readme-stats)
 
+<details>
+  <summary>Click to see what I'm using</summary>
+ 
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
@@ -82,3 +85,5 @@
 ![Apple Music](https://img.shields.io/badge/Apple_Music-9933CC?style=for-the-badge&logo=apple-music&logoColor=white)
 ![Sound Cloud](https://img.shields.io/badge/sound%20cloud-FF5500?style=for-the-badge&logo=soundcloud&logoColor=white)
 ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
+
+</details>
