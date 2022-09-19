@@ -1,4 +1,4 @@
-name: Deploy
+name: Static Web Apps
 
 on:
   push:
@@ -11,19 +11,37 @@ jobs:
     name: Build and Deploy
     steps:
       - uses: actions/checkout@v2
-        with:
-          submodules: true
 
       - uses: actions/setup-node@v2
         with:
-          cache: "yarn"
-          cache-dependency-path: yarn.lock
+          node-version: "18"
 
-      - run: |
-            yarn
-            yarn run build
-          
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Build
+        run: pnpm install && pnpm build
+
       - name: Pages Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          cname: Aloen.to

@@ -1,20 +1,21 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "aloento",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "upgrade": "pnpm upgrade"
   },
   "hexo": {
-    "version": "6.2.0"
+    "version": "6.3.0"
   },
   "dependencies": {
     "bulma-stylus": "0.8.0",
-    "hexo": "^6.2.0",
-    "hexo-component-inferno": "^1.2.0",
+    "hexo": "^6.3.0",
+    "hexo-component-inferno": "^2.0.1",
     "hexo-deployer-git": "^3.0.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
@@ -26,7 +27,7 @@
     "hexo-renderer-marked": "^5.0.0",
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
-    "inferno": "^7.3.3",
-    "inferno-create-element": "^7.3.3"
+    "inferno": "^7.4.11",
+    "inferno-create-element": "^7.4.11"
   }
 }
