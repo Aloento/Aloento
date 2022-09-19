@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>OpenStack 学习日记 | 第一天 - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="由于本人最近需要从事 OpenStack 相关工作，所以急需对 OpenStack 进行学习本系列日记仅作为本人的学习记录学习材料为 《每天 5 分钟玩转 OpenStack》 学习前需要知道的OpenStack 涉及的范围广计算，储存，网络，虚拟化，可用性，安全性，灾备等一些列关于 IT 基础设施的范围 OpenStack 都有涵盖 OpenStack 是一个平台它的各个组件都采用了 Drive"><meta property="og:type" content="blog"><meta property="og:title" content="OpenStack 学习日记 | 第一天"><meta property="og:url" content="https://aloen.to/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="由于本人最近需要从事 OpenStack 相关工作，所以急需对 OpenStack 进行学习本系列日记仅作为本人的学习记录学习材料为 《每天 5 分钟玩转 OpenStack》 学习前需要知道的OpenStack 涉及的范围广计算，储存，网络，虚拟化，可用性，安全性，灾备等一些列关于 IT 基础设施的范围 OpenStack 都有涵盖 OpenStack 是一个平台它的各个组件都采用了 Drive"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/img/og_image.png"><meta property="article:published_time" content="2022-06-09T05:08:56.000Z"><meta property="article:modified_time" content="2022-09-19T19:43:58.742Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="云"><meta property="article:tag" content="OpenStack"><meta property="article:tag" content="日记"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/"},"headline":"OpenStack 学习日记 | 第一天","image":["https://aloen.to/img/og_image.png"],"datePublished":"2022-06-09T05:08:56.000Z","dateModified":"2022-09-19T19:43:58.742Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/"}},"description":"由于本人最近需要从事 OpenStack 相关工作，所以急需对 OpenStack 进行学习本系列日记仅作为本人的学习记录学习材料为 《每天 5 分钟玩转 OpenStack》 学习前需要知道的OpenStack 涉及的范围广计算，储存，网络，虚拟化，可用性，安全性，灾备等一些列关于 IT 基础设施的范围 OpenStack 都有涵盖 OpenStack 是一个平台它的各个组件都采用了 Drive"}</script><link rel="canonical" href="https://aloen.to/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://unpkg.com/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://unpkg.com/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://unpkg.com/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><link rel="stylesheet" href="https://unpkg.com/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-06-09T05:08:56.000Z" title="6/9/2022, 5:08:56 AM">2022-06-09</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-09-19T19:43:58.742Z" title="9/19/2022, 7:43:58 PM">2022-09-20</time></span><span class="level-item"><a class="link-muted" href="/categories/Cloud/">Cloud</a><span> / </span><a class="link-muted" href="/categories/Cloud/OpenStack/">OpenStack</a><span> / </span><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">28 minutes read (About 4135 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">OpenStack 学习日记 | 第一天</h1><div class="content"><p>由于本人最近需要从事 OpenStack 相关工作，所以急需对 OpenStack 进行学习<br>本系列日记仅作为本人的学习记录<br>学习材料为 《每天 5 分钟玩转 OpenStack》</p>
+<h2 id="学习前需要知道的"><a href="#学习前需要知道的" class="headerlink" title="学习前需要知道的"></a>学习前需要知道的</h2><h3 id="OpenStack-涉及的范围广"><a href="#OpenStack-涉及的范围广" class="headerlink" title="OpenStack 涉及的范围广"></a>OpenStack 涉及的范围广</h3><p>计算，储存，网络，虚拟化，可用性，安全性，灾备<br>等一些列关于 IT 基础设施的范围 OpenStack 都有涵盖</p>
+<h3 id="OpenStack-是一个平台"><a href="#OpenStack-是一个平台" class="headerlink" title="OpenStack 是一个平台"></a>OpenStack 是一个平台</h3><p>它的各个组件都采用了 Driver 架构，支持各种的具体实现。<br>比如 OpenStack 储存服务 Cinder 只定义抽象 API，而具体实现交给具体的 Driver<br>比如基于 LVM 的 iSCSI， EMC，或者开源的 Ceph，GlusterFS 等等</p>
+<p>这里我们可以类比到 Entity Framework，它只定义了上层的 API<br>而具体的数据库操作交给了你指定的 Driver，如 Npgsql</p>
+<h3 id="OpenStack-是一个分布式系统"><a href="#OpenStack-是一个分布式系统" class="headerlink" title="OpenStack 是一个分布式系统"></a>OpenStack 是一个分布式系统</h3><p>这也是学习它的比较大的阻碍，因为它原生就是分布式的，各个组件拆的很散<br>不过我们学习的时候都使用 All-in-one 部署模式</p>
+<h2 id="我们要学习的内容"><a href="#我们要学习的内容" class="headerlink" title="我们要学习的内容"></a>我们要学习的内容</h2><ul>
+<li><p>预备知识</p>
+<ul>
+<li>虚拟化</li>
+<li>云计算</li>
+</ul>
+</li>
+<li><p>核心组件</p>
+<ul>
+<li>架构</li>
+<li>认证 Keystone</li>
+<li>镜像 Glance</li>
+<li>计算 Nova</li>
+<li>储存 Cinder</li>
+<li>网络 Neutron</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>写在最前面 – 每天 5 分钟玩转 OpenStack（1）</p>
+</blockquote>
+<hr>
+<h2 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h2><p>虚拟化是云计算的基础<br>虚拟机(Guest)共享物理机(Host)的资源，比如 CPU，内存，硬盘，网络，磁盘等</p>
+<p>这主要通过 Hypervisor 来实现，比如 KVM，Xen，VMWare 等等</p>
+<h4 id="1-类虚拟化"><a href="#1-类虚拟化" class="headerlink" title="1 类虚拟化"></a>1 类虚拟化</h4><p>Hypervisor 是一个操作系统，直接安装在物理机上<br>最典型的就是 Windows 上的 Hyper-V<br>其他的还有 Xen 和 ESXi</p>
+<h4 id="2-类虚拟化"><a href="#2-类虚拟化" class="headerlink" title="2 类虚拟化"></a>2 类虚拟化</h4><p>Hypervisor 作为操作系统中的一个程序或者模块运行<br>最典型的有 KVM 和 VMware Workstation</p>
+<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><p>理论上讲，1 类虚拟化性能比 2 类的要好<br>而 2 类虚拟化会更灵活，比如支持嵌套虚拟化</p>
+<h3 id="KVM"><a href="#KVM" class="headerlink" title="KVM"></a>KVM</h3><p>对我来说 KVM 已经是一个听过无数次的词了<br>OpenStack 对 KVM 的支持最好，全称叫 Kernel-based Virtual Machine<br>也就是说它基于 Linux 的内核实现，它有一个模块叫 kvm.ko，只用于管理虚拟 CPU 和内存</p>
+<p>那我们就要问了，那 IO 虚拟化呢，这个交给 Linux 内核与 QEMU 实现</p>
+<h4 id="Libvirt"><a href="#Libvirt" class="headerlink" title="Libvirt"></a>Libvirt</h4><p>这是 KVM 的管理工具，包含三个模块<br>后台 daemon，api 库，和 命令行工具 virsh<br>virsh 和 virt-manager 是一定要会用的</p>
+<blockquote>
+<p>虚拟化 – 每天 5 分钟玩转 OpenStack（2）</p>
+</blockquote>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>我们使用 Ubuntu，安装 KVM 需要的包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install qemu-kvm qemu-system libvirt-bin virt-manager bridge-util</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>qemu-kvm 和 qemu-system 是 KVM 和 QEMU 的核心包，提供 CPU、内存和 IO 虚拟化功能</li>
+<li>libvirt-bin 就是 libvirt，用于管理 KVM 等 Hypervisor</li>
+<li>virt-manager 是 KVM 图形化管理工具</li>
+<li>bridge-utils 和 vlan，主要是网络虚拟化需要，KVM 网络虚拟化的实现是基于 linux-bridge 和 VLAN</li>
+</ol>
+<blockquote>
+<p>准备 KVM 实验环境 – 每天 5 分钟玩转 OpenStack（3）</p>
+</blockquote>
+<p>对于我自己来说，使用 KVM 等本来就是轻车熟路了，所以我跳过这一部分</p>
+<blockquote>
+<p>启动第一个 KVM 虚机 – 每天 5 分钟玩转 OpenStack（4）</p>
+</blockquote>
+<blockquote>
+<p>远程管理 KVM 虚机 – 每天 5 分钟玩转 OpenStack（5）</p>
+</blockquote>
+<h4 id="CPU-虚拟化"><a href="#CPU-虚拟化" class="headerlink" title="CPU 虚拟化"></a>CPU 虚拟化</h4><p>KVM 虚拟机 在宿主机中其实是一个 QEMU-KVM 进程，与其他进程一同被调度<br>虚拟中的每一个 vCPU 就对应 QEMU-KVM 进程中的一个 线程</p>
+<p>这就表明 vCPU 的总数可以超过物理机的 CPU 总数，这叫 CPU OverCommit 超配<br>这个特性让虚拟机能充分利用宿主机的 CPU 资源，但是这也导致了 VPS 中令人诟病的超售行为</p>
+<h4 id="内存虚拟化"><a href="#内存虚拟化" class="headerlink" title="内存虚拟化"></a>内存虚拟化</h4><p>这一段算是我看的比较迷糊的一段<br>不过说到底也不需要了解多少，只需要知道它并不是像一个普通程序那样分配内存即可<br>中间存在大量的内存地址转换，各个厂家也为了转换效率做了很多特殊的优化<br>Guest Virtual Address -&gt; Guest Physical Address -&gt;<br>Host Virtual Address -&gt; Host Physical Address</p>
+<p>内存也是可以超配的，所以超售机一大堆</p>
+<blockquote>
+<p>CPU 和内存虚拟化原理 – 每天 5 分钟玩转 OpenStack（6）</p>
+</blockquote>
+<h4 id="储存虚拟化"><a href="#储存虚拟化" class="headerlink" title="储存虚拟化"></a>储存虚拟化</h4><h5 id="目录类型"><a href="#目录类型" class="headerlink" title="目录类型"></a>目录类型</h5><p>文件目录类型是最常用的<br>KVM 将宿主机目录 &#x2F;var&#x2F;lib&#x2F;libvirt&#x2F;images&#x2F; 作为默认的 Storage Pool</p>
+<p>这个目录下面的每一个文件就是一个 Volume<br>说白了就是用文件来当磁盘，我们最常用的方式<br>存储方便、移植性好、可复制、可远程访问<br>KVM 支持 raw, qcow2, qed, vmdk, vdl 格式的磁盘文件</p>
+<blockquote>
+<p>KVM 存储虚拟化 – 每天 5 分钟玩转 OpenStack（7）</p>
+</blockquote>
+<h5 id="LVM-类型"><a href="#LVM-类型" class="headerlink" title="LVM 类型"></a>LVM 类型</h5><p>这个用的不多，也就是把实际的磁盘划出来给虚拟机用，跳过</p>
+<blockquote>
+<p>LVM 类型的 Storage Pool – 每天 5 分钟玩转 OpenStack（8）</p>
+</blockquote>
+<h4 id="网络虚拟化"><a href="#网络虚拟化" class="headerlink" title="网络虚拟化"></a>网络虚拟化</h4><p>这章是虚拟化中最复杂，最重要的部分</p>
+<h5 id="Linux-Bridge"><a href="#Linux-Bridge" class="headerlink" title="Linux Bridge"></a>Linux Bridge</h5><p>其实就是网桥，用来做 TCP&#x2F;IP 二层协议交换的模块<br>对于我来说这玩意接触的也比较多</p>
+<blockquote>
+<p>KVM 网络虚拟化基础 – 每天 5 分钟玩转 OpenStack（9）</p>
+</blockquote>
+<p>这里记录几个重点</p>
+<ul>
+<li>修改 &#x2F;etc&#x2F;network&#x2F;interfaces 以配置网桥</li>
+<li>使用 ifconfig 查看 IP 配置</li>
+<li>brctl show 查看当前 Linux Bridge 的配置</li>
+</ul>
+<blockquote>
+<p>动手实践虚拟网络 – 每天 5 分钟玩转 OpenStack（10）</p>
+</blockquote>
+<h5 id="virbr0"><a href="#virbr0" class="headerlink" title="virbr0"></a>virbr0</h5><p>virbr0 是 KVM 默认创建的一个 Bridge，其作用是为连接其上的虚机网卡提供 NAT 访问外网的功能。<br>virbr0 默认分配了一个 IP 192.168.122.1，并为连接其上的其他虚拟网卡提供 DHCP 服务。<br>这没啥好难的就是一个 NAT 网关而已</p>
+<blockquote>
+<p>理解 Virbr0 – 每天 5 分钟玩转 OpenStack（11）</p>
+</blockquote>
+<h5 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h5><p>也就是虚拟局域网，隔离用，二层交换机，不需要想的太复杂<br>在一张网卡下面划分多个空间而已</p>
+<blockquote>
+<p>Linux 如何实现 VLAN – 每天 5 分钟玩转 OpenStack（12）</p>
+</blockquote>
+<p>具体如何配置就等到要用的时候现查<br>不过还是修改 &#x2F;etc&#x2F;network&#x2F;interfaces</p>
+<blockquote>
+<p>动手实践 Linux VLAN – 每天 5 分钟玩转 OpenStack（13）</p>
+</blockquote>
+<h3 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h3><ul>
+<li><p>IaaS（Infrastructure as a Service）提供的服务是虚拟机<br>典型的有 AWS，OpenStack 等</p>
+</li>
+<li><p>PaaS（Platform as a Service）提供的服务是应用的运行环境<br>比如 Github Pages</p>
+</li>
+<li><p>SaaS（Software as a Service）提供的是应用服务<br>对象通常是最终用户，就像 Gmail</p>
+</li>
+</ul>
+<blockquote>
+<p>OpenStack is a cloud operating system that controls large pools of compute, storage,and networking resources throughout a datacenter, all managed through a dashboard that gives administrators control while empowering their users to provision resources through a web interface.</p>
+</blockquote>
+<p>OpenStack 对数据中心的计算、存储和网络资源进行统一管理</p>
+<blockquote>
+<p>云计算与 OpenStack – 每天 5 分钟玩转 OpenStack（14）</p>
+</blockquote>
+<hr>
+<h2 id="OpenStack"><a href="#OpenStack" class="headerlink" title="OpenStack"></a>OpenStack</h2><p>写日记的时候最新版本是 Yoga，下一个版本是 Zed</p>
+<p>首先列出模块列表</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用途</th>
+<th>中文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cyborg</td>
+<td>Accelerator Life Cycle Management</td>
+<td>用于管理硬件和软件加速资源（如 GPU）的框架</td>
+</tr>
+<tr>
+<td>freezer</td>
+<td>Backup, Restore, and Disaster Recovery service</td>
+<td>备份、恢复和灾难恢复服务</td>
+</tr>
+<tr>
+<td>ironic</td>
+<td>Bare Metal service</td>
+<td>裸机服务</td>
+</tr>
+<tr>
+<td>cinder</td>
+<td>Block Storage service</td>
+<td>存储服务</td>
+</tr>
+<tr>
+<td>ceilometer</td>
+<td>Data collection service</td>
+<td>数据收集服务</td>
+</tr>
+<tr>
+<td>kuryr</td>
+<td>Bridge between container framework and OpenStack abstractions</td>
+<td>容器框架和 OpenStack 抽象之间的桥梁</td>
+</tr>
+<tr>
+<td>keystone</td>
+<td>Identity Service</td>
+<td>管理身份验证、服务规则和服务令牌功能</td>
+</tr>
+<tr>
+<td>senlin</td>
+<td>Clustering service</td>
+<td>集群服务</td>
+</tr>
+<tr>
+<td>storlets</td>
+<td>Compute inside Object Storage service</td>
+<td>对象存储服务中的计算</td>
+</tr>
+<tr>
+<td>nova</td>
+<td>Compute service</td>
+<td>计算服务，管理 VM 的生命周期</td>
+</tr>
+<tr>
+<td>neutron</td>
+<td>network connectivity as a service</td>
+<td>网络连接服务，负责创建和管理 L2、L3 网络， 为 VM 提供虚拟网络和物理网络连接</td>
+</tr>
+<tr>
+<td>zun</td>
+<td>Containers service</td>
+<td>容器服务</td>
+</tr>
+<tr>
+<td>horizon</td>
+<td>Dashboard</td>
+<td>仪表盘</td>
+</tr>
+<tr>
+<td>designate</td>
+<td>DNS service</td>
+<td>DNS 服务</td>
+</tr>
+<tr>
+<td>ec2-api</td>
+<td>EC2 API compatibility layer</td>
+<td>EC2 API 兼容层</td>
+</tr>
+<tr>
+<td>glance</td>
+<td>Image service</td>
+<td>启动镜像服务</td>
+</tr>
+<tr>
+<td>watcher</td>
+<td>Infrastructure Optimization service</td>
+<td>基础设施优化服务</td>
+</tr>
+<tr>
+<td>masakari</td>
+<td>Instances High Availability Service</td>
+<td>实例高可用性服务</td>
+</tr>
+<tr>
+<td>barbican</td>
+<td>Key Manager service</td>
+<td>密钥管理器服务</td>
+</tr>
+<tr>
+<td>octavia</td>
+<td>Load-balancer service</td>
+<td>负载均衡器服务</td>
+</tr>
+<tr>
+<td>neutron</td>
+<td>Networking service</td>
+<td>网络服务</td>
+</tr>
+<tr>
+<td>tacker</td>
+<td>NFV Orchestration service</td>
+<td>NFV 管理器，用于监视、配置 NFV 和管理 NFV 全生命周期</td>
+</tr>
+<tr>
+<td>swift</td>
+<td>Object Storage service</td>
+<td>对象存储服务</td>
+</tr>
+<tr>
+<td>heat</td>
+<td>Orchestration service</td>
+<td>REST 服务，能够基于一个声明式的模板，通过装配引擎装配组合若干个云应用</td>
+</tr>
+<tr>
+<td>placement</td>
+<td>Placement service</td>
+<td>REST API 堆栈和数据模型，用于跟踪资源提供程序的清单和使用情况，以及不同的资源类别</td>
+</tr>
+<tr>
+<td>cloudkitty</td>
+<td>Rating service</td>
+<td>计费服务</td>
+</tr>
+<tr>
+<td>vitrage</td>
+<td>RCA (Root Cause Analysis) service</td>
+<td>用于组织、分析和扩展 OpenStack 的告警和事件</td>
+</tr>
+<tr>
+<td>blazar</td>
+<td>Resource reservation service</td>
+<td>资源保留服务</td>
+</tr>
+<tr>
+<td>manila</td>
+<td>Shared File Systems service</td>
+<td>共享文件系统服务</td>
+</tr>
+<tr>
+<td>aodh</td>
+<td>Telemetry Alarming services</td>
+<td>遥测报警服务</td>
+</tr>
+<tr>
+<td>ceilometer</td>
+<td>Telemetry Data Collection service</td>
+<td>遥测数据采集服务</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://www.openstack.org/software/project-navigator/">https://www.openstack.org/software/project-navigator/</a><br>这么一大堆模块一时半会肯定是学不完的，我们挑重点学习<br>搞清楚 OpenStack 是图和对计算，网络，储存资源进行管理的</p>
+<h3 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h3><ol>
+<li>Nova 管理计算资源，是核心服务。</li>
+<li>Neutron 管理网络资源，是核心服务。</li>
+<li>Glance 为 VM 提供 OS 镜像，属于存储范畴，是核心服务。</li>
+<li>Cinder 提供块存储，VM 怎么也得需要数据盘吧，是核心服务。</li>
+<li>Swift 提供对象存储，不是必须的，是可选服务。</li>
+<li>Keystone 认证服务，没它 OpenStack 转不起来，是核心服务。</li>
+<li>Ceilometer 监控服务，不是必须的，可选服务。</li>
+<li>Horizon 大家都需要一个操作界面吧。</li>
+</ol>
+<p>OpenStack 本身是一个分布式系统，不但各个服务可以分布部署，服务中的组件也可以分布部署<br>这也使得 OpenStack 比一般系统复杂，学习难度也更大</p>
+<blockquote>
+<p>OpenStack 架构 – 每天 5 分钟玩转 OpenStack（15）</p>
+</blockquote>
+<p>搭建 Dev 环境我一般使用 MicroStack 一键解决</p>
+<blockquote>
+<p>搭建 OpenStack 实验环境 – 每天 5 分钟玩转 OpenStack（16）</p>
+</blockquote>
+<blockquote>
+<p>部署 DevStack – 每天 5 分钟玩转 OpenStack（17）</p>
+</blockquote>
+<h3 id="Keystone"><a href="#Keystone" class="headerlink" title="Keystone"></a>Keystone</h3><p>对于天天跟 OAuth 打交道的我这部分其实可以跳过</p>
+<ul>
+<li>Authentication 解决的是“你是谁？”的问题</li>
+<li>Authorization 解决的是“你能干什么？”的问题</li>
+<li>Keystone 负责管理和维护每个 Service 的 Endpoint</li>
+<li>Service 通过 Endpoint 暴露自己的 API</li>
+</ul>
+<blockquote>
+<p>理解 Keystone 核心概念 – 每天 5 分钟玩转 OpenStack（18）</p>
+</blockquote>
+<blockquote>
+<p>通过例子学习 Keystone – 每天 5 分钟玩转 OpenStack（19）</p>
+</blockquote>
+<h3 id="Glance"><a href="#Glance" class="headerlink" title="Glance"></a>Glance</h3><p>这玩意还储存快照</p>
+<p>Glance 支持多种 backend，包括</p>
+<ul>
+<li>A directory on a local file system（这是默认配置）</li>
+<li>GridFS</li>
+<li>Ceph RBD</li>
+<li>Amazon S3</li>
+<li>Sheepdog</li>
+<li>OpenStack Block Storage (Cinder)</li>
+<li>OpenStack Object Storage (Swift)</li>
+<li>VMware ESX</li>
+</ul>
+<p>没啥好讲的，需要用到时候现查，而且大部分操作都可以通过 GUI 完成</p>
+<blockquote>
+<p>理解 Glance – 每天 5 分钟玩转 OpenStack（20）</p>
+</blockquote>
+<blockquote>
+<p>创建 Image – 每天 5 分钟玩转 OpenStack（21）</p>
+</blockquote>
+<blockquote>
+<p>如何使用 OpenStack CLI – 每天 5 分钟玩转 OpenStack（22）</p>
+</blockquote>
+<h3 id="Nova"><a href="#Nova" class="headerlink" title="Nova"></a>Nova</h3><p>Compute Service Nova 是 OpenStack 最核心的服务，负责维护和管理云环境的计算资源。<br>OpenStack 作为 IaaS 的云操作系统，虚拟机生命周期管理也就是通过 Nova 来实现的。</p>
+<ul>
+<li><p>nova-api<br>接收和响应客户的 API 调用， 还支持 Amazon EC2 API</p>
+</li>
+<li><p>nova-scheduler<br>虚机调度服务，负责决定在哪个计算节点上运行虚机</p>
+</li>
+<li><p>nova-compute<br>管理虚机的核心服务，通过调用 Hypervisor API 实现虚机生命周期管理</p>
+</li>
+<li><p>nova-conductor<br>nova-compute 经常需要更新数据库，比如更新虚机的状态<br>出于安全性和伸缩性的考虑，nova-compute 并不会直接访问数据库</p>
+</li>
+<li><p>nova-console<br>用户可以通过多种方式访问虚机的控制台：<br>nova-novncproxy，基于 Web 浏览器的 VNC 访问<br>nova-spicehtml5proxy，基于 HTML5 浏览器的 SPICE 访问<br>nova-xvpnvncproxy，基于 Java 客户端的 VNC 访问</p>
+</li>
+<li><p>nova-consoleauth<br>负责对访问虚机控制台请求提供 Token 认证</p>
+</li>
+<li><p>nova-cert<br>提供 x509 证书支持</p>
+</li>
+</ul>
+<p>总之我越看越觉得 OpenStack 就是在 Hypervisor 上套了一层又一层<br>而且我个人对 Python 写的大型项目是完全没有好感</p>
+<blockquote>
+<p>理解 Nova 架构 – 每天 5 分钟玩转 OpenStack（23）</p>
+</blockquote>
+<h4 id="部署方案"><a href="#部署方案" class="headerlink" title="部署方案"></a>部署方案</h4><p>哪里有那么复杂，专门负责装 VPS 的 Hypervisor 就装 nova-compute<br>然后其他服务放别处就行了</p>
+<p>OpenStack 默认是用 RabbitMQ 作为 Message Queue，好评</p>
+<blockquote>
+<p>Nova 组件如何协同工作 – 每天 5 分钟玩转 OpenStack（24）</p>
+</blockquote>
+<h4 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h4><p>说那么多到底还是解耦，疯狂解耦<br>然后各种抽象 API，疯狂增加项目体积<br>再加入各种调度，最离谱的是居然默认用 MySQL<br>当然对大型集群这都不算什么</p>
+<blockquote>
+<p>OpenStack 通用设计思路 – 每天 5 分钟玩转 OpenStack（25）</p>
+</blockquote>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><blockquote>
+<p>Nova 组件详解 – 每天 5 分钟玩转 OpenStack（26）</p>
+</blockquote>
+<p>flavor 就是 plan，选 VPS 配置</p>
+<ul>
+<li><p>Filter scheduler 是 nova-scheduler 默认的调度器</p>
+<ol>
+<li>通过过滤器（filter）选择满足条件的计算节点</li>
+<li>通过权重计算（weighting）选择在最优（权重值最大）的计算节点上创建 Instance</li>
+</ol>
+</li>
+<li><p>RetryFilter 的作用是刷掉之前已经调度过的节点</p>
+</li>
+<li><p>为提高容灾性和提供隔离服务，可以将计算节点划分到不同的 Availability Zone 中</p>
+</li>
+<li><p>RamFilter 将不能满足 flavor 内存需求的计算节点过滤掉</p>
+</li>
+<li><p>DiskFilter 将不能满足 flavor 磁盘需求的计算节点过滤掉</p>
+</li>
+<li><p>CoreFilter 将不能满足 flavor vCPU 需求的计算节点过滤掉</p>
+</li>
+<li><p>ComputeFilter 保证只有 nova-compute 服务正常工作的计算节点才能够被 nova-scheduler 调度</p>
+</li>
+<li><p>ComputeCapabilitiesFilter 根据计算节点的特性来筛选<br>可以从 Metadata 中筛选架构之类的</p>
+</li>
+<li><p>ImagePropertiesFilter 根据所选 image 的属性来筛选匹配的计算节点<br>镜像也带 Metadata，可以限定比如只能运行在 kvm 上之类的</p>
+</li>
+<li><p>ServerGroupAntiAffinityFilter 可以尽量将 Instance 分散部署到不同的节点上</p>
+</li>
+<li><p>ServerGroupAffinityFilter 会尽量将 instance 部署到同一个计算节点上</p>
+</li>
+</ul>
+<p>nova-scheduler 的默认实现是根据计算节点空闲的内存量计算权重值：<br>空闲内存越多，权重越大，instance 将被部署到当前空闲内存最多的计算节点上</p>
+<blockquote>
+<p>看 Nova-Scheduler 如何选择计算节点 – 每天 5 分钟玩转 OpenStack（27）</p>
+</blockquote>
+<p>每隔一段时间，nova-compute 就会报告当前计算节点的资源使用情况和自己的状态</p>
+<p>这不就是微服务么，eureka 既视感</p>
+<p>instance 的 launch、shutdown、reboot、suspend、resume、terminate、resize、migration、snapshot</p>
+<blockquote>
+<p>Nova-Compute 部署 Instance 详解 – 每天 5 分钟玩转 OpenStack（28）</p>
+</blockquote>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>OpenStack 的日志格式都是统一的，如下<br><code>&lt;时间戳&gt;&lt;日志等级&gt;&lt;代码模块&gt;&lt;Request ID&gt;&lt;日志内容&gt;&lt;源代码位置&gt;</code></p>
+<blockquote>
+<p>教你看懂 OpenStack 日志 – 每天 5 分钟玩转 OpenStack（29）<br>Launch 和 Shut Off 操作详解 – 每天 5 分钟玩转 OpenStack（30）<br>Start Instance 操作详解 – 每天 5 分钟玩转 OpenStack（31）<br>Nova reboot 和 lock 操作 – 每天 5 分钟玩转 OpenStack（32）<br>Terminate Instance 操作详解 – 每天 5 分钟玩转 OpenStack（33）<br>Pause&#x2F;Resume Instance 操作详解 – 每天 5 分钟玩转 OpenStack（34）<br>Nova Suspend&#x2F;Rescue 操作详解 – 每天 5 分钟玩转 OpenStack（35）<br>Snapshot Instance 操作详解 – 每天 5 分钟玩转 OpenStack（36）<br>Rebuild Instance 操作详解 – 每天 5 分钟玩转 OpenStack（37）<br>Shelve Instance 操作详解 – 每天 5 分钟玩转 OpenStack（38）<br>Unshelve Instance 操作详解 – 每天 5 分钟玩转 OpenStack（39）<br>Migrate Instance 操作详解 – 每天 5 分钟玩转 OpenStack（40）<br>Resize Instance 操作详解 – 每天 5 分钟玩转 OpenStack（41）<br>Live Migrate 操作 – 每天 5 分钟玩转 OpenStack（42）<br>计算节点宕机了怎么办？Evacuate - 每天 5 分钟玩转 OpenStack（43）<br>1 张图秒懂 Nova 16 种操作 – 每天 5 分钟玩转 OpenStack（44）</p>
+</blockquote>
+<p>上面这一大堆操作都是属于遇到了现查来得更快，而且很多都浅显易懂，盲猜也能用个大概</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>OpenStack 学习日记 | 第一天</p><p><a href="https://aloen.to/Diary/OpenStack-学习日记-第一天/">https://aloen.to/Diary/OpenStack-学习日记-第一天/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2022-06-09</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-09-20</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E4%BA%91/">云</a><a class="link-muted mr-2" rel="tag" href="/tags/OpenStack/">OpenStack</a><a class="link-muted mr-2" rel="tag" href="/tags/%E6%97%A5%E8%AE%B0/">日记</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E5%A4%A9/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">OpenStack 学习日记 第二天</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Program/FrontEnd/WebCodecs/%E8%AE%BA%E4%BD%BF%E7%94%A8WebCodecs%E5%AF%B9%E8%A7%86%E9%A2%91%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86/"><span class="level-item">论使用WebCodecs对视频进行处理</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">15</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Diary/"><span class="level-start"><span class="level-item">Diary</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/FrontEnd/"><span class="level-start"><span class="level-item">FrontEnd</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/FrontEnd/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OrderBy/"><span class="tag">OrderBy</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E8%AE%B0/"><span class="tag">日记</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#学习前需要知道的"><span class="level-left"><span class="level-item">1</span><span class="level-item">学习前需要知道的</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#OpenStack-涉及的范围广"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">OpenStack 涉及的范围广</span></span></a></li><li><a class="level is-mobile" href="#OpenStack-是一个平台"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">OpenStack 是一个平台</span></span></a></li><li><a class="level is-mobile" href="#OpenStack-是一个分布式系统"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">OpenStack 是一个分布式系统</span></span></a></li></ul></li><li><a class="level is-mobile" href="#我们要学习的内容"><span class="level-left"><span class="level-item">2</span><span class="level-item">我们要学习的内容</span></span></a></li><li><a class="level is-mobile" href="#虚拟化"><span class="level-left"><span class="level-item">3</span><span class="level-item">虚拟化</span></span></a><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#1-类虚拟化"><span class="level-left"><span class="level-item">3.1.1</span><span class="level-item">1 类虚拟化</span></span></a></li><li><a class="level is-mobile" href="#2-类虚拟化"><span class="level-left"><span class="level-item">3.1.2</span><span class="level-item">2 类虚拟化</span></span></a></li><li><a class="level is-mobile" href="#对比"><span class="level-left"><span class="level-item">3.1.3</span><span class="level-item">对比</span></span></a></li></ul><li><a class="level is-mobile" href="#KVM"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">KVM</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Libvirt"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">Libvirt</span></span></a></li><li><a class="level is-mobile" href="#安装"><span class="level-left"><span class="level-item">3.2.2</span><span class="level-item">安装</span></span></a></li><li><a class="level is-mobile" href="#CPU-虚拟化"><span class="level-left"><span class="level-item">3.2.3</span><span class="level-item">CPU 虚拟化</span></span></a></li><li><a class="level is-mobile" href="#内存虚拟化"><span class="level-left"><span class="level-item">3.2.4</span><span class="level-item">内存虚拟化</span></span></a></li><li><a class="level is-mobile" href="#储存虚拟化"><span class="level-left"><span class="level-item">3.2.5</span><span class="level-item">储存虚拟化</span></span></a></li><li><a class="level is-mobile" href="#网络虚拟化"><span class="level-left"><span class="level-item">3.2.6</span><span class="level-item">网络虚拟化</span></span></a></li></ul></li><li><a class="level is-mobile" href="#云计算"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">云计算</span></span></a></li></ul></li><li><a class="level is-mobile" href="#OpenStack"><span class="level-left"><span class="level-item">4</span><span class="level-item">OpenStack</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#核心组件"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">核心组件</span></span></a></li><li><a class="level is-mobile" href="#Keystone"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">Keystone</span></span></a></li><li><a class="level is-mobile" href="#Glance"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">Glance</span></span></a></li><li><a class="level is-mobile" href="#Nova"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">Nova</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#部署方案"><span class="level-left"><span class="level-item">4.4.1</span><span class="level-item">部署方案</span></span></a></li><li><a class="level is-mobile" href="#设计思路"><span class="level-left"><span class="level-item">4.4.2</span><span class="level-item">设计思路</span></span></a></li><li><a class="level is-mobile" href="#组件"><span class="level-left"><span class="level-item">4.4.3</span><span class="level-item">组件</span></span></a></li><li><a class="level is-mobile" href="#生命周期"><span class="level-left"><span class="level-item">4.4.4</span><span class="level-item">生命周期</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-06-15T09:05:43.000Z">2022-06-15</time></p><p class="title"><a href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E5%A4%A9/">OpenStack 学习日记 第二天</a></p><p class="categories"><a href="/categories/Cloud/">Cloud</a> / <a href="/categories/Cloud/OpenStack/">OpenStack</a> / <a href="/categories/Diary/">Diary</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-06-09T05:08:56.000Z">2022-06-09</time></p><p class="title"><a href="/Diary/OpenStack-%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0-%E7%AC%AC%E4%B8%80%E5%A4%A9/">OpenStack 学习日记 | 第一天</a></p><p class="categories"><a href="/categories/Cloud/">Cloud</a> / <a href="/categories/Cloud/OpenStack/">OpenStack</a> / <a href="/categories/Diary/">Diary</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-04-05T03:58:53.000Z">2022-04-05</time></p><p class="title"><a href="/Program/FrontEnd/WebCodecs/%E8%AE%BA%E4%BD%BF%E7%94%A8WebCodecs%E5%AF%B9%E8%A7%86%E9%A2%91%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86/">论使用WebCodecs对视频进行处理</a></p><p class="categories"><a href="/categories/Program/">Program</a> / <a href="/categories/Program/FrontEnd/">FrontEnd</a> / <a href="/categories/Program/FrontEnd/WebCodecs/">WebCodecs</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-03T07:15:37.000Z">2021-12-03</time></p><p class="title"><a href="/Program/C/CLI/%E8%AE%BA%E5%A6%82%E4%BD%95%E5%9C%A8CPPCLI%E4%B8%AD%E4%BD%BF%E7%94%A8LINQ%E4%B9%8B%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A5%87%E5%A6%99%E7%9A%84CPP%E5%A4%A7%E4%BD%9C%E4%B8%9A/">论如何在C++/CLI中使用LINQ：记一次奇妙的C++大作业</a></p><p class="categories"><a href="/categories/Program/">Program</a> / <a href="/categories/Program/C/">C++</a> / <a href="/categories/Diary/">Diary</a> / <a href="/categories/Program/C/CLI/">CLI</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2022 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://unpkg.com/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://unpkg.com/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><script src="https://unpkg.com/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://unpkg.com/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
