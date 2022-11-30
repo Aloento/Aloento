@@ -348,3 +348,15 @@ WHILE @index < 900
 
 COMMIT TRAN
 ```
+
+### 用户账户
+
+创建新用户并授予其权限。
+
+> Create a new account, which log in via system administrator with data reader persmission.
+
+```sql
+CREATE LOGIN [DGYY] WITH PASSWORD=N'123', DEFAULT_DATABASE=[master]
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [DGYY]
+ALTER ROLE [db_datareader] ADD MEMBER [DGYY]
+```
