@@ -55,7 +55,26 @@ CREATE TABLE Student (
 > will be just 1 pizza, not 3 pizza.
 
 ```sql
+DROP TABLE IF EXISTS Food;
 
+CREATE TABLE Food (
+	ID INT PRIMARY KEY IDENTITY(1, 1),
+	Name VARCHAR(50),
+	Price DECIMAL,
+);
+
+INSERT INTO Food Values
+	('Pizza', 450),
+	('Pizza', 450),
+	('Pizza', 450);
+
+-- Type 1
+
+SELECT MIN(Id), Min(Name), Min(Price) FROM Food GROUP BY Name;
+
+-- Type 2
+
+SELECT DISTINCT Name, Price FROM Food;
 ```
 
 #### 1.3
