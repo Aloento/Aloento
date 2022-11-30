@@ -49,8 +49,8 @@ CREATE TABLE Student (
 那么结果将是只有 1 个比萨，而不是 3 个比萨。
 
 > Create one method, what filtering the same record and give back just once.
-> For example, if we have 3 pizza with 450 price, if we take a Select, then results
-> will be just 1 pizza, not 3 pizza.
+> For example, if we have 3 pizza with 450 price, if we take a Select,
+> then results will be just 1 pizza, not 3 pizza.
 
 ```sql
 DROP TABLE IF EXISTS Food;
@@ -322,4 +322,29 @@ INSERT INTO TXML VALUES
 	('Body', 'Any');
 
 SELECT * FROM TXML FOR XML AUTO;
+```
+
+### 事务
+
+用事务填充表。
+
+> Create one table with 900 records.
+
+```sql
+DROP TABLE IF EXISTS Fill;
+
+CREATE TABLE Fill(
+	Id INT PRIMARY KEY IDENTITY,
+	Increse INT
+);
+
+BEGIN TRAN
+DECLARE @index INT
+SET @index = 0
+
+WHILE @index < 900
+	INSERT INTO Fill VALUES (@index)
+	SET @index = @index + 1
+
+COMMIT TRAN
 ```
