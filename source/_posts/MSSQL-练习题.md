@@ -282,5 +282,23 @@ SET @C5 = 0;
 		+ ' 10Coin, '
 		+ TRIM(CAST(@C10 as VARCHAR(50)))
 		+ ' 5Coin.'
+
 END
+```
+
+### 聚集索引
+
+> Create two cluster index on your table, on the same table but different columns.
+
+```sql
+DROP TABLE IF EXISTS TTest;
+
+CREATE TABLE TTest(
+	Col1 int NOT NULL,
+	Col2 nchar(10) UNIQUE,
+	Col3 nvarchar(50)
+);
+
+CREATE CLUSTERED INDEX IX_TTest_TestCol1
+    ON TTest (Col1);
 ```
