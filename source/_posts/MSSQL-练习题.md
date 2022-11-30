@@ -142,15 +142,33 @@ INSERT INTO HIndex VALUES
 > if the products quantity is under 10 pirces.
 
 ```sql
+DROP TABLE IF EXISTS Product;
 
+CREATE TABLE Product(
+	Id INT PRIMARY KEY IDENTITY,
+	Name VARCHAR(50),
+	Price MONEY,
+	Quantity INT CHECK(Quantity >= 0)
+);
+
+INSERT INTO Product VALUES
+	('Pizza', 1000, 15),
+	('Bun', 100, 12);
 ```
 
-###
-
-> How can we use the data of set?
+```sql
+CREATE OR ALTER TRIGGER IncreasePrice
+On Product FOR UPDATE AS
+BEGIN
+	UPDATE Product
+	SET Price = Price * 1.2
+	WHERE Quantity < 10
+END;
+```
 
 ```sql
-
+UPDATE Product
+SET Quantity = 8;
 ```
 
 ### 游标循环
