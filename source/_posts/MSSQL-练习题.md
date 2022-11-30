@@ -244,3 +244,43 @@ BEGIN TRAN;
 	WHERE AccountNum = 'SomeAccountNum';
 COMMIT TRAN;
 ```
+
+### 储存过程
+
+两个产品。咖啡是 245，披萨是 475。(硬币：20，10，5）如果我们想买这些产品，请计算需要多少硬币。
+
+> You have 2 products. The coffee is 245, the pizza is 475. (Coins: 20, 10, 5)
+> Please count how many coins need it if we would like to buy this products.
+
+```sql
+CREATE OR ALTER PROCEDURE CountCoins(@Price INT)
+AS
+BEGIN
+
+DECLARE @C20 INT, @C10 INT, @C5 INT;
+
+SET @C20 = 0;
+SET @C10 = 0;
+SET @C5 = 0;
+
+	WHILE @Price >= 20
+		SET @Price = @Price - 20
+		SET @C20 = @C20 + 1
+
+	WHILE @Price >= 10
+		SET @Price = @Price - 10
+		SET @C10 = @C10 + 1
+
+	WHILE @Price >= 5
+		SET @Price = @Price - 5
+		SET @C5 = @C5 + 1
+
+	PRINT 'It can be paid with '
+		+ TRIM(CAST(@C20 as VARCHAR(50)))
+		+ ' 20Coin, '
+		+ TRIM(CAST(@C10 as VARCHAR(50)))
+		+ ' 10Coin, '
+		+ TRIM(CAST(@C10 as VARCHAR(50)))
+		+ ' 5Coin.'
+END
+```
