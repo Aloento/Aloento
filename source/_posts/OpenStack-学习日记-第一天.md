@@ -12,6 +12,8 @@ tags: [云, OpenStack, 日记]
 本系列日记仅作为本人的学习记录  
 学习材料为 《每天 5 分钟玩转 OpenStack》
 
+<!-- more -->
+
 ## 学习前需要知道的
 
 ### OpenStack 涉及的范围广

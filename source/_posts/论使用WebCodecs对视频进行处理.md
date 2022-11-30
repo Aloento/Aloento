@@ -17,6 +17,8 @@ tags: [编程, 前端, 翻译, 音视频, WebCodecs, JS]
 
 而 [WebCodecs API](https://w3c.github.io/webcodecs/) 为程序员提供了使用浏览器自带编解码器的能力，来提高你的工作流效率，具体而言：
 
+<!-- more -->
+
 - 音视频的编解码
 - 视频原始帧
 - 图像解码

@@ -12,6 +12,8 @@ tags: [云, OpenStack, 日记]
 
 操作系统挂载储存空间的方法有：
 
+<!-- more -->
+
 1. Block Storage 块储存：通过本地协议（SCSI、SAS）等挂载裸磁盘，每个磁盘叫做 Volume 卷
 2. 文件系统储存：通过网络协议（NFS、CIFS）等挂载远程文件系统，分布式就是这种
 
