@@ -4,7 +4,7 @@ date: 2022-11-30 13:12:10
 toc: true
 categories:
   - [Database, MSSQL]
-tags: [数据库, 习题]
+tags: [数据库, 习题, SQLServer]
 ---
 
 最近因为学校的原因，不得不学习 MS SQL 相关内容  
@@ -23,7 +23,7 @@ USE Learn;
 
 ### 第一部分
 
-#### 1.1
+#### 检查
 
 创建一个 Student 表，有 ID, Name, Semester, City 字段。
 写一个 SQL，只允许插入第三学期的学生。
@@ -38,13 +38,13 @@ DROP TABLE IF EXISTS Student;
 
 CREATE TABLE Student (
 	ID INT PRIMARY KEY IDENTITY(1, 1),
-	Semester TINYINT CHECK(Semester = 3),
-	NAME TEXT,
-	City TEXT,
+	Semester TINYINT CHECK(Semester = 3) NOT NULL,
+	NAME TEXT NOT NULL,
+	City TEXT NOT NULL,
 );
 ```
 
-#### 1.2
+#### 去重
 
 创建一个方法，对同一 record 进行过滤，并只返回一次。
 例如，如果我们有 3 个价格为 450 的比萨饼，如果我们 Select，
@@ -59,8 +59,8 @@ DROP TABLE IF EXISTS Food;
 
 CREATE TABLE Food (
 	ID INT PRIMARY KEY IDENTITY(1, 1),
-	Name VARCHAR(50),
-	Price DECIMAL,
+	Name VARCHAR(50) NOT NULL,,
+	Price DECIMAL CHECK(Price >= 0) NOT NULL,,
 );
 
 INSERT INTO Food Values
@@ -77,19 +77,49 @@ SELECT MIN(Id), Min(Name), Min(Price) FROM Food GROUP BY Name;
 SELECT DISTINCT Name, Price FROM Food;
 ```
 
-#### 1.3
+#### 函数
 
 创建一个阻止 18 岁以下用户的 function。
 
 > Create one function what block the user who are younger as 18 years old.
 
 ```sql
+DROP TABLE IF EXISTS TUser;
 
+CREATE TABLE TUser (
+	ID INT PRIMARY KEY IDENTITY(1, 1),
+	Name VARCHAR(50) UNIQUE NOT NULL,
+	Age TINYINT CHECK(Age >= 0),
+);
 ```
 
-#### 1.4
+```sql
+CREATE OR ALTER FUNCTION IsAdult(@Name VARCHAR(50))
+RETURNS BIT
+AS
+BEGIN
 
-创建一个 层次化索引。
+	IF EXISTS(
+		SELECT *
+		FROM TUser
+		WHERE Name = @Name And Age >= 18
+	)
+		RETURN 1
+
+	RETURN 0
+
+END
+```
+
+```sql
+INSERT INTO TUser Values('Some', 18)
+
+DECLARE @ret BIT
+EXEC @ret = IsAdult 'Some'
+SELECT @ret
+```
+
+#### 层次化索引
 
 > Create one hierarchy index.
 
@@ -97,7 +127,7 @@ SELECT DISTINCT Name, Price FROM Food;
 
 ```
 
-#### 1.5
+####
 
 创建一个储存过程或函数，表明我们是否可以在考试中应用（未满限）？
 
