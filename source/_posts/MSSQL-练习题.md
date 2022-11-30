@@ -294,11 +294,32 @@ END
 DROP TABLE IF EXISTS TTest;
 
 CREATE TABLE TTest(
-	Col1 int NOT NULL,
-	Col2 nchar(10) UNIQUE,
-	Col3 nvarchar(50)
+	Col1 INT NOT NULL,
+	Col2 CHAR(10) UNIQUE,
+	Col3 VARCHAR(50)
 );
 
-CREATE CLUSTERED INDEX IX_TTest_TestCol1
-    ON TTest (Col1);
+CREATE CLUSTERED INDEX IX_TTest_TestCol1 ON TTest (Col1);
+```
+
+### XML
+
+导出表到 XML。
+
+> Create XML code from your table.
+
+```sql
+DROP TABLE IF EXISTS TXML;
+
+CREATE TABLE TXML(
+	Col1 INT PRIMARY KEY IDENTITY,
+	Col2 VARCHAR(10),
+	Col3 VARCHAR(50)
+);
+
+INSERT INTO TXML VALUES
+	('Some', 'Thing'),
+	('Body', 'Any');
+
+SELECT * FROM TXML FOR XML AUTO;
 ```
