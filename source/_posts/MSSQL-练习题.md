@@ -12,6 +12,15 @@ tags: [数据库, 习题]
 
 <!-- more -->
 
+首先我们
+
+```sql
+DROP DATABASE IF EXISTS Learn;
+CREATE DATABASE Learn;
+
+USE Learn;
+```
+
 ### 第一部分
 
 #### 1.1
@@ -25,7 +34,14 @@ tags: [数据库, 习题]
 > This mean that the user connot inser Student who are in 1, 2, or 4th semester.
 
 ```sql
+DROP TABLE IF EXISTS Student;
 
+CREATE TABLE Student (
+	ID INT PRIMARY KEY IDENTITY(1, 1),
+	Semester TINYINT CHECK(Semester = 3),
+	NAME TEXT,
+	City TEXT,
+);
 ```
 
 #### 1.2
