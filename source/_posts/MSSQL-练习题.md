@@ -21,9 +21,7 @@ CREATE DATABASE Learn;
 USE Learn;
 ```
 
-### 第一部分
-
-#### 检查
+### 检查
 
 创建一个 Student 表，有 ID, Name, Semester, City 字段。
 写一个 SQL，只允许插入第三学期的学生。
@@ -44,7 +42,7 @@ CREATE TABLE Student (
 );
 ```
 
-#### 去重
+### 去重
 
 创建一个方法，对同一 record 进行过滤，并只返回一次。
 例如，如果我们有 3 个价格为 450 的比萨饼，如果我们 Select，
@@ -77,7 +75,7 @@ SELECT MIN(Id), Min(Name), Min(Price) FROM Food GROUP BY Name;
 SELECT DISTINCT Name, Price FROM Food;
 ```
 
-#### 函数
+### 函数
 
 创建一个阻止 18 岁以下用户的 function。
 
@@ -119,7 +117,7 @@ EXEC @ret = IsAdult 'Some'
 SELECT @ret
 ```
 
-#### 层次化索引
+### 层次化索引
 
 > Create one hierarchy index.
 
@@ -136,12 +134,56 @@ INSERT INTO HIndex VALUES
 	('/1/1/', 'Somebody')
 ```
 
-####
+### 触发器
 
-创建一个储存过程或函数，表明我们是否可以在考试中应用（未满限）？
+创建一个触发器，如果产品数量在 10 个以下，则更新价格（+20%）。
 
-> Create one procedure or function what is show that we can apply on the exam (not full the limit) or not?
+> Create one trigger what is update the price(+20%)
+> if the products quantity is under 10 pirces.
 
 ```sql
 
+```
+
+###
+
+> How can we use the data of set?
+
+```sql
+
+```
+
+### 游标循环
+
+> How can we kill the nested loops operator?
+
+```sql
+BEGIN
+	DECLARE @a INT, @error INT
+    DECLARE @temp VARCHAR (50)
+	SET @a = 1
+	SET @error = 0
+
+	DECLARE order_cursor CURSOR
+    FOR (SELECT [Id] FROM Student)
+
+	OPEN order_cursor
+	FETCH NEXT FROM order_cursor INTO @temp
+
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+			UPDATE Student
+			SET Age = 15 + @a, Some = @a
+			WHERE Id = @temp
+
+			SET @a = @a + 1
+			SET @error = @error + @@ERROR
+
+			FETCH NEXT FROM order_cursor INTO @temp
+		END
+
+		CLOSE order_cursor
+		DEALLOCATE order_cursor
+END
+GO
 ```
