@@ -187,3 +187,42 @@ BEGIN
 END
 GO
 ```
+
+### 脏读
+
+> Create one select what is dirty read.
+
+```sql
+DROP TABLE IF EXISTS Bank;
+
+CREATE TABLE Bank(
+  Id INT PRIMARY KEY IDENTITY(1, 1),
+  AccountNum VARCHAR(50),
+  Name VARCHAR(50),
+  Balance MONEY
+)
+
+INSERT INTO Bank VALUES
+	('SomeAccountNum', 'SomeName', '80');
+```
+
+```sql
+BEGIN TRAN;
+	UPDATE Bank
+	SET Balance = Balance - 45
+	WHERE AccountNum = 'SomeAccountNum';
+	WAITFOR DELAY '00:00:10';
+ROLLBACK TRAN;
+
+SELECT * FROM Bank
+WHERE AccountNum = 'SomeAccountNum';
+```
+
+```sql
+-- Dirty Read
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+BEGIN TRAN;
+	SELECT * FROM Bank
+	WHERE AccountNum = 'SomeAccountNum';
+COMMIT TRAN;
+```
