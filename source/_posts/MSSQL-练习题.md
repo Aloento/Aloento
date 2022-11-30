@@ -124,7 +124,16 @@ SELECT @ret
 > Create one hierarchy index.
 
 ```sql
+DROP TABLE IF EXISTS HIndex;
 
+CREATE TABLE HIndex (
+	IdPath HIERARCHYID PRIMARY KEY,
+	Sth TEXT
+)
+
+INSERT INTO HIndex VALUES
+	('/1/', 'Something'),
+	('/1/1/', 'Somebody')
 ```
 
 ####
