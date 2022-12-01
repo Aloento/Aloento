@@ -432,9 +432,13 @@ ADD CONSTRAINT CK_Between CHECK (LEN(ColomnName) BETWEEN 1 AND 10)
 
 ### THROW
 
+> Create one trigger what give for us an error message
+> if we cannot insert data in the table.
+
 ```sql
 CREATE TRIGGER ErrorTrigger
-ON TTest AFTER INSERT AS
+-- 类似 BEFORE
+ON TTest INSTEAD OF INSERT AS
 BEGIN
 
 	IF 1 = 1
