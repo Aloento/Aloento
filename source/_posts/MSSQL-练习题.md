@@ -21,7 +21,7 @@ CREATE DATABASE Learn;
 USE Learn;
 ```
 
-### 检查
+### Check
 
 创建一个 Student 表，有 ID, Name, Semester, City 字段。
 写一个 SQL，只允许插入第三学期的学生。
@@ -134,7 +134,7 @@ INSERT INTO HIndex VALUES
 	('/1/1/', 'Somebody')
 ```
 
-### 触发器
+### Trigger
 
 创建一个触发器，如果产品数量在 10 个以下，则更新价格（+20%）。
 
@@ -233,7 +233,7 @@ Select Count(*)
 FROM Bank WITH (NOLOCK)
 ```
 
-### 储存过程
+### While
 
 两个产品。咖啡是 245，披萨是 475。(硬币：20，10，5）如果我们想买这些产品，请计算需要多少硬币。
 
@@ -359,4 +359,35 @@ ALTER ROLE [db_datareader] ADD MEMBER [DGYY]
 SELECT NULL FROM SomeTable
 UNION
 SELECT NULL FROM OtherTable;
+```
+
+### CASE WHEN
+
+用 CASE 写一个判断
+
+> Create one new table for cars(Id, type, color). After this,
+> select one car from the table and compare this car color on
+> the next logical statement the car is Black (True, False) Or White.
+
+```sql
+DROP TABLE IF EXISTS Car;
+
+CREATE TABLE Car(
+	Id INT IDENTITY,
+	Type VARCHAR(50),
+	Color VARCHAR(50)
+);
+
+INSERT INTO Car VALUES
+	('Audi', 'Black'),
+	('BMW', 'Red'),
+	('Suzuki', 'Grey'),
+	('Aston', 'White');
+
+SELECT TOP(1)
+	CASE
+		WHEN Car.Color = 'White' Then 'White'
+		WHEN Car.Color = 'Black' THEN 'True' ELSE 'False'
+	END
+FROM Car
 ```
