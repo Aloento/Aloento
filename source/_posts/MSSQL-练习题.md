@@ -446,3 +446,39 @@ BEGIN
 
 END
 ```
+
+### 表变量
+
+```sql
+DECLARE @TTest TABLE(
+	Col1 INT NOT NULL,
+	Col2 INT NOT NULL,
+	Col3 VARCHAR(50)
+);
+
+INSERT INTO @TTest VALUES
+	(1, 2, 'Some'),
+	(3, 4, 'Thing');
+
+SELECT * FROM @TTest;
+
+DROP TABLE @TTest;
+```
+
+### 临时表
+
+```sql
+CREATE TABLE #TTest(
+	Col1 INT NOT NULL,
+	Col2 INT NOT NULL,
+	Col3 VARCHAR(50)
+);
+
+INSERT INTO #TTest VALUES
+	(5, 6, 'Body'),
+	(7, 8, 'Any');
+
+SELECT * FROM #TTest;
+
+DROP TABLE #TTest;
+```
