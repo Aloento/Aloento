@@ -171,39 +171,20 @@ UPDATE Product
 SET Quantity = 8;
 ```
 
-### 游标循环
+### 复合主键
+
+不是很能理解他到底在说什么，但是答案是复合主键相关
 
 > How can we kill the nested loops operator?
 
 ```sql
-BEGIN
-	DECLARE @a INT, @error INT
-    DECLARE @temp VARCHAR (50)
-	SET @a = 1
-	SET @error = 0
+DROP TABLE IF EXISTS Composite;
 
-	DECLARE order_cursor CURSOR
-    FOR (SELECT [Id] FROM Student)
-
-	OPEN order_cursor
-	FETCH NEXT FROM order_cursor INTO @temp
-
-	WHILE @@FETCH_STATUS = 0
-		BEGIN
-			UPDATE Student
-			SET Age = 15 + @a, Some = @a
-			WHERE Id = @temp
-
-			SET @a = @a + 1
-			SET @error = @error + @@ERROR
-
-			FETCH NEXT FROM order_cursor INTO @temp
-		END
-
-		CLOSE order_cursor
-		DEALLOCATE order_cursor
-END
-GO
+CREATE TABLE Composite(
+	Id INT IDENTITY,
+	Comp INT NOT NULL,
+	CONSTRAINT PK_Composite_Id_Comp PRIMARY KEY CLUSTERED (Id, Comp)
+);
 ```
 
 ### 脏读
@@ -295,11 +276,11 @@ DROP TABLE IF EXISTS TTest;
 
 CREATE TABLE TTest(
 	Col1 INT NOT NULL,
-	Col2 CHAR(10) UNIQUE,
+	Col2 INT NOT NULL,
 	Col3 VARCHAR(50)
 );
 
-CREATE CLUSTERED INDEX IX_TTest_TestCol1 ON TTest (Col1);
+CREATE CLUSTERED INDEX IX_TTest_Col1 ON TTest (Col1);
 ```
 
 ### XML
@@ -360,3 +341,5 @@ CREATE LOGIN [DGYY] WITH PASSWORD=N'123', DEFAULT_DATABASE=[master]
 ALTER SERVER ROLE [sysadmin] ADD MEMBER [DGYY]
 ALTER ROLE [db_datareader] ADD MEMBER [DGYY]
 ```
+
+### 循环
