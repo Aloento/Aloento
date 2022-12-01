@@ -332,8 +332,10 @@ DECLARE @index INT
 SET @index = 0
 
 WHILE @index < 900
+BEGIN
 	INSERT INTO Fill VALUES (@index)
 	SET @index = @index + 1
+END
 
 COMMIT TRAN
 ```
@@ -374,7 +376,7 @@ SELECT NULL FROM OtherTable;
 DROP TABLE IF EXISTS Car;
 
 CREATE TABLE Car(
-	Id INT IDENTITY,
+	Id INT PRIMARY KEY IDENTITY,
 	Type VARCHAR(50),
 	Color VARCHAR(50)
 );
@@ -396,6 +398,30 @@ FROM Car
 ### OFFSET
 
 > How can we use the data offset?
+
+```sql
+DROP TABLE IF EXISTS Offset;
+
+CREATE TABLE Offset(
+	Id INT PRIMARY KEY IDENTITY,
+	Sth INT
+);
+
+DECLARE @index INT
+SET @index = 0
+
+WHILE @index < 5
+BEGIN
+	INSERT INTO Offset VALUES(RAND() * 10)
+	SET @index = @index + 1
+END
+
+SELECT *
+FROM Offset
+ORDER BY Id
+OFFSET 2 ROWS
+FETCH NEXT 3 ROWS ONLY;
+```
 
 ### BETWEEN
 
