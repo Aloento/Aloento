@@ -176,12 +176,13 @@ SET Quantity = 8;
 不是很能理解他到底在说什么，但是答案是复合主键相关
 
 > How can we kill the nested loops operator?
+> How can we kill the double I/O problems?
 
 ```sql
 DROP TABLE IF EXISTS Composite;
 
 CREATE TABLE Composite(
-	Id INT IDENTITY,
+	Id INT NOT NULL,
 	Comp INT NOT NULL,
 	CONSTRAINT PK_Composite_Id_Comp PRIMARY KEY (Id, Comp)
 );
@@ -390,4 +391,15 @@ SELECT TOP(1)
 		WHEN Car.Color = 'Black' THEN 'True' ELSE 'False'
 	END
 FROM Car
+```
+
+### OFFSET
+
+> How can we use the data offset?
+
+### BETWEEN
+
+```sql
+ALTER TABLE TableName
+ADD CONSTRAINT CK_Between CHECK (LEN(ColomnName) BETWEEN 1 AND 10)
 ```
