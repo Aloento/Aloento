@@ -183,7 +183,7 @@ DROP TABLE IF EXISTS Composite;
 CREATE TABLE Composite(
 	Id INT IDENTITY,
 	Comp INT NOT NULL,
-	CONSTRAINT PK_Composite_Id_Comp PRIMARY KEY CLUSTERED (Id, Comp)
+	CONSTRAINT PK_Composite_Id_Comp PRIMARY KEY (Id, Comp)
 );
 ```
 
@@ -224,6 +224,13 @@ BEGIN TRAN;
 	SELECT * FROM Bank
 	WHERE AccountNum = 'SomeAccountNum';
 COMMIT TRAN;
+```
+
+或者
+
+```sql
+Select Count(*)
+FROM Bank WITH (NOLOCK)
 ```
 
 ### 储存过程
@@ -342,4 +349,14 @@ ALTER SERVER ROLE [sysadmin] ADD MEMBER [DGYY]
 ALTER ROLE [db_datareader] ADD MEMBER [DGYY]
 ```
 
-### 循环
+### UNION
+
+合并多个 SELECT 语句的结果集
+
+> How can we use the data of set?
+
+```sql
+SELECT NULL FROM SomeTable
+UNION
+SELECT NULL FROM OtherTable;
+```
