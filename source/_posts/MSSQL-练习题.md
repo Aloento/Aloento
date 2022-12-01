@@ -429,3 +429,16 @@ FETCH NEXT 3 ROWS ONLY;
 ALTER TABLE TableName
 ADD CONSTRAINT CK_Between CHECK (LEN(ColomnName) BETWEEN 1 AND 10)
 ```
+
+### THROW
+
+```sql
+CREATE TRIGGER ErrorTrigger
+ON TTest AFTER INSERT AS
+BEGIN
+
+	IF 1 = 1
+	THROW 60000, 'Error Message!', 1 ;
+
+END
+```
