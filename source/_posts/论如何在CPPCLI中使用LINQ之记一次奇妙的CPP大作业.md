@@ -5,7 +5,7 @@ toc: true
 categories:
   - [Program, C++, CLI]
   - [Diary]
-tags: [编程, C++, CLI, LINQ, C#, .NET, OrderBy, 日记]
+tags: [编程, C++, CLI, LINQ, C#, .NET, OrderBy, 笔记]
 ---
 
 ```txt
