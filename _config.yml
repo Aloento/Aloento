@@ -106,3 +106,7 @@ deploy:
   type: git
   repo: git@github.com:Aloento/Aloento.git
   branch: gh-pages
+
+marked:
+  prependRoot: true
+  postAsset: true
