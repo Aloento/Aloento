@@ -5,7 +5,7 @@ toc: true
 categories:
   - [Cloud, OpenStack]
   - [Diary]
-tags: [云, OpenStack, 日记]
+tags: [云, OpenStack, 笔记]
 ---
 
 ## Cinder

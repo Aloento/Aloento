@@ -5,7 +5,7 @@ toc: true
 categories:
   - [Cloud, OpenStack]
   - [Diary]
-tags: [云, OpenStack, 日记]
+tags: [云, OpenStack, 笔记]
 ---
 
 由于本人最近需要从事 OpenStack 相关工作，所以急需对 OpenStack 进行学习  
