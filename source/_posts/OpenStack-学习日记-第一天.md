@@ -4,7 +4,6 @@ date: 2022-06-09 13:08:56
 toc: true
 categories:
   - [Cloud, OpenStack]
-  - [Diary]
 tags: [云, OpenStack, 笔记]
 ---
 
