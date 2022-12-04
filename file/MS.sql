@@ -114,7 +114,7 @@ UPDATE Product
 SET Quantity = 8;
 
 
----------- 复合主键
+---------- 复合主键 nested I/O
 
 DROP TABLE IF EXISTS Composite;
 
