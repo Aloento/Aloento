@@ -348,3 +348,28 @@ Insertion Sort
 像打扑克时整理手牌一样，将每张牌插入到合适的位置
 
 ![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/insertionSort.gif)
+
+# 图形搜索
+
+## 深度优先搜索
+
+![节点进行深度优先搜索的顺序](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Depth-first-tree.svg/300px-Depth-first-tree.svg.png)
+
+## 广度优先搜索
+
+![节点进行广度优先搜索的顺序](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Breadth-first_tree.svg/300px-Breadth-first_tree.svg.png)
+
+## 遍历
+
+前序遍历：根结点 ---> 左子树 ---> 右子树  
+是从最上层往下走
+
+中序遍历：左子树 ---> 根结点 ---> 右子树  
+是从最左边往右走
+
+后序遍历：左子树 ---> 右子树 ---> 根结点  
+是从最下层往上走
+
+层次遍历：只需按层遍历即可
+
+# 背包问题
