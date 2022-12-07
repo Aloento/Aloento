@@ -192,6 +192,7 @@ for (let i = 0; i < n; i++) {
 - 如果 n 增大，程序占用的空间成平方增长，那么空间复杂度就是 O(N^2)
 
 以此类推
+当然也有 O(N + M), O(logN)等
 
 # 十大排序算法
 
@@ -199,9 +200,17 @@ for (let i = 0; i < n; i++) {
 
 ## O(N)
 
+### 计数排序
+
+Counting Sort
+
+![动图演示](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/countingSort.gif)
+
+对于给定的输入，统计每个元素出现的次数，然后依次把元素输出
+
 ### 桶排序
 
-它是一种非比较排序算法  
+Bucket Sort 是一种非比较排序算法  
 它需要调用其他的排序算法来完成排序  
 所以它的实际时间复杂度受到其使用的排序算法的影响  
 `O(N * K)`
@@ -262,9 +271,11 @@ function bucketSort(arr: number[], bucketSize: number) {
 }
 ```
 
-### 计数排序
-
 ### 基数排序
+
+Radix Sort
+
+![动图演示](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/radixSort.gif)
 
 ## O(NlogN)
 
