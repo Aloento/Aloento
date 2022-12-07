@@ -295,7 +295,12 @@ Shell Sort，也称递减增量排序
 
 ### 归并排序
 
-Merge Sort
+Merge Sort，是一种分治算法  
+将两个或两个以上的有序表合并成一个新的有序表
+
+1. 把长度为 n 的序列分成两个长度为 n/2 的子序列
+2. 对这两个子序列分别采用归并排序（递归）
+3. 将两个排序好的子序列合并成一个最终的排序序列
 
 ![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/mergeSort.gif)
 
