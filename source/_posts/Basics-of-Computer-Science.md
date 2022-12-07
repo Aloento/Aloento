@@ -200,9 +200,13 @@ for (let i = 0; i < n; i++) {
 
 ## O(N)
 
+它们都是非比较算法，不适合大量或大范围数据
+
 ### 计数排序
 
-Counting Sort
+Counting Sort  
+每个桶只存储单一键值  
+`O(N + K)`
 
 ![动图演示](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/countingSort.gif)
 
@@ -210,7 +214,7 @@ Counting Sort
 
 ### 桶排序
 
-Bucket Sort 是一种非比较排序算法  
+Bucket Sort 每个桶存储一定范围的数值  
 它需要调用其他的排序算法来完成排序  
 所以它的实际时间复杂度受到其使用的排序算法的影响  
 `O(N * K)`
@@ -273,9 +277,15 @@ function bucketSort(arr: number[], bucketSize: number) {
 
 ### 基数排序
 
-Radix Sort
+Radix Sort  
+根据键值的每位数字来分配桶
+O(d(n+r))，其中 d 是基数，n 是要排序的数据个数，r 是每个关键字的基数
 
 ![动图演示](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/radixSort.gif)
+
+将所有待比较数值统一为同样的数位长度，数位较短的数前面补零  
+然后，从最低位开始，依次进行一次排序  
+这样从最低位排序一直到最高位排序完成以后，数列就变成一个有序序列
 
 ## O(NlogN)
 
