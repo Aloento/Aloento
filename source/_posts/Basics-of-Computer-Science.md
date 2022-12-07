@@ -208,7 +208,7 @@ Counting Sort
 每个桶只存储单一键值  
 `O(N + K)`
 
-![动图演示](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/countingSort.gif)
+![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/countingSort.gif)
 
 对于给定的输入，统计每个元素出现的次数，然后依次把元素输出
 
@@ -224,13 +224,6 @@ Bucket Sort 每个桶存储一定范围的数值
 
 让我们看一个例子  
 假设我们有 20 个数据，要分成 5 个桶
-
-```ts
-[
-  63, 157, 189, 51, 101, 47, 141, 121, 157, 156, 194, 117, 98, 139, 67, 133,
-  181, 13, 28, 109,
-];
-```
 
 ```ts
 function bucketSort(arr: number[], bucketSize: number) {
@@ -281,7 +274,7 @@ Radix Sort
 根据键值的每位数字来分配桶
 O(d(n+r))，其中 d 是基数，n 是要排序的数据个数，r 是每个关键字的基数
 
-![动图演示](https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/res/radixSort.gif)
+![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/radixSort.gif)
 
 将所有待比较数值统一为同样的数位长度，数位较短的数前面补零  
 然后，从最低位开始，依次进行一次排序  
@@ -290,6 +283,12 @@ O(d(n+r))，其中 d 是基数，n 是要排序的数据个数，r 是每个关�
 ## O(NlogN)
 
 ### 希尔排序
+
+Shell Sort，也称递减增量排序  
+是插入排序的一种更高效的改进版本
+
+先将整个序列，分割成若干个子序列，分别进行插入排序  
+待整个序列基本有序时，再对整体进行插入排序
 
 ### 归并排序
 
@@ -301,6 +300,18 @@ O(d(n+r))，其中 d 是基数，n 是要排序的数据个数，r 是每个关�
 
 ### 冒泡排序
 
+Bubble Sort
+
+![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/bubbleSort.gif)
+
 ### 选择排序
 
+Selection Sort
+
+![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/selectionSort.gif)
+
 ### 插入排序
+
+Insertion Sort
+
+![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/insertionSort.gif)
