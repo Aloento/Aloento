@@ -196,7 +196,10 @@ for (let i = 0; i < n; i++) {
 
 # 十大排序算法
 
-我们按时间复杂度区分，并介绍十大常用的排序算法
+我们按时间复杂度区分，并介绍十大常用的排序算法  
+由于这门课并不教怎么写代码，所以我们只需要了解它是怎么工作的就行了
+
+~~学计算机不学写代码，行吧，当数学课上~~
 
 ## O(N)
 
@@ -292,6 +295,10 @@ Shell Sort，也称递减增量排序
 
 ### 归并排序
 
+Merge Sort
+
+![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/mergeSort.gif)
+
 ### 快速排序
 
 ### 堆排序
@@ -300,18 +307,21 @@ Shell Sort，也称递减增量排序
 
 ### 冒泡排序
 
-Bubble Sort
+Bubble Sort  
+比较相邻的元素，如果第一个比第二个大，就交换他们两个，一直向上冒泡
 
 ![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/bubbleSort.gif)
 
 ### 选择排序
 
-Selection Sort
+Selection Sort  
+也就是每次找到最小的元素，放到前面，重复
 
 ![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/selectionSort.gif)
 
 ### 插入排序
 
-Insertion Sort
+Insertion Sort  
+像打扑克时整理手牌一样，将每张牌插入到合适的位置
 
 ![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/insertionSort.gif)
