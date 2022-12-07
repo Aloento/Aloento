@@ -18,7 +18,7 @@ tags: [算法, 笔记]
 ## 时间复杂度
 
 时间复杂度主要是循环导致的，我们不必把它想得太复杂  
-下面列出的时间复杂度越来越大
+下面列出的时间复杂度越来越大，执行的效率越来越低
 
 ### 常数阶 O(1)
 
@@ -86,6 +86,16 @@ for (let i = 0; i < m; i++) {
 
 当然也可以是 `m * n`  
 那时间复杂度就是 O(MN) 了
+
+---
+
+其他的还有
+
+- K 次方阶 O(N^k)
+- 指数阶 O(2^N)  
+  一般是递归算法
+- O(3^N)
+- etc.
 
 ### 计算
 
@@ -181,3 +191,79 @@ for (let i = 0; i < n; i++) {
 - 如果 n 增大，程序占用的空间成平方增长，那么空间复杂度就是 O(N^2)
 
 以此类推
+
+# 排序算法
+
+我们按时间复杂度区分，并介绍几个常用的排序算法
+
+## O(N)
+
+### 桶排序
+
+这个算法比较特殊，它是一种非比较排序算法  
+说人话就是，它需要调用其他的排序算法来完成排序  
+所以它的实际时间复杂度受到其使用的排序算法的影响
+
+基本思路是，把数据分到有限数量的桶里，然后对每个桶内部的数据进行排序  
+最后将各个桶内的数据依次取出，得到结果
+
+让我们看一个例子  
+假设我们有 20 个数据，要分成 5 个桶
+
+```ts
+[
+  63, 157, 189, 51, 101, 47, 141, 121, 157, 156, 194, 117, 98, 139, 67, 133,
+  181, 13, 28, 109,
+];
+```
+
+```ts
+function bucketSort(arr: number[], bucketSize: number) {
+  // 创建大小为 bucketSize 的桶数组
+  const bucket: number[][] = [];
+
+  // 初始化桶数组
+  for (let i = 0; i < bucketSize; i++) {
+    bucket[i] = [];
+  }
+
+  // 获取数组中的最大值和最小值
+  const max = Math.max(...arr); // 194
+  const min = Math.min(...arr); // 13
+
+  // 计算桶的范围
+  // (194 - 13 + 1) / 5 = 36.4
+  const range = (max - min + 1) / bucketSize;
+
+  // 将数据放入对应的桶中
+  for (let i = 0; i < arr.length; i++) {
+    // 计算数据应该放入的桶的索引
+    // 比如 63：floor(63 - 13) / 36.4) = 1
+    const index = Math.floor((arr[i] - min) / range);
+    bucket[index].push(arr[i]);
+  }
+
+  // 使用其他算法，对桶内的数据进行排序
+  for (let i = 0; i < bucketSize; i++) {
+    bucket[i].sort((a, b) => a - b);
+  }
+
+  // 将桶内排好序的数据依次取出，得到有序序列
+  const result: number[] = [];
+  for (let i = 0; i < bucketSize; i++) {
+    for (let j = 0; j < bucketSize; j++) {
+      result.push(bucket[i][j]);
+    }
+  }
+
+  return result;
+}
+```
+
+## O(NlogN)
+
+## O(N^2)
+
+```
+
+```
