@@ -310,7 +310,7 @@ Quick Sort
 应该算是在冒泡排序基础上的递归分治法
 
 1. 随便选择一个元素
-2. 将比这个元素小的放在左边，比这个元素大的放在右边
+2. 将比这个元素小的放在右边，比这个元素大的放在左边
 3. 对左右两边的元素重复第二步，直到各区间只有一个元素
 
 ![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/quickSort.gif)
