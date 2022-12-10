@@ -39,13 +39,13 @@ theory of computation, modelling tools, examples
 ### Complexity Theory
 
 - studying the cost of solving problems
-- cost=resources(e.g.time,memory)
+- cost = resources (e.g. time, memory)
 - running time of algorithms varies with inputs and usually grows with the site of inputs
 - we will discuss how to measure complexity
 
 ## Modlling
 
-- Problem -> (Model) -> Mathematica Frame -> (Algorithm) -> Solution
+Problem -> (Model) -> Mathematica Frame -> (Algorithm) -> Solution
 
 ### Tools of modelling
 
@@ -56,7 +56,7 @@ theory of computation, modelling tools, examples
 
 ### Graph definition
 
-- G=(V,E) where V is finite and not empty set , V = edges ,E = vertices
+G=(V,E) where V is finite and not empty set, V = edges, E = vertices
 
 ### Graph Representations
 
@@ -79,6 +79,50 @@ Translates to graph coloring problem and maximal independent set problem too
 # Turing Machines
 
 definition, construction, properties, transition functions
+
+## What is a Turing Machine
+
+- TMS are abstract models for real wuiputers having an infinite memory
+  (in the form of a tape) and a reading head
+- has finite number of internal states
+- has distinguished starting and final states (termination : accept / reject)
+- has transition functions (Tt) (graphs)
+
+---
+
+- TM accepts the initial content of the tape if it terminates in an accepting
+  state. Otherwise TM rejects it.
+- TM terminates, if there is no rule with watching conditions
+  for certain state and input symbols
+- TM is ND (non-deterministic), if such a state and set of input symbols
+  exist, for which there are multiple rules defined.
+  (= from the same set of starting state and input symbols the TM has multiple outcomes)
+
+---
+
+- NDTM accepts the initial content of the tape if there is
+  a sequence of transition functions that accepts it.
+
+Thesis: For All NDTM Exsist equivalent DTM
+
+## Defining a Turing Machine
+
+- defining the number of tapes & head
+- defining the tape alphabets
+- defining the net of state, initial and terminating states,
+  accepting and rejection terminal states
+
+From an already existing machine it is possible to head the followings:
+
+- number of heads
+- set of states constructed from the states mentioned in the TFS
+
+Universal TM : TM, which can simulate All other TM
+
+Church - Turing thesis:
+A function (problem) can be effectively solved <=> it is computable with a TM
+
+The same problems can be solved by a TM and modern computers
 
 # Complexity of algorithms
 
