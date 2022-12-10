@@ -8,13 +8,73 @@ tags: [算法, 笔记]
 ---
 
 ~~我是真没搞明白这老师在干什么~~  
-所以我按着她的大纲，自己搓了一遍
+所以我按着她的板书，自己搓了一遍  
+她写的那个字，就跟狗爬的一样
 
 <!-- more -->
 
 # Algorithmic problems, modelling
 
 theory of computation, modelling tools, examples
+
+## What is it good for
+
+- Create efficient algorithms
+- Programming language research
+- Efficient compiler design and construction
+
+## Branches of ToC
+
+### Automata theory
+
+- is the study of abstract computational devices
+- formal framework for designing and analyzing computing devices
+- we will discuss Turing Machines.
+
+### Computability Theory
+
+- defines whether a problem is "solvable" by any abstract machines
+- some problems are computable, some are not (e.g. travelling salesman problem)
+
+### Complexity Theory
+
+- studying the cost of solving problems
+- cost=resources(e.g.time,memory)
+- running time of algorithms varies with inputs and usually grows with the site of inputs
+- we will discuss how to measure complexity
+
+## Modlling
+
+- Problem -> (Model) -> Mathematica Frame -> (Algorithm) -> Solution
+
+### Tools of modelling
+
+- sets
+- function
+- number systems, coding
+- graphs
+
+### Graph definition
+
+- G=(V,E) where V is finite and not empty set , V = edges ,E = vertices
+
+### Graph Representations
+
+- drawing
+- edge and vertex list
+- adjacency matrix
+
+### Examples of graph models
+
+#### Complicated intersection traffic lights
+
+![traffic lights](0.png)
+
+Translates to graph coloring problem and maximal independent set problem too
+
+#### King Arthur and the knights of the Round Table
+
+#### Noblemen and Noble Maidens
 
 # Turing Machines
 
