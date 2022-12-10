@@ -88,5 +88,5 @@
 
 </details>
 
-Anything want to tell me / want me to do?
+Anything want to tell me / want me to do?  
 Don't hesitate to create a [New Discussion](https://github.com/Aloento/Aloento/discussions/new)!

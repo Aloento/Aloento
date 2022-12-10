@@ -355,3 +355,195 @@ end
     vector = [bin, sgn, char];
 end
 ```
+
+# Gaussian Elimination
+
+## 计算高斯消去
+
+Write an M-file to compute Gaussian Elimination.
+The name of the file be gaussel1
+
+- Input parameters: the coefficient matrix (A) and the right-side vector (b) of LES.
+- Output argument: the solution vector x
+- Use the Matlab row-operations for organisation of algorithm.
+- If GE can’t be solved without row or coloumn swap write an error message
+  and terminate the program.
+- In case of underdetermined LES give a base solution and warn the user of this.
+- In case the user asked it, display the matrices A(i) during computation.
+- To checking our function we can use the exercises from numerical I.
+
++1 We can prepare our function to accept LES with multiple right sides.
+
+```matlab
+% 2. 计算高斯消去
+function x = gaussel1(A, b, display)
+arguments
+    A
+    % 右向量，只能有一列
+    b (:,1)
+    display (1,1) = 0
+end
+
+    [ARow, ACol] = size(A);
+    BRow = size(b, 1);
+
+    if ~ismatrix(A) || ARow ~= BRow
+        error("ValidationException");
+    end
+
+    % 方程个数小于未知量个数的方程组
+    % 此时有无穷多组解，展示一个基本解
+    if(ARow < ACol)
+        warning('A is underdetermined, the basic solution with at most m nonzero components is')
+        disp(A\b)
+    % 超定是方程个数大于未知量个数的方程组，且列满秩
+    % 一般是不存在解的矛盾方程，只能求一个最接近的解
+    elseif(ARow > ACol && rank(A) == ACol)
+        % 显示一个使用最小二乘法，且 norm(A*x-b) & norm(x) 最小
+        % 线性方程的最小范数最小二乘解，指示它是离原点最近的解，但仍然进行GJ
+        warning('A is overdetermined, the minimum norm least-squares solution is')
+        disp(lsqminnorm(A, b))
+    end
+
+    M = [A, b];
+    [rows, cols] = size(M);
+    % 主元容差，主要是为了控制精度问题，如 magic(4)
+    % https://ww2.mathworks.cn/help/matlab/ref/rref.html#mw_5f53d9c8-72e8-42cc-bda8-ef84cf56ba93
+    tolerance = eps * max(rows, cols) * norm(M, inf);
+
+    % Gauss-Jordan
+    r = 1;
+    for c = 1:cols
+        % 找出当前列中，绝对值最大的数字，及其所在的行
+        % 使用部分主元消去法可减少（但会不消除）计算中的舍入误差
+        % 主元位置：行中最左边的非零元素
+        [num, target] = max(abs(M(r:end, c)));
+        % 加上 r 的原因是因为上面 max 判断的是被截断的矩阵
+        target = r + target - 1;
+
+        if (num <= tolerance)
+            % 跳过当前列，将近似零的项直接变成零
+            % 这可以防止使用小于容差的非零主元元素进行运算
+            M(r:end, c) = zeros(rows - r + 1, 1);
+            if display
+                disp(M)
+            end
+        else
+            % 交换最大行与当前行
+            M([target, r], c:end) = M([r, target], c:end);
+            if display
+                disp(M)
+            end
+
+            % 标准化最大行（把主元变成1）
+            M(r, c:end) = M(r, c:end) / M(r, c);
+            if display
+                disp(M)
+            end
+
+            % 消除当前的列（消元），但是要除开当前行
+            erow = [1:r - 1, r + 1:rows];
+            M(erow, c:end) = M(erow, c:end) - M(erow, c) * M(r, c:cols);
+            if display
+                disp(M)
+            end
+
+            % 检查是否完成行遍历
+            if (r == rows)
+                break;
+            end
+
+            r = r + 1;
+        end
+    end
+
+    x = M(:, end);
+end
+```
+
+## Whole Pivoting
+
+Extend the previous m-file (but save as a new name for example gaussel2) with
+steps of partial and whole pivoting method.
+
+- Using partial or whole pivoting could be choosen by user
+  (for example according to a boolean input parameter), but if the partial pivoting is stucked
+  then automatically switch to whole pivoting method. If we used whole pivoting despite user has choosen partial pivoting, then inform user about the switch
+- Give an opportunity for displaying matrices A(i) during computation. Don’t
+  forget that pivoting method can be changed the matrix so we have to display
+  it after row and coloumn swap.
+- Don’t forget that the pivoting method can be changed the solution.
+
+```matlab
+% 2. 完全交换，注释看前面一个
+function x = gaussel2(A, b, display)
+arguments
+    A
+    b (:,1)
+    display (1,1) = 0
+end
+
+    M = [A, b];
+    [rows, cols] = size(M);
+    xOrd=(1:length(b))';
+    tolerance = eps * max(rows, cols) * norm(M, inf);
+
+    % Whole Pivoting
+    r = 1;
+    for c = 1:cols - 1
+        % 找出行列最大值
+        [maxc, rowI] = max(abs(M(r:end, c:end - 1)));
+        [num, colI] = max(maxc);
+        row = rowI(colI) + c - 1;
+        col = colI + c - 1;
+
+        if (num <= tolerance)
+            M(r:end, c) = zeros(rows - r + 1, 1);
+            if display
+                disp(M)
+            end
+        else
+            % 交换列
+            M(r:end, [col, c]) = M(r:end, [c, col]);
+            if display
+                disp(M)
+            end
+
+            % 交换行
+            M([row, r], c:end) = M([r, row], c:end);
+            if display
+                disp(M)
+            end
+
+            % 交换X
+            oldOrd = xOrd(c);
+            xOrd(c) = xOrd(col);
+            xOrd(col) = oldOrd;
+
+            % 标准化
+            M(r, c:end) = M(r, c:end) / M(r, c);
+            if display
+                disp(M)
+            end
+
+            % 消元
+            erow = [1:r - 1, r + 1:rows];
+            M(erow, c:end) = M(erow, c:end) - M(erow, c) * M(r, c:cols);
+            if display
+                disp(M)
+            end
+
+            if (r == rows)
+                break;
+            end
+
+            r = r + 1;
+        end
+    end
+
+    % 调换回正常顺序
+    x = M(xOrd, end);
+end
+```
+
+##
