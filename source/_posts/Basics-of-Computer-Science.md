@@ -575,7 +575,23 @@ dist = {
 
 # Graph diagnostics
 
-## connectivity, absolute winner, complete node, logical formulas
+Graph diagnostic problems are graph problems that can be answered with Y/N.
+
+## Connectivity
+
+![G](1.png)
+
+A graph G is connected, if for any two nodes there exists a walk between them.
+
+---
+
+连通性是指图中任意两个顶点之间是否存在一条路径，使得两个顶点可以互相到达。如果一个图中的任意两个顶点都可以互相到达，那么这个图就被称为连通图。
+
+要判断一个图是否连通，可以使用搜索算法，如广度优先搜索或深度优先搜索。搜索时，从图中的任意一个顶点开始，并尝试访问该顶点的所有邻接点。如果能够访问到图中所有的顶点，那么这个图就是连通图。
+
+## Absolute winner
+
+## Complete node, logical formulas
 
 ## graph coloring (vertex and edge coloring)
 
