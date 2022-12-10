@@ -158,3 +158,87 @@ end
     end
 end
 ```
+
+## 十进制转机器数
+
+The third function finds the machine number what representates the given real number.
+
+The name be fl3. The function waits the real number and parameters of set of
+machine numbers (t, k1, k2.) as input. And gives back a vector with t+1 coordinates.
+The last coordinate be the characteristic and the firs t stores the signed
+mantissa. (As in case of input argument of function fl1).
+
+- The first bit of mantissa is the sign-bit as in exercise 1.
+  The value of sign is 0 when number is positive and 1 when it is negative.
+- Check the input arguments whether they are appropriate.
+  And the real number whether can representate in machine number set. (ε0 ≤ |r| ≤ M∞)
+
+```matlab
+% 1. 十进制转机器数
+function vector = fl3(digits, bottomExp, topExp, dec)
+    % fl2 自带检查了所以这里就不再重复检查
+    [max] = fl2(digits, bottomExp, topExp, 0);
+
+    % min <= dec <= max 防止溢出
+    if isnan(max) || ~((-max <= dec) && (dec <= max))
+        vector = nan;
+        return
+    end
+
+    sgn = 0;
+    % 记录十进制正负
+    if sign(dec) == -1
+        sgn = 1;
+    end
+
+    % 取十进制绝对值
+    dec = abs(dec);
+    % 抹掉小数，把整数位转换成二进制
+    int = fix(dec);
+    bin = [];
+    % 只有整数不为零的情况才需要转换
+    if int
+        bin = de2bi(int);
+    end
+
+    % 整数二进制的长度就是未标准化的机器数的指数
+    % 我们可能得到这样两种情况：111.2222... 和 0.1111...
+    % 只有第一种情况我们需要把整数位全部位移到小数位上
+    % 这时候就产生了指数位（指数位是可以为零的）
+    power = length(bin);
+    % 0.小数部分 * 2^(1:位数) 再取它 除以二 的余，并且抹掉小数
+    % 乘2取整，顺序排列，不断的在小数位上乘2
+    bin = [bin, fix(rem(rem(dec,1) * pow2(1:digits), 2))];
+
+    if power
+        % 强行截断超出部分，只留超出的第一位，进行舍零入一
+        bin = bin(1:digits + 1);
+    end
+
+    % 是否需要进位
+    over = 0;
+    % 只有当整数向后位移的情况才可能超出
+    if power
+        over = bin(end);
+    end
+
+    % 逆向遍历数组
+    for n = digits:-1:1
+        if over
+            % 是 1 则变成 0，继续进位
+            if bin(n)
+                bin(n) = 0;
+            else
+                % 如果是 0 则 停止进位
+                bin(n) = 1;
+                over = 0;
+            end
+        else
+            break
+        end
+    end
+
+    % 我们不需要考虑溢出的情况，因为最开始就已经检查过范围了
+    vector = [sgn, bin(1:digits), power];
+end
+```
