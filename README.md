@@ -2,7 +2,7 @@
 
 <details>
   <summary>Click to see what I'm using</summary>
- 
+
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
@@ -87,3 +87,6 @@
 ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
 
 </details>
+
+Anything want to tell me / want me to do?
+Don't hesitate to create a [New Discussion](https://github.com/Aloento/Aloento/discussions/new)!

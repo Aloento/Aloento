@@ -242,3 +242,116 @@ function vector = fl3(digits, bottomExp, topExp, dec)
     vector = [sgn, bin(1:digits), power];
 end
 ```
+
+## 机器数相加
+
+Let us write a function for addition between machine numbers.
+
+Let us call the file to fl4. It waits for two vectors as input. (They are representate
+the machine numbers as before). The output be a vector with the machine number of the sum.
+
+- Use machine-addition. The double conversion is not acceptable. (To compute
+  the real numbers belongs to inputs, summing them and reconverting to
+  machin number is not allowed.)
+- Check the inputs. (They have to have same length and have to be machine numbers)
+- If one of the numbers is negative (the first bit is 1) then in real the operation
+  is a substraction.
+
+```matlab
+% 1. 机器数相加
+function vector = fl4(a, b)
+arguments
+    a (1,:)
+    b (1,:)
+end
+
+    % 检查合法性，但是并没有检查完整
+    if ~isvector(a) || ~isvector(b) || length(a) ~= length(b)
+        vector = nan;
+        return
+    end
+
+    % 取出两个的指数位
+    ac = a(end);
+    bc = b(end);
+    % 目标指数
+    char = ac;
+
+    % 取出两个的二进制数据
+    abin = a(2:end - 1);
+    bbin = b(2:end - 1);
+    % 二进制长度
+    len = length(abin);
+
+    % 如果两个指数不相等
+    if ac ~= bc
+        diff = ac - bc;
+
+        if ac > bc
+            % align
+            % A 大所以扩大 B
+            for n = 1:diff
+                bbin = [0, bbin];
+            end
+
+            bbin = bbin(1:len);
+        else
+            for n = 1:-diff
+                abin = [0, abin];
+            end
+
+            % 目标指数转为大的那个
+            char = bc;
+            abin = abin(1:len);
+        end
+    end
+
+    % fliplr 将数组从左向右翻转
+    % 当使用 bi2de 或者 de2bi 时
+    % 第一位是 least significant bit 最低有效位
+    % 最后一位是 most significant bit 最高有效位
+    % 所以是小端序的，我们必须反转它
+    ad = bi2de(fliplr(abin));
+    bd = bi2de(fliplr(bbin));
+
+    % 处理符号
+    if a(end - 1)
+        ad = -ad;
+    end
+
+    if b(end - 1)
+        bd = -bd;
+    end
+
+    % 相加并转回二进制
+    dres = ad + bd;
+    bin = fliplr(de2bi(abs(dres)));
+    % 新结果与原始数据长度差
+    dlen = length(bin) - len;
+    % 增加指数位
+    char = char + dlen;
+
+    if length(bin) > len
+        % 如果太长了就截断，我们不改变机器数的长度
+        bin = bin(1:len);
+    elseif length(bin) < len
+        % 如果不足，就在后面补 0
+        for n = 1:-dlen
+            bin = [bin, 0];
+        end
+    end
+
+    % 处理符号
+    sgn = 0;
+    if sign(dres) == -1
+        sgn = 1;
+    end
+
+    % 基本上只是简单实现了两个机器数的加减
+    % 没有判断两个输入的合法性
+    % 也没有判断是否溢出
+    % 而且实际还用的是十进制加减
+    % 总的来说不是很合格
+    vector = [bin, sgn, char];
+end
+```
