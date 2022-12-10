@@ -546,4 +546,58 @@ end
 end
 ```
 
-##
+## 求逆矩阵
+
+Apply Gaussian elimantion for computing inverse of an square matrix.
+The name of function: gaussel3
+
+- Check input argument(s) before computing
+- Compute the determinant of matrix.  
+  If you have written the function gaussel1 such that it accepts multiple
+  right-sides, then you can call it during computation.
+
+```matlab
+% 2. 求逆矩阵
+function x = gaussel3(A)
+    [row, col] = size(A);
+    if row ~= col
+        error("A is not a square matrix")
+    end
+
+    % 判断是否是奇异矩阵，如果是则不可逆
+    if det(A) == 0
+        warning("A is singular matrix")
+    end
+
+    A = [A, eye(row)];
+
+    for c = 1:row
+        % 在消元操作之前选择一个最大的元素作为主元
+        % 这样可以避免主元为零的情况，从而提高精度
+        [~, maxI] = max(abs(A(c:row, c)));
+        % 得到原来矩阵A中的行索引
+        maxI = maxI + c - 1;
+
+        % 将矩阵A的第maxI行作为主元行，并将主元行转化为单位矩阵
+        % （主元行中的第c个元素是1，其余元素都是0）
+        % 这样一来，矩阵A的第maxI行就成为了消元的基准行
+        % 在后续的消元操作中，其他行都需要根据这一行进行消元
+        A(maxI, :) = A(maxI, :) / A(maxI, c);
+
+        temp = A(c, :);
+        % 将矩阵A的主元行移动到第c行，使得在后续的消元操作中
+        % 只需要对矩阵A的第c行以下的部分进行消元
+        A(c, :) = A(maxI, :);
+        A(maxI, :) = temp;
+
+        for j = 1:row
+            if(j ~= c)
+                % 消元操作，使得矩阵A的第j行的第c个元素变为0
+                A(j, :) = A(j, :) - A(j, c) * A(c, :);
+            end
+        end
+    end
+
+    x = A(:, row + 1:size(A, 2));
+end
+```
