@@ -128,36 +128,6 @@ The same problems can be solved by a TM and modern computers
 
 measuring complexity, complexity classes
 
-# Sorting algorithms and their complexity
-
-selection sort, bubble sort, insertion sort and optimization, their analysis, theorem about maximum complexity case runtime steps
-
-# Basic graph algorithms
-
-graph searches (BFS, DFS, Dijsktra), tree traversals, longest path problems
-
-# Graph diagnostics
-
-## connectivity, absolute winner, complete node, logical formulas
-
-## graph coloring (vertex and edge coloring)
-
-# Packing and covering problem
-
-## generalization of the problem
-
-## interval packing, dominating sets
-
-## suboptimal algorithms, bin packing problem, First Fit algorithm
-
-# Algebraic algorithms
-
-## divisibility, Euclidean algorithm
-
-## faster multiplication and division of large numbers
-
-# 复杂度
-
 算法会消耗时间和内存，复杂度就是衡量消耗的指标
 
 ## 时间复杂度
@@ -337,6 +307,34 @@ for (let i = 0; i < n; i++) {
 
 以此类推
 当然也有 O(N + M), O(logN)等
+
+# Sorting algorithms and their complexity
+
+selection sort, bubble sort, insertion sort and optimization, their analysis, theorem about maximum complexity case runtime steps
+
+# Basic graph algorithms
+
+graph searches (BFS, DFS, Dijsktra), tree traversals, longest path problems
+
+# Graph diagnostics
+
+## connectivity, absolute winner, complete node, logical formulas
+
+## graph coloring (vertex and edge coloring)
+
+# Packing and covering problem
+
+## generalization of the problem
+
+## interval packing, dominating sets
+
+## suboptimal algorithms, bin packing problem, First Fit algorithm
+
+# Algebraic algorithms
+
+## divisibility, Euclidean algorithm
+
+## faster multiplication and division of large numbers
 
 # 十大排序算法
 
