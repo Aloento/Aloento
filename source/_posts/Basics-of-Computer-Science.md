@@ -312,32 +312,6 @@ for (let i = 0; i < n; i++) {
 
 selection sort, bubble sort, insertion sort and optimization, their analysis, theorem about maximum complexity case runtime steps
 
-# Basic graph algorithms
-
-graph searches (BFS, DFS, Dijsktra), tree traversals, longest path problems
-
-# Graph diagnostics
-
-## connectivity, absolute winner, complete node, logical formulas
-
-## graph coloring (vertex and edge coloring)
-
-# Packing and covering problem
-
-## generalization of the problem
-
-## interval packing, dominating sets
-
-## suboptimal algorithms, bin packing problem, First Fit algorithm
-
-# Algebraic algorithms
-
-## divisibility, Euclidean algorithm
-
-## faster multiplication and division of large numbers
-
-# 十大排序算法
-
 我们按时间复杂度区分，并介绍十大常用的排序算法  
 由于这门课并不教怎么写代码，所以我们只需要了解它是怎么工作的就行了
 
@@ -490,6 +464,30 @@ Insertion Sort
 像打扑克时整理手牌一样，将每张牌插入到合适的位置
 
 ![动图演示](https://raw.githubusercontent.com/hustcc/JS-Sorting-Algorithm/master/res/insertionSort.gif)
+
+# Basic graph algorithms
+
+graph searches (BFS, DFS, Dijsktra), tree traversals, longest path problems
+
+# Graph diagnostics
+
+## connectivity, absolute winner, complete node, logical formulas
+
+## graph coloring (vertex and edge coloring)
+
+# Packing and covering problem
+
+## generalization of the problem
+
+## interval packing, dominating sets
+
+## suboptimal algorithms, bin packing problem, First Fit algorithm
+
+# Algebraic algorithms
+
+## divisibility, Euclidean algorithm
+
+## faster multiplication and division of large numbers
 
 # 图形搜索
 
