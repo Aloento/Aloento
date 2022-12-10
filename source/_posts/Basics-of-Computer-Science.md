@@ -12,6 +12,46 @@ tags: [算法, 笔记]
 
 <!-- more -->
 
+# Algorithmic problems, modelling
+
+theory of computation, modelling tools, examples
+
+# Turing Machines
+
+definition, construction, properties, transition functions
+
+# Complexity of algorithms
+
+measuring complexity, complexity classes
+
+# Sorting algorithms and their complexity
+
+selection sort, bubble sort, insertion sort and optimization, their analysis, theorem about maximum complexity case runtime steps
+
+# Basic graph algorithms
+
+graph searches (BFS, DFS, Dijsktra), tree traversals, longest path problems
+
+# Graph diagnostics
+
+## connectivity, absolute winner, complete node, logical formulas
+
+## graph coloring (vertex and edge coloring)
+
+# Packing and covering problem
+
+## generalization of the problem
+
+## interval packing, dominating sets
+
+## suboptimal algorithms, bin packing problem, First Fit algorithm
+
+# Algebraic algorithms
+
+## divisibility, Euclidean algorithm
+
+## faster multiplication and division of large numbers
+
 # 复杂度
 
 算法会消耗时间和内存，复杂度就是衡量消耗的指标
