@@ -604,9 +604,9 @@ end
 
 # QR-decomposition
 
-##
+## Gram-Schmidt
 
-Write an M-file for QR-decomposition using Gram-Schmidt ortogonalisation. Let
+Write an M-file for QR-decomposition using Gram-Schmidt orthogonalization. Let
 us call the function to: gramschmidt
 
 - Input parameter: a square matrix (A)
@@ -616,6 +616,54 @@ us call the function to: gramschmidt
   independent) we can use any included function of Matlab.
 - The included functions can be used for computing norms,
   but we can compute via definition also.
+
+```matlab
+% 3. Gram-Schmidt正交法
+% 选择一组线性无关的向量。然后通过计算每个向量与之前所有向量的投影
+% 并将这些投影从原始向量中减去，来逐步构造出一组正交向量
+% 1. 对于矩阵A的每一列，计算该列向量在之前处理的所有基向量上的投影分量
+% 2. 减去投影分量，得到一个正交化的基向量
+% 3. 更新正交矩阵Q和上三角矩阵R
+function [Q, R] = gramschmidt(A)
+    [m, n] = size(A);
+
+    if (m ~= n)
+        error("A should be a square matix")
+    end
+
+    if (rank(A) ~= size(A, 2))
+        % 加了这个 magic 就过不了了
+        warning("the columns of A have to be linear independent")
+    end
+
+    Q = zeros(m);
+    R = zeros(m);
+
+    % 从最左侧的列向量向右
+    for col = 1:n
+        a = A(:, col);
+        q = a;
+
+        % 减去 A 中当前列向量在之前已找到的基向量上的投影分量
+        for b = 1:col-1
+            % 计算给定列向量a在已处理的基向量Q的第b列上的投影分量
+            r = Q(:, b)' * a;
+            % 减去当前列向量在之前处理的基向量上的投影分量
+            q = q - r * Q(:, b);
+            % 记录对应 R 矩阵中的元素值
+            R(b, col) = r;
+        end
+
+        % 对当前基向量进行正交化
+        q = q / norm(q);
+
+        % 更新结果
+        Q(:, col) = q;
+        R(col, col) = a' * q;
+    end
+
+end
+```
 
 ##
 
@@ -628,6 +676,10 @@ point and its image. The name of function let be: householder
 - Take care of choosing sign during transformation (the parameter σ effects
   the stability of the method)
 
+```matlab
+
+```
+
 ##
 
 The third function will asking data via graphical input. (It works for 2D points)
@@ -635,6 +687,10 @@ Display points and the hyperspace of reflection. Ask for another point (also via
 graphical input) and apply the transformation to the new point. The function
 householder can be called during the algorithm.
 the name of function: hhgraph
+
+```matlab
+
+```
 
 ##
 
@@ -645,3 +701,7 @@ us call our function to: hhalg
 - Output arguments: an orthogonal matrix (Q) and an upper triangular matrix (R),
   such that satisfy A = Q·R
 - The previous functions can be called.
+
+```matlab
+
+```
