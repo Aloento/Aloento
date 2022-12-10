@@ -700,6 +700,16 @@ A graph G is connected, if for any two nodes there exists a walk between them.
 
 ## suboptimal algorithms, bin packing problem, First Fit algorithm
 
+### 降序首次适应算法
+
+First Fit Decreasing
+
+1. 将物品按照价值从大到小排序
+2. 找到一个能放下物品的背包，放入物品
+3. 重复 2，直到所有物品都放入
+
+简而言之，FFD 按照大小降序排列项目，然后放入第一合适的背包
+
 # Algebraic algorithms
 
 ## divisibility, Euclidean algorithm
