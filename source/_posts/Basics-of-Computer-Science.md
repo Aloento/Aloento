@@ -469,28 +469,6 @@ Insertion Sort
 
 graph searches (BFS, DFS, Dijsktra), tree traversals, longest path problems
 
-# Graph diagnostics
-
-## connectivity, absolute winner, complete node, logical formulas
-
-## graph coloring (vertex and edge coloring)
-
-# Packing and covering problem
-
-## generalization of the problem
-
-## interval packing, dominating sets
-
-## suboptimal algorithms, bin packing problem, First Fit algorithm
-
-# Algebraic algorithms
-
-## divisibility, Euclidean algorithm
-
-## faster multiplication and division of large numbers
-
-# 图形搜索
-
 ## 深度优先搜索
 
 ![节点进行深度优先搜索的顺序](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Depth-first-tree.svg/300px-Depth-first-tree.svg.png)
@@ -511,5 +489,85 @@ graph searches (BFS, DFS, Dijsktra), tree traversals, longest path problems
 是从最下层往上走
 
 层次遍历：只需按层遍历即可
+
+## Dijsktra
+
+求 V0 到 V5 的最短路径
+
+![Dijkstra](https://raw.githubusercontent.com/2cats/Dijkstra/master/sample.jpg)
+
+首先，我们将 V0 设为原点，并初始化每个顶点到原点的距离为无穷大
+
+```ts
+/**
+ * 每个顶点到原点的距离
+ */
+let dist: Record<string, number> = {
+  V0: 0,
+  V1: Infinity,
+  V2: Infinity,
+  V3: Infinity,
+  V4: Infinity,
+  V5: Infinity,
+};
+
+/**
+ * 获取两个顶点之间的权重
+ */
+declare function weight(node1: string, node2: string): number;
+```
+
+接下来，我们要不断迭代更新每个顶点到原点的最短距离，
+直到所有顶点的最短距离，都被更新为最终值。
+
+在每次迭代中，我们首先找到所有未被更新的顶点中，距离原点最近的顶点，
+然后更新它到原点的最短距离，并根据新的距离，更新其他顶点，到原点的距离。
+
+所以，我们找到距离 V0 最近的点，V1，距离是 1，然后用这个值来更新其他点到原点的距离
+
+```ts
+dist.V1 = 1;
+
+dist.V2 =
+  Math.min(dist.V2, dist.V1 + weight(V1, V2)) =
+  Math.min(Infinity, 1 + 2) =
+    3;
+
+dist.V3 =
+  Math.min(dist.V3, dist.V1 + weight(V1, V3)) =
+  Math.min(Infinity, 1 + 7) =
+    8;
+
+dist.V4 =
+  Math.min(dist.V4, dist.V1 + weight(V1, V4)) =
+  Math.min(Infinity, 1 + 5) =
+    6;
+```
+
+我们再次找到距离源点最近的顶点，V2
+
+```ts
+dist.V4 = Math.min(dist.V4, dist.V2 + weight(V2, V4)) = Math.min(6, 3 + 1) = 4;
+```
+
+# Graph diagnostics
+
+## connectivity, absolute winner, complete node, logical formulas
+
+## graph coloring (vertex and edge coloring)
+
+# Packing and covering problem
+
+## generalization of the problem
+
+## interval packing, dominating sets
+
+## suboptimal algorithms, bin packing problem, First Fit algorithm
+
+# Algebraic algorithms
+
+## divisibility, Euclidean algorithm
+
+## faster multiplication and division of large numbers
 
 # 背包问题
