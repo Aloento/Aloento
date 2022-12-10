@@ -599,10 +599,44 @@ A graph G is connected, if for any two nodes there exists a walk between them.
 
 完全节点是指，这个节点与其他任何节点都至少存在一条边
 
-至于 logical formulas，指的是 FDNF  
+至于 logical formulas，指的是 FDNF disjunctive normal form  
 它与 DNF 不同点似乎是每个出现的变量都会出现在每个子句中
 
-## graph coloring (vertex and edge coloring)
+## Graph coloring
+
+### Vertex
+
+顶点着色的规则是，任意两个相邻的顶点不能有相同的颜色。  
+并且我们使用尽可能少的颜色来着色。
+
+我们从图中的一个顶点开始，为它分配一种颜色。然后，我们按照顶点的顺序遍历图中的其他顶点，为每个顶点分配一种与相邻顶点不同的颜色
+
+#### Brooks theorem
+
+描述了图的着色数与图中最大度数的关系，提供了图着色数的一个上界
+
+如果一个无向图 G 满足以下条件，那么它可以用 Δ(G) 或更少的颜色染色：
+
+- G 是一个连通图（即它不包含任何脱离的部分）
+- G 不包含任何奇环（即它不包含任何长度为奇数的环）
+- Δ(G) 指的是图 G 中最大的度数。
+
+#### Degree
+
+度数指的是一个顶点与其相邻顶点之间的边的数量  
+度数可以用来衡量一个顶点与其他顶点的连通性。
+通常情况下，一个顶点的度数越大，它与其他顶点的连通性就越强
+
+#### Four color theorem
+
+如果一个平面图 G 不包含任何环，那么它可以用不超过 4 种颜色染色，使得相邻的两个区域拥有不同的颜色。
+
+#### Subgraph
+
+在原图中选择一些节点和边，并从原图中删除其他的节点和边。这样得到的图就是原图的一个子图。  
+如果一个节点的度数为 2，那么我们可以删除该节点，并将它与其他两个节点之间的两条边"合并"成一条边。
+
+### Edge
 
 # Packing and covering problem
 
