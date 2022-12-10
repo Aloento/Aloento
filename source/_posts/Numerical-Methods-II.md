@@ -722,3 +722,58 @@ us call our function to: hhalg
 ```matlab
 
 ```
+
+# Iterative solutions of LES
+
+##
+
+Write an M-file for Jacobi iteration. The file name be: jacobi
+
+- Input parameters: The matrix of LES A and a vector for the right-side: b
+- Output argument: the approximation of the solution vector: x
+- We can use the vectorial form of the iteration
+
+##
+
+Write an M-file for Gauss-Seidel iteration. The file name be: gaussseid
+
+- As in previously at Jacobi iteration.
+
+# Iterative solution of non-linear equations, Interpolation
+
+##
+
+Write an m-file for bisection method and call the file: bisect
+
+- Input arguments: the function f (we want to find one of the zeros). Give it
+  as a string (the variable can be denoted by x or we can give the notation
+  as another parameter. We will need the ends of the starting interval (a, b),
+  the number of steps (n).
+- Output arguments: the appropriate approximation of root: x^∗
+  and the error estimation ε.
+- Before start we have to check the interval (is there a root inside?)
+- To evaluate function we can use function eval
+
+# Least Squares Method, Generalised inverse
+
+##
+
+Write an m-file for approximation with least squares method.
+The name of file: lsmapprox
+
+- Input arguments: order of polynomial (n), nodes of approximation (in a
+  vector), vector of function values in nodes
+- Output argument(s): the coefficients of the polynomial
+- Let us draw a picture to illustrate the approximation. (We can use the
+  included function polyval)
+
+##
+
+Write an m-file to find the generalised inverse of a given matrix.
+The name of file: geninv
+
+- Input argument: the matrix (A).
+- Output argument: The generalised inverse (A+)
+- Use the rank factorisation if the matrix is not fullranked. For the matrix
+  operations we can use the included functions of Matlab (eg.: rank, inv,
+  instead of solving LES we can use the command G=F\A, etc.)
