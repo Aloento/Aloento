@@ -665,7 +665,7 @@ function [Q, R] = gramschmidt(A)
 end
 ```
 
-##
+## Householder
 
 Write an M-file to give the matrix of a Householder transformation, from a known
 point and its image. The name of function let be: householder
@@ -677,7 +677,24 @@ point and its image. The name of function let be: householder
   the stability of the method)
 
 ```matlab
+% 3. Householder 变换主要就是那个公式，没有什么别的
+function H = householder(P, Prem)
+arguments
+    P (:,1)
+    Prem (:,1) % P'
+end
+    % 解题参考 NumSampleTest1SolutionsP1 213
 
+    if (size(P) ~= size(Prem))
+        error("Size P not equal to Size ImgP")
+    end
+
+    u = P - Prem;
+    v = u / norm(u);
+
+    % H(v) = I - 2 * v * v'
+    H = eye(size(P, 1)) - 2 * (v * v');
+end
 ```
 
 ##
