@@ -492,23 +492,29 @@ graph searches (BFS, DFS, Dijsktra), tree traversals, longest path problems
 
 ## Dijsktra
 
-求 V0 到 V5 的最短路径
+```ts
+      5
+  A ----- B
+  |       |
+  |       |
+  4       6
+  |       |
+  |       |
+  C ----- D
+      5
+```
 
-![Dijkstra](https://raw.githubusercontent.com/2cats/Dijkstra/master/sample.jpg)
-
-首先，我们将 V0 设为原点，并初始化每个顶点到原点的距离为无穷大
+首先，我们将 A 设为原点，并初始化每个顶点到原点的距离为无穷大
 
 ```ts
 /**
  * 每个顶点到原点的距离
  */
 let dist: Record<string, number> = {
-  V0: 0,
-  V1: Infinity,
-  V2: Infinity,
-  V3: Infinity,
-  V4: Infinity,
-  V5: Infinity,
+  A: 0,
+  B: Infinity,
+  C: Infinity,
+  D: Infinity,
 };
 
 /**
@@ -523,32 +529,49 @@ declare function weight(node1: string, node2: string): number;
 在每次迭代中，我们首先找到所有未被更新的顶点中，距离原点最近的顶点，
 然后更新它到原点的最短距离，并根据新的距离，更新其他顶点，到原点的距离。
 
-所以，我们找到距离 V0 最近的点，V1，距离是 1，然后用这个值来更新其他点到原点的距离
+从 A 向外扩散
 
 ```ts
-dist.V1 = 1;
-
-dist.V2 =
-  Math.min(dist.V2, dist.V1 + weight(V1, V2)) =
-  Math.min(Infinity, 1 + 2) =
-    3;
-
-dist.V3 =
-  Math.min(dist.V3, dist.V1 + weight(V1, V3)) =
-  Math.min(Infinity, 1 + 7) =
-    8;
-
-dist.V4 =
-  Math.min(dist.V4, dist.V1 + weight(V1, V4)) =
-  Math.min(Infinity, 1 + 5) =
-    6;
+dist.B =
+  Math.min(dist.B, dist.A + weight("A", "B")) =
+  Math.min(Infinity, 0 + 5) =
+    5;
 ```
-
-我们再次找到距离源点最近的顶点，V2
 
 ```ts
-dist.V4 = Math.min(dist.V4, dist.V2 + weight(V2, V4)) = Math.min(6, 3 + 1) = 4;
+dist.C =
+  Math.min(dist.C, dist.A + weight("A", "C")) =
+  Math.min(Infinity, 0 + 4) =
+    4;
 ```
+
+从 B 向外扩散
+
+```ts
+dist.D =
+  Math.min(dist.D, dist.B + weight("B", "D")) =
+  Math.min(Infinity, 5 + 6) =
+    11;
+```
+
+从 C 向外扩散
+
+```ts
+dist.D = Math.min(dist.D, dist.C + weight("C", "D")) = Math.min(11, 4 + 5) = 9;
+```
+
+得到结果
+
+```ts
+dist = {
+  A: 0,
+  B: 5,
+  C: 4,
+  D: 9,
+};
+```
+
+所以，从 A 到 D 的最短距离为 9
 
 # Graph diagnostics
 
@@ -571,3 +594,7 @@ dist.V4 = Math.min(dist.V4, dist.V2 + weight(V2, V4)) = Math.min(6, 3 + 1) = 4;
 ## faster multiplication and division of large numbers
 
 # 背包问题
+
+```
+
+```
