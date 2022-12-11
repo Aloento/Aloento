@@ -780,7 +780,7 @@ function hhgraph()
 end
 ```
 
-##
+## Householder QR 分解
 
 Write an M-filet to realize QR-decomposition with Householder algorithm. Let
 us call our function to: hhalg
@@ -791,7 +791,50 @@ us call our function to: hhalg
 - The previous functions can be called.
 
 ```matlab
+% Householder QR 分解
+function [Q, R] = hhalg(A)
+    [m, n] = size(A);
+    if (m ~= n)
+        error("A should be a square matix")
+    end
 
+    % 预分配，减少动态内存分配，提高性能
+    % 反射变换矩阵、正交矩阵和上三角矩阵
+    H = eye(m);
+    Q = eye(m);
+    R = A;
+
+    for col = 1:n
+        % x = aₖ
+        x = R(col:m, col);
+
+        % 跳过已满足条件不需要反射的部分
+        % 非零矩阵元素的数目
+        % 这是因为反射变换的作用是将向量 x 的第一个元素变为正数
+        if ~nnz(x(2:end))
+            continue
+        end
+
+        % v = aₖ - βeₖ，其中 eₖ 为单位正交基
+        v = x;
+        % β=‖x‖取值保持与x(1)一致，β 是向量 x 的模长
+        v(1) = v(1) + sign(x(1)) * norm(x);
+        v = v / v(1);
+
+        % 反射变换：I - 2*u*conj(u) 可整理得下式
+        % 随着逐列推进，Householder 反射变换部分占右下部分越来越小
+        % (v * v') / (v' * v) 表示反射变换矩阵 H 的右下角部分
+        h = eye(m - col + 1) - 2 * (v * v') / (v' * v);
+        H(col:m, col:m) = h;
+
+        % 使用反射变换矩阵 H 更新正交矩阵 Q 和上三角矩阵 R
+        R = H * R;
+        Q = Q * H';
+
+        % 将预分配的内存重置
+        H(col:m, col:m) = eye(m - col + 1);
+    end
+end
 ```
 
 # Iterative solutions of LES
