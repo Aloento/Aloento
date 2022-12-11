@@ -1074,7 +1074,7 @@ end
 
 # Least Squares Method, Generalised inverse
 
-##
+## 最小二乘法
 
 Write an m-file for approximation with least squares method.
 The name of file: lsmapprox
@@ -1086,7 +1086,49 @@ The name of file: lsmapprox
   included function polyval)
 
 ```matlab
+% 6. 最小二乘法计算拟合多项式系数
+% Polynomial curve fitting
+% 返回 p 向量保存多项式系数，由最高次向最低次排列
+function p = lsmapprox(x, y, n)
+arguments
+    % x，y为拟合数据向量
+    x
+    y
+    % 拟合多项式次数
+    % 如 1 为 一次函数
+    n (1,1)
+end
 
+    if ~isequal(size(x), size(y))
+        error("x, y require the same dimensionality")
+    end
+
+    % 但实际上我们需要的是列向量
+    x = x(:);
+    y = y(:);
+
+    % 使用一维向量 x 构造具有 n + 1 列 和 m = length(x) 行 的
+    % 范德蒙（Vandermonde）矩阵 V = [x^n ... x^2 x ones(size(x))]
+    % p(x) = p1·x^n + p2·x^(n-1) + ... pn·x + pn + 1
+    V(:, n + 1) = ones(length(x), 1, class(x));
+    for j = n:-1:1
+        % TIMES (.*) 执行按元素相乘
+        V(:, j) = x .* V(:, j + 1);
+    end
+
+    % 然后我们把 V 进行 QR 分解，然后再使用 \ 除法进行求解，随后得到多项式系数p
+    [Q, R] = qr(V, 0);
+    % p = V\y
+    p = R \ (Q' * y);
+
+    % 返回行向量
+    p = p';
+
+    % 绘图
+    y1 = polyval(p, x);
+    plot(x, y, 'o', x, y1, '-')
+
+end
 ```
 
 ##
