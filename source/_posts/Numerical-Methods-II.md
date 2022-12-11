@@ -697,7 +697,7 @@ end
 end
 ```
 
-##
+## 点映射
 
 The third function will asking data via graphical input. (It works for 2D points)
 Display points and the hyperspace of reflection. Ask for another point (also via
@@ -706,7 +706,78 @@ householder can be called during the algorithm.
 the name of function: hhgraph
 
 ```matlab
+% 3. 交互点映射
+function hhgraph()
+    clf;
+    hold on;
 
+    ax = gca;
+    ax.XAxisLocation = "origin";
+    ax.YAxisLocation = "origin";
+
+    button = questdlg("Click a point", "First Step", "OK", "Cancel", "OK");
+    if strcmpi(button, "Cancel")
+        return;
+    end
+
+    [PointX, PointY] = ginput(1);
+    plot(PointX, PointY, "rd")
+
+    R = distance(PointX, PointY, 0, 0);
+    viscircles([0, 0], R);
+
+    button = questdlg("Click another point", "Second Step", "OK", "Cancel", "OK");
+    if strcmpi(button, "Cancel")
+        return;
+    end
+
+    [PointX2, PointY2] = ginput(1);
+    plot(PointX2, PointY2, "rd")
+
+    syms x y u;
+    % 圆的标准方程
+    c = x ^ 2 + y ^ 2 - R ^ 2;
+    % 计算点 (x,y) 到第二个点（PointX2,PointY2）之间的欧几里得距离
+    d = (x - PointX2) ^ 2 + (y - PointY2) ^ 2;
+    % 求出第二个点（PointX2,PointY2）在反射变换后的位置，以确定反射变换矩阵 H
+    h = d + u * c;
+
+    % 前两个参数表示 h 关于 x 和 y 的一阶导数，它们用来求解 h 关于 x 和 y 的根
+    % 这些根是 h 关于 x 和 y 的极值点，它们决定了反射变换后第二个点的位置
+    % 第三个参数表示 h 关于 u 的一阶导数，它用来求解 h 关于 u 的根
+    % 这个根是 h 关于 u 的极值点，它决定了反射变换矩阵 H 的值
+    res = solve(diff(h, x) == 0, diff(h, y) == 0, diff(h, u) == 0);
+    x = res.x;
+    y = res.y;
+
+    % 它们的值分别是第二个点反射变换后的两个可能位置与原点之间的欧几里得距离
+    d1 = (x(1) - PointX2) ^ 2 + (y(1) - PointY2) ^ 2;
+    d2 = (x(2) - PointX2) ^ 2 + (y(2) - PointY2) ^ 2;
+
+    % 选择更小的那一个作为反射变换后第二个点的位置
+    % 反射变换后第二个点的最终位置应该是离原点最近的那一个
+    if (d1 <= d2)
+        PointX2 = x(1);
+        PointY2 = y(1);
+    else
+        PointX2 = x(2);
+        PointY2 = y(2);
+    end
+
+    plot(PointX2, PointY2, "rd")
+    H = householder([PointX, PointY]', [PointX2, PointY2]');
+
+    button = questdlg("Click new point", "Third Step", "OK", "Cancel", "OK");
+    if strcmpi(button, "Cancel")
+        return;
+    end
+
+    [PointX3, PointY3] = ginput(1);
+    plot(PointX3, PointY3, "rd")
+
+    res = (H * [PointX3, PointY3]')';
+    plot(res(1), res(2), "rd")
+end
 ```
 
 ##
