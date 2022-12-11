@@ -839,7 +839,7 @@ end
 
 # Iterative solutions of LES
 
-##
+## Jacobi 迭代
 
 Write an M-file for Jacobi iteration. The file name be: jacobi
 
@@ -928,14 +928,68 @@ end
 end
 ```
 
-##
+## Gauss Seidel
 
 Write an M-file for Gauss-Seidel iteration. The file name be: gaussseid
 
 - As in previously at Jacobi iteration.
 
 ```matlab
+% 4. 用 Gauss Seidel 迭代法解线性方程组 Ax=b
+% A为方程组的系数矩阵
+% b为方程组的右端项
+%epsilon：近似解的误差
+%Max：迭代的最大次数
+function x = gaussseid(A, b, epsilon, Max)
+arguments
+    A
+    b (:,1)
+    epsilon (1,1) = 1e-5
+    Max (1,1) = 1000
+end
 
+    [row, col] = size(A);
+    bRow = length(b);
+
+    %当方程组行与列的维数不相等
+    if row ~= col
+        error('The rows and columns of matrix A must be equal');
+    end
+
+    % 当方程组与右端项的维数不匹配
+    if col ~= bRow
+        error('The columns of A must be equal the length of b');
+    end
+
+    %迭代初始值
+    x = zeros(bRow, 1);
+    %diag(A)是取出对角元的向量，对该向量再作用diag()函数表示以该对角元向量生成对角矩阵
+    D = diag(diag(A));
+    %将矩阵分裂为A=D-L-U
+    %下三角
+    L = -tril(A, -1);
+    %上三角
+    U = -triu(A, 1);
+
+    %G-S迭代法的迭代公式 Xk+1 = (D-L)^(-1) * U * Xk + (D - L)^(-1) * b
+    B = (D-L) \ U;
+    g = (D-L) \ b;
+
+    %开始迭代Xk+1 = B * x + g
+    %最大迭代次数
+    for k=1:Max
+        %计算Xk+1用y存放
+        y=B*x + g;
+
+        %相邻两次迭代之间相差小于阈值
+        if norm(x-y) < epsilon
+            break;
+        end
+
+        %存放单步结果用于判断收敛
+        x = y;
+    end
+end
 ```
 
 # Iterative solution of non-linear equations, Interpolation
