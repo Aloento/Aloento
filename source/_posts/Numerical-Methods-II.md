@@ -847,11 +847,96 @@ Write an M-file for Jacobi iteration. The file name be: jacobi
 - Output argument: the approximation of the solution vector: x
 - We can use the vectorial form of the iteration
 
+```matlab
+% 4. Jacobi迭代
+function [x, k, index] = jacobi(A, b, ep, itMax)
+arguments
+    A
+    b (:,1)
+    ep (1,1) = 1e-5
+    itMax (1,1) = 100
+end
+
+    % 求线性方程组的雅可比迭代法，其中，
+    % A为方程组的系数矩阵；
+    % b为方程组的右端项;
+    % ep为精度要求，缺省值为1e-5;
+    % itMax 为最大迭代次数，缺省值为100;
+    % x为方程组的解;
+    % k为迭代次数;
+    [row, col] = size(A);
+    bRow = length(b);
+
+    %当方程组行与列的维数不相等时，停止计算，并输出出错信息。
+    if row ~= col
+        error('The rows and columns of matrix A must be equal');
+    end
+
+    % 当方程组与右端项的维数不匹配时，停止计算，并输出出错信息。
+    if col ~= bRow
+        error('The columns of A must be equal the length of b');
+    end
+
+    % 迭代次数
+    k = 0;
+    % 上一次迭代的结果
+    x = zeros(row, 1);
+    % 当前迭代的结果
+    y = zeros(row, 1);
+    % index为指标变量，index=0表示迭代失败，index=1表示收敛到指定要求
+    index = 1;
+
+    % A = U + L + D
+    % Ax = b
+    % (U + L + D)x = b
+
+    % Dx = -(U + L)x + b
+    % Dx = -(A - D)x + b
+    % x = -D^-1 * (U + L) * x + D^-1 * b
+
+    % x(k+1) = Bj x(k) + cj
+    % Bj = -D^-1 (L + U)
+    % cj = D^-1 * b
+    while 1
+        for r = 1:row
+            y(r) = b(r);
+
+            for j = 1:row
+                if j ~= r
+                    % 用当前的 x 来更新 y
+                    y(r) = y(r) - A(r, j) * x(j);
+                end
+            end
+
+            % A 中第 r 行第 r 列的元素过小，导致无法更新 y，无法进行下一次迭代
+            if abs(A(r, r)) < 1e-10 && k == itMax
+                index = 0;
+                return;
+            end
+
+            % 更新迭代解
+            y(r) = y(r) / A(r, r);
+        end
+
+        k = k + 1;
+        if norm(y - x, inf) < ep
+            break;
+        end
+
+        x = y;
+    end
+end
+```
+
 ##
 
 Write an M-file for Gauss-Seidel iteration. The file name be: gaussseid
 
 - As in previously at Jacobi iteration.
+
+```matlab
+
+```
 
 # Iterative solution of non-linear equations, Interpolation
 
@@ -868,6 +953,10 @@ Write an m-file for bisection method and call the file: bisect
 - Before start we have to check the interval (is there a root inside?)
 - To evaluate function we can use function eval
 
+```matlab
+
+```
+
 # Least Squares Method, Generalised inverse
 
 ##
@@ -881,6 +970,10 @@ The name of file: lsmapprox
 - Let us draw a picture to illustrate the approximation. (We can use the
   included function polyval)
 
+```matlab
+
+```
+
 ##
 
 Write an m-file to find the generalised inverse of a given matrix.
@@ -891,3 +984,7 @@ The name of file: geninv
 - Use the rank factorisation if the matrix is not fullranked. For the matrix
   operations we can use the included functions of Matlab (eg.: rank, inv,
   instead of solving LES we can use the command G=F\A, etc.)
+
+```matlab
+
+```
