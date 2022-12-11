@@ -994,7 +994,7 @@ end
 
 # Iterative solution of non-linear equations, Interpolation
 
-##
+## 二分法
 
 Write an m-file for bisection method and call the file: bisect
 
@@ -1008,7 +1008,68 @@ Write an m-file for bisection method and call the file: bisect
 - To evaluate function we can use function eval
 
 ```matlab
+% 5. 二分法
+% x 根
+% tolerance 迭代误差
+function [x, tolerance] = bisect(f, a, b, k_max)
+arguments
+    % 一元标量函数 如 f = @(x) x^2-1
+    f (1,1) function_handle
+    % 起始区间
+    a (1,1)
+    % 结束区间
+    b (1,1)
+    % 最大迭代数
+    k_max (1,1) = 200
+end
 
+    % 第一次迭代的 root 估计
+    % 接下来会持续更新 c 也就是每一次迭代的值
+    c = (a + b) / 2;
+
+    % 如果是f(x)的根，直接返回根的估计值
+    if f(c) == 0
+        x = c;
+        return
+    end
+
+    % 第一次迭代时，函数在左区间和中点的值
+    % 同样，这两个值在接下来会持续更新
+    fa = f(a);
+    fc = f(c);
+
+    % bisection iteration
+    for k = 1:k_max
+
+        % 为 0 就是已经找到根了
+        if fc == 0
+            break;
+        % 两个y相乘为正就说明还在x轴上方
+        elseif (fa * fc > 0)
+            % 向右收敛
+            a = c;
+            % 无需重复计算
+            fa = fc;
+        else
+            % 如果小于零就说明有一个y在x轴下方了
+            % 这时向左收敛
+            b = c;
+        end
+
+        % 更新区间中点（估计的根）
+        c = (a + b) / 2;
+
+        % 更新 y 轴结果
+        fc = f(c);
+
+    end
+
+    % 结果
+    x = c;
+    % 误差
+    tolerance = b - a;
+
+end
 ```
 
 # Least Squares Method, Generalised inverse
