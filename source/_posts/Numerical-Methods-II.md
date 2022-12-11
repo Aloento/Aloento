@@ -1131,7 +1131,7 @@ end
 end
 ```
 
-##
+## 广义逆矩阵
 
 Write an m-file to find the generalised inverse of a given matrix.
 The name of file: geninv
@@ -1143,5 +1143,25 @@ The name of file: geninv
   instead of solving LES we can use the command G=F\A, etc.)
 
 ```matlab
+% 6. 求矩阵的广义逆矩阵
+% 当 A 不是 fullranked （列满秩）的时候，逆不唯一
+% A ∈ C^(m * n) 若存在 C 满足 AXA = A XAX = X 则 X 是 A 的广义逆矩阵
+function APlus = geninv(A)
+    r = rank(A);
 
+    % 如果 A 不是 fullranked，则使用 秩分解
+    % rank factorization 来计算GINV
+    if r == size(A, 1)
+        % Moore-Penrose 伪逆
+        APlus = pinv(A);
+    else
+        % A = U * S * V'
+        % 奇异值分解得到的矩阵 U、奇异值矩阵 S 和 V 的转置矩阵
+        [U,S,V] = svd(A);
+        SPlus = zeros(size(A));
+        % 将 S 的逆矩阵插入到秩分解中
+        SPlus(1:r, 1:r) = inv(S(1:r, 1:r));
+        APlus = V * SPlus * U';
+    end
+end
 ```
