@@ -732,10 +732,35 @@ Is there any connection between their solutions?
 
 Let's look at the problems solutions, starting with the "easiest":
 
-### Deliver
+### Disjoint Interval Search
 
-Trucker delivering goods with no going back  
-Question: how can they deliver the maximum number of goods?
+3. Trucker delivering goods with no going back  
+   Question: how can they deliver the maximum number of goods?
+
+![Transfers](3.png)
+
+Disjoint Interval Search (DIS)  
+This problem is also called internal packing.
+
+---
+
+~~绎演丁真，鉴定为史~~
+
+如果一个卡车司机要把货物送到多个不同的地方，而且一旦离开一个地方就不能再回去，
+那么他应该怎样才能把尽可能多的货物送到目的地呢？
+
+我寻思着这问题应该用 TSP 来解才对  
+总之先看看什么是 DIS
+
+DIS 是一种用于处理区间数据的算法。
+区间数据是指一组由起始和结束点表示的区间，例如：[1, 5]、[10, 15] 等。
+它能够快速检索出与给定的区间不相交的区间。
+
+1. 将区间数据存储在能够快速查找和插入的数据结构中，例如红黑树、平衡树或 B 树
+2. 查找与给定区间不相交的区间  
+   检查区间数据中的每一个区间，并判断它们是否与给定区间不相交  
+   如果一个区间与给定区间不相交，则将其加入结果集。
+3. 返回结果集
 
 ### Meeting
 
