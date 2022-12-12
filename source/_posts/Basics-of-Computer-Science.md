@@ -692,6 +692,18 @@ A graph G is connected, if for any two nodes there exists a walk between them.
 
 ### Edge
 
+给图中的边分配颜色，使得图中相邻的边拥有不同的颜色
+
+Chromatic index 是图的最小着色度，指需要多少种不同的颜色
+
+Vising theorem 指 对于任意一个无向图，它的染色度（chromatic number）不会超过其度数（degree）的上限
+
+---
+
+Scheduling problems
+
+例如，在一个工厂生产线上，有许多不同的机器和工人，他们需要按照特定的顺序来完成各种任务。为了让生产流程顺利进行，我们可以使用 edge coloring 算法来给每个任务分配一种颜色，并确保相邻的任务颜色不同。这样，工人和机器就可以按照颜色顺序来执行任务，从而保证生产流程的顺利进行。
+
 # Packing and covering problem
 
 ## generalization of the problem
