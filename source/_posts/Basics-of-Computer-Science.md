@@ -698,6 +698,10 @@ Chromatic index 是图的最小着色度，指需要多少种不同的颜色
 
 Vising theorem 指 对于任意一个无向图，它的染色度（chromatic number）不会超过其度数（degree）的上限
 
+Bipartite graphs 是一种二分图，它由两个部分组成，每个部分内部的点互不相邻，而两个部分之间的点才会相互相邻。
+
+Planar graphs 则是一种平面图，它是指图中任意两条边都不会相交，也就是说，图中的边可以在平面上放置而不会交叉。
+
 ---
 
 Scheduling problems
@@ -706,11 +710,42 @@ Scheduling problems
 
 # Packing and covering problem
 
-## generalization of the problem
+## Generalization
 
-## interval packing, dominating sets
+General, "everyday" problems, which have suboptimal solutions:
 
-## suboptimal algorithms, bin packing problem, First Fit algorithm
+1. Put in objects into one container!  
+   Some pairs are incompatible, those cannot be put into the container together.  
+   Question: how to put the maximal number of objects into the container?
+
+2. n people at a meeting.  
+   Find the largest subgroup of them, in which everybody knows everybody!
+
+3. Trucker delivering goods with no going back  
+   Question: how can they deliver the maximum number of goods?
+
+4. Big piece of leather, cutting out small shapes.  
+   Question: how to cut out the largest amount of smaller shapes?
+
+Common property of these problems: representable with a graph similarly.  
+Is there any connection between their solutions?
+
+Let's look at the problems solutions, starting with the "easiest":
+
+### Deliver
+
+Trucker delivering goods with no going back  
+Question: how can they deliver the maximum number of goods?
+
+### Meeting
+
+### Put
+
+### Cut
+
+## Interval packing, dominating sets
+
+## Suboptimal algorithms, bin packing problem, First Fit algorithm
 
 ### 降序首次适应算法
 
@@ -724,6 +759,6 @@ First Fit Decreasing
 
 # Algebraic algorithms
 
-## divisibility, Euclidean algorithm
+## Divisibility, Euclidean algorithm
 
-## faster multiplication and division of large numbers
+## Faster multiplication and division of large numbers
