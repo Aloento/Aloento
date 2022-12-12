@@ -989,7 +989,57 @@ with a nodes occur this way.) so we only solved MI5 for a subset of graphs havin
 So for a subset of cases we have a solution, but not for the general case.
 (e.g. 5th degree polynomials)
 
-## Suboptimal algorithms, Bin packing problem, First Fit algorithm
+## Suboptimal algorithms
+
+what is the basic problem?  
+→ polynomial algorithms are "quick"  
+→ exponential algorithms are "very slow"
+
+There is a set of problems for which there is no quick algorithm.
+
+Their runtime is proportionate to f(a) =2^n.
+To put this in perspective, there are no more than 2^350 atoms in the whole universe.
+
+Therefore we can just use this disadvantage to our advantage by using these kind of problems for coding protocols, as decoding them would tale over a million years.
+
+Good example for this is finding a Hamiltonian cycle in a graph.
+Creating is easy, but then we can obfuscate it.
+
+![13](13.png)
+
+Problem is, that there are a lot of real-life situations that can only be converted into these kinds of problems, where the solution is exponential, or even worse.
+
+Good example is the traveling agent problem. This is understood on weighed graphs, and the point is to touch all the nodes with a minimal sum of edge weights. (Hamiltonian path problem).
+
+In this case we can imagine a package delivery service, in which case we need the shortest possible combination / permutation of the packages in order to make the least amount of kilometers. Though, this is a hard problem, meaning, there exists not a quiet algorithm for this.
+
+=> suboptimal algorithms  
+-> We don't want to (= can't) find the best solution, but something that is pretty close this best solution.
+
+So in case of the traveling agent, we don't want to find the optimal route, but we want a route such that it is sure that it uses at more Klia as many kilometers as the optimal one. It would be a 2-optimal algorithm.
+
+So the suboptimality of algorithms has nothing to do with running time.
+
+In the traveling agent situation a 3-optimal algorithm would find a solution that is at most three times worse than the optimal one, meaning, it would find a permutation of the target adnesses such that if the driver follows that order, than at most three times as many kilometers are used as in case of the optimal solution.
+
+An algorithm is called k-optimal (k ≥ 1) if its output is at most b-times worse than the best output would be.
+
+## Bin packing problem
+
+![14](14.png)
+
+Objects with volumes:  
+V1, V2, V3 ... Vn.
+
+Vi <= (i = 1, ..., n)
+
+Problem: use the least amount of containers to store all objects.
+
+(The sum of the volumes of objects in one container can't exceed volume of the container.)
+
+This is a hard problem. But there exists a 2-optimal algorithm for that.
+
+First Fit Algorithm: Choose the first container in which the object fits. (This is greedy.)
 
 ### 降序首次适应算法
 
