@@ -830,9 +830,9 @@ Maximal Independent Set 是指一个图中没有一个节点与其他节点相�
 > 对于三个点组成的完全图而言，每个点自身是一个独立集（且是最大独立集）  
 > 对四个点构成的四边形图而言，对角的两个点组成一个独立集（且是最大独立集）
 
-如果往图 $G$ 的独立集 $S$ 中添加任一个顶点都会使独立性丧失（亦即造成某两点间有边），那么称 $S$ 是极大独立集。
+如果往图 G 的独立集 S 中添加任一个顶点都会使独立性丧失（亦即造成某两点间有边），那么称 S 是极大独立集。
 
-如果 $S$ 是图中所有独立集之中基数最大的，那么称 $S$ 是最大独立集，且将该基数称为 $G$ 的独立数，记为 $α(G)$ 。一般来讲，图 G 中可能存在多个极大独立集和最大独立集。
+如果 S 是图中所有独立集之中基数最大的，那么称 S 是最大独立集，且将该基数称为 G 的独立数，记为 α(G)。一般来讲，图 G 中可能存在多个极大独立集和最大独立集。
 
 > 根据定义，最大独立集一定是极大独立集，但反之未必。
 
@@ -899,6 +899,36 @@ Theorem: If |x| = n, then |p(x)| = 2^n.
 In our example n = 6, so we have 2^6 = 64 subsets.
 
 How to code subsets?
+
+{ 1, 2, 3, 4, 5, 6 }
+
+| 1   | 0   | 1   | 0   | 0   | 0   |
+| --- | --- | --- | --- | --- | --- |
+| 1   | 1   | 0   | 0   | 0   | 1   |
+
+-> this will code { 1; 3 }  
+-> this will code { 1; 2; 6 }
+
+Since it is a one-to-one correspondence between subsets and outshines,
+then |p(x)| = |{ binary skiing of length 8 }|
+
+because a choice codes 1 On 0 = yes or no
+
+In terms of our MIS - finding problem: if we count checking a binary string for independence, then this trivial algorithm has an exponential runtime, exactly 2^n.
+
+A more refined algorithm for the same problem:  
+Find a method, where we only check already independent sets.
+
+Example:
+
+![10](10.png)
+
+The independent set is called S.  
+We always ask the nodes whether they are an element of S. → "yes" branches and "no" branches. Next question is based on already existing elements.
+
+This is a labelled and rooted binary thee.  
+Can be done faster, if we are only considering paths that have a chance to have enough nodes on them.  
+"if it's not there, don't even look"
 
 ## Interval packing, dominating sets
 
