@@ -708,7 +708,7 @@ Scheduling problems
 
 例如，在一个工厂生产线上，有许多不同的机器和工人，他们需要按照特定的顺序来完成各种任务。为了让生产流程顺利进行，我们可以使用 edge coloring 算法来给每个任务分配一种颜色，并确保相邻的任务颜色不同。这样，工人和机器就可以按照颜色顺序来执行任务，从而保证生产流程的顺利进行。
 
-# Packing and covering problem
+# Packing and Covering
 
 ## Generalization
 
@@ -740,7 +740,7 @@ Let's look at the problems solutions, starting with the "easiest":
 ![Transfers](3.png)
 
 Disjoint Interval Search (DIS)  
-This problem is also called internal packing.
+This problem is also called interval packing.
 
 ---
 
@@ -762,7 +762,26 @@ DIS 是一种用于处理区间数据的算法。
    如果一个区间与给定区间不相交，则将其加入结果集。
 3. 返回结果集
 
-### Meeting
+### Clique
+
+n people at a meeting.  
+Find the largest subgroup of them, in which everybody knows everybody!
+
+![Clique](4.png)
+
+Can we find three people like that?  
+Can we find four people like that?  
+Can we find five people like that? Why not?  
+Clique search
+
+---
+
+~~衣掩丁真，鉴定为衣驼使~~
+
+这是一个分团问题  
+Clique search 是一种用于寻找图中的完全子图（即“clique”）的算法  
+完全子图是指一个子图中所有节点都相互连通  
+算法需要枚举所有可能的完全子图，并确定哪些子图满足给定的条件
 
 ### Put
 
