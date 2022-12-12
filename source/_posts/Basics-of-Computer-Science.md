@@ -783,7 +783,39 @@ Clique search 是一种用于寻找图中的完全子图（即“clique”）的
 完全子图是指一个子图中所有节点都相互连通  
 算法需要枚举所有可能的完全子图，并确定哪些子图满足给定的条件
 
-### Put
+![一个大小为3的clique](https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/6n-graf-clique.svg/300px-6n-graf-clique.svg.png)
+
+### Maximal Independent Set
+
+Put in objects into one container!  
+Some pairs are incompatible, those cannot be put into the container together.  
+Question: how to put the maximal number of objects into the container?
+
+![MIS](5.png)
+
+Edges code incompatibility.  
+We are searching for independent node subsets.  
+Maximal Independent Set (MIS)
+
+We found a maximal empty subgraph.
+
+Connection with the previous problem?  
+If we create the complimenting graph from this (where we had an edge, now we don't have one, and vice versa), and consider the same chosen nodes, then that is a clique.
+
+So we can convert this problem into the previous one: MIS → Clique search
+
+These problems are basically the same, only their representation is different.
+
+In this sense, even problem no.3 is the same as no.1 and no.2.
+
+Converting problem no. 3 to the present form:
+
+![6](6.png)
+
+Intervals are going to turn into vertices of a graph.
+If two intervals are incompatible, we draw an edge between the corresponding nodes.
+
+We converted DIS into MIS.
 
 ### Cut
 
