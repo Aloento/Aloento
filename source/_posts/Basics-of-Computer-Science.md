@@ -841,9 +841,13 @@ Maximal Independent Set 是指一个图中没有一个节点与其他节点相�
 Big piece of leather, cutting out small shapes.
 Question: how to cut out the largest amount of smaller shapes?
 
+![7](7.png)
+
 We can rotate the sample, but we still have to fit into the big piece of leather.
 
 This is the most difficult problem out of the four, because the main "philosophical" difference between them is that the first three wereobvious finite problems (finite number of people, objects, intervals), whereas this problem cannot produce obvious finite number of nodes.
+
+![8](8.png)
 
 So we make a grid on the big leather,
 place a node on the shape, and say that
@@ -859,6 +863,8 @@ node is ou a grid point, and the line on the sample can only parallel to one of 
 predefined angle lines.
 
 So to make an infinite problem finite we need to add restrictions.
+
+![9](9.png)
 
 We can code the placement with the
 number of the grid point and the
