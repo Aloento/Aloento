@@ -845,7 +845,7 @@ Question: how to cut out the largest amount of smaller shapes?
 
 We can rotate the sample, but we still have to fit into the big piece of leather.
 
-This is the most difficult problem out of the four, because the main "philosophical" difference between them is that the first three wereobvious finite problems (finite number of people, objects, intervals), whereas this problem cannot produce obvious finite number of nodes.
+This is the most difficult problem out of the four, because the main "philosophical" difference between them is that the first three were obvious finite problems (finite number of people, objects, intervals), whereas this problem cannot produce obvious finite number of nodes.
 
 ![8](8.png)
 
@@ -873,7 +873,7 @@ Problem with the solution: as we have more gridpoints and angles, the graph beco
 
 So this method is a digitalization, which has a resolution. The bigger the resolution is, the closer to the optimal solution we are.
 
-## 总结
+### 总结
 
 Ater examining these four problems, we have a general framework:
 
@@ -932,7 +932,64 @@ Can be done faster, if we are only considering paths that have a chance to have 
 
 ## Interval packing, dominating sets
 
-## Suboptimal algorithms, bin packing problem, First Fit algorithm
+A little help for the next algorithm: the Pidgeon-hole principle.
+
+![11](11.png)
+
+Question: when the pigeons go to their pigeon-holes, what can we state for sure?
+Whichever houses they choose, there is going to be at least one hole with two pigeons in it.
+
+So the pigeon-hole principle says that if there are more
+pigeons than houses, then there will be at least one hole
+with at least two pigeons in it.
+
+If this weren't true, and all houses tould contain one pigeon at worst, then there would be only as many pigeons as houses. Whereas we had more pigeons.
+
+If we use our previous example 3, we can apply the pigeon-hole principle to the problem:
+
+![12](12.png)
+
+The algorithm: choose closest destination, if starting point is still ahead
+=> maximal number of => independent intervals => Interval packing algorithm
+
+If we only consider the destinations as pint dots, then we can choose any interval, there will always be a pink dot on it - at least one dot.  
+=> the set of pink dots is a dominating set.
+
+A set X is a dominating set, if for every you find at least one element of the set on that interval.
+
+Femina: X is a dominating set, 4 is an independent set of intervals.  
+Then |x| >= |y|.
+
+The chosen intervals corresponding to the transportation is an independent set with three intervals. There are also three pink dots as the dominant set. So based on the lemma, there can be no more independent intervals.
+
+Proof: Indirectly. New statement: |x|birds < |y|houses.
+
+Let's have one more independent interval. But according to the pigeon-hole principle, there is at least one pint dominating dot on every interval. In order to dominate the att intervals, we would need at 1 different pink dots.
+
+=> There must be at least two intervals with the same pink dot,but then they're not independent.
+
+Even though there is no general quiet ( polynomial) solution for
+finding MIS, the Interval pairing algorithm is fast. How fast?
+
+We shone all starting and destination point somehow - e.g. by numbers.
+
+So we only have to order them, and find the "smallest" endpoint first.
+
+~n steps needed to find the closest destination  
+we need to repeat it at worst a times => polynomial algorithm
+
+How can it be that MI5 can't be solved quickly, but this algorithm has quadratic runtime?!
+
+The intervals are represented as nodes and overlaps as edges in the graph.  
+So did we just solve MI5 in quadratic time?!
+
+No! Because not all graphs can be processed by this method. (Not all graphs
+with a nodes occur this way.) so we only solved MI5 for a subset of graphs having a nodes.
+
+So for a subset of cases we have a solution, but not for the general case.
+(e.g. 5th degree polynomials)
+
+## Suboptimal algorithms, Bin packing problem, First Fit algorithm
 
 ### 降序首次适应算法
 
