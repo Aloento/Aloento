@@ -817,6 +817,25 @@ If two intervals are incompatible, we draw an edge between the corresponding nod
 
 We converted DIS into MIS.
 
+---
+
+Maximal Independent Set 是指一个图中没有一个节点与其他节点相邻，
+并且该集合不能再增加任何节点而保持这种性质的节点集合
+
+一个独立集（也称为稳定集）是一个图中一些两两不相邻的顶点所形成的集合，
+如果两个点没有公共边，那么这两个点可以被放到一个独立集中
+
+![MIS](https://sailist.github.io/AdAlgo/GraphTheory/fig/2.png)
+
+> 对于三个点组成的完全图而言，每个点自身是一个独立集（且是最大独立集）  
+> 对四个点构成的四边形图而言，对角的两个点组成一个独立集（且是最大独立集）
+
+如果往图 $G$ 的独立集 $S$ 中添加任一个顶点都会使独立性丧失（亦即造成某两点间有边），那么称 $S$ 是极大独立集。
+
+如果 $S$ 是图中所有独立集之中基数最大的，那么称 $S$ 是最大独立集，且将该基数称为 $G$ 的独立数，记为 $α(G)$ 。一般来讲，图 G 中可能存在多个极大独立集和最大独立集。
+
+> 根据定义，最大独立集一定是极大独立集，但反之未必。
+
 ### Cut
 
 ## Interval packing, dominating sets
