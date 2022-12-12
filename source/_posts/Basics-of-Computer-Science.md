@@ -849,32 +849,18 @@ This is the most difficult problem out of the four, because the main "philosophi
 
 ![8](8.png)
 
-So we make a grid on the big leather,
-place a node on the shape, and say that
-the shape can only be cut out of that node
-fits on one of the grid points.
+So we make a grid on the big leather, place a node on the shape, and say that the shape can only be cut out of that node fits on one of the grid points.
 
-The grid points create a finite set. But
-since we can still rotate the shape around
-the grid point, our choices are infinite again.
-Solution: we only consider a few angles.
-So now we can only cut out the shape if the
-node is ou a grid point, and the line on the sample can only parallel to one of our
-predefined angle lines.
+The grid points create a finite set. But since we can still rotate the shape around the grid point, our choices are infinite again. Solution: we only consider a few angles. So now we can only cut out the shape if the node is ou a grid point, and the line on the sample can only parallel to one of our predefined angle lines.
 
 So to make an infinite problem finite we need to add restrictions.
 
 ![9](9.png)
 
-We can code the placement with the
-number of the grid point and the
-number of the angle.
+We can code the placement with the number of the grid point and the number of the angle.
 Eg: (5; 6) and (14; 6).
 
-However, these two overlap, so they cannot
-be cut out together. This incompatibility
-can be represented in a graph by adding
-an edge between these two number pains.
+However, these two overlap, so they cannot be cut out together. This incompatibility can be represented in a graph by adding an edge between these two number pains.
 
 This way we can create a graph, and the maximum number of cutouts on the leather is reduced to finding the maximal number of independent nodes in the corresponding graph.
 
