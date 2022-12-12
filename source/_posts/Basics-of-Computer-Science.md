@@ -838,6 +838,76 @@ Maximal Independent Set 是指一个图中没有一个节点与其他节点相�
 
 ### Cut
 
+Big piece of leather, cutting out small shapes.
+Question: how to cut out the largest amount of smaller shapes?
+
+We can rotate the sample, but we still have to fit into the big piece of leather.
+
+This is the most difficult problem out of the four, because the main "philosophical" difference between them is that the first three wereobvious finite problems (finite number of people, objects, intervals), whereas this problem cannot produce obvious finite number of nodes.
+
+So we make a grid on the big leather,
+place a node on the shape, and say that
+the shape can only be cut out of that node
+fits on one of the grid points.
+
+The grid points create a finite set. But
+since we can still rotate the shape around
+the grid point, our choices are infinite again.
+Solution: we only consider a few angles.
+So now we can only cut out the shape if the
+node is ou a grid point, and the line on the sample can only parallel to one of our
+predefined angle lines.
+
+So to make an infinite problem finite we need to add restrictions.
+
+We can code the placement with the
+number of the grid point and the
+number of the angle.
+Eg: (5; 6) and (14; 6).
+
+However, these two overlap, so they cannot
+be cut out together. This incompatibility
+can be represented in a graph by adding
+an edge between these two number pains.
+
+This way we can create a graph, and the maximum number of cutouts on the leather is reduced to finding the maximal number of independent nodes in the corresponding graph.
+
+What is the problem with this method?  
+The restrictions can cause a result with less cutouts, than if we could freely place the shape.
+
+Solution: let's use a denser grid and consider none rotational angles!
+
+Problem with the solution: as we have more gridpoints and angles, the graph becomes larger, so finding the MI5 is more complicated.
+
+So this method is a digitalization, which has a resolution. The bigger the resolution is, the closer to the optimal solution we are.
+
+## 总结
+
+Ater examining these four problems, we have a general framework:
+
+Given is a graph. Find the maximal number of nodes such that those are never connected to each other. <=> We want to find the maximal independent set of nodes. → MIS problem.
+
+This can be solved in exponential time.
+
+The trivial algorithm for finding MIS:
+
+We want to find MIS of { 1, 2, 3, 4, 5, 6 }.
+We try to find an independent subset of
+size 2. Start with 41,2}. Is this independent?
+No! So try { 1, 3 }. This is good!
+But then can we find an independent subset of
+nite 3? We need to check all site 3 subsets.
+
+In the worst case we need to investigate all subsets of { 1, 2, 3, 4, 5, 6 }
+
+Theorem: If |x| = n, then |p(x)| = 2^n.
+
+(p(x) = { y | y <= x } -> power set = set of all subsets)
+
+In our example n = 6, so we have 2^6 = 64 subsets.
+
+How to code subsets?
+
 ## Interval packing, dominating sets
 
 ## Suboptimal algorithms, bin packing problem, First Fit algorithm
