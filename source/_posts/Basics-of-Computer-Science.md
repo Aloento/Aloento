@@ -137,21 +137,35 @@ definition, construction, properties, transition functions
 
 ## What is a Turing Machine
 
-- TMS are abstract models for real wuiputers having an infinite memory
+- TMS are abstract models for real computers having an infinite memory
   (in the form of a tape) and a reading head
 - has finite number of internal states
-- has distinguished starting and final states (termination : accept / reject)
+- has distinguished starting and final states (termination: accept / reject)
 - has transition functions (Tt) (graphs)
+
+---
+
+- 图灵机是对真实计算机的抽象模型，它具有无限内存（以磁带的形式）和读写头
+- 具有有限数量的内部状态
+- 具有特殊的起始和终止状态（终止：接受/拒绝）
+- 具有转换函数（Tt）（图）
 
 ---
 
 - TM accepts the initial content of the tape if it terminates in an accepting
   state. Otherwise TM rejects it.
 - TM terminates, if there is no rule with watching conditions
-  for certain state and input symbols
+  for certain state and input symbols.
 - TM is ND (non-deterministic), if such a state and set of input symbols
   exist, for which there are multiple rules defined.
   (= from the same set of starting state and input symbols the TM has multiple outcomes)
+
+---
+
+- 如果图灵机终止于接受状态，则它接受磁带的初始内容。否则拒绝。
+- 如果没有匹配的规则，则图灵机终止。
+- 如果存在某个状态和输入符号集，对于该状态和输入符号集，有多个规则，则图灵机是非确定性的（ND）。
+  （=从同一组起始状态和输入符号集，图灵机具有多个结果）
 
 ---
 
@@ -159,6 +173,8 @@ definition, construction, properties, transition functions
   a sequence of transition functions that accepts it.
 
 Thesis: For All NDTM Exsist equivalent DTM
+
+对于所有的非确定性图灵机，都存在等价的确定性图灵机
 
 ## Defining a Turing Machine
 
@@ -172,7 +188,7 @@ From an already existing machine it is possible to head the followings:
 - number of heads
 - set of states constructed from the states mentioned in the TFS
 
-Universal TM : TM, which can simulate All other TM
+Universal TM: TM, which can simulate All other TM
 
 Church - Turing thesis:
 A function (problem) can be effectively solved <=> it is computable with a TM
