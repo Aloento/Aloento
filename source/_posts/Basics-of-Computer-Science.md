@@ -23,6 +23,14 @@ theory of computation, modelling tools, examples
 - Programming language research
 - Efficient compiler design and construction
 
+---
+
+我们为什么要研究算法？
+
+- 构建高效算法
+- 编程语言研究
+- 高效编译器设计和构建
+
 ## Branches of ToC
 
 ### Automata theory
@@ -31,10 +39,25 @@ theory of computation, modelling tools, examples
 - formal framework for designing and analyzing computing devices
 - we will discuss Turing Machines.
 
+---
+
+自动机理论
+
+- 是对抽象计算机的研究
+- 用于设计和分析计算机的形式框架
+- 我们将讨论图灵机
+
 ### Computability Theory
 
 - defines whether a problem is "solvable" by any abstract machines
 - some problems are computable, some are not (e.g. travelling salesman problem)
+
+---
+
+可计算性理论
+
+- 定义了一个问题是否可以被任何抽象机器解决
+- 有些问题是可计算的，有些不是（例如旅行推销员问题）
 
 ### Complexity Theory
 
@@ -42,6 +65,15 @@ theory of computation, modelling tools, examples
 - cost = resources (e.g. time, memory)
 - running time of algorithms varies with inputs and usually grows with the site of inputs
 - we will discuss how to measure complexity
+
+---
+
+复杂度理论
+
+- 研究解决问题的成本
+- 成本 = 资源（例如时间，内存）
+- 算法的运行时间随着输入而变化，通常随着输入的增大而增长
+- 我们将讨论如何衡量复杂度
 
 ## Modlling
 
