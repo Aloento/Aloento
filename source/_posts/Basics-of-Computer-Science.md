@@ -803,6 +803,24 @@ Is there any connection between their solutions?
 
 Let's look at the problems solutions, starting with the "easiest":
 
+---
+
+一般来说，“日常” 问题，它们有着次优解：
+
+1. 把物品放入一个容器中  
+   有些物品是不兼容的，它们不能放在同一个容器中  
+   问题：如何把最多的物品放入容器中？
+
+2. n 个人在会议中  
+   找到其中最大的一个子集，其中每个人都认识
+
+3. 卡车司机送货，不允许回头
+
+4. 大块皮革，切割成小块。  
+   问题：如何切割出最多的小块？
+
+这些问题的共同特点：它们可以用图来表示
+
 ### Disjoint Interval Search
 
 3. Trucker delivering goods with no going back  
@@ -912,47 +930,83 @@ Maximal Independent Set 是指一个图中没有一个节点与其他节点相�
 Big piece of leather, cutting out small shapes.
 Question: how to cut out the largest amount of smaller shapes?
 
+大块的皮革，切出小的形状。
+问：如何切出最多的小形状？
+
 ![7](7.png)
 
 We can rotate the sample, but we still have to fit into the big piece of leather.
 
+我们可以旋转样本，但我们仍然要贴合大块皮革。
+
 This is the most difficult problem out of the four, because the main "philosophical" difference between them is that the first three were obvious finite problems (finite number of people, objects, intervals), whereas this problem cannot produce obvious finite number of nodes.
+
+这是四个问题中最困难的一个，因为它们之间的主要“哲学”区别在于前三个是显然的有限问题（人数、物品数、区间数都是有限的），而这个问题不能产生显然的有限节点数。
 
 ![8](8.png)
 
 So we make a grid on the big leather, place a node on the shape, and say that the shape can only be cut out of that node fits on one of the grid points.
 
+因此，我们在大皮革上做一个网格，在形状上放一个节点，并说形状只能在该节点适合网格点之一时被切出来。
+
 The grid points create a finite set. But since we can still rotate the shape around the grid point, our choices are infinite again. Solution: we only consider a few angles. So now we can only cut out the shape if the node is ou a grid point, and the line on the sample can only parallel to one of our predefined angle lines.
 
+网格点创建了一个有限集。但是，由于我们仍然可以围绕网格点旋转形状，所以我们的选择又是无限的。解决方案：我们只考虑几个角度。因此，现在我们只能在节点在网格点上并且样本上的线只能与我们预定义的角度线平行时切出形状。
+
 So to make an infinite problem finite we need to add restrictions.
+
+因此，要使无限问题变为有限，我们需要增加限制。
 
 ![9](9.png)
 
 We can code the placement with the number of the grid point and the number of the angle.
 Eg: (5; 6) and (14; 6).
 
+我们可以用网格点的编号和角度的编号来编码放置位置。例如：（5；6）和（14；6）。
+
 However, these two overlap, so they cannot be cut out together. This incompatibility can be represented in a graph by adding an edge between these two number pains.
 
+然而，这两个重叠了，因此它们不能一起切出来。这种不兼容可以通过在这两个数字之间添加一条边来表示在图中。
+
 This way we can create a graph, and the maximum number of cutouts on the leather is reduced to finding the maximal number of independent nodes in the corresponding graph.
+
+这样我们就可以创建一个图，皮革上的最大切割次数就被减少到在相应图中找到最大的独立节点数。
 
 What is the problem with this method?  
 The restrictions can cause a result with less cutouts, than if we could freely place the shape.
 
+这种方法有什么问题？  
+限制可能导致切割次数比我们可以自由放置形状时少的结果。
+
 Solution: let's use a denser grid and consider none rotational angles!
+
+解决方案：让我们使用更密集的网格并考虑非旋转角度！
 
 Problem with the solution: as we have more gridpoints and angles, the graph becomes larger, so finding the MI5 is more complicated.
 
+解决方案的问题：随着我们有更多的网格点和角度，图变得更大，因此找到 MI5 变得更复杂。
+
 So this method is a digitalization, which has a resolution. The bigger the resolution is, the closer to the optimal solution we are.
+
+因此，这种方法是一种数字化，它具有分辨率。分辨率越大，我们越接近最优解。
 
 ### 总结
 
 Ater examining these four problems, we have a general framework:
 
+在经过对这四个问题的检查后，我们得出了一个总体框架：
+
 Given is a graph. Find the maximal number of nodes such that those are never connected to each other. <=> We want to find the maximal independent set of nodes. → MIS problem.
+
+给定一张图。找到一个节点的最大数量，这些节点从不相互连接。<=>我们想找到节点的最大独立集合。→MIS 问题。
 
 This can be solved in exponential time.
 
+这可以在指数时间内解决。
+
 The trivial algorithm for finding MIS:
+
+找到 MIS 的简单算法：
 
 We want to find MIS of { 1, 2, 3, 4, 5, 6 }.
 We try to find an independent subset of
@@ -961,7 +1015,11 @@ No! So try { 1, 3 }. This is good!
 But then can we find an independent subset of
 nite 3? We need to check all site 3 subsets.
 
+我们想找到 {1,2,3,4,5,6} 的 MIS。我们试图找到大小为 2 的独立子集。从 {1,2} 开始。这是独立的吗？不是！所以尝试 {1,3}。这很好！但是然后我们能找到大小为 3 的独立子集吗？我们需要检查所有大小为 3 的子集。
+
 In the worst case we need to investigate all subsets of { 1, 2, 3, 4, 5, 6 }
+
+在最坏的情况下，我们需要调查 {1,2,3,4,5,6} 的所有子集
 
 Theorem: If |x| = n, then |p(x)| = 2^n.
 
@@ -981,14 +1039,23 @@ How to code subsets?
 -> this will code { 1; 2; 6 }
 
 Since it is a one-to-one correspondence between subsets and outshines,
-then |p(x)| = |{ binary skiing of length 8 }|
+then |p(x)| = |{ binary string of length 8 }|
+
+因为子集和出现之间是一一对应的，所以 |p(x)| = |{长度为 8 的二进制字符串}|
 
 because a choice codes 1 On 0 = yes or no
 
+因为选择编码 1 On 0 = yes or no
+
 In terms of our MIS - finding problem: if we count checking a binary string for independence, then this trivial algorithm has an exponential runtime, exactly 2^n.
+
+就我们的 MIS 查找问题而言：如果我们算出检查一个二进制字符串是否独立的次数，那么这个简单算法的运行时间是指数级别的，精确地说是 2^n。
 
 A more refined algorithm for the same problem:  
 Find a method, where we only check already independent sets.
+
+同一问题的一种更优秀的算法：  
+找到一种方法，只检查已经独立的集合。
 
 Example:
 
@@ -997,9 +1064,16 @@ Example:
 The independent set is called S.  
 We always ask the nodes whether they are an element of S. → "yes" branches and "no" branches. Next question is based on already existing elements.
 
+独立集合称为 S。  
+我们总是问节点是否是 S 的元素。→“是”和“否”分支。下一个问题是基于已存在的元素。
+
 This is a labelled and rooted binary thee.  
 Can be done faster, if we are only considering paths that have a chance to have enough nodes on them.  
 "if it's not there, don't even look"
+
+这是一棵带标签和根的二叉树。  
+如果我们只考虑可能有足够节点的路径，可以更快地完成。  
+“如果它不在那里，甚至都不用看”。
 
 ## Interval packing, dominating sets
 
