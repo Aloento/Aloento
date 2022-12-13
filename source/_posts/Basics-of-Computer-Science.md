@@ -1008,12 +1008,7 @@ The trivial algorithm for finding MIS:
 
 找到 MIS 的简单算法：
 
-We want to find MIS of { 1, 2, 3, 4, 5, 6 }.
-We try to find an independent subset of
-size 2. Start with 41,2}. Is this independent?
-No! So try { 1, 3 }. This is good!
-But then can we find an independent subset of
-nite 3? We need to check all site 3 subsets.
+We want to find MIS of { 1, 2, 3, 4, 5, 6 }. We try to find an independent subset of size 2. Start with 41,2}. Is this independent? No! So try { 1, 3 }. This is good! But then can we find an independent subset of nite 3? We need to check all site 3 subsets.
 
 我们想找到 {1,2,3,4,5,6} 的 MIS。我们试图找到大小为 2 的独立子集。从 {1,2} 开始。这是独立的吗？不是！所以尝试 {1,3}。这很好！但是然后我们能找到大小为 3 的独立子集吗？我们需要检查所有大小为 3 的子集。
 
@@ -1079,31 +1074,50 @@ Can be done faster, if we are only considering paths that have a chance to have 
 
 A little help for the next algorithm: the Pidgeon-hole principle.
 
+下一算法的一点帮助：鸽巢原理。
+
 ![11](11.png)
 
 Question: when the pigeons go to their pigeon-holes, what can we state for sure?
 Whichever houses they choose, there is going to be at least one hole with two pigeons in it.
 
-So the pigeon-hole principle says that if there are more
-pigeons than houses, then there will be at least one hole
-with at least two pigeons in it.
+问题：当鸽子去它们的鸽巢时，我们能肯定什么？  
+无论它们选择哪所房子，至少会有一个洞有两只鸽子。
+
+So the pigeon-hole principle says that if there are more pigeons than houses, then there will be at least one hole with at least two pigeons in it.
+
+因此，鸽巢原理说，如果有比房子更多的鸽子，那么至少会有一个洞至少有两只鸽子。
 
 If this weren't true, and all houses tould contain one pigeon at worst, then there would be only as many pigeons as houses. Whereas we had more pigeons.
 
+如果这不是真的，并且所有的房子里最多只有一只鸽子，那么只会有和房子一样多的鸽子。但我们有更多的鸽子。
+
 If we use our previous example 3, we can apply the pigeon-hole principle to the problem:
+
+如果我们用之前的例子 3，我们可以将鸽巢原理应用于问题：
 
 ![12](12.png)
 
 The algorithm: choose closest destination, if starting point is still ahead
 => maximal number of => independent intervals => Interval packing algorithm
 
-If we only consider the destinations as pint dots, then we can choose any interval, there will always be a pink dot on it - at least one dot.  
+算法：如果起点仍然在前面，则选择最近的目的地
+=>最大数量的=>独立区间=>区间打包算法
+
+If we only consider the destinations as pink dots, then we can choose any interval, there will always be a pink dot on it - at least one dot.  
 => the set of pink dots is a dominating set.
+
+如果我们只考虑目的地作为粉红色点，那么我们可以选择任何区间，它上面总会有一个粉点——至少有一个点。
+=>粉点集是一个支配集。
 
 A set X is a dominating set, if for every you find at least one element of the set on that interval.
 
+一个集合 X 是支配集，如果对于每个区间都能找到集合中的至少一个元素。
+
 Femina: X is a dominating set, 4 is an independent set of intervals.  
 Then |x| >= |y|.
+
+X 是支配集，4 是区间的独立集。
 
 The chosen intervals corresponding to the transportation is an independent set with three intervals. There are also three pink dots as the dominant set. So based on the lemma, there can be no more independent intervals.
 
@@ -1133,6 +1147,12 @@ with a nodes occur this way.) so we only solved MI5 for a subset of graphs havin
 
 So for a subset of cases we have a solution, but not for the general case.
 (e.g. 5th degree polynomials)
+
+---
+
+区间打包是一种数学算法，用于找到最多可以放在一个容器内的不相交区间的最大数量。例如在电视节目表中安排广告插播、在工厂生产线上安排工作任务、或者在交通网络中安排车辆行驶路线。
+
+支配集指在一张图中，存在一组节点，每个节点都与它相邻的节点相连，或者至少有一个节点在该组中。这意味着，如果要覆盖图中的所有节点，那么这组节点至少需要有一个。
 
 ## Suboptimal algorithms
 
