@@ -79,6 +79,10 @@ theory of computation, modelling tools, examples
 
 Problem -> (Model) -> Mathematica Frame -> (Algorithm) -> Solution
 
+---
+
+问题 -> (模型) -> 数学框架 -> (算法) -> 解决方案
+
 ### Tools of modelling
 
 - sets
@@ -86,15 +90,34 @@ Problem -> (Model) -> Mathematica Frame -> (Algorithm) -> Solution
 - number systems, coding
 - graphs
 
+---
+
+- 集合
+- 函数
+- 数制，编码
+- 图
+
 ### Graph definition
 
 G=(V,E) where V is finite and not empty set, V = edges, E = vertices
+
+---
+
+G=(V,E) 其中 V 是有限且非空的集合，V = 边，E = 顶点
 
 ### Graph Representations
 
 - drawing
 - edge and vertex list
 - adjacency matrix
+
+---
+
+图形表示法
+
+- 绘图
+- 边和顶点的列表
+- 邻接矩阵
 
 ### Examples of graph models
 
