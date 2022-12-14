@@ -1252,11 +1252,19 @@ Vi <= (i = 1, ..., n)
 
 Problem: use the least amount of containers to store all objects.
 
+问题：使用最少的容器来存储所有物品。
+
 (The sum of the volumes of objects in one container can't exceed volume of the container.)
+
+（一个容器中物品的总体积不能超过容器的体积。）
 
 This is a hard problem. But there exists a 2-optimal algorithm for that.
 
+这是一个难题。但是存在一个 2-optimal 算法。
+
 First Fit Algorithm: Choose the first container in which the object fits. (This is greedy.)
+
+首次适应算法：选择第一个容器，其中的物品适合。（这是贪婪的。）
 
 ### 降序首次适应算法
 
