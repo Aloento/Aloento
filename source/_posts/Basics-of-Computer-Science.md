@@ -1177,38 +1177,69 @@ So for a subset of cases we have a solution, but not for the general case.
 
 ## Suboptimal algorithms
 
+次优算法
+
 what is the basic problem?  
 → polynomial algorithms are "quick"  
 → exponential algorithms are "very slow"
 
+基本问题是什么？  
+→ 多项式算法“快”  
+→ 指数算法“非常慢”
+
 There is a set of problems for which there is no quick algorithm.
 
-Their runtime is proportionate to f(a) =2^n.
-To put this in perspective, there are no more than 2^350 atoms in the whole universe.
+有一类问题没有快速算法。
+
+Their runtime is proportionate to f(a) =2^n. To put this in perspective, there are no more than 2^350 atoms in the whole universe.
+
+它们的运行时间与 f(a) = 2^n 成比例。
+为了更好地理解这一点，整个宇宙中没有超过 2^350 种原子。
 
 Therefore we can just use this disadvantage to our advantage by using these kind of problems for coding protocols, as decoding them would tale over a million years.
 
-Good example for this is finding a Hamiltonian cycle in a graph.
-Creating is easy, but then we can obfuscate it.
+因此，我们可以利用这个缺点，通过使用这类问题来编写编码协议，因为解码它们需要超过一百万年。
+
+Good example for this is finding a Hamiltonian cycle in a graph. Creating is easy, but then we can obfuscate it.
+
+寻找图中的汉密尔顿回路是一个很好的例子。
+创建容易，但是我们可以混淆它。
 
 ![13](13.png)
 
 Problem is, that there are a lot of real-life situations that can only be converted into these kinds of problems, where the solution is exponential, or even worse.
 
+问题是，有很多现实生活中的情况只能转换为这类问题，其解是指数级的，甚至更糟。
+
 Good example is the traveling agent problem. This is understood on weighed graphs, and the point is to touch all the nodes with a minimal sum of edge weights. (Hamiltonian path problem).
 
-In this case we can imagine a package delivery service, in which case we need the shortest possible combination / permutation of the packages in order to make the least amount of kilometers. Though, this is a hard problem, meaning, there exists not a quiet algorithm for this.
+一个很好的例子是旅行代理问题。这在加权图上是可以理解的，其目的是以最小的边权和触摸所有节点。（汉密尔顿路径问题）
+
+In this case we can imagine a package delivery service, in which case we need the shortest possible combination / permutation of the packages in order to make the least amount of kilometers. Though, this is a hard problem, meaning, there exists not a quick algorithm for this.
+
+在这种情况下，我们可以想象一个包裹配送服务，在这种情况下，我们需要包裹的最短可能组合/排列，以便减少尽可能多的公里数。尽管这是一个难题，即不存在一个快速的算法来解决这个问题。
 
 => suboptimal algorithms  
 -> We don't want to (= can't) find the best solution, but something that is pretty close this best solution.
 
+=> 次优算法  
+-> 我们不想（也不能）找到最优解，而是找到一个非常接近最优解的解决方案。
+
 So in case of the traveling agent, we don't want to find the optimal route, but we want a route such that it is sure that it uses at more Klia as many kilometers as the optimal one. It would be a 2-optimal algorithm.
+
+所以在旅行代理的情况下，我们不想找到最优路线，而是想找到一条路线，使得它确保它使用的公里数至少与最优路线相同。这将是一个 2-optimal 算法。
 
 So the suboptimality of algorithms has nothing to do with running time.
 
+因此，算法的次优性与运行时间无关。
+
 In the traveling agent situation a 3-optimal algorithm would find a solution that is at most three times worse than the optimal one, meaning, it would find a permutation of the target adnesses such that if the driver follows that order, than at most three times as many kilometers are used as in case of the optimal solution.
 
+在旅行代理的情况下，3-optimal 算法将找到一个至多比最优解差三倍的解决方案，这意味着它会找到目标地址的一个排列，如果司机遵循这种顺序，那么至多会使用三倍于最优解情况下的公里数。
+
 An algorithm is called k-optimal (k ≥ 1) if its output is at most b-times worse than the best output would be.
+
+如果其输出最多比最佳输出差 b 倍，则称该算法为 k-optimal（k ≥ 1）。
 
 ## Bin packing problem
 
