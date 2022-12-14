@@ -1121,38 +1121,59 @@ X 是支配集，4 是区间的独立集。
 
 The chosen intervals corresponding to the transportation is an independent set with three intervals. There are also three pink dots as the dominant set. So based on the lemma, there can be no more independent intervals.
 
+选择的区间对应于运输是具有三个区间的独立集。还有三个粉红色的点作为支配集。因此，根据引理，不能有更多的独立区间。
+
 Proof: Indirectly. New statement: |x|birds < |y|houses.
 
-Let's have one more independent interval. But according to the pigeon-hole principle, there is at least one pint dominating dot on every interval. In order to dominate the att intervals, we would need at 1 different pink dots.
+Let's have one more independent interval. But according to the pigeon-hole principle, there is at least one pint dominating dot on every interval. In order to dominate the all intervals, we would need at 1 different pink dots.
+
+让我们再来一个独立区间。但根据鸽巢原理，每个区间都至少有一个主要点。为了控制所有区间，我们需要至少 1 个不同的粉点。
 
 => There must be at least two intervals with the same pink dot,but then they're not independent.
 
-Even though there is no general quiet ( polynomial) solution for
+=> 必须有至少两个区间有相同的粉点，但这样它们就不是独立的了。
+
+Even though there is no general quick (polynomial) solution for
 finding MIS, the Interval pairing algorithm is fast. How fast?
 
-We shone all starting and destination point somehow - e.g. by numbers.
+尽管没有求解 MIS 的通用快速（多项式）解决方案，但 Interval pairing 算法是快速的。它有多快？
 
+We shone all starting and destination point somehow - e.g. by numbers.  
 So we only have to order them, and find the "smallest" endpoint first.
+
+我们用某种方式给所有起点和终点标号——例如，用数字。  
+所以我们只需要按顺序排序，找到“最小”的终点。
 
 ~n steps needed to find the closest destination  
 we need to repeat it at worst a times => polynomial algorithm
 
+找到最近目的地需要 ~n 步  
+最坏情况下，我们需要重复 a 次，所以这是一个多项式算法
+
 How can it be that MI5 can't be solved quickly, but this algorithm has quadratic runtime?!
+
+为什么 MI5 无法快速解决，但这个算法的运行时间是二次的呢？
 
 The intervals are represented as nodes and overlaps as edges in the graph.  
 So did we just solve MI5 in quadratic time?!
 
-No! Because not all graphs can be processed by this method. (Not all graphs
-with a nodes occur this way.) so we only solved MI5 for a subset of graphs having a nodes.
+区间在图中表示为节点，重叠部分表示为边。  
+所以我们刚刚在二次时间内解决了 MI5 吗？
+
+No! Because not all graphs can be processed by this method. (Not all graphs with a nodes occur this way.) so we only solved MI5 for a subset of graphs having a nodes.
+
+不是的！因为并不是所有图都可以用这种方法处理。（不是所有带有 n 个节点的图都是这样出现的。）所以我们只为一个带有 n 个节点的图子集解决了 MI5。
 
 So for a subset of cases we have a solution, but not for the general case.
 (e.g. 5th degree polynomials)
 
+所以对于一个子集的情况，我们有一个解决方案，但不是通用情况。（例如，五次多项式）
+
 ---
 
-区间打包是一种数学算法，用于找到最多可以放在一个容器内的不相交区间的最大数量。例如在电视节目表中安排广告插播、在工厂生产线上安排工作任务、或者在交通网络中安排车辆行驶路线。
+区间打包，用于找到最多可以放在一个容器内的不相交区间的最大数量。是指把一系列区间尽可能多地放到一个集合中，使得它们都不重叠。
 
-支配集指在一张图中，存在一组节点，每个节点都与它相邻的节点相连，或者至少有一个节点在该组中。这意味着，如果要覆盖图中的所有节点，那么这组节点至少需要有一个。
+支配集指在一张图中，存在一组节点，每个节点都与它相邻的节点相连，或者至少有一个节点在该组中。其中的元素可以覆盖整个集合，即每个元素都与至少一个其他元素有交集。
 
 ## Suboptimal algorithms
 
