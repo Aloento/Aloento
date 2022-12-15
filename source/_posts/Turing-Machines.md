@@ -49,7 +49,7 @@ tags: [图灵机, 算法, 习题]
 [Copy; ANY; SP]->[Start; ANY; 1; S; >]
 ```
 
-## 把 00 变成 \#\#
+# 把 00 变成 \#\#
 
 但是不处理超过 2 个 0 的情况
 
@@ -96,4 +96,52 @@ tags: [图灵机, 算法, 习题]
 [FindOne; 0]->[FindOne; 0; >]
 // 结束
 [FindOne; SP]->[Stop; SP; S]
+```
+
+# 011 变 ABCD
+
+| States | Start | End  | Tape Head | Position |
+| ------ | ----- | ---- | --------- | -------- |
+| Start  | Start | Stop | A0        | 0        |
+| Zero   |       |      | B0        | 0        |
+| One    |
+| Copy   |
+| BCD    |
+| CD     |
+| D      |
+| Stop   |
+
+```tms
+// 0 _ 计数
+[Start; 0; SP]->[Zero; 0; SP; >; S]
+// 1 _ 复制
+[Start; 1; SP]->[Start; 1; 1; >; >]
+// 为空，结束
+[Start; SP; SP]->[Stop; SP; SP; S; S]
+
+// 0 1 _ 计数
+[Zero; 1; SP]->[One; 1; SP; >; S]
+// 0 0 _ 复制 0，回到开始
+[Zero; 0; SP]->[Start; 0; 0; S; >]
+// 0 S 复制 0，停止
+[Zero; SP; SP]->[Stop; SP; 0; S; >]
+
+// 0 1 1 变换，写入 A
+[One; 1; SP]->[BCD; 1; A; S; >]
+// 0 1 0 复制 0，转 Copy 1
+[One; 0; SP]->[Copy; 0; 0; <; >]
+// 0 1 S 复制 0，转 Copy 1
+[One; SP; SP]->[Copy; SP; 0; <; >]
+
+// 写入 B
+[BCD; ANY; SP]->[CD; ANY; B; S; >]
+// 写入 C
+[CD; ANY; SP]->[D; ANY; C; S; >]
+// 写入 D，回到开始
+[D; ANY; SP]->[Start; ANY; D; >; >]
+
+// Copy 0
+[Copy; 0; SP]->[Start; 0; 0; >; >]
+// Copy 1
+[Copy; 1; SP]->[Start; 1; 1; >; >]
 ```
