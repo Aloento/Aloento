@@ -243,3 +243,39 @@ tags: [图灵机, 算法, 习题]
 // Stop Trans
 [Trans; 4]->[Start; ANY; >]
 ```
+
+# 二进制乘 3
+
+| States | Start | End  | Tape Head | Position |
+| ------ | ----- | ---- | --------- | -------- |
+| Start  | Start | Stop | A0        | 0        |
+| X      |
+| Non    |
+| Carry  |
+| Stop   |
+
+```tms
+// 在结果最前加一个 0
+[Start; 0; SP]->[X; 0; 0; S; >]
+[Start; 1; SP]->[X; 1; 0; S; >]
+
+// 复制
+[X; 0; SP]->[X; 0; 0; >; >]
+[X; 1; SP]->[X; 1; 1; >; >]
+// 在输入最后加一个 0
+[X; SP; SP]->[Non; 0; SP; S; <]
+
+// 不进位
+[Non; 0; 0]->[Non; 0; 0; <; <]
+[Non; 0; 1]->[Non; 0; 1; <; <]
+[Non; 1; 0]->[Non; 1; 1; <; <]
+[Non; 1; 1]->[Carry; 1; 0; <; <]
+[Non; SP; SP]->[Stop; SP; SP; S; S]
+
+// 进位
+[Carry; 0; 0]->[Non; 0; 1; <; <]
+[Carry; 0; 1]->[Carry; 0; 0; <; <]
+[Carry; 1; 0]->[Carry; 1; 0; <; <]
+[Carry; 1; 1]->[Carry; 1; 1; <; <]
+[Carry; SP; SP]->[Stop; SP; 1; S; S]
+```
