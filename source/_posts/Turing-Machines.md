@@ -145,3 +145,27 @@ tags: [图灵机, 算法, 习题]
 // Copy 1
 [Copy; 1; SP]->[Start; 1; 1; >; >]
 ```
+
+# 多个 1 变一个 1
+
+| States | Start | End  | Tape Head | Position |
+| ------ | ----- | ---- | --------- | -------- |
+| Start  | Start | Stop | A0        | 0        |
+| One    |       |      | B0        | 0        |
+| Stop   |
+
+```tms
+// 0 复制
+[Start; 0; SP]->[Start; 0; 0; >; >]
+// 1 复制并计数
+[Start; 1; SP]->[One; 1; 1; >; >]
+// 为空，停止
+[Start; SP; SP]->[Stop; SP; SP; S; S]
+
+// 1 0 复制，回到开始
+[One; 0; SP]->[Start; 0; 0; >; >]
+// 1 1 找到下一个 0
+[One; 1; SP]->[One; 1; ANY; >; S]
+// 1 S 停止
+[One; SP; SP]->[Stop; SP; SP; S; S]
+```
