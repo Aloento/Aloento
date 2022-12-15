@@ -198,4 +198,48 @@ tags: [图灵机, 算法, 习题]
 [Two; ANY; SP]->[Start; ANY; 2; >; >]
 ```
 
-#
+# 0000... 变 4444...
+
+| States | Start | End  | Tape Head | Position |
+| ------ | ----- | ---- | --------- | -------- |
+| Start  | Start | Stop | A0        | 0        |
+| One    |
+| Two    |
+| Three  |
+| Trans  |
+| Stop   |
+
+```tms
+// 0，计数
+[Start; 0]->[One; 0; >]
+// 1，跳过
+[Start; 1]->[Start; 1; >]
+// 为空，停止
+[Start; SP]->[Stop; SP; S]
+
+// 0 0
+[One; 0]->[Two; 0; >]
+// 0 1 回
+[One; 1]->[Start; 1; >]
+// 0 S 停止
+[One; SP]->[Stop; SP; S]
+
+// 0 0 0
+[Two; 0]->[Three; 0; >]
+// 0 0 1
+[Two; 1]->[Start; 1; >]
+// 0 0 S 停止
+[Two; SP]->[Stop; SP; S]
+
+// 0 0 0 0，转换
+[Three; 0]->[Trans; 4; 3*<]
+// 0 0 0 1 回
+[Three; 1]->[Start; 1; >]
+// 0 0 0 S 停止
+[Three; SP]->[Stop; SP; S]
+
+// 4 0 0 4
+[Trans; 0]->[Trans; 4; >]
+// Stop Trans
+[Trans; 4]->[Start; ANY; >]
+```
