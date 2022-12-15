@@ -29,15 +29,15 @@ Copy：如果在 A 或 B 状态检查到输入符号序列的第二个或第三�
 
 ## 代码
 
+| States | Start | End  | Tape Head | Position |
+| ------ | ----- | ---- | --------- | -------- |
+| Start  | Start | Stop | A0        | 0        |
+| A      |       |      | B0        | 0        |
+| B      |
+| Copy   |
+| Stop   |
+
 ```tms
-States: Start, A, B, Delete, Copy
-StratState: Start
-EndStates: Stop
-
-Tapes:
-A0: 0
-B0: 0
-
 // 处理 0 开头，转到 A
 [Start; 0; SP]->[A; ANY; ANY; >; S]
 // 处理 1 开头，直接复制
