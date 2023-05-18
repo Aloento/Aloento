@@ -15,8 +15,8 @@
   "dependencies": {
     "bulma-stylus": "0.8.0",
     "hexo": "^6.3.0",
-    "hexo-component-inferno": "^2.0.1",
-    "hexo-deployer-git": "^3.0.0",
+    "hexo-component-inferno": "^2.0.3",
+    "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-index": "^3.0.0",
@@ -27,7 +27,7 @@
     "hexo-renderer-marked": "^6.0.0",
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
-    "inferno": "^7.3.3",
-    "inferno-create-element": "^7.3.3"
+    "inferno": "^7.4.11",
+    "inferno-create-element": "^7.4.11"
   }
 }
