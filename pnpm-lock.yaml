@@ -30,8 +30,8 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0
   hexo-pagination:
-    specifier: ^3.0.0
-    version: 3.0.0
+    specifier: ^2.0.0
+    version: 2.0.0
   hexo-renderer-ejs:
     specifier: ^2.0.0
     version: 2.0.0
@@ -42,23 +42,19 @@ dependencies:
     specifier: ^6.1.1
     version: 6.1.1
   hexo-renderer-stylus:
-    specifier: ^3.0.0
-    version: 3.0.0
+    specifier: ^2.1.0
+    version: 2.1.0
   hexo-server:
     specifier: ^3.0.0
     version: 3.0.0
   inferno:
-    specifier: ^8.2.2
-    version: 8.2.2
+    specifier: ^7.4.11
+    version: 7.4.11
   inferno-create-element:
-    specifier: ^8.2.2
-    version: 8.2.2
+    specifier: ^7.4.11
+    version: 7.4.11
 
 packages:
-
-  /@adobe/css-tools@4.3.1:
-    resolution: {integrity: sha512-/62yikz7NLScCGAAST5SHdnjaDJQBDq0M2muyRTpf2VQhw6StBg2ALiu73zSJQ4fMVLA+0uBhBHAle7Wg+2kSg==}
-    dev: false
 
   /@ampproject/remapping@2.2.1:
     resolution: {integrity: sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==}
@@ -1389,6 +1385,12 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
 
+  /atob@2.1.2:
+    resolution: {integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==}
+    engines: {node: '>= 4.5.0'}
+    hasBin: true
+    dev: false
+
   /babel-plugin-inferno@6.7.0(@babel/core@7.23.2):
     resolution: {integrity: sha512-CLDNIoctex09NRbPP3GOq+B18Tj0luQOOevTAQzKWkwa45SqeoeFCY1XBq7p2TXrmifUAXbuCRrFKmA05codAA==}
     engines: {node: '>=6'}
@@ -1649,6 +1651,14 @@ packages:
       which: 2.0.2
     dev: false
 
+  /css@3.0.0:
+    resolution: {integrity: sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==}
+    dependencies:
+      inherits: 2.0.4
+      source-map: 0.6.1
+      source-map-resolve: 0.6.0
+    dev: false
+
   /cssom@0.3.8:
     resolution: {integrity: sha512-b0tGHbfegbhPJpxpiBPU2sCkigAqtM9O121le6bbOlgyV+NyGyCmVfJ6QW9eRjz8CpNfWEOYBIMIGRYkLwsIYg==}
     dev: false
@@ -1662,10 +1672,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       cssom: 0.3.8
-    dev: false
-
-  /csstype@3.1.2:
-    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: false
 
   /cuid@2.1.8:
@@ -1707,6 +1713,11 @@ packages:
 
   /decimal.js@10.4.3:
     resolution: {integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==}
+    dev: false
+
+  /decode-uri-component@0.2.2:
+    resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
+    engines: {node: '>=0.10'}
     dev: false
 
   /deepmerge@4.3.1:
@@ -2179,12 +2190,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /hexo-renderer-stylus@3.0.0:
-    resolution: {integrity: sha512-wgKOcjUzq1i4Y70luoyYDbh91QeQcDzJO+v1598LgY+IdREFAm+vy1MWtl/TZsVXyPaEtsULNi3Vi22hdsPUSA==}
-    engines: {node: '>=14'}
+  /hexo-renderer-stylus@2.1.0:
+    resolution: {integrity: sha512-Nef4YCr7JX8jaRaByhzXMSsWnDed+RgJj6aU/ARnYu3Bn5xz/qRz52VJG7KqD0Xuysxa9TIBdVUgNzBrSFn3DQ==}
+    engines: {node: '>=12.13.0'}
     dependencies:
-      nib: 1.2.0(stylus@0.59.0)
-      stylus: 0.59.0
+      nib: 1.2.0(stylus@0.57.0)
+      stylus: 0.57.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -2341,12 +2352,6 @@ packages:
       inferno: 7.4.11
     dev: false
 
-  /inferno-create-element@8.2.2:
-    resolution: {integrity: sha512-/gO8SUJ/ZifwYazbC02SaCIuzdfRRoIrWU0C1OiA1zJIPmiw5y9UY5+bXogO0r6vWKWuugQROi9ymI0r5k1AAw==}
-    dependencies:
-      inferno: 8.2.2
-    dev: false
-
   /inferno-server@7.4.11:
     resolution: {integrity: sha512-SUnkCqZNWOIrjRVoVk/E1/70O1f1ImkCX9H2gDPbS0uc3GDxuzIeCgn0rpcc0XV9KzZJ2LTGxuBtEoQQOjUn2Q==}
     engines: {node: '>=8'}
@@ -2362,25 +2367,12 @@ packages:
     resolution: {integrity: sha512-L7lslEQCq3IfwgT/b9zhuMf8fv6KXCNXXHZevk/WYxnqJsOWGDcKpJn0zkzXfvmj0otbB149iLUQVBq3oe2sfA==}
     dev: false
 
-  /inferno-vnode-flags@8.2.2:
-    resolution: {integrity: sha512-ZyGXfFdaBpWCrU25jf/8PqB+C53WnFzpnctCYqL80fV0rQSem3Fjb6nIHGPOJdVc81TkXSKoyoCua/Qfbtc0rw==}
-    dev: false
-
   /inferno@7.4.11:
     resolution: {integrity: sha512-N+cs33ESWI8fdToCd98yMRYl7jkLnCkJskxov3FKKlaKOvk3PRlAttbhmUaYdWXlRvt2WeXi+J4MbzNj3V6G0w==}
     requiresBuild: true
     dependencies:
       inferno-shared: 7.4.11
       inferno-vnode-flags: 7.4.11
-      opencollective-postinstall: 2.0.3
-    dev: false
-
-  /inferno@8.2.2:
-    resolution: {integrity: sha512-KyCPnsK6eEzAzC6Ulmkc2S3LQSZC6DJSLHdH4zurK2DQ7lyu7e+Q5SziG7/qKufhWtCUgTwUHVzaYk5E2BzI2Q==}
-    requiresBuild: true
-    dependencies:
-      csstype: 3.1.2
-      inferno-vnode-flags: 8.2.2
       opencollective-postinstall: 2.0.3
     dev: false
 
@@ -2721,12 +2713,12 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /nib@1.2.0(stylus@0.59.0):
+  /nib@1.2.0(stylus@0.57.0):
     resolution: {integrity: sha512-7HgrnMl/3yOmWykueO8/D0q+0iWwe7Z+CK2Eaq/xQV8w1hK80WN1oReRQkfkrztbAAnp/nTHkUSl5EcVkor6JQ==}
     peerDependencies:
       stylus: '*'
     dependencies:
-      stylus: 0.59.0
+      stylus: 0.57.0
     dev: false
 
   /no-case@3.0.4:
@@ -3088,6 +3080,14 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
+  /source-map-resolve@0.6.0:
+    resolution: {integrity: sha512-KXBr9d/fO/bWo97NXsPIAW1bFSBOuCnjbNTBMO7N59hsv5i9yzRDfcYwwt0l04+VqnKC+EwzvJZIP/qkuMgR/w==}
+    deprecated: See https://github.com/lydell/source-map-resolve#deprecated
+    dependencies:
+      atob: 2.1.2
+      decode-uri-component: 0.2.2
+    dev: false
+
   /source-map-support@0.5.21:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
     dependencies:
@@ -3139,13 +3139,14 @@ packages:
       min-indent: 1.0.1
     dev: false
 
-  /stylus@0.59.0:
-    resolution: {integrity: sha512-lQ9w/XIOH5ZHVNuNbWW8D822r+/wBSO/d6XvtyHLF7LW4KaCIDeVbvn5DF8fGCJAUCwVhVi/h6J0NUcnylUEjg==}
+  /stylus@0.57.0:
+    resolution: {integrity: sha512-yOI6G8WYfr0q8v8rRvE91wbxFU+rJPo760Va4MF6K0I6BZjO4r+xSynkvyPBP9tV1CIEUeRsiidjIs2rzb1CnQ==}
     hasBin: true
     dependencies:
-      '@adobe/css-tools': 4.3.1
+      css: 3.0.0
       debug: 4.3.4
       glob: 7.2.3
+      safer-buffer: 2.1.2
       sax: 1.2.4
       source-map: 0.7.4
     transitivePeerDependencies:
