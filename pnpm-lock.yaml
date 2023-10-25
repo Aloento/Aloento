@@ -30,7 +30,7 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0
   hexo-pagination:
-    specifier: ^2.0.0
+    specifier: 2.0.0
     version: 2.0.0
   hexo-renderer-ejs:
     specifier: ^2.0.0
@@ -42,16 +42,16 @@ dependencies:
     specifier: ^6.1.1
     version: 6.1.1
   hexo-renderer-stylus:
-    specifier: ^2.1.0
+    specifier: 2.1.0
     version: 2.1.0
   hexo-server:
     specifier: ^3.0.0
     version: 3.0.0
   inferno:
-    specifier: ^7.4.11
+    specifier: 7.4.11
     version: 7.4.11
   inferno-create-element:
-    specifier: ^7.4.11
+    specifier: 7.4.11
     version: 7.4.11
 
 packages:
