@@ -125,6 +125,6 @@ plugins:
     outdated_browser: true
     progressbar: true
 providers:
-    cdn: unpkg
-    fontcdn: loli
+    cdn: cdnjs
+    fontcdn: ustc
     iconcdn: fontawesome
