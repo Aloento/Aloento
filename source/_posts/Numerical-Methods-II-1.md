@@ -245,3 +245,78 @@ triangle = [0, 0; 1, 0; 0, 1];
 image_triangle = [2, 3; 4, 1; 5, 5];
 A = affin2(triangle, image_triangle)
 ```
+
+# 等边三角形
+
+Give 3 points in the plane. Two of them, P (2; 3) and Q (4; 2), lie on different sides of an equilateral triangle.
+The third point, S (3; 3), is the centroid of the triangle.
+Use MATLAB to find the vertices of a triangle (by adding the coordinates of the vertices) and make an illustration for the exercise.
+
+\text{Side length} = \sqrt{(x_Q - x_P)^2 + (y_Q - y_P)^2}
+
+R = \frac{\text{Side length}}{\sqrt{3}}
+
+```matlab
+% 定义点 P, Q 和 S
+P = [2, 3];
+Q = [4, 2];
+S = [3, 3];
+
+% 计算三角形的边长
+side_length = sqrt((Q(1) - P(1))^2 + (Q(2) - P(2))^2);
+
+% 计算外接圆的半径
+R = side_length / sqrt(3);
+
+% 计算三角形的顶点
+% 我们已经有两个顶点（P 和 Q），我们需要找到第三个顶点（R）
+
+% 计算 PQ 的中点
+mid_PQ = (P + Q) / 2;
+
+% 计算中点到质心的向量
+vec_mid_to_centroid = S - mid_PQ;
+
+% 计算 PQ 的垂直向量
+perpendicular = [vec_mid_to_centroid(2), -vec_mid_to_centroid(1)];
+
+% 归一化垂直向量
+perpendicular = perpendicular / norm(perpendicular);
+
+% 计算第三个顶点
+R_vertex = S + R * perpendicular;
+
+% 检查 R_vertex 是否与 S 在 PQ 的同一侧
+% 如果不是，反转方向
+if dot(R_vertex - mid_PQ, vec_mid_to_centroid) < 0
+    R_vertex = S - R * perpendicular;
+end
+
+% 绘制三角形
+figure;
+hold on;
+grid on;
+axis equal;
+
+% 绘制点
+plot(P(1), P(2), 'ro');
+plot(Q(1), Q(2), 'ro');
+plot(S(1), S(2), 'bo');
+plot(R_vertex(1), R_vertex(2), 'go');
+
+% 绘制三角形的边
+plot([P(1), Q(1)], [P(2), Q(2)], 'r');
+plot([P(1), R_vertex(1)], [P(2), R_vertex(2)], 'r');
+plot([Q(1), R_vertex(1)], [Q(2), R_vertex(2)], 'r');
+
+% 添加注释
+text(P(1), P(2), ' P');
+text(Q(1), Q(2), ' Q');
+text(S(1), S(2), ' S (质心)');
+text(R_vertex(1), R_vertex(2), ' R');
+
+title('具有顶点 P, Q 和 R 的等边三角形');
+xlabel('X 轴');
+ylabel('Y 轴');
+hold off;
+```
