@@ -252,10 +252,6 @@ Give 3 points in the plane. Two of them, P (2; 3) and Q (4; 2), lie on different
 The third point, S (3; 3), is the centroid of the triangle.
 Use MATLAB to find the vertices of a triangle (by adding the coordinates of the vertices) and make an illustration for the exercise.
 
-\text{Side length} = \sqrt{(x_Q - x_P)^2 + (y_Q - y_P)^2}
-
-R = \frac{\text{Side length}}{\sqrt{3}}
-
 ```matlab
 % 定义点 P, Q 和 S
 P = [2, 3];
