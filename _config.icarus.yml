@@ -120,7 +120,6 @@ plugins:
     back_to_top: true
     busuanzi: true
     gallery: true
-    katex: true
     mathjax: true
     outdated_browser: true
     progressbar: true
