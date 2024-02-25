@@ -156,6 +156,4 @@ Boy optimal / Girl optimal
 
 Uniqueness：如果两种情况下算法得到相同的匹配结果，那么这个结果就是唯一的稳定匹配
 
-## Max Magnitude of Stable Matchings
-
-$$ \theta (2^n) $$
+## Max Magnitude $\theta (2^n)$
