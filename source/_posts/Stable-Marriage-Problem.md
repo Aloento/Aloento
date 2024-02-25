@@ -153,3 +153,9 @@ _大 $\Omega$ 记号提供了一个下界，表示运行时间的增长速率至
 Boy optimal / Girl optimal
 
 男性主动求婚，女性被动选择，持续优化直至男性满足，导致女性最坏结果
+
+Uniqueness：如果两种情况下算法得到相同的匹配结果，那么这个结果就是唯一的稳定匹配
+
+## Max Magnitude of Stable Matchings
+
+$$ \theta (2^n) $$
