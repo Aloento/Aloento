@@ -4,7 +4,6 @@ date: 2021-12-03 15:15:37
 toc: true
 categories:
   - [Program, C++, CLI]
-  - [Diary]
 tags: [编程, C++, CLI, LINQ, C#, .NET, OrderBy, 笔记]
 ---
 
