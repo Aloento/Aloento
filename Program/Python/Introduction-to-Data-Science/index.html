@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Introduction to Data Science - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="这年头真的是什么臭鱼烂虾都敢出来教课了你们这帮人除了会照着代码念以外还会干什么 本文是这门课的 Lecture 部分，各个 Practice 会独立成文"><meta property="og:type" content="blog"><meta property="og:title" content="Introduction to Data Science"><meta property="og:url" content="https://aloen.to/Program/Python/Introduction-to-Data-Science/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="这年头真的是什么臭鱼烂虾都敢出来教课了你们这帮人除了会照着代码念以外还会干什么 本文是这门课的 Lecture 部分，各个 Practice 会独立成文"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/Program/Python/Introduction-to-Data-Science/1Relations.jpg"><meta property="og:image" content="https://aloen.to/Program/Python/Introduction-to-Data-Science/1Noise.jpg"><meta property="og:image" content="https://aloen.to/Program/Python/Introduction-to-Data-Science/1Outliers.jpg"><meta property="article:published_time" content="2024-02-26T02:30:00.000Z"><meta property="article:modified_time" content="2024-02-27T20:39:25.833Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="数据科学"><meta property="article:tag" content="笔记"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/Program/Python/Introduction-to-Data-Science/1Relations.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/Program/Python/Introduction-to-Data-Science/"},"headline":"Introduction to Data Science","image":["https://aloen.to/Program/Python/Introduction-to-Data-Science/1Relations.jpg","https://aloen.to/Program/Python/Introduction-to-Data-Science/1Noise.jpg","https://aloen.to/Program/Python/Introduction-to-Data-Science/1Outliers.jpg"],"datePublished":"2024-02-26T02:30:00.000Z","dateModified":"2024-02-27T20:39:25.833Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/Program/Python/Introduction-to-Data-Science/"}},"description":"这年头真的是什么臭鱼烂虾都敢出来教课了你们这帮人除了会照着代码念以外还会干什么 本文是这门课的 Lecture 部分，各个 Practice 会独立成文"}</script><link rel="canonical" href="https://aloen.to/Program/Python/Introduction-to-Data-Science/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-02-26T02:30:00.000Z" title="2/26/2024, 2:30:00 AM">2024-02-26</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-02-27T20:39:25.833Z" title="2/27/2024, 8:39:25 PM">2024-02-28</time></span><span class="level-item"><a class="link-muted" href="/categories/DataScience/">DataScience</a><span> / </span><a class="link-muted" href="/categories/Program/">Program</a><span> / </span><a class="link-muted" href="/categories/Program/Python/">Python</a></span><span class="level-item">4 minutes read (About 574 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">Introduction to Data Science</h1><div class="content"><p><del>这年头真的是什么臭鱼烂虾都敢出来教课了</del><br><del>你们这帮人除了会照着代码念以外还会干什么</del></p>
+<p>本文是这门课的 Lecture 部分，各个 Practice 会独立成文</p>
+<span id="more"></span>
+
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>首先我们要了解什么是数据科学<br>它的目标是：从数据中提取有用的信息</p>
+<p><em>我们将 机器学习的算法应用于各种数据，以训练 AI 来完成通常需要人类进行的任务</em><br><em>这些 AI 会产生一些见解，以供用户将其转化为业务价值</em></p>
+<hr>
+<p><img src="/Program/Python/Introduction-to-Data-Science/1Relations.jpg" alt="Relations"></p>
+<p>DS 与 ML 密切相关</p>
+<ul>
+<li>DS 研究如何从原始数据中提取信息</li>
+<li>ML 是 DS 的一种技术，使机器能够自动从过去的数据中学习</li>
+<li>AI 使用指导思想，即让机器模仿人类的思维方式</li>
+<li>DL 是 ML 的子集，它使用多层神经网络计算</li>
+</ul>
+<hr>
+<p>让我们来看看 DS 的生命周期</p>
+<ol>
+<li>商业需求</li>
+<li>数据采集</li>
+<li>数据处理</li>
+<li>数据分析</li>
+<li>建模，使用 ML</li>
+<li>部署和优化模型</li>
+</ol>
+<hr>
+<p>我们称数据表的 Columns 为 Features，Rows 为 Samples &#x2F; Examples &#x2F; Instances</p>
+<p>数据的类型：</p>
+<ul>
+<li>Categorical<br>无序集合，如 City.{Viena, Paris}</li>
+<li>Numerical<br>有序集合，如 Age.{0, 1, 2, 3, …}</li>
+</ul>
+<p>我们偏向于把 Categorical 转化为 Numerical</p>
+<p>例如</p>
+<table>
+<thead>
+<tr>
+<th>Age</th>
+<th>City</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>20</td>
+<td>Viena</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Paris</td>
+</tr>
+</tbody></table>
+<p>转化为</p>
+<table>
+<thead>
+<tr>
+<th>Age</th>
+<th>City_Viena</th>
+<th>City_Paris</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>20</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>30</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>这样我们就可以将 instance 表达为空间中的一个点，如 (20, 1, 0)</p>
+<p>随后我们可以：</p>
+<ul>
+<li>把所有数据映射到空间中，称之为 Feature Space</li>
+<li>使用 Euclidean Distance 来计算两个点之间的距离</li>
+<li>用来查找相似内容…</li>
+</ul>
+<hr>
+<p>ML 算法需要干净的数据</p>
+<p>原始数据有可能：</p>
+<ul>
+<li>Noise<br>Modicitation of original values</li>
+<li>Outliers (异常 &#x2F; 离群)<br>与大部分数据有截然不同的特征</li>
+<li>Missing Values</li>
+<li>Duplicates<br>如同一个人使用不同 ID</li>
+</ul>
+<p><img src="/Program/Python/Introduction-to-Data-Science/1Noise.jpg" alt="Noise"><br><img src="/Program/Python/Introduction-to-Data-Science/1Outliers.jpg" alt="Outliers"></p>
+<p>数据缺失可能是由于 未收集（拒绝回答），或不适用（未成年人的收入）导致的<br>可以使用以下方法处理：</p>
+<ul>
+<li>删除</li>
+<li>估计 Estimation</li>
+<li>忽略</li>
+</ul>
+<p>对于数据量，一般是越多越好，有一个流行的说法是 十倍于特征数量，但是要保证质量</p>
+<h1 id="有效分析与可视化"><a href="#有效分析与可视化" class="headerlink" title="有效分析与可视化"></a>有效分析与可视化</h1></div><div class="article-licensing box"><div class="licensing-title"><p>Introduction to Data Science</p><p><a href="https://aloen.to/Program/Python/Introduction-to-Data-Science/">https://aloen.to/Program/Python/Introduction-to-Data-Science/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2024-02-26</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-02-28</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Algorithm/Stable-Marriage-Problem/"><span class="level-item">Stable Marriage Problem</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">14</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">17</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">26</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/DataScience/"><span class="level-start"><span class="level-item">DataScience</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">4</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/FrontEnd/"><span class="level-start"><span class="level-item">FrontEnd</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/FrontEnd/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OrderBy/"><span class="tag">OrderBy</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Introduction"><span class="level-left"><span class="level-item">1</span><span class="level-item">Introduction</span></span></a></li><li><a class="level is-mobile" href="#有效分析与可视化"><span class="level-left"><span class="level-item">2</span><span class="level-item">有效分析与可视化</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-02-26T02:30:00.000Z">2024-02-26</time></p><p class="title"><a href="/Program/Python/Introduction-to-Data-Science/">Introduction to Data Science</a></p><p class="categories"><a href="/categories/DataScience/">DataScience</a> / <a href="/categories/Program/">Program</a> / <a href="/categories/Program/Python/">Python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-02-13T08:30:00.000Z">2024-02-13</time></p><p class="title"><a href="/Algorithm/Stable-Marriage-Problem/">Stable Marriage Problem</a></p><p class="categories"><a href="/categories/Algorithm/">Algorithm</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-12-03T13:50:00.000Z">2023-12-03</time></p><p class="title"><a href="/Math/Matlab/Numerical-Methods-II-1/">Numerical Methods II - Part 2</a></p><p class="categories"><a href="/categories/Math/">Math</a> / <a href="/categories/Math/Matlab/">Matlab</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-10-25T11:00:00.000Z">2023-10-25</time></p><p class="title"><a href="/Program/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%A2%E8%AF%95%E9%A2%98/">记一次面试题</a></p><p class="categories"><a href="/categories/Program/">Program</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-12-15T11:06:00.000Z">2022-12-15</time></p><p class="title"><a href="/Algorithm/TM/Turing-Machines/">Turing Machines</a></p><p class="categories"><a href="/categories/Algorithm/">Algorithm</a> / <a href="/categories/Algorithm/TM/">TM</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/"><span class="level-start"><span class="level-item">2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/"><span class="level-start"><span class="level-item">2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2024 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
