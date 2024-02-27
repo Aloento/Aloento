@@ -142,7 +142,7 @@ ML 算法需要干净的数据
 
 ## Anscombe's Quartet
 
-![Anscombe's Quartet](2Anscombe.jpg)
+![Anscombe's Quartet](2Anscombe.png)
 
 用来说明在分析数据前先绘制图表的重要性，以及离群值对统计的影响之大
 
@@ -207,3 +207,5 @@ Exploratory Data Analysis
 - 合理的颜色
 
   - 考虑到色盲
+
+# 待续
