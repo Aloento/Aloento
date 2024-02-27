@@ -48,3 +48,30 @@ DS 与 ML 密切相关
 ---
 
 我们称数据表的 Columns 为 Features，Rows 为 Samples / Examples / Instances
+
+数据的类型：
+
+- Categorical  
+  无序集合，如 City.{Viena, Paris}
+- Numerical  
+  有序集合，如 Age.{0, 1, 2, 3, ...}
+
+我们偏向于把 Categorical 转化为 Numerical
+
+例如
+
+| Age | City  |
+| --- | ----- |
+| 20  | Viena |
+| 30  | Paris |
+
+转化为
+
+| Age | City_Viena | City_Paris |
+| --- | ---------- | ---------- |
+| 20  | 1          | 0          |
+| 30  | 0          | 1          |
+
+这样我们就可以将 instance 表达为空间中的一个点，如 (20, 1, 0)
+
+---
