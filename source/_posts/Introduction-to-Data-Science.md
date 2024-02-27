@@ -25,7 +25,7 @@ _这些 AI 会产生一些见解，以供用户将其转化为业务价值_
 
 ---
 
-![Relations](Relations.jpg)
+![Relations](1Relations.jpg)
 
 DS 与 ML 密切相关
 
@@ -74,4 +74,36 @@ DS 与 ML 密切相关
 
 这样我们就可以将 instance 表达为空间中的一个点，如 (20, 1, 0)
 
+随后我们可以：
+
+- 把所有数据映射到空间中，称之为 Feature Space
+- 使用 Euclidean Distance 来计算两个点之间的距离
+- 用来查找相似内容...
+
 ---
+
+ML 算法需要干净的数据
+
+原始数据有可能：
+
+- Noise  
+  Modicitation of original values
+- Outliers (异常 / 离群)  
+  与大部分数据有截然不同的特征
+- Missing Values
+- Duplicates  
+  如同一个人使用不同 ID
+
+![Noise](1Noise.jpg)
+![Outliers](1Outliers.jpg)
+
+数据缺失可能是由于 未收集（拒绝回答），或不适用（未成年人的收入）导致的  
+可以使用以下方法处理：
+
+- 删除
+- 估计 Estimation
+- 忽略
+
+对于数据量，一般是越多越好，有一个流行的说法是 十倍于特征数量，但是要保证质量
+
+# 有效分析与可视化
