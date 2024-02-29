@@ -204,3 +204,75 @@ $$
 我们发现第三条的规定，就是在限制 $r$ 足够小
 
 ~~细节我也看不明白，希望大佬指点~~
+
+# 例题
+
+~~让我们来画点魔法阵~~
+
+## 情况一
+
+$T(n) = 9T(\frac{n}{3}) + n$
+
+$a = 9, b = 3, f(n) = n$
+
+$T(n) = n^{\log_3 (9)} = n^2 > f(n)$
+
+## 情况二
+
+$T(n) = T(\frac{2n}{3}) + 1$
+
+$a = 1, b = \frac{3}{2}, f(n) = 1$
+
+$n^{\log_b (a)} = n^{\log_{\frac{3}{2}} (1)} = n^0 = 1 = f(n)$
+
+$T(n) = 1 \times \lg n = \lg n$
+
+## 情况三
+
+$T(n) = 3T(\frac{n}{4}) + n \lg n$
+
+$a = 3, b = 4, f(n) = n \lg n, n \to \infty$
+
+$n^{\log_4 (3)} = n^{0.792} < n < n \lg n$
+
+由此判定为情况三，则
+
+$af(\frac{n}{b}) = 3 \frac{n}{4} \lg \frac{n}{4} < \frac{3}{4} n \lg n = cf(n)$
+
+取 $c = \frac{3}{4}$ 即可
+
+$T(n) = n \lg n$
+
+## 不适用
+
+$T(n) = 2T(\frac{n}{2}) + n \lg n$
+
+$a = 2, b = 2, f(n) = n \lg n, n \to \infty$
+
+$n^{\log_2 (2)} = n < f(n)$
+
+由此判定为情况三，我们尝试验证 $af(\frac{n}{b}) \leq cf(n)$
+
+$af(\frac{n}{b}) = 2 \frac{n}{2} \lg \frac{n}{2} = n \lg \frac{n}{2} = n \lg n - n = n(\lg n - 1) \leq c \times n \lg n = cf(n)$
+
+则等价于 $\lg n - 1 \leq c \lg n$
+
+---
+
+我们尝试求解 $\lg n - 1 \geq c \lg n$
+
+重写为 $(1 - c) \lg n \geq 1 \to \lg n \geq \frac{1}{1 - c} $
+
+得到 $n \geq 2^{\frac{1}{1 - c}}$
+
+---
+
+这说明对于任何 $c < 1$，都存在一个 $n \geq 2^{\frac{-1}{c - 1}}$，使得 $af(\frac{n}{b}) \geq cf(n)$
+
+所以存在一个 $n$ 的界限，超过后 $g$ 的增长速度将超过 $k$ 的增长速度
+
+导致不能使用主定理
+
+> 注：根据对数法则，$\lg \frac{n}{2} = \lg n - \lg 2$  
+> 由于本题讨论计算机领域，默认以二为底，有 $\lg = \log = \log_2$  
+> 则 $\lg 2 = 1$，所以 $\lg \frac{n}{2} = \lg n - 1$
