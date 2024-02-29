@@ -75,11 +75,11 @@ $$ T(n) = \Theta(n^{\log_b(a)}) $$
 
 存在常数 $\epsilon \geq 0$，使得
 
-$$ f(n) = \Theta(n^{\log_b(a)} \lg^\epsilon n) $$
+$$ f(n) = \Theta(n^{\log_b(a)} \log^\epsilon n) $$
 
 则
 
-$$ T(n) = \Theta(n^{\log_b(a)} \lg^{1+\epsilon} n) $$
+$$ T(n) = \Theta(n^{\log_b(a)} \log^{1+\epsilon} n) $$
 
 #### 另可写为
 
@@ -87,7 +87,7 @@ $$ f(n) = \Theta(n^{\log_b(a)}) $$
 
 则
 
-$$ T(n) = \Theta(n^{\log_b(a)} \lg n) $$
+$$ T(n) = \Theta(n^{\log_b(a)} \log n) $$
 
 ### 3. 分治主导
 
@@ -170,7 +170,7 @@ $k$ 的增长大于 $f(n)$ 的增长
 表示最小子任务与分割任务的时间复杂度一样  
 此时 $f(n) = \Theta(n^{\log_b (a)})$  
 因此需要把两个的时间复杂度都算上  
-有 $T(n) = \Theta(n^{\log_b (a)} \lg n)$
+有 $T(n) = \Theta(n^{\log_b (a)} \log n)$
 
 #### 3. $\sum f(n) >$
 
@@ -225,43 +225,43 @@ $a = 1, b = \frac{3}{2}, f(n) = 1$
 
 $n^{\log_b (a)} = n^{\log_{\frac{3}{2}} (1)} = n^0 = 1 = f(n)$
 
-$T(n) = 1 \times \lg n = \lg n$
+$T(n) = 1 \times \log n = \log n$
 
 ## 情况三
 
-$T(n) = 3T(\frac{n}{4}) + n \lg n$
+$T(n) = 3T(\frac{n}{4}) + n \log n$
 
-$a = 3, b = 4, f(n) = n \lg n, n \to \infty$
+$a = 3, b = 4, f(n) = n \log n, n \to \infty$
 
-$n^{\log_4 (3)} = n^{0.792} < n < n \lg n$
+$n^{\log_4 (3)} = n^{0.792} < n < n \log n$
 
 由此判定为情况三，则
 
-$af(\frac{n}{b}) = 3 \frac{n}{4} \lg \frac{n}{4} < \frac{3}{4} n \lg n = cf(n)$
+$af(\frac{n}{b}) = 3 \frac{n}{4} \log \frac{n}{4} < \frac{3}{4} n \log n = cf(n)$
 
 取 $c = \frac{3}{4}$ 即可
 
-$T(n) = n \lg n$
+$T(n) = n \log n$
 
 ## 不适用
 
-$T(n) = 2T(\frac{n}{2}) + n \lg n$
+$T(n) = 2T(\frac{n}{2}) + n \log n$
 
-$a = 2, b = 2, f(n) = n \lg n, n \to \infty$
+$a = 2, b = 2, f(n) = n \log n, n \to \infty$
 
 $n^{\log_2 (2)} = n < f(n)$
 
 由此判定为情况三，我们尝试验证 $af(\frac{n}{b}) \leq cf(n)$
 
-$af(\frac{n}{b}) = 2 \frac{n}{2} \lg \frac{n}{2} = n \lg \frac{n}{2} = n \lg n - n = n(\lg n - 1) \leq c \times n \lg n = cf(n)$
+$af(\frac{n}{b}) = 2 \frac{n}{2} \log \frac{n}{2} = n \log \frac{n}{2} = n \log n - n = n(\log n - 1) \leq c \times n \log n = cf(n)$
 
-则等价于 $\lg n - 1 \leq c \lg n$
+则等价于 $\log n - 1 \leq c \log n$
 
 ---
 
-我们尝试求解 $\lg n - 1 \geq c \lg n$
+我们尝试求解 $\log n - 1 \geq c \log n$
 
-重写为 $(1 - c) \lg n \geq 1 \to \lg n \geq \frac{1}{1 - c} $
+重写为 $(1 - c) \log n \geq 1 \to \log n \geq \frac{1}{1 - c} $
 
 得到 $n \geq 2^{\frac{1}{1 - c}}$
 
@@ -273,6 +273,6 @@ $af(\frac{n}{b}) = 2 \frac{n}{2} \lg \frac{n}{2} = n \lg \frac{n}{2} = n \lg n -
 
 导致不能使用主定理
 
-> 注：根据对数法则，$\lg \frac{n}{2} = \lg n - \lg 2$  
-> 由于本题讨论计算机领域，默认以二为底，有 $\lg = \log = \log_2$  
-> 则 $\lg 2 = 1$，所以 $\lg \frac{n}{2} = \lg n - 1$
+> 注：根据对数法则，$\log \frac{n}{2} = \log n - \log 2$  
+> 由于本题讨论计算机领域，默认以二为底，有 $\log = \log_2$  
+> 则 $\log 2 = 1$，所以 $\log \frac{n}{2} = \log n - 1$
