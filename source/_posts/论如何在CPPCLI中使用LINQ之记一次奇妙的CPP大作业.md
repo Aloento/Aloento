@@ -3,7 +3,7 @@ title: 论如何在C++/CLI中使用LINQ：记一次奇妙的C++大作业
 date: 2021-12-03 15:15:37
 toc: true
 categories:
-  - [Program, C++, CLI]
+  - [C++, CLI]
 tags: [编程, C++, CLI, LINQ, C#, .NET, OrderBy, 笔记]
 ---
 

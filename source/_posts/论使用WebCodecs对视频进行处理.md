@@ -3,7 +3,7 @@ title: 论使用WebCodecs对视频进行处理
 date: 2022-04-05 11:58:53
 toc: true
 categories:
-  - [Program, FrontEnd, WebCodecs]
+  - [Program, WebCodecs]
 tags: [编程, 前端, 翻译, 音视频, WebCodecs, JS]
 ---
 
