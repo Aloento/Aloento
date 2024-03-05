@@ -82,7 +82,7 @@ plt.plot(x, np.cos(x))
 
 创建子图：subplot(rows: 子图行数, columns: 子图列数, subplot_number: 子图序号)
 
-绘制图形：plot(x: x 轴数据, y: y 轴数据, format: 格式字符串)
+绘制图形：plot(x: x 轴数据, y: y 轴数据, ...)
 
 ### 面向对象风格
 
@@ -100,3 +100,208 @@ ax[1].plot(x, np.cos(x))
 subplot**s** 会返回一个包含所有子图的数组
 
 # 基本图形
+
+## 线图
+
+```python
+# 使用 range
+plt.plot(range(1, 10))
+# 使用 numpy
+plt.plot(range(10, 1, -1), np.arange(1, 10))
+```
+
+plot(y: y 轴数据, ...)  
+x 会自动使用 0 到 len(y) - 1 的整数
+
+### 使用 OOP
+
+```python
+# 创建图像
+fig = plt.figure()
+# 创建坐标轴
+ax = plt.axes()
+# 创建等长数据序列
+x = np.linspace(0, 5, 20)
+# 绘制 sin
+ax.plot(x, np.sin(x))
+# 绘制 cos
+ax.plot(x, np.cos(x))
+```
+
+linspace(start: 起始值, stop: 结束值, num: 生成的数据个数)  
+该函数会返回一个包含 num 个元素的等差数列
+
+多次调用 plot 会在同一张图上绘制多个图形
+
+## `plot`
+
+```python
+plot(
+    x: x 轴数据,
+    y: y 轴数据,
+    linestyle: 线条风格,
+    linewidth: 线宽,
+    color: 颜色,
+    marker: 为线图添加散点，指定点的形状,
+    markersize: 点大小,
+    markeredgecolor: 点边框颜色,
+    label: 图例标签,
+    alpha: 透明度
+)
+```
+
+### 颜色
+
+plot 会自动循环使用颜色，但是也可以手动指定
+
+```python
+# 短颜色编码（rgbcmyk）
+plt.plot(x, 2*x+1, color = "g")
+# 灰度，从0到1
+plt.plot(x, 2*x+2, color = "0.6")
+# HEX
+plt.plot(x, 2*x+3, color = "#FFEE22")
+# RGB元组，从0到1
+plt.plot(x, 2*x+4, color = (0.8, 0.7, 0.1))
+# CSS 颜色名
+plt.plot(x, 2*x+5, color = "chartreuse")
+```
+
+### 线条风格
+
+plot(..., linestyle: 线条风格)
+
+#### 使用名称
+
+```python
+# 实线
+plt.plot(x, 2*x, linestyle = "solid")
+# 虚线
+plt.plot(x, 2*x+1, linestyle = "dashed")
+# 点线
+plt.plot(x, 2*x+2, linestyle = "dotted")
+# 点划线
+plt.plot(x, 2*x+3, linestyle = "dashdot")
+```
+
+#### 使用符号
+
+```python
+# 实线
+plt.plot(x, 2*x, linestyle = "-")
+# 虚线
+plt.plot(x, 2*x+1, linestyle = "--")
+# 点线
+plt.plot(x, 2*x+2, linestyle = ":")
+# 点划线
+plt.plot(x, 2*x+3, linestyle = "-.")
+```
+
+---
+
+我们还可以把颜色和线条风格合并在一起
+
+```python
+# 绿色虚线
+plt.plot(x, 2*x, "g--")
+# 蓝色点线
+plt.plot(x, 2*x+1, ":b")
+```
+
+### 图例
+
+虽然 plot 提供了 label 参数，但需要 legend() 才能显示
+
+```python
+x = range(0, 10)
+y = np.cos(x)
+
+# 蓝线
+plt.plot(
+  x,
+  y,
+  linestyle = '-.',
+  linewidth = 1,
+  color = 'blue',
+  marker = 'o',
+  markersize = 10,
+  markeredgecolor = 'r',
+  label = 'Cos',
+  alpha = 0.5
+)
+
+y2 = np.sin(x)
+
+# 红线
+plt.plot(
+  x,
+  y2,
+  linestyle = '--',
+  linewidth = 1,
+  color = 'red',
+  marker = 'x',
+  markersize = 10,
+  markeredgecolor = 'b',
+  label = 'Sin',
+  alpha = 0.5
+)
+
+plt.legend()
+```
+
+### 标题标签
+
+```python
+x = np.linspace(0, 10, 200)
+plt.plot(np.sin(x))
+
+plt.title('Sine Curve')
+plt.xlabel('Radian')
+plt.ylabel('Magnitude')
+```
+
+### 范围
+
+```python
+plt.plot(np.sin(x))
+
+# X 设置在 50 到 175
+plt.xlim(50, 175)
+# Y 设置在 -0.5 到 1
+plt.ylim(-0.5, 1)
+```
+
+如果将参数反转，可以实现坐标轴的翻转
+
+```python
+plt.plot(np.sin(x))
+
+# X 设置在 175 到 50
+plt.xlim(175, 50)
+# Y 设置在 1 到 -0.5
+plt.ylim(1, -0.5)
+```
+
+### axis
+
+我们还可以通过 `axis: [xmin, xmax, ymin, ymax]` 函数一次性设置
+
+```python
+plt.plot(np.sin(x))
+
+# X 设置在 175 到 50
+# Y 设置在 -0.5 到 1
+plt.axis([175, 50, -0.5, 1])
+```
+
+它还支持自动调整
+
+- `axis('tight')` 会自动调整到数据的最小范围
+- `axis('equal')` 会使 x 和 y 与屏幕宽高比一致
+- `axis('scaled')` 会使 x 和 y 的单位长度相等，不会调整到数据的最小范围
+- `axis('square')` 会使 x 和 y 的单位长度相等，并且调整到数据的最小范围
+- `axis('off')` 会关闭坐标轴
+
+可以使用 `plt.axis?` 查看更多信息
+
+## 散点图
