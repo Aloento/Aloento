@@ -305,3 +305,67 @@ plt.axis([175, 50, -0.5, 1])
 可以使用 `plt.axis?` 查看更多信息
 
 ## 散点图
+
+~~今天做 quiz 的时候居然在一个非常简单的问题上选错了，不能再摆了~~
+
+散点图在观察数据分布的时候非常有用
+
+```python
+x = range(1, 11)
+# 传入 "o" 以便绘制散点图
+plt.plot(x, x, "o")
+```
+
+还可以使用 `scatter` 函数，其提供了更多可以自定义的特性
+
+```python
+plt.scatter(x, x)
+```
+
+### 形状
+
+Matplotlib 支持很多点的形状
+
+```python
+# 随机数生成器
+rand = np.random.RandomState(42)
+
+# 绘制随机点
+for marker in ['o', '.', ',', 'x', '+', 'v', '^', '<', '>', 's', 'd']:
+    plt.plot(rand.rand(5), rand.rand(5), marker, label = "marker = '{}'".format(marker))
+
+plt.legend()
+# 避免图例与数据重叠
+plt.xlim(0, 1.8)
+```
+
+### 透明度
+
+点太多会重叠，不便于观察
+
+```python
+x = rand.rand(200)
+y = rand.rand(200)
+
+# 绘制散点图
+plt.scatter(x, y, alpha = 0.5)
+```
+
+### 颜色与大小
+
+```python
+x = rand.rand(100)
+y = rand.rand(100)
+
+colors = rand.rand(100)
+sizes = 1000 * rand.rand(100)
+
+# 绘制散点图
+plt.scatter(x, y, c = colors, s = sizes, alpha = 0.5)
+# 添加颜色条
+plt.colorbar()
+```
+
+## 条形图
+
+PPT 专用图形
