@@ -369,3 +369,76 @@ plt.colorbar()
 ## 条形图
 
 PPT 专用图形
+
+```python
+x = range(1, 6)
+y = [1, 4, 6, 8, 4]
+
+plt.bar(x, y)
+```
+
+还可以是水平的
+
+```python
+plt.barh(x, y)
+```
+
+### 分组
+
+```python
+member = ['A', 'B', 'C', 'D']
+jan = [30, 40, 50, 60]
+feb = [35, 45, 55, 65]
+mar = [40, 50, 60, 70]
+# 设置每个柱状图的宽度
+width = 0.2
+
+# 绘制柱状图
+plt.bar(range(4), jan, width = width, label = 'Jan')
+plt.bar(np.arange(4) + width, feb, width = width, label = 'Feb')
+plt.bar(np.arange(4) + width * 2, mar, width = width, label = 'Mar')
+
+# 添加图例
+plt.legend()
+
+# 设置刻度
+plt.xticks(np.arange(4) + width, member)
+# 设置 y 轴标签
+plt.ylabel('Revenue')
+
+# 显示网格
+plt.grid()
+# 显示图形
+plt.show()
+```
+
+### 堆叠
+
+```python
+# 绘制堆叠柱状图
+plt.bar(np.arange(4), jan, label = 'Jan')
+plt.bar(np.arange(4), feb, bottom = jan, label = 'Feb')
+plt.bar(np.arange(4), mar, bottom = np.array(jan) + np.array(feb), label = 'Mar')
+
+# 添加图例
+plt.legend()
+
+# 设置刻度
+plt.xticks(np.arange(4), member)
+# 设置 y 轴标签
+plt.ylabel('Revenue')
+
+# 显示网格
+plt.grid()
+# 显示图形
+plt.show()
+```
+
+bottom 让数据在上一个数据的基础上偏移  
+np.array 便于元素级别（向量化）运算
+
+## 直方图
+
+```python
+
+```
