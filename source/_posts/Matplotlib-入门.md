@@ -440,5 +440,49 @@ np.array 便于元素级别（向量化）运算
 ## 直方图
 
 ```python
+x1 = np.random.normal(0, 0.4, 1000)
+x2 = np.random.normal(-3, 1, 1000)
+x3 = np.random.normal(2, 2, 1000)
 
+kwargs = dict(histtype='stepfilled', alpha=0.5, density=True, bins=40)
+
+plt.hist(x1, **kwargs)
+plt.hist(x2, **kwargs)
+plt.hist(x3, **kwargs)
 ```
+
+### 参数
+
+```python
+plt.hist(
+  x: 数据,
+  bins: 柱数,
+  range: 上下边界,
+  density: 频数转换成频率,
+  weights: 每个数据的权重,
+  cumulative: 计算累计频数或频率,
+  bottom: 基准线,
+  histtype: 柱状图类型 _bar_ / barstacked / step / stepfilled,
+  align: 边界对齐方式 left / _mid_ / right,
+  orientation: 方向 _vertical_ / horizontal,
+  rwidth: 柱宽,
+  log: 是否对 y 轴取对数,
+  color: 颜色,
+  label: 图例标签,
+  stacked: 有多个数据时是否堆叠 默认水平
+)
+```
+
+### 二维数据
+
+二维直方图在两个维度进行切分，来查看数据的分布
+
+```python
+x = np.random.randn(1000)
+y = np.random.randn(1000)
+
+plt.hist2d(x, y, bins=30, cmap='Blues')
+plt.colorbar()
+```
+
+## 饼图
