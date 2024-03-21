@@ -157,3 +157,25 @@ Boy optimal / Girl optimal
 Uniqueness：如果两种情况下算法得到相同的匹配结果，那么这个结果就是唯一的稳定匹配
 
 ## Max Magnitude $\theta (2^n)$
+
+# 习题
+
+## 证明题
+
+Suppose there are $n$ boys and $n$ girls. $m$ boys are tall and the same number of girls are blonde.  
+Boys prefer blonde girls to non-blonde girls.  
+Girls prefer tall boys to non-tall boys.
+
+Show that in every stable match, blonde girls are paired with tall boys.
+
+### Proof
+
+### 相同偏好
+
+If all the girls have the same preference list, then there is only one stable pairing.
+
+### ?
+
+There is no pairing, stable or unstable, in which all the boys are better off than when the Gale-Shapley algorithm is used.
+
+## 匹配题

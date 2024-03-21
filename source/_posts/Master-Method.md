@@ -276,3 +276,9 @@ $af(\frac{n}{b}) = 2 \frac{n}{2} \log \frac{n}{2} = n \log \frac{n}{2} = n \log 
 > 注：根据对数法则，$\log \frac{n}{2} = \log n - \log 2$  
 > 由于本题讨论计算机领域，默认以二为底，有 $\log = \log_2$  
 > 则 $\log 2 = 1$，所以 $\log \frac{n}{2} = \log n - 1$
+
+# 习题
+
+1. $T(n) = 7 T(\frac{n}{2}) + n^2$
+2. $T(n) = 7 T(\frac{n}{3}) + n^2$
+3. $T(n) = 16 T(\frac{n}{4}) + n^2$
