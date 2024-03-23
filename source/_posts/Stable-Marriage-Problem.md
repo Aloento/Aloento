@@ -23,7 +23,10 @@ tags: [算法, 笔记]
 
 稳定：不存在一对男女，他们之间相互更喜欢。换言之，不存在一对男人和女人，他们都更喜欢对方而不是他们当前的配偶。
 
-如不稳定，则称其为 rogue / vogue couple ~~(为什么要叫这个名)~~
+如果存在一对男女，他们不是当前匹配中的伴侣，但相互之间都优先于他们各自的伴侣  
+则称其为 rogue / vogue couple / 阻碍对 ~~(为什么要叫这个名)~~
+
+存在 rogue couple 的匹配是不稳定的，因为这对男女都有动机离开他们当前的伴侣而彼此匹配
 
 如果我们允许同性恋，那么这个问题就是 Stable Roommates Problem，在这种情况下 **没有** 稳定匹配
 
@@ -166,9 +169,33 @@ Suppose there are $n$ boys and $n$ girls. $m$ boys are tall and the same number 
 Boys prefer blonde girls to non-blonde girls.  
 Girls prefer tall boys to non-tall boys.
 
+### 金发配高个
+
 Show that in every stable match, blonde girls are paired with tall boys.
 
-### Proof
+这题是在说有一些高个男生和一些金发女生，男生更喜欢金发女生，女生更喜欢高个男生  
+要证明在每一个稳定匹配中，金发女生都会和高个男生配对
+
+要证明，我们假设矛盾：存在一个稳定组合 $(b, g)$ 有
+
+1. **$b$ 是高个男生, $g$ 不是金发女生**
+
+或者
+
+2. $b$ 不是高个男生, $g$ 是金发女生
+
+1 和 2 是对称的，所以我们分析 1，同理可得 2
+
+令高个的反义为矮个，金发的反义为黑发
+
+既然有 高个配黑发，由于男女人数相同，那么一定有一个 $(b', g')$ 是矮个配金发
+
+我们发现 $g'$ 更喜欢 $b$，因为 $g'$ 更喜欢高个  
+所以 $(b, g')$ 是 rogue couple，这就与题目中的稳定匹配矛盾了
+
+---
+
+证明思路：假设初始匹配稳定，随后找出 rogue couple，导致违反稳定匹配的条件
 
 ### 相同偏好
 
