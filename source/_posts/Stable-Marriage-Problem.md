@@ -201,6 +201,20 @@ Show that in every stable match, blonde girls are paired with tall boys.
 
 If all the girls have the same preference list, then there is only one stable pairing.
 
+要证明只存在一种稳定匹配，我们就假设有 A / B 两种稳定匹配
+
+A 有 $(g, b)$，而在 B 中有 $(g, b')$  
+同一个女生出现在不同的匹配中
+
+由于所有女生偏好相同，则在任何稳定匹配中，将完全由男生的优先级决定，
+无论 g 与谁匹配，其他女生的相对偏好不变
+
+由于同一个女生出现在了不同的匹配中，这意味着至少在某个匹配中，
+她得到了相对于另一个匹配更 高 / 低 优先级的男生
+
+因为如果 $g$ 在 B 中能与 $b'$ 匹配，那么在 A 中与 $b$ 匹配的的其他女生将偏好 $b'$  
+这就导致了 rogue couple，违反了稳定匹配的条件
+
 ### ?
 
 There is no pairing, stable or unstable, in which all the boys are better off than when the Gale-Shapley algorithm is used.
