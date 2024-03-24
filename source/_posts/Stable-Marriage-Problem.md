@@ -215,7 +215,7 @@ A 有 $(g, b)$，而在 B 中有 $(g, b')$
 因为如果 $g$ 在 B 中能与 $b'$ 匹配，那么在 A 中与 $b$ 匹配的的其他女生将偏好 $b'$  
 这就导致了 rogue couple，违反了稳定匹配的条件
 
-### ?
+### 最优解
 
 There is no pairing, stable or unstable, in which all the boys are better off than when the Gale-Shapley algorithm is used.
 
@@ -231,7 +231,7 @@ There is no pairing, stable or unstable, in which all the boys are better off th
 那么这意味着至少有一个男性与他的偏好列表中的一个女性配对  
 而该女性在 GS 算法中拒绝了他
 
-如果所有男孩在某个配对中都比 Gale-Shapley 算法的结果更满意  
+如果所有男孩在某个配对中都比 GS 算法的结果更满意  
 那么至少会有一对男女是不稳定的，因为至少有一个女孩可以与她更偏好的男孩配对  
 所以不存在这样的匹配，因为它会违反 GS 算法的稳定匹配性质
 
