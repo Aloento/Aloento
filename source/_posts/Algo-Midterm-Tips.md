@@ -16,6 +16,8 @@ The Midterm Exam for Design and Analysis of Algorithms
 - 如果存在一对男女，不存在于当前匹配中，但是相互之间更喜欢，为 vogue ，导致不稳定匹配
 - 同性恋没有稳定匹配
 
+## 性质
+
 1. 在 $(n - 1)^2 + 1$ 天内结束
 2. 男孩结婚时已遍历所有更喜欢的
 3. 结束时男孩未结婚，则已遍历全部
@@ -54,3 +56,11 @@ The Midterm Exam for Design and Analysis of Algorithms
 这导致 vogue ，因为至少有一个女孩可以与她更喜欢的配对，得证
 
 # Master Method
+
+- 递归：$ T(n) = n^{\log_b(a)} > f(n) $
+
+- 一样：$ T(n) = n^{\log_b(a)} \log n $
+
+- 分治：$ af(\frac{n}{b}) \leq cf(n), c < 1, n \to \infty, T(n) = f(n) $
+
+#
