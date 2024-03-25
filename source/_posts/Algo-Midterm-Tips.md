@@ -55,7 +55,7 @@ The Midterm Exam for Design and Analysis of Algorithms
 因此如果有更优解，表明至少有一位男性与在 GS 中拒绝他的女性配对  
 这导致 vogue ，因为至少有一个女孩可以与她更喜欢的配对，得证
 
-# Master Method
+# [Master Method](https://aloen.to/Algorithm/Master-Method/)
 
 - 递归：$ T(n) = n^{\log_b(a)} > f(n) $
 
@@ -63,4 +63,81 @@ The Midterm Exam for Design and Analysis of Algorithms
 
 - 分治：$ af(\frac{n}{b}) \leq cf(n), c < 1, n \to \infty, T(n) = f(n) $
 
-#
+# [递归分治](https://aloen.to/Algorithm/%E5%88%86%E8%80%8C%E6%B2%BB%E4%B9%8B/)
+
+## 并规
+
+```ts
+Inv(A, low, high):
+  if low < high:
+    mid := (low + high) / 2
+
+    left := Inv(A, low, mid)
+    right := Inv(A, mid + 1, high)
+
+    merge := Merge(A, low, mid, high)
+
+    return left + right + merge
+
+Merge(A, low, mid, high):
+  leftI := low
+  rightI := mid + 1
+  arrayI := low
+
+  inversion := 0
+  temp := []
+
+  while leftI <= mid && rightI <= high:
+    if A[leftI] <= A[rightI]:
+      temp[arrayI] := A[leftI]
+      leftI++
+    else:
+      temp[arrayI] := A[rightI]
+      rightI++
+      inversion += mid - leftI + 1
+    arrayI++
+
+  while leftI <= mid:
+    temp[arrayI] := A[leftI]
+    leftI++
+    arrayI++
+
+  while rightI <= high:
+    temp[arrayI] := A[rightI]
+    rightI++
+    arrayI++
+
+  for i := low; i <= high; i++:
+    A[i] := temp[i]
+
+  return inversion
+```
+
+## 快速选择
+
+```ts
+Select(A, low, high, k):
+  if low < high:
+    pivot := Partition(A, low, high)
+    pos := pivot - low + 1
+
+    if k == pos:
+      return A[pivot]
+    else if k < pos:
+      return Select(A, low, pivot - 1, k)
+    else:
+      return Select(A, pivot + 1, high, k - pos)
+
+Partition(A, low, high):
+  pivot := A[high]
+  i := low - 1
+
+  for j := low; j < high; j++:
+    if A[j] <= pivot:
+      i++
+      Swap(A, i, j)
+
+  Swap(A, i + 1, high)
+
+  return i + 1
+```
