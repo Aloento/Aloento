@@ -51,6 +51,26 @@ If it is true, give a short explanation. Otherwise, give a counterexample.
 
 In every instance of the Stable Marriage Problem, there is a suitable matching containing a pair $(b, g)$ such that $b$ is ranked first on the preference list of $g$ and $g$ is ranked first on the preference list of $b$.
 
+### Solution
+
+False, consider the following case:
+
+| Boys |     |     |
+| ---- | --- | --- |
+| b1   | g1  | g2  |
+| b2   | g1  | g2  |
+
+| Girl |     |     |
+| ---- | --- | --- |
+| g1   | b2  | b1  |
+| g2   | b1  | b2  |
+
+(b1, g2), (b2, g1) is the only stable matching.
+
+b2 and g1 are both first on each other's preference list.  
+But we cannot find a pair where b1 and b2 are each other's first preference.  
+So it's not true for **every** instance.
+
 ## Belonging
 
 Consider an instance of the Stable Marriage Problem in which there exists a boy $b$ and a girl $g$ such that $b$ is ranked first on the preference list of $g$ and $g$ is ranked first on the preference list of $b$. Then every stable marriage $M$ for this instance, the pair $(b, g)$ belongs to $M$.
