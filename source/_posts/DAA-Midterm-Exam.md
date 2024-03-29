@@ -75,6 +75,10 @@ So it's not true for **every** instance.
 
 Consider an instance of the Stable Marriage Problem in which there exists a boy $b$ and a girl $g$ such that $b$ is ranked first on the preference list of $g$ and $g$ is ranked first on the preference list of $b$. Then every stable marriage $M$ for this instance, the pair $(b, g)$ belongs to $M$.
 
+### Solution
+
+True. If $b$ and $g$ rank each other first, then any pairing where they are not matched would be unstable. Because if either $b$ or $g$ where matched with someone else, they would both prefer to be matched with each other, leading to an unstable pairing. So, in any stable pairing $M$, $b$ and $g$ must be matched.
+
 # Master Method
 
 ## $T(n) = 4T(n/2) + n$
