@@ -143,44 +143,66 @@ is as large as possible.
 ## Solution
 
 ```ts
-function maxCrossingSum(
-  arr: number[],
-  left: number,
+function findMaxCrossingSubarray(
+  A: number[],
+  low: number,
   mid: number,
-  right: number
-): number {
+  high: number
+): [number, number, number] {
+  let leftSum = -Infinity;
   let sum = 0;
-  let leftSum = Number.MIN_SAFE_INTEGER;
-  for (let i = mid; i >= left; i--) {
-    sum += arr[i];
+  let maxLeft = mid;
+  for (let i = mid; i >= low; i--) {
+    sum += A[i];
     if (sum > leftSum) {
       leftSum = sum;
+      maxLeft = i;
     }
   }
 
+  let rightSum = -Infinity;
   sum = 0;
-  let rightSum = Number.MIN_SAFE_INTEGER;
-  for (let i = mid + 1; i <= right; i++) {
-    sum += arr[i];
+  let maxRight = mid;
+  for (let j = mid + 1; j <= high; j++) {
+    sum += A[j];
     if (sum > rightSum) {
       rightSum = sum;
+      maxRight = j;
     }
   }
 
-  return leftSum + rightSum;
+  return [maxLeft, maxRight, leftSum + rightSum];
 }
 
-function maxSubArraySum(arr: number[], left: number, right: number): number {
-  if (left === right) {
-    return arr[left];
+function findMaximumSubarray(
+  A: number[],
+  low: number,
+  high: number
+): [number, number, number] {
+  if (high === low) {
+    return [low, high, A[low]]; // Base case: only one element
+  } else {
+    const mid = Math.floor((low + high) / 2);
+    const [leftLow, leftHigh, leftSum] = findMaximumSubarray(A, low, mid);
+    const [rightLow, rightHigh, rightSum] = findMaximumSubarray(
+      A,
+      mid + 1,
+      high
+    );
+    const [crossLow, crossHigh, crossSum] = findMaxCrossingSubarray(
+      A,
+      low,
+      mid,
+      high
+    );
+
+    if (leftSum >= rightSum && leftSum >= crossSum) {
+      return [leftLow, leftHigh, leftSum];
+    } else if (rightSum >= leftSum && rightSum >= crossSum) {
+      return [rightLow, rightHigh, rightSum];
+    } else {
+      return [crossLow, crossHigh, crossSum];
+    }
   }
-
-  let mid = Math.floor((left + right) / 2);
-
-  return Math.max(
-    maxSubArraySum(arr, left, mid),
-    maxSubArraySum(arr, mid + 1, right),
-    maxCrossingSum(arr, left, mid, right)
-  );
 }
 ```
