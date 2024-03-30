@@ -105,8 +105,99 @@ $T(n) = n^3 \log n$
 
 Recall the problem of finding the number of inversions: we are given a sequence of n numbers $a_1, a_2, \cdots, a_n$, which we assume are all distinct, and we define an inversion to be a pair $i < j$ such that $a_i > a_j$. We motivated the problem of counting inversions as a good measure of how different two orderings are. However, one might feel that this measure is too sensitive. Let's call a pair a significant inversion if $i < j$ and $a_i > 2a_j$. Give an $O(n \log n)$ divide and conquer algorithm to count the number of significant inversions in a sequence of n pairwise distinct numbers $a_1, a_2, \cdots, a_n$.
 
+## Solution
+
+```ts
+function mergeAndCount(arr, left, mid, right):
+    temp = []
+    invCount = 0
+    i = left
+    j = mid + 1
+    k = 0
+
+    // Count significant inversions for the split part
+    for i from left to mid:
+        while j <= right and arr[i] > 2 * arr[j]:
+            j += 1
+        invCount += (j - (mid + 1))
+
+    i = left
+    j = mid + 1
+
+    // Merge the two halves
+    while i <= mid and j <= right:
+        if arr[i] <= arr[j]:
+            temp.append(arr[i])
+            i += 1
+        else:
+            temp.append(arr[j])
+            j += 1
+        k += 1
+
+    // Copy the remaining elements of left half, if there are any
+    while i <= mid:
+        temp.append(arr[i])
+        i += 1
+        k += 1
+
+    // Copy the remaining elements of right half, if there are any
+    while j <= right:
+        temp.append(arr[j])
+        j += 1
+        k += 1
+
+    // Copy back the merged elements to original array
+    for i from 0 to k-1:
+        arr[left + i] = temp[i]
+
+    return invCount
+```
+
 # Largest Contiguous Sum
 
 Give a $O(n \log n)$ time divide and conquer algorithm to find a contiguous subarray within a one-dimensional array $A[1 : n]$ of real numbers which has the largest sum, i.e., find indices $1 \leq i \leq j \leq n$ such that
 $$ A[i] + A[i+1] + \cdots + A[j] $$
 is as large as possible.
+
+## Solution
+
+```ts
+function maxCrossingSum(
+  arr: number[],
+  l: number,
+  m: number,
+  h: number
+): number {
+  let sum = 0;
+  let left_sum = Number.MIN_SAFE_INTEGER;
+  for (let i = m; i >= l; i--) {
+    sum = sum + arr[i];
+    if (sum > left_sum) {
+      left_sum = sum;
+    }
+  }
+
+  sum = 0;
+  let right_sum = Number.MIN_SAFE_INTEGER;
+  for (let i = m + 1; i <= h; i++) {
+    sum = sum + arr[i];
+    if (sum > right_sum) {
+      right_sum = sum;
+    }
+  }
+
+  return Math.max(left_sum + right_sum, left_sum, right_sum);
+}
+
+function maxSubArraySum(arr: number[], l: number, h: number): number {
+  if (l === h) {
+    return arr[l];
+  }
+  let m = Math.floor((l + h) / 2);
+  return Math.max(
+    maxSubArraySum(arr, l, m),
+    maxSubArraySum(arr, m + 1, h),
+    maxCrossingSum(arr, l, m, h)
+  );
+}
+```
