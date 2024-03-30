@@ -83,9 +83,23 @@ True. If $b$ and $g$ rank each other first, then any pairing where they are not 
 
 ## $T(n) = 4T(n/2) + n$
 
+$a = 4, b = 2, f(n) = n, n^{\log_{b} a} = n^2$
+
 ## $T(n) = 6T(n/3) + n^2$
 
+$a = 6, b = 3, f(n) = n^2, n^{\log_{b} a} = n^{\log_{3} 6} \approx n^{1.63} < n^2$
+
+$af(n/b) = 6(n/3)^2 = \frac{2}{3}n^2$
+
+$c = \frac{2}{3} < 1$
+
+$T(n) = n^2$
+
 ## $T(n) = 8T(n/2) + n^3$
+
+$a = 8, b = 2, f(n) = n^3, n^{\log_{b} a} = n^3 = f(n)$
+
+$T(n) = n^3 \log n$
 
 # Significant Inversion
 
