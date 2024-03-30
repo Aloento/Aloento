@@ -108,49 +108,30 @@ Recall the problem of finding the number of inversions: we are given a sequence 
 ## Solution
 
 ```ts
-function mergeAndCount(arr, left, mid, right):
-    temp = []
-    invCount = 0
-    i = left
-    j = mid + 1
-    k = 0
+function mergeAndCount(left: number[], right: number[]): [number[], number] {
+  let i = 0,
+    j = 0,
+    inversions = 0;
+  const sorted: number[] = [];
 
-    // Count significant inversions for the split part
-    for i from left to mid:
-        while j <= right and arr[i] > 2 * arr[j]:
-            j += 1
-        invCount += (j - (mid + 1))
+  while (i < left.length && j < right.length) {
+    if (left[i] <= 2 * right[j]) {
+      sorted.push(left[i]);
+      i++;
+    } else {
+      // Since left[i] > 2 * right[j], all remaining elements in left are also inversions.
+      inversions += left.length - i;
+      sorted.push(right[j]);
+      j++;
+    }
+  }
 
-    i = left
-    j = mid + 1
+  // Append any remaining elements (no further inversions can be found here)
+  while (i < left.length) sorted.push(left[i++]);
+  while (j < right.length) sorted.push(right[j++]);
 
-    // Merge the two halves
-    while i <= mid and j <= right:
-        if arr[i] <= arr[j]:
-            temp.append(arr[i])
-            i += 1
-        else:
-            temp.append(arr[j])
-            j += 1
-        k += 1
-
-    // Copy the remaining elements of left half, if there are any
-    while i <= mid:
-        temp.append(arr[i])
-        i += 1
-        k += 1
-
-    // Copy the remaining elements of right half, if there are any
-    while j <= right:
-        temp.append(arr[j])
-        j += 1
-        k += 1
-
-    // Copy back the merged elements to original array
-    for i from 0 to k-1:
-        arr[left + i] = temp[i]
-
-    return invCount
+  return [sorted, inversions];
+}
 ```
 
 # Largest Contiguous Sum
@@ -164,40 +145,42 @@ is as large as possible.
 ```ts
 function maxCrossingSum(
   arr: number[],
-  l: number,
-  m: number,
-  h: number
+  left: number,
+  mid: number,
+  right: number
 ): number {
   let sum = 0;
-  let left_sum = Number.MIN_SAFE_INTEGER;
-  for (let i = m; i >= l; i--) {
-    sum = sum + arr[i];
-    if (sum > left_sum) {
-      left_sum = sum;
+  let leftSum = Number.MIN_SAFE_INTEGER;
+  for (let i = mid; i >= left; i--) {
+    sum += arr[i];
+    if (sum > leftSum) {
+      leftSum = sum;
     }
   }
 
   sum = 0;
-  let right_sum = Number.MIN_SAFE_INTEGER;
-  for (let i = m + 1; i <= h; i++) {
-    sum = sum + arr[i];
-    if (sum > right_sum) {
-      right_sum = sum;
+  let rightSum = Number.MIN_SAFE_INTEGER;
+  for (let i = mid + 1; i <= right; i++) {
+    sum += arr[i];
+    if (sum > rightSum) {
+      rightSum = sum;
     }
   }
 
-  return Math.max(left_sum + right_sum, left_sum, right_sum);
+  return leftSum + rightSum;
 }
 
-function maxSubArraySum(arr: number[], l: number, h: number): number {
-  if (l === h) {
-    return arr[l];
+function maxSubArraySum(arr: number[], left: number, right: number): number {
+  if (left === right) {
+    return arr[left];
   }
-  let m = Math.floor((l + h) / 2);
+
+  let mid = Math.floor((left + right) / 2);
+
   return Math.max(
-    maxSubArraySum(arr, l, m),
-    maxSubArraySum(arr, m + 1, h),
-    maxCrossingSum(arr, l, m, h)
+    maxSubArraySum(arr, left, mid),
+    maxSubArraySum(arr, mid + 1, right),
+    maxCrossingSum(arr, left, mid, right)
   );
 }
 ```
