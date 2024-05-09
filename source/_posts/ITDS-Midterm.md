@@ -79,23 +79,68 @@ Provide explanations and calculations to support each part of the proof.
 
 What are the hyper-parameters of K-means clustering and how do we set them?
 
+K-means 聚类的超参数有哪些，我们应该如何设置它们？
+
+1. Cluster Number $k$：聚类数量，使用 Elbow Method 或 Silhouette Score
+2. Initial Centroids：初始质心，使用随机选择或 KMeans++
+3. Maximum Iterations：最大迭代次数，一般为 300
+4. Convergence Tolerance：收敛容差，当质心变化小于阈值时停止迭代，一般为 $10^{-4}$
+
 # Agglomerative
 
 In hierarchical agglomerative clustering, how would you determine the optimal number of clusters without relying on pre-defined stopping criteria?
+
+在层次聚类中，如何在不依赖预定义停止条件的情况下确定最优的聚类数量？
+
+一般使用 Dendrogram 来帮助确定最优聚类数量。
+
+1. 生成树状图
+2. 寻找最大的 Merge Distance 增量
+3. 在这个点 Cut 树状图
+4. 切割点以上的分支数量即为最优数
 
 # DBSCAN
 
 If you set a large value for $\epsilon$ in DBSCAN, what would be the potential consequences on the clustering results?
 
+如果在 DBSCAN 中设置一个较大的 $\epsilon$ 值，这对聚类结果可能有什么影响？
+
+$\epsilon$ 表示 Eps-neighborhood，即邻域半径
+
+1. 导致本应分开的不同簇被合并
+2. 噪声点可能被错误地分配到簇中
+3. 边界结构 Blurred
+4. Overfitting
+
 # Regression
 
 Discuss the difference between simple linear regression and multiple linear regression.
+
+讨论简单线性回归和多元线性回归之间的区别。
+
+简单线性只涉及一个 feature，多元线性涉及多个 feature。
+都是使误差平方和最小化，但多元线性可以更全面地分析多个因素对结果变量的综合影响
 
 # Gradient
 
 Describe the process by which gradient descent is employed to refine the parameters of a linear regression model.
 
+描述梯度下降如何被用来优化线性回归模型参数的过程。
+
+1. 线性回归模型参数随机初始化
+2. 通常使用 MSE 计算 Loss
+3. 为 Loss 的每个参数计算 partial derivative
+4. 将参数减去 学习率 \* gradient
+5. 重复 2-4 直到收敛
+
 # Regularization
 
 How does regularization help overcome the challenges associated with using polynomial regression models?
 Particularly in mitigating overfitting and controlling model complexity?
+
+正则化如何帮助克服使用多项式回归模型所面临的挑战？特别是在减少过拟合和控制模型复杂度方面？
+
+1. Overfitting：向 Loss 增加额外的 Penalty，
+   通常是 L1 或 L2，使得模型不能 fit 小波动
+2. Complexity：惩罚大的 coefficient，削弱其影响，
+   降低复杂度，提高 generalization ability
