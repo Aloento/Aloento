@@ -1,5 +1,5 @@
 ---
-title: DDA Endterm
+title: DAA Endterm
 toc: true
 categories:
   - [Algorithm]
@@ -11,7 +11,7 @@ date: 2024-05-14 18:15:33
 
 <!-- more -->
 
-# 走棋盘
+# 网格最大成本寻路
 
 Suppose that you are given a $n \times n$ checkerboard and a checker. You must move the checker from the bottom edge of the board to the top edge of the board according to the following rules. At each step you may move the checker to one of three squares:
 
@@ -24,6 +24,56 @@ Each time you move from square $x$ to square $y$, you receive $f(x, y)$ dollars.
 ## 解
 
 https://github.com/juemura/amli/blob/master/Checkerboard.ipynb
+
+这题说白了就是让你计算一个矩阵，每次只能往下临近的地方走一格，每走一次有一个 f 方程给你计算收益，让你求出最大收益的路径。
+
+这道题没有给出 f 的定义，所以我们自己定个规则：随机给每个格子填一个值，这个值可大可小，可正可负，走到格子上就把格子的值加到最终收益上。
+
+```ts
+import { random } from "lodash";
+
+function makeMatrix(dim: number) {
+  const matrix: number[][] = [];
+
+  for (let i = 0; i < dim; i++) {
+    matrix.push([]);
+    for (let j = 0; j < dim; j++) {
+      matrix[i].push(random(-100, 100));
+    }
+  }
+
+  return matrix;
+}
+```
+
+<details>
+  <summary>打印矩阵的代码</summary>
+
+```ts
+function printMatrix(matrix: number[][]) {
+  let res = "|X\\Y|";
+
+  for (let i = 0; i < matrix.length; i++) {
+    res += i + "|";
+  }
+
+  res += "\n|---|";
+  for (let i = 0; i < matrix.length; i++) {
+    res += "---|";
+  }
+
+  res += "\n";
+
+  for (let i = 0; i < matrix.length; i++) {
+    res += `|**${i}**|${matrix[i].join("|")}|`;
+    res += "\n";
+  }
+
+  console.log(res);
+}
+```
+
+</details>
 
 # 最优参数
 
@@ -54,6 +104,6 @@ and knapsack capacity 11.
 
 Suppose you are managing a consulting team of expert computer hackers, and each week you have to choose a job for them to undertake. Now, as you can well imagine, the set of possible jobs is divided into those that are low-stress, and those that are high-stress. The basic question, each week, is whether to take on a low-stress job or a high-stress job. If you select a low-stress job for your team in week $i$, then you get a revenue of $l_i > 0$ dollars. If you select a high-stress job, you get a revenue of $h_i > 0$ dollars. The catch, however, is that in order for the team to take on a high-stress job in week $i$, it's required that they do no job in week $i - 1$. On the other hand, it's OK for the team to take a low-stress job in week $i$ even if they have done a job in week $i - 1$.
 
-S0, given a sequence of $n$ weeks, a plan is specified by a choice of low, high, none for each of the $n$ weeks, which the property that if high is chosen for week $i > 1$, the none has to be chose for week $i - 1$. (1st week can be high) The value of the plan is determined in the natural way: for each $i$ you add $(h/l/n)_i$ to the value of you chose high in week $i$. Give an efficient dynamic programming algorithm that take values for $l_1, l_2 \cdots l_n$ and $h_1, h_2 \cdots h_n$ and returns a plan of maximum value. Also give the running time of your algorithm.
+So, given a sequence of $n$ weeks, a plan is specified by a choice of low, high, none for each of the $n$ weeks, which the property that if high is chosen for week $i > 1$, the none has to be chose for week $i - 1$. (1st week can be high) The value of the plan is determined in the natural way: for each $i$ you add $(h/l/n)_i$ to the value of you chose high in week $i$. Give an efficient dynamic programming algorithm that take values for $l_1, l_2 \cdots l_n$ and $h_1, h_2 \cdots h_n$ and returns a plan of maximum value. Also give the running time of your algorithm.
 
 ## 解
