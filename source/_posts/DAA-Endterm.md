@@ -25,7 +25,7 @@ Each time you move from square $x$ to square $y$, you receive $f(x, y)$ dollars.
 
 https://github.com/juemura/amli/blob/master/Checkerboard.ipynb
 
-这题说白了就是让你计算一个矩阵，每次只能往下临近的地方走一格，每走一次有一个 f 方程给你计算收益，让你求出最大收益的路径。
+这题说白了就是让你计算一个矩阵，每次只能往上临近的地方走一格，每走一次有一个 f 方程给你计算收益，让你求出最大收益的路径。
 
 这道题没有给出 f 的定义，所以我们自己定个规则：随机给每个格子填一个值，这个值可大可小，可正可负，走到格子上就把格子的值加到最终收益上。
 
@@ -74,6 +74,130 @@ function printMatrix(matrix: number[][]) {
 ```
 
 </details>
+
+随后，我们得到矩阵
+
+| X\Y   | 0   | 1   | 2   | 3   | 4   |
+| ----- | --- | --- | --- | --- | --- |
+| **0** | -60 | 51  | -24 | -4  | -66 |
+| **1** | 45  | 12  | 76  | -41 | -22 |
+| **2** | -50 | 19  | -79 | 47  | 96  |
+| **3** | -74 | -12 | 98  | 54  | 1   |
+| **4** | -66 | 16  | 91  | -87 | -20 |
+
+接下来要做的事情就很明显了：计算局部最优的转移过程的累加收益
+（说的玄乎，看代码马上就懂了，也就是每次转移都找收益最大的那个来源）
+
+要注意，正向转移是不可能计算的，所以我们每次计算的都是从哪里来的，而不是去哪里。
+
+```ts
+function calcDifference(matrix: number[][]) {
+  const n = matrix.length;
+  // 用来存储每个格子的最大值
+  const aggregate: number[][] = Array.from({ length: n }, () =>
+    Array(n).fill(0)
+  );
+  // 用 matrix 填充第一行，因为没有格子可以从上方移动来
+  for (let col = 0; col < n; col++) {
+    aggregate[0][col] = matrix[0][col];
+  }
+
+  // 从第二行开始填充 maxDiff
+  for (let row = 1; row < n; row++) {
+    // 遍历当前行的每一个格子
+    for (let col = 0; col < n; col++) {
+      let fromLeft = -Infinity;
+      let fromTop = -Infinity;
+      let fromRight = -Infinity;
+
+      // 如果当前格子不在第一列，那么可以从左上移动来
+      if (col > 0) {
+        fromLeft = aggregate[row - 1][col - 1] + matrix[row][col];
+      }
+
+      // 从正上方移动来
+      fromTop = aggregate[row - 1][col] + matrix[row][col];
+
+      // 如果当前格子不在最后一列，那么可以从右上移动来
+      if (col < n - 1) {
+        fromRight = aggregate[row - 1][col + 1] + matrix[row][col];
+      }
+
+      // 计算当前格子的最大值
+      aggregate[row][col] = Math.max(fromLeft, fromTop, fromRight);
+    }
+  }
+
+  return aggregate;
+}
+```
+
+我们得到
+
+| X\Y   | 0   | 1   | 2   | 3   | 4   |
+| ----- | --- | --- | --- | --- | --- |
+| **0** | -60 | 51  | -24 | -4  | -66 |
+| **1** | 96  | 63  | 127 | -45 | -26 |
+| **2** | 46  | 146 | 48  | 174 | 70  |
+| **3** | 72  | 134 | 272 | 228 | 175 |
+| **4** | 68  | 288 | 363 | 185 | 208 |
+
+接下来我们追踪最大值的路径，这里我们只需要找到最后一行的最大值，然后从这个最大值开始往上找，将 DP 值最大的一个作为路径的下一个点，直到找到第一行。
+
+```ts
+function traceBack(aggregate: number[][]) {
+  const n = aggregate.length;
+  const path: [number, number][] = [];
+
+  let stopIndex = 0;
+
+  aggregate[n - 1].forEach((val, index) => {
+    if (val > aggregate[n - 1][stopIndex]) {
+      stopIndex = index;
+    }
+  });
+
+  path.push([n - 1, stopIndex]);
+
+  let currentCol = stopIndex;
+
+  for (let row = n - 2; row >= 0; row--) {
+    let fromLeft = -Infinity;
+    let fromTop = -Infinity;
+    let fromRight = -Infinity;
+
+    if (currentCol > 0) {
+      fromLeft = aggregate[row][currentCol - 1];
+    }
+
+    fromTop = aggregate[row][currentCol];
+
+    if (currentCol < n - 1) {
+      fromRight = aggregate[row][currentCol + 1];
+    }
+
+    if (fromLeft > fromTop && fromLeft > fromRight) {
+      currentCol -= 1;
+    } else if (fromRight > fromTop && fromRight > fromLeft) {
+      currentCol += 1;
+    }
+
+    path.push([row, currentCol]);
+  }
+
+  return path;
+}
+```
+
+我们得到路径
+
+| Path | (X, Y) |
+| ---- | ------ |
+| 4    | 2      |
+| 3    | 2      |
+| 2    | 3      |
+| 1    | 2      |
+| 0    | 1      |
 
 # 最优参数
 
