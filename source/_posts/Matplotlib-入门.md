@@ -4,7 +4,7 @@ date: 2024-03-03 15:30:00
 toc: true
 categories:
   - [Data Science]
-  - [Python]
+  - [Program, Python]
 tags: [数据科学, 笔记, Matplotlib]
 ---
 
