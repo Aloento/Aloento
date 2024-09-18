@@ -125,8 +125,6 @@ date: 2024-09-18 15:53:24
 
 **关系视角** 关注表达的意义之间的这些语义/概念链接，它们共同构成语义网络：
 
-## 语义视角：关系
-
 词汇语义本体如[WordNet](https://wordnet.princeton.edu/)和[FrameNet](http://framenet.icsi.berkeley.edu/)试图枚举大量词义之间的语义关系。
 
 ![语义网络片段 ([维基百科: 语义网络](https://en.wikipedia.org/wiki/Semantic_network)).](https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Semantic_Net.svg/1920px-Semantic_Net.svg.png)
@@ -139,7 +137,7 @@ date: 2024-09-18 15:53:24
 
 $$un\vert bear \vert able \vert s$$
 
-使我们能够看到*unbearables*的意义是由其部分*un*、_bear_、*able*和*s*的意义组成的。
+使我们能够看到*unbearables*的意义是由其部分*un*与*bear*、*able*和*s*的意义组成的。
 
 组合性原则：
 
@@ -175,8 +173,6 @@ visits(john, julie)
 - 我吃了面包、奶酪和这款极好的**bardiwac**。
 
 $\Rightarrow$ Bardiwac 是一种由葡萄制成的浓烈红色酒精饮料。
-
-## 语义视角：分布式
 
 即使我们不知道“bardiwac”在语义网络中的位置，也不知道其部分的含义，但它出现的*上下文*提供了大量关于其含义的信息。
 
