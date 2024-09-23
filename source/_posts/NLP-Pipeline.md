@@ -277,10 +277,12 @@ Morphological
 
 中，*Peter* 和 *apple* 是名词，*ate* 是动词，*the* 是限定词。词性标注任务是确定已分词（并可能已句子切分）的输入文本中每个单词的词性类别，例如：
 
-\['Peter', 'ate', 'the', 'apple', '.'\] $\Rightarrow$\
-\[('Peter', ['名词']), ('ate', ['动词']),
-('the', ['限定词']), ('apple', ['名词']), ('.',
-['标点'])\]
+['Peter', 'ate', 'the', 'apple', '.'] $\Rightarrow$\
+[
+  ('Peter', ['名词']), ('ate', ['动词']),
+  ('the', ['限定词']), ('apple', ['名词']),
+  ('.', ['标点'])
+]
 
 同样地，词性的类别也是依赖于上下文的。例如，比较以下句子：
 
@@ -444,7 +446,7 @@ NER 确定名称所指实体的*类型*，但不决定它们是指相同还是�
 与共指消解类似，实体链接也关注引用的身份，但在两个重要方面与之不同：
 
 - 像命名实体识别一样，它仅限于类似名称的表达，
-- 它通过将名称连接到*外部*知识库中的实体记录来确定实体的身份，例如维基百科：
+- 它通过将名称连接到*外部*知识库中的实体记录来确定实体的身份，例如：
 
 ![[实体链接](https://en.wikipedia.org/wiki/Entity_linking)](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Entity_Linking_-_Short_Example.png/400px-Entity_Linking_-_Short_Example.png)
 
