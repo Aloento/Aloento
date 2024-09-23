@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>NLP-Pipeline - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="本章主要讲述了 NLP 的语言结构和传统管道"><meta property="og:type" content="blog"><meta property="og:title" content="NLP-Pipeline"><meta property="og:url" content="https://aloen.to/AI/NLP/NLP-Pipeline/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="本章主要讲述了 NLP 的语言结构和传统管道"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/img/og_image.png"><meta property="article:published_time" content="2024-09-22T16:43:21.000Z"><meta property="article:modified_time" content="2024-09-23T10:29:04.620Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="笔记"><meta property="article:tag" content="AI"><meta property="article:tag" content="NLP"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/AI/NLP/NLP-Pipeline/"},"headline":"NLP-Pipeline","image":["https://aloen.to/img/og_image.png"],"datePublished":"2024-09-22T16:43:21.000Z","dateModified":"2024-09-23T10:29:04.620Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/AI/NLP/NLP-Pipeline/"}},"description":"本章主要讲述了 NLP 的语言结构和传统管道"}</script><link rel="canonical" href="https://aloen.to/AI/NLP/NLP-Pipeline/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-09-22T16:43:21.000Z" title="9/22/2024, 4:43:21 PM">2024-09-23</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-09-23T10:29:04.620Z" title="9/23/2024, 10:29:04 AM">2024-09-23</time></span><span class="level-item"><a class="link-muted" href="/categories/AI/">AI</a><span> / </span><a class="link-muted" href="/categories/AI/NLP/">NLP</a></span><span class="level-item">24 minutes read (About 3542 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">NLP-Pipeline</h1><div class="content"><p>本章主要讲述了 NLP 的语言结构和传统管道</p>
+<span id="more"></span>
+
+<h1 id="语言结构"><a href="#语言结构" class="headerlink" title="语言结构"></a>语言结构</h1><h2 id="表示层次"><a href="#表示层次" class="headerlink" title="表示层次"></a>表示层次</h2><p>自然语言是非常复杂的符号系统，其符号（单词、短语、句子等）比普通符号具有更多的内部结构。语言学家通常在语言符号中至少区分以下四个表示层次：</p>
+<ul>
+<li><p><strong>音位结构</strong>: 个别声音的层次，或在书面语言中，书写符号、字母；</p>
+</li>
+<li><p><strong>形态结构</strong>: <em>词素</em>的层次，即最小的有意义的语言单位，以及它们组织成<em>单词</em>；</p>
+</li>
+<li><p><strong>句法结构</strong>: 单词组织成语法正确的句子的层次；</p>
+</li>
+<li><p><strong>语义结构</strong>: <em>意义</em>的层次，即语言符号<em>所指</em>的内容。</p>
+</li>
+</ul>
+<p>列出的表示层次并未涵盖语言符号的所有重要方面：</p>
+<ul>
+<li><p>语义学，至少传统上，不处理非字面、依赖上下文的意义元素，这些元素属于<strong>语用学</strong>的范畴，而</p>
+</li>
+<li><p>对大于句子的单位（段落、整个对话等）内部关系的研究是<strong>话语分析</strong>的主题。</p>
+</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>依靠语言符号（简称 l. 符号）的概念，我们可以定义更多重要的概念：</p>
+<ul>
+<li><p><strong>语言</strong> 是一组 l. 符号。</p>
+</li>
+<li><p><strong>语法</strong> 是一个由以下两部分组成的对偶：</p>
+<ol>
+<li><p>一组 l. 符号，即语言的 <strong>词汇</strong>，以及</p>
+</li>
+<li><p>一组有限的操作，这些操作将一个或多个 l. 符号映射到一个 l. 符号。</p>
+</li>
+</ol>
+</li>
+<li><p>当且仅当 $\mathcal G$ 语法生成 $\mathcal L$ 语言时，$\mathcal L$ 包含正好那些在 $\mathcal G$ 的词汇中或通过有限次应用 $\mathcal G$ 的操作从 $\mathcal G$ 的词汇中产生的 l. 符号。</p>
+</li>
+</ul>
+<blockquote>
+<p>换句话说，语言 $\mathcal L$ 中的所有符号要么直接在语法 $\mathcal G$ 的词汇表中找到，<br>要么可以通过语法 $\mathcal G$ 的规则和操作从词汇表中的符号生成。</p>
+</blockquote>
+<p>语法操作通常分解为同时工作的音韵、形态、句法和语义操作。</p>
+<p>例如，对于一个作用于语言符号的二元语法操作 $f$，存在相应的音韵、形态等操作，使得</p>
+<p>对于 $f$ 的所有可能参数：</p>
+<h1 id="f-begin-pmatrix-begin-bmatrix-ph-1-mor-1-syn-1-sem-1-end-bmatrix-begin-bmatrix-ph-2-mor-2-syn-2-sem-2-end-bmatrix-end-pmatrix"><a href="#f-begin-pmatrix-begin-bmatrix-ph-1-mor-1-syn-1-sem-1-end-bmatrix-begin-bmatrix-ph-2-mor-2-syn-2-sem-2-end-bmatrix-end-pmatrix" class="headerlink" title="$$f\begin{pmatrix}\begin{bmatrix}ph_1 \mor_1 \syn_1 \sem_1\end{bmatrix},\begin{bmatrix}ph_2 \mor_2 \syn_2 \sem_2\end{bmatrix}\end{pmatrix}"></a>$$<br>f<br>\begin{pmatrix}<br>\begin{bmatrix}<br>ph_1 \<br>mor_1 \<br>syn_1 \<br>sem_1<br>\end{bmatrix},<br>\begin{bmatrix}<br>ph_2 \<br>mor_2 \<br>syn_2 \<br>sem_2<br>\end{bmatrix}<br>\end{pmatrix}</h1><p>\begin{bmatrix}<br>f_{\mathrm{ph}}(ph_1, ph_2)\<br>f_{\mathrm{mor}}(mor_1, mor_2)\<br>f_{\mathrm{syn}}(syn_1, syn_2)\<br>f_{\mathrm{sem}}(sem_1, sem_2)<br>\end{bmatrix}<br>$$</p>
+<p><em>术语警告</em></p>
+<p>根据我们的定义，语法不仅涵盖语言的句法，还包括音韵、形态和语义。</p>
+<p>在文献中也经常使用一种更有限的语法概念，它仅限于形态和句法，或者仅限于句法。</p>
+<p>此外，语言通常被更狭义地定义为仅包含由语法生成的<em>句子</em>（作为声音或书面符号序列）的集合，而不包括它们的形态、句法和语义结构。</p>
+<h2 id="描述语法"><a href="#描述语法" class="headerlink" title="描述语法"></a>描述语法</h2><p>语言学的一个核心目标是描述生成自然语言（或其片段）的语法：英语语法、西班牙语语法等。</p>
+<p>语法通常通过以下两种方式描述：</p>
+<ul>
+<li><p>_显式地_，通过描述词汇并定义从中生成语言元素的操作，或</p>
+</li>
+<li><p>_隐式地_，通过提供由语法生成的语言的代表性示例，即带有形态、句法等分析的语音或文本样本。</p>
+</li>
+</ul>
+<h2 id="解析和生成"><a href="#解析和生成" class="headerlink" title="解析和生成"></a>解析和生成</h2><p>一些与语法相关的任务在 NLP 中尤为重要：</p>
+<p><strong>解析</strong></p>
+<ul>
+<li><p>决定一串书面符号是否属于由给定语法生成的语言：它是否由该语言的单词组成，是否在句法上是正确的，以及是否有意义。</p>
+</li>
+<li><p>确定与由给定语法生成的语言中的一串书面符号相对应的形态、句法和语义结构。</p>
+</li>
+</ul>
+<p><strong>生成</strong></p>
+<ul>
+<li><p><strong>无条件生成</strong>: 生成语法语言的元素。</p>
+</li>
+<li><p><strong>条件生成</strong>: 生成满足特定条件的语法语言的元素。这些条件通常是语义上的，即生成语义结构（意义）满足特定条件的语言元素。</p>
+</li>
+</ul>
+<h2 id="解析和传统的-NLP-管道"><a href="#解析和传统的-NLP-管道" class="headerlink" title="解析和传统的 NLP 管道"></a>解析和传统的 NLP 管道</h2><p>解析任务在传统 NLP 中占据了核心地位，因为人们认为大多数 NLP 任务可以通过以下方式解决：</p>
+<ul>
+<li><p>解析文本输入，并根据特定语法生成其表示结构，</p>
+</li>
+<li><p>使用生成的分析结果作为进一步处理的特征。</p>
+</li>
+</ul>
+<p>因此，传统的 NLP 管道是一个针对一种或多种语法的解析管道，其中每个组件生成输入表示结构的一部分。</p>
+<h2 id="传统管道中的处理任务"><a href="#传统管道中的处理任务" class="headerlink" title="传统管道中的处理任务"></a>传统管道中的处理任务</h2><ul>
+<li><p><strong>形态和句法</strong></p>
+<ul>
+<li>分词</li>
+<li>句子切分</li>
+<li>形态分析</li>
+<li>词性标注</li>
+<li>（浅层或深层）句法解析</li>
+</ul>
+</li>
+<li><p><strong>语义</strong></p>
+<ul>
+<li>命名实体识别</li>
+<li>词义消歧</li>
+<li>共指消解 &#x2F; 实体链接</li>
+<li>语义角色标注（浅层语义解析）</li>
+<li>（深层）语义解析</li>
+</ul>
+</li>
+</ul>
+<h1 id="管道任务"><a href="#管道任务" class="headerlink" title="管道任务"></a>管道任务</h1><h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><p>该任务是将输入字符序列分割成称为<strong>tokens</strong>的小的有意义的单位，通常是单词和标点符号：</p>
+<p>‘This is a sentence.’ $\Rightarrow$ [‘This’, ‘is’, ‘a’, ‘sentence’, ‘.’]</p>
+<p>使用 tokens 而不是单词有两个重要的优点：</p>
+<ul>
+<li><p>允许更多的灵活性：标点符号、表情符号等虽然不是单词，但仍然是有用的分割单位；</p>
+</li>
+<li><p>暗示这些片段是某些<strong>类型</strong>的实例，这些类型共同构成一个<strong>词汇表</strong>。</p>
+</li>
+</ul>
+<h2 id="什么应该算作一个-token？"><a href="#什么应该算作一个-token？" class="headerlink" title="什么应该算作一个 token？"></a>什么应该算作一个 token？</h2><p>答案取决于任务和模型：例如，对于某些目的，标点符号是无关紧要的，而对于其他目的，句子边界和标点符号是重要的。</p>
+<p>尽管如此，一些有影响力的分词风格已经达到了“准标准”状态。对于英语来说，<a href="ftp://ftp.cis.upenn.edu/pub/treebank/public_html/tokenization.html">“Penn Treebank 规则”</a>是最常见的，具有以下关键特征：</p>
+<ul>
+<li><p>标点符号与单词分开并作为独立的 token 处理，</p>
+</li>
+<li><p>动词缩写（如“she’s”中的“’s”）和附加成分（如“don’t”中的“n’t”）被分开。</p>
+</li>
+</ul>
+<h2 id="类型分配和标准化"><a href="#类型分配和标准化" class="headerlink" title="类型分配和标准化"></a>类型分配和标准化</h2><p>分词还可以涉及确定 tokens 属于哪种<em>类型</em>。<br>例如，如果 ‘apple’ 和 ‘Apple’ 是同一类型的实例，那么我们的分词器会将这些标准化或<strong>规范化</strong>为一个共同的类型，不考虑大小写。典型的规范化实践包括</p>
+<ul>
+<li><p>“纠正”拼写变体和拼写错误，将所有变体分词为同一类型的实例，</p>
+</li>
+<li><p>标准化数字或日期类型的表达</p>
+</li>
+<li><p>以及标点符号（例如，将“!!”视为“!”）。</p>
+</li>
+</ul>
+<p>更激进的策略包括将所有数字表达式或所有不在预定义词汇表中的单词分配给单一类型。</p>
+<h2 id="分词挑战"><a href="#分词挑战" class="headerlink" title="分词挑战"></a>分词挑战</h2><p>分词的挑战取决于任务和方法，还取决于输入的</p>
+<ul>
+<li>书写&#x2F;字母系统（例如，没有空格的书写系统！），</li>
+<li>语言，</li>
+<li>领域，</li>
+<li>噪音量（例如，拼写错误的数量）。</li>
+</ul>
+<p>对于欧洲语言和书写系统，特别的挑战包括</p>
+<ul>
+<li>缩写（通常以句号结尾），</li>
+<li>数字表达式（可能包含空格、逗号和句号），</li>
+<li>“多词表达”（MWEs），如“New York”。</li>
+</ul>
+<h2 id="句子切分"><a href="#句子切分" class="headerlink" title="句子切分"></a>句子切分</h2><p>该任务是将（通常是预先分词的）输入字符序列分割成句子：</p>
+<p>[‘John’, ‘entered’, ‘the’, ‘room’, ‘.’, ‘It’, ‘was’, ‘empty’, ‘.’]<br>$\Rightarrow$ [[‘John’, ‘entered’, ‘the’, ‘room’, ‘.’], [‘It’, ‘was’, ‘empty’, ‘.’]]</p>
+<p>主要挑战是</p>
+<ul>
+<li><p>句子和 token 切分的相互依赖性，例如分割形式为 ‘xxx yyy. Zzzz’ 的片段（’yyy.’ 是句子结尾还是缩写？）；</p>
+</li>
+<li><p>标点符号不正确或缺失。</p>
+</li>
+</ul>
+<h2 id="形态学"><a href="#形态学" class="headerlink" title="形态学"></a>形态学</h2><p><strong>词素</strong> (Morphemes) 是语言中最小的有意义单位。单词可以由几个词素组成，例如 <em>unbearables</em> &#x3D; <em>un</em> + <em>bear</em> + <em>able</em> + <em>s</em></p>
+<p>词素之间的有用区分：</p>
+<ul>
+<li><p><strong>黏着词素</strong> (Bound) vs <strong>自由词素</strong>: 自由词素（例如 _bear_）可以单独作为独立的单词存在，而黏着词素（例如 <em>-un</em>, _-s_）只能与其他词素一起构成单词。</p>
+</li>
+<li><p><strong>词缀</strong> vs <strong>词根</strong>: 词根 (roots) 是单词的主要部分，具有最具体的语义内容（例子中的 _bear_），其他词素，即词缀，可以围绕词根放置。大多数词根是自由的。</p>
+</li>
+</ul>
+<h2 id="词缀类型"><a href="#词缀类型" class="headerlink" title="词缀类型"></a>词缀类型</h2><p>词缀 (Affixes) 可以根据它们与其他词素的（通常是位置上的）关系进一步分类：</p>
+<table>
+<thead>
+<tr>
+<th>词缀类型</th>
+<th>关系</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>prefix 前缀</td>
+<td>前置</td>
+<td>_un-<em>，_anti-</em></td>
+</tr>
+<tr>
+<td>suffix 后缀</td>
+<td>后置</td>
+<td><em>-s_，</em>-ing_</td>
+</tr>
+<tr>
+<td>infix 中缀</td>
+<td>中间</td>
+<td><em>Singa<strong>bloody</strong>pore</em></td>
+</tr>
+<tr>
+<td>circumfix 环缀</td>
+<td>环绕</td>
+<td>德语中的 _ge...t_（例如 _gespielt_）</td>
+</tr>
+<tr>
+<td>stem 词干变化</td>
+<td>变化</td>
+<td>阿拉伯语 _kitaab_（’书’）$\rightarrow$ _kutub_（’书籍’）</td>
+</tr>
+</tbody></table>
+<p>这远不是完整的列表，其他词缀类型还包括重复、音调&#x2F;音高变化等。</p>
+<p>一个关键的区别是屈折词缀和派生词缀：</p>
+<ul>
+<li><p><strong>屈折词缀</strong> inflectional，创建同一个词的不同形式，可以表示语法方面如人称、时态等。英语中的例子包括复数 <em>-(e)s</em> 和进行时 _-ing_。</p>
+</li>
+<li><p><strong>派生词缀</strong> derivational，则形成新词，例如，<em>bearable</em> 中的 <em>-able</em> 将动词变为形容词。</p>
+</li>
+</ul>
+<h2 id="词干和词元"><a href="#词干和词元" class="headerlink" title="词干和词元"></a>词干和词元</h2><ul>
+<li><p>一个词的 <strong>词干</strong> (stem) 由词的基本部分组成，这部分在所有屈折形式中都是共同的。因此，词干通常不是一个有意义的词，例如，<em>produced</em> 的词干是 _produc_（因为有 <em>producing</em> 等形式）。</p>
+</li>
+<li><p><strong>词元</strong> (lemma) 与此相反，总是一个完整的词，即屈折形式的未屈折基本形式。继续上面的例子，<em>produced</em> 的词元是 _produce_。</p>
+</li>
+</ul>
+<h2 id="形态分析任务"><a href="#形态分析任务" class="headerlink" title="形态分析任务"></a>形态分析任务</h2><p>Morphological</p>
+<ul>
+<li><p>决定一个字符串是否是一个格式正确的单词。</p>
+</li>
+<li><p><strong>词干提取</strong>: 确定一个单词的词干。</p>
+</li>
+<li><p><strong>词元化</strong>: 确定一个单词的词元。</p>
+</li>
+<li><p><strong>形态标注</strong>: 根据词形变化等表达的语法信息标注输入单词。</p>
+</li>
+<li><p><strong>形态分割</strong>: 将输入单词分割 (segmentation) 成词素。</p>
+</li>
+<li><p><strong>完整的形态分析</strong>: 将单词分割成词素，并根据类型和它们传达的语法信息对每个词素进行分类。通常也包括词元化。</p>
+</li>
+</ul>
+<h2 id="形态分析挑战"><a href="#形态分析挑战" class="headerlink" title="形态分析挑战"></a>形态分析挑战</h2><ul>
+<li><p><strong>歧义 &#x2F; 依赖上下文</strong>: 许多单词有多种分析，只有根据上下文才能消除歧义 (Ambiguity) ，例如 <strong>chairs</strong> 中的 <strong>-s</strong>。参见：</p>
+<p><strong>The president chairs the meeting.</strong><br><strong>There were hundreds of chairs in the room.</strong></p>
+</li>
+<li><p><strong>复合词</strong>: 许多语言有由两个或更多简单词组成的复合词 (Compounds)：例如，德语中的 <strong>Schadenfreude</strong> (幸灾乐祸) 由 <strong>Schaden</strong>（“损害”）和 <strong>Freude</strong>（“快乐”）组成。</p>
+</li>
+<li><p><strong>形态丰富的语言</strong>: 英语的形态相对简单。其他语言，例如匈牙利语和土耳其语则复杂得多……</p>
+</li>
+</ul>
+<h2 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h2><p>词性（Part-of-speech）类别对应于单词在句子中可以扮演的基本句法角色。例如，在句子</p>
+<p><em>Peter ate the apple.</em></p>
+<p>中，<em>Peter</em> 和 <em>apple</em> 是名词，<em>ate</em> 是动词，<em>the</em> 是限定词。词性标注任务是确定已分词（并可能已句子切分）的输入文本中每个单词的词性类别，例如：</p>
+<p>[‘Peter’, ‘ate’, ‘the’, ‘apple’, ‘.’] $\Rightarrow$<br>[(‘Peter’, [‘名词’]), (‘ate’, [‘动词’]),<br>(‘the’, [‘限定词’]), (‘apple’, [‘名词’]), (‘.’,<br>[‘标点’])]</p>
+<p>同样地，词性的类别也是依赖于上下文的。例如，比较以下句子：</p>
+<p><em>John <strong>hit</strong> the ball.</em><br><em>His first song was a huge <strong>hit</strong> in Europe.</em></p>
+<p>具体的词性类别列表及其划分也取决于所使用的语言和特定的语法理论，尽管有些类别是相当普遍的，例如，[名词]、[动词]、[形容词] 和 [副词] 几乎总是存在。</p>
+<h2 id="开放-vs-封闭词性类别"><a href="#开放-vs-封闭词性类别" class="headerlink" title="开放 vs. 封闭词性类别"></a>开放 vs. 封闭词性类别</h2><ul>
+<li><p><strong>封闭</strong>词性类别，例如英语中的限定词，由相对较小的词集组成，这些词集不会轻易改变：添加一个新的限定词到一种语言中是一个罕见的现象。</p>
+</li>
+<li><p><strong>开放</strong>词性类别，例如英语动词，包含大量的词，并且每天都会添加新成员。</p>
+</li>
+</ul>
+<p>一个相关的区别是<em>功能词</em>和<em>内容词</em>之间的区别。属于开放词性类别的词通常是内容词：它们自身具有明确的语义内容。封闭词性类别包含的功能词则没有太多独立的内容。</p>
+<h2 id="词性标记集"><a href="#词性标记集" class="headerlink" title="词性标记集"></a>词性标记集</h2><p>在 NLP 中，词性类别通常用简写编码，称为词性标记。即使是英语，也有几种标记集在使用；一个非常重要的、与语言无关的标记集是为 <a target="_blank" rel="noopener" href="https://universaldependencies.org/">Universal Dependencies 项目</a> 开发的：</p>
+<p>开放类标记</p>
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[adj]</td>
+<td>形容词</td>
+<td>big, old, green, African, first</td>
+</tr>
+<tr>
+<td>[adv]</td>
+<td>副词</td>
+<td>very, well, exactly, tomorrow</td>
+</tr>
+<tr>
+<td>[intj]</td>
+<td>感叹词</td>
+<td>psst, ouch, bravo, hello</td>
+</tr>
+<tr>
+<td>[noun]</td>
+<td>名词</td>
+<td>girl, cat, tree, air</td>
+</tr>
+<tr>
+<td>[propn]</td>
+<td>专有名词</td>
+<td>Mary, John, London, NATO</td>
+</tr>
+<tr>
+<td>[verb]</td>
+<td>动词</td>
+<td>run, eat, runs, ate</td>
+</tr>
+</tbody></table>
+<p>封闭类标记</p>
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[adp]</td>
+<td>介词</td>
+<td>in, to, during</td>
+</tr>
+<tr>
+<td>[aux]</td>
+<td>助动词</td>
+<td>has, is, should, was, must</td>
+</tr>
+<tr>
+<td>[cconj]</td>
+<td>并列连词</td>
+<td>and, or, but</td>
+</tr>
+<tr>
+<td>[det]</td>
+<td>限定词</td>
+<td>a, an, the, this, which, any, no</td>
+</tr>
+<tr>
+<td>[num]</td>
+<td>数词</td>
+<td>0, 1, 2, one, two</td>
+</tr>
+<tr>
+<td>[part]</td>
+<td>小品词</td>
+<td>not, ‘s (as in “Andrew’s table”)</td>
+</tr>
+<tr>
+<td>[pron]</td>
+<td>代词</td>
+<td>I, myself, who</td>
+</tr>
+<tr>
+<td>[sconj]</td>
+<td>从属连词</td>
+<td>that, if</td>
+</tr>
+</tbody></table>
+<p>其他标记</p>
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[punct]</td>
+<td>标点符号</td>
+<td>. , ;</td>
+</tr>
+<tr>
+<td>[sym]</td>
+<td>符号</td>
+<td>$, ¶, ©</td>
+</tr>
+<tr>
+<td>[y]</td>
+<td>其他</td>
+<td>用于无法分析的元素</td>
+</tr>
+</tbody></table>
+</div><div class="article-licensing box"><div class="licensing-title"><p>NLP-Pipeline</p><p><a href="https://aloen.to/AI/NLP/NLP-Pipeline/">https://aloen.to/AI/NLP/NLP-Pipeline/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2024-09-23</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-09-23</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/AI/">AI</a><a class="link-muted mr-2" rel="tag" href="/tags/NLP/">NLP</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/NLP/NLP-Introduction/"><span class="level-item">NLP-Introduction</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">24</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">34</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">13</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#语言结构"><span class="level-left"><span class="level-item">1</span><span class="level-item">语言结构</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#表示层次"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">表示层次</span></span></a></li><li><a class="level is-mobile" href="#语法"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">语法</span></span></a></li></ul></li><li><a class="level is-mobile" href="#f-begin-pmatrix-begin-bmatrix-ph-1-mor-1-syn-1-sem-1-end-bmatrix-begin-bmatrix-ph-2-mor-2-syn-2-sem-2-end-bmatrix-end-pmatrix"><span class="level-left"><span class="level-item">2</span><span class="level-item">$$f\begin{pmatrix}\begin{bmatrix}ph_1 \mor_1 \syn_1 \sem_1\end{bmatrix},\begin{bmatrix}ph_2 \mor_2 \syn_2 \sem_2\end{bmatrix}\end{pmatrix}</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#描述语法"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">描述语法</span></span></a></li><li><a class="level is-mobile" href="#解析和生成"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">解析和生成</span></span></a></li><li><a class="level is-mobile" href="#解析和传统的-NLP-管道"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">解析和传统的 NLP 管道</span></span></a></li><li><a class="level is-mobile" href="#传统管道中的处理任务"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">传统管道中的处理任务</span></span></a></li></ul></li><li><a class="level is-mobile" href="#管道任务"><span class="level-left"><span class="level-item">3</span><span class="level-item">管道任务</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#分词"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">分词</span></span></a></li><li><a class="level is-mobile" href="#什么应该算作一个-token？"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">什么应该算作一个 token？</span></span></a></li><li><a class="level is-mobile" href="#类型分配和标准化"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">类型分配和标准化</span></span></a></li><li><a class="level is-mobile" href="#分词挑战"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">分词挑战</span></span></a></li><li><a class="level is-mobile" href="#句子切分"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">句子切分</span></span></a></li><li><a class="level is-mobile" href="#形态学"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">形态学</span></span></a></li><li><a class="level is-mobile" href="#词缀类型"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">词缀类型</span></span></a></li><li><a class="level is-mobile" href="#词干和词元"><span class="level-left"><span class="level-item">3.8</span><span class="level-item">词干和词元</span></span></a></li><li><a class="level is-mobile" href="#形态分析任务"><span class="level-left"><span class="level-item">3.9</span><span class="level-item">形态分析任务</span></span></a></li><li><a class="level is-mobile" href="#形态分析挑战"><span class="level-left"><span class="level-item">3.10</span><span class="level-item">形态分析挑战</span></span></a></li><li><a class="level is-mobile" href="#词性标注"><span class="level-left"><span class="level-item">3.11</span><span class="level-item">词性标注</span></span></a></li><li><a class="level is-mobile" href="#开放-vs-封闭词性类别"><span class="level-left"><span class="level-item">3.12</span><span class="level-item">开放 vs. 封闭词性类别</span></span></a></li><li><a class="level is-mobile" href="#词性标记集"><span class="level-left"><span class="level-item">3.13</span><span class="level-item">词性标记集</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-09-22T16:43:21.000Z">2024-09-23</time></p><p class="title"><a href="/AI/NLP/NLP-Pipeline/">NLP-Pipeline</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-09-18T07:53:24.000Z">2024-09-18</time></p><p class="title"><a href="/AI/NLP/NLP-Introduction/">NLP-Introduction</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-08-23T20:33:00.000Z">2024-08-24</time></p><p class="title"><a href="/Memo/%E5%8C%88%E7%89%99%E5%88%A9%E7%95%99%E5%AD%A6%E6%94%BB%E7%95%A52024/">匈牙利留学攻略2024</a></p><p class="categories"><a href="/categories/Memo/">Memo</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-05-14T10:15:33.000Z">2024-05-14</time></p><p class="title"><a href="/Algorithm/DAA-Endterm/">DAA Endterm</a></p><p class="categories"><a href="/categories/Algorithm/">Algorithm</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-05-09T14:01:16.000Z">2024-05-09</time></p><p class="title"><a href="/Data-Science/ITDS-Midterm/">ITDS Midterm</a></p><p class="categories"><a href="/categories/Data-Science/">Data Science</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2024 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
