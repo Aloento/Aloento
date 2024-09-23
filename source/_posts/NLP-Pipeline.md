@@ -332,3 +332,168 @@ Morphological
 | [punct] | 标点符号 | . , ;              |
 | [sym]   | 符号     | \$, ¶, ©           |
 | [y]     | 其他     | 用于无法分析的元素 |
+
+## 句法解析
+
+句法理论旨在描述“支配单词如何组合成短语、形成良构 (well formed) 词序列的规则或原则集。”
+
+在这个背景下，最重要的“良构词序列”是*句子*：句法理论的核心目标是为特定语言找到描述/划定该语言中良构句子的结构规则或原则。
+
+一个句子是良构的，如果它具有*结构描述*或*句法解析*，并且满足所讨论理论的句法约束。句法上的良构性并不保证连贯性或有意义性。引用乔姆斯基的著名例子：
+
+> *Colorless green ideas sleep furiously.*
+
+在句法上是良构的，但毫无意义，而
+
+> *Furiously sleep ideas green colorless.*
+
+甚至不是良构的。
+
+**成分句法**（也称为*短语结构*）和**依存句法**理论对 NLP 尤为重要。
+
+**成分** (constituent) 是单个单词或一组连续单词，形成一个“自然单位”。例如，短语 *a nice little city*：
+
+- 可以放入各种句子框架中，如 *I wanted to visit \...*，*Budapest is \...*；
+
+- 可以作为问题的答案：*What did you visit?*；
+
+- 可以用代词替换：*I have visited a nice little city.* $\Rightarrow$ *I have visited it.*
+
+## 基于成分的句法
+
+基于成分的句法理论
+
+- 对成分进行分类，并且
+
+- 制定规则，根据这些规则可以将成分组合在一起构建更大的成分，最终构建一个完整的句子。
+
+一个良构句子的句法结构就是它的成分结构，例如，对于句子 *The students love their professors*：
+
+$$
+[
+  [
+    The_\mathrm{D} \space students_\mathrm{N}
+  ]_\mathrm{NP} \space
+  [
+    love_\mathrm{Vt} \space
+    [
+      their_\mathrm{D} \space professors_\mathrm{N}
+    ] _\mathrm{NP}
+  ] _\mathrm{VP}
+] _\mathrm{S}
+$$
+
+在更透明的成分树形式中：
+
+```prolog
+S
+├── NP
+│   ├── Det: the
+│   └── Noun: students
+└── VP
+    ├── Vt: love
+    └── NP
+        ├── Det: their
+        └── Noun: professors
+```
+
+这是基于成分的解析器输出的结构。
+
+## 基于依存的句法
+
+与此相反，依存语法将单词之间的**依存关系** (dependency) 视为基本关系。
+
+具体标准因理论而异，但通常在一个句子中，如果一个 $d$ 单词依赖于一个 $h$ 单词（等价于 $h$ 支配 $d$），则
+
+- $d$ 修饰 $h$ 的意义，使其更具体，例如 *eats* $\Rightarrow$ *eats bread*，*eats slowly* 等；
+
+- 并且它们之间存在不对称的可省略关系：可以从句子中省略 $d$ 而保留 $h$，但反之则不行。
+
+依存语法对一个良构句子中的依存关系施加了重要的全局约束，例如：
+
+- 恰好有一个独立的词（句子的根）。
+
+- 所有其他词直接依赖于一个词。
+
+由于这些约束，句子的直接依存图是一个树。
+
+大多数依存语法使用*类型化的直接依存关系*：存在有限的直接依存关系类型列表，并对它们何时可以成立施加特定的约束。
+
+一个依存解析树的例子：
+
+![dependency parse tree](DPT.jpg)
+
+与成分树相比，它包含更少的节点（每个单词一个），但边缘标有相应的依存类型。
+
+## 命名实体识别
+
+命名实体识别 (Named entity recognition) 是在输入文本中找到*命名*实体的表达并将其标记为相应实体类型的任务：
+
+![[NER](https://explosion.ai/demos/displacy-ent)](NER.jpg)
+
+通常使用的实体类型有*人名*、*组织*和*地点*，但许多 NER 模型涵盖了其他类型，如*日期*、*事件*、*艺术作品*、*法律*等。
+
+## 共指消解
+
+NER 确定名称所指实体的*类型*，但不决定它们是指相同还是不同的实体。相反，*共指消解* (Coreference resolution) 任务是定位输入中的更广泛的指称表达，包括普通名词和代词，并将它们聚类到指向同一实体的组中：
+
+![spaCy [neuralcoref](https://spacy.io/universe/project/neuralcoref)](coref.jpg)
+
+## 实体链接
+
+与共指消解类似，实体链接也关注引用的身份，但在两个重要方面与之不同：
+
+- 像命名实体识别一样，它仅限于类似名称的表达，
+- 它通过将名称连接到*外部*知识库中的实体记录来确定实体的身份，例如维基百科：
+
+![[实体链接](https://en.wikipedia.org/wiki/Entity_linking)](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Entity_Linking_-_Short_Example.png/400px-Entity_Linking_-_Short_Example.png)
+
+## 词义消歧
+
+词义消歧 (disambiguation) 也将表达与外部词汇表中的意义/词义连接起来，但
+
+- 它关注普通名词和其他类型的内容词：动词、形容词和副词；
+
+- 词义集合通常是专门构建的词汇资源——准标准是使用 [WordNet 词汇数据库](https://en.wikipedia.org/wiki/WordNet)。
+
+例如，一个基于 WordNet 的词义消歧系统应该将句子
+
+*The scroll wheel in my mouse has stopped working.*
+
+中的 *mouse* 名词消歧为 WordNet 词义
+
+[Mouse]#4: '一种手动操作的电子设备，用于控制光标的坐标 \[\...\]'。
+
+WordNet 中的其他可能性：
+
+- [Mouse]#1: '任何数量众多的小型啮齿动物 \[\...\]'
+
+- [Mouse]#2: '一个肿胀的瘀伤 \[\...\]'
+
+- [Mouse]#3: '一个安静或胆小的人 \[\...\]'
+
+## 语义角色标注
+
+语义角色标注 (Semantic role labeling) 是识别输入文本中的**谓词** (predicate) 和**论元** (argument) 表达，确定哪个论元属于哪个谓词，以及它们之间关系的任务。在这个背景下，
+
+- **谓词** 是指代事件/情况的表达（例如，指代动作的动词），
+
+- **论元** 则指这些事件/情况的**参与者**，
+
+- 而任务中的**角色标注**部分是确定与论元对应的参与者在谓词所指的情况中扮演的角色类型。
+
+一个相对简单的例子，使用宾夕法尼亚大学认知计算组的[SLR 演示](https://cogcomp.seas.upenn.edu/page/demo_view/srl)。
+
+## 语义解析
+
+这是完整或深层语义解析的任务，它不仅涵盖共指消解、词义消歧和谓词-论元结构，还旨在提供一个完整的形式*语义表示*，其特点是：
+
+- 表示输入文本的意义的形式结构，
+- 表示字面意义，
+- 尽可能消歧，
+- 在某种程度上是规范的，即一个文本意义有一个唯一的表示，
+- 有高效的算法来确定它们与其他语义和知识表示的逻辑和语义关系。
+
+句子 *Thetis loves a mortal* 的基于一阶逻辑的语义表示：
+
+![semrep](https://plato.stanford.edu/entries/computational-linguistics/fig1.png)
