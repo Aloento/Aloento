@@ -121,6 +121,7 @@ plugins:
     busuanzi: true
     gallery: true
     mathjax: true
+    katex: true
     outdated_browser: true
     progressbar: true
 providers:
