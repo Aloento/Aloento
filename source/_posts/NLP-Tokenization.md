@@ -149,7 +149,7 @@ Penn Tree Bank 附带的
 
 标准解决方案是在执行相关替换之前，将有问题的表达式替换为无问题的占位符，例如：
 
-(etc\\. $\vert$ i\\.e\\. $\vert$ e\\.g\\.) $\Rightarrow$ $<abbrev>$
+(etc\\. $\vert$ i\\.e\\. $\vert$ e\\.g\\.) $\Rightarrow <abbrev>$
 
 此解决方案需要跟踪占位符替换，并在执行有问题的规则后恢复原始内容。
 
