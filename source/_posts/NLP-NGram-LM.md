@@ -127,9 +127,9 @@ $$-\frac{1}{n} \left(\log P_{\mathcal M}(w_1) + \sum_{i=2}^n\log P_{\mathcal M}(
 
 一个简单的推论是：通过最小化平均交叉熵（cross-entropy）或最大化平均对数似然（log-likelihood），也可以最小化模型在训练数据上的困惑度（perplexity）。
 
-## 基于 N-gram 的建模
+# 基于 N-gram 的建模
 
-### 概率估计
+## 概率估计
 
 我们如何从文本语料库中估计所需的 $P(\mathbf{w})$ 概率？我们可以尝试使用出现次数来获得最大似然估计：
 
@@ -178,17 +178,17 @@ $$P(w) \approx \frac{C(w)}{\sum_{w' \in V}C(w')}$$
 
 自然地，基于更长子序列的 $N$-gram 模型更加细致，甚至所谓的*二元（Bigram）*模型（$N=2$）计算序列概率简单为
 
-$$P(\langle w_1,\dots,w_n \rangle) = P(w_1)\prod_{i=2}^n P(w_i ~\vert~ w_{i-1})$$
+$$P(\langle w_1,\dots,w_n \rangle) = P(w_1)\prod_{i=2}^n P(w_i \vert w_{i-1})$$
 
 其中
 
-$$P(w_2~\vert~ w_1) \approx \frac{C(\langle w_1,w_2\rangle)}{C(w_1)}$$
+$$P(w_2 \vert w_1) \approx \frac{C(\langle w_1,w_2\rangle)}{C(w_1)}$$
 
 ## 马尔可夫语言模型
 
 $N$-gram 模型实际上是用概率有限状态机（Markov）来建模语言，其中状态对应于 $N-1$-gram。
 
-例如，在 $\mathcal M$ 二元模型的情况下，状态对应于词汇表加上一个开始和结束状态，状态 $w_1$ 和 $w_2$ 之间的转移概率只是 $P(w_2 ~\vert~ w_1)$ 的续词概率。
+例如，在 $\mathcal M$ 二元模型的情况下，状态对应于词汇表加上一个开始和结束状态，状态 $w_1$ 和 $w_2$ 之间的转移概率只是 $P(w_2 \vert w_1)$ 的续词概率。
 
 很容易看出，token 序列 $\mathbf{w}=\langle w_1,\dots,w_n \rangle$ 的 $P_\mathcal{M}(\mathbf{w})$ 概率正是马尔可夫模型经过状态 $\langle start \rangle,w_1,\dots,w_n,\langle end \rangle$ 的概率。
 
