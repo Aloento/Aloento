@@ -160,4 +160,78 @@ $$P(w_1) \prod_{i=2}^k P(w_{i} \vert w_{1},\dots,w_{i-1}) \prod_{i=k+1}^n P(w_{i
 $$P(w_{i} \vert w_{i-k},\dots,w_{i-1}) \approx
 \frac{C(\langle w_{i-k},\dots,w_{i}\rangle)}{C(\langle w_{i-k},\dots,w_{i-1} \rangle)}$$
 
-的估计可以仅基于语料库中最长为 $k+1$ 的子序列计数，即所谓的 N-gram $(N=1, 2, 3,\dots)$。
+的估计可以仅基于语料库中最长为 $k+1$ 的子序列计数，即所谓的 N-gram $(N=1, 2, 3,\dots)$
+
+## 一元模型
+
+最简单的 $N$-gram 语言模型是*一元（Unigram）*模型，它为序列 $\langle w_1,\dots,w_n \rangle$ 分配概率
+
+$$P(w_1)\cdot P(w_2)\cdot \dots \cdot P(w_{n-1})\cdot P(w_n)$$
+
+其中单词概率可以简单地估计为
+
+$$P(w) \approx \frac{C(w)}{\sum_{w' \in V}C(w')}$$
+
+一元模型忽略了单词的*顺序*，最可能的序列只是完全由最频繁的单词组成的序列。
+
+## 二元模型
+
+自然地，基于更长子序列的 $N$-gram 模型更加细致，甚至所谓的*二元（Bigram）*模型（$N=2$）计算序列概率简单为
+
+$$P(\langle w_1,\dots,w_n \rangle) = P(w_1)\prod_{i=2}^n P(w_i ~\vert~ w_{i-1})$$
+
+其中
+
+$$P(w_2~\vert~ w_1) \approx \frac{C(\langle w_1,w_2\rangle)}{C(w_1)}$$
+
+## 马尔可夫语言模型
+
+$N$-gram 模型实际上是用概率有限状态机（Markov）来建模语言，其中状态对应于 $N-1$-gram。
+
+例如，在 $\mathcal M$ 二元模型的情况下，状态对应于词汇表加上一个开始和结束状态，状态 $w_1$ 和 $w_2$ 之间的转移概率只是 $P(w_2 ~\vert~ w_1)$ 的续词概率。
+
+很容易看出，token 序列 $\mathbf{w}=\langle w_1,\dots,w_n \rangle$ 的 $P_\mathcal{M}(\mathbf{w})$ 概率正是马尔可夫模型经过状态 $\langle start \rangle,w_1,\dots,w_n,\langle end \rangle$ 的概率。
+
+一个简单的马尔可夫语言模型：
+
+![https://slideplayer.com/slide/4578484/](markov_lm.jpg)
+
+## 增加 N 值
+
+由于实际上人类语言过于复杂，无法满足低阶马尔可夫假设，因此具有更高 N 值（如 N=3,4 甚至 5）的 N-gram 模型通常具有更好的内在和外在性能。不幸的是，随着 N 的增加，语言学上可能的 N-gram 数量急剧增加。例如，在谷歌的 1,024,908,267,229 token 的 [N-gram 语料库](https://catalog.ldc.upenn.edu/LDC2006T13) 中，N-gram 计数为：
+
+- 一元模型：13,588,391
+- 二元模型：314,843,401
+- 三元模型：977,069,902
+- 四元模型：1,313,818,354
+- 五元模型：1,176,470,663
+
+对于较高 $N$ 值，语言学上可能的 $N$-gram 数量极高，这带来了两个重要问题：
+
+- *数据稀疏性*: 即使在大型文本语料库中，许多可能的组合也不会出现，或者只会很少出现，因此很难估计它们的概率；
+
+- *模型大小*: 即使估计是正确的，模型的大小也会非常庞大。
+
+# 平滑
+
+## 加法平滑
+
+我们如何解决在语料库中从未或很少出现的 $N$-gram 的问题？一个简单的解决方案是通过某个数值*过度计数*每个 $N$-gram，并使用
+
+$$P(w_{i} \vert w_{i-k},\dots,w_{i-1}) \approx \frac{C(\langle w_{i-k},\dots,w_{i}\rangle)+\delta}{C(\langle w_{i-k},\dots,w_{i-1} \rangle) + \delta|V|}$$
+
+$|V|$ 乘数来自于这样一个事实：对于每个 $N-1$-gram，恰好有 $|V|$ 个 $N$-gram 是它的延续。
+
+$\delta$ 的一个广泛选择是 1。
+
+一个重要的问题是：
+
+如果 $C(\langle w_1,w_2\rangle)=0$ 和 $C(\langle w_1,w_3\rangle)=0$，那么在加法平滑下我们有
+
+$$p(w_1,w_2)=p(w_1,w_3)$$
+
+假设现在 $w_2$ 比 $w_3$ 常见得多。那么，直观上，我们应该有
+
+$$p(w_1,w_2)>p(w_1,w_3)$$
+
+而不是上述的相等关系，因此加法平滑的结果似乎是错误的——我们应该以某种方式在一元和二元计数之间进行*插值*。
