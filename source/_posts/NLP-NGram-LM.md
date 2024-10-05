@@ -40,15 +40,15 @@ $V$ = {*the*, *be*, *to*, *of*, $\dots$}
 
 概率语言模型对于大量的自然语言处理应用非常重要，其目标是生成合理的词序列作为输出，其中包括
 
-- 拼写和语法检查，
+- 拼写和语法检查
 
-- 预测输入，
+- 预测输入
 
-- 语音转文字，
+- 语音转文字
 
-- 聊天机器人，
+- 聊天机器人
 
-- 机器翻译，
+- 机器翻译
 
 - 摘要生成
 
@@ -88,7 +88,7 @@ $$P(\mathbf w)= P(w_1)\cdot P(w_2 \vert w_1 )\dots \cdot P(w_n\vert w_1,\dots, w
 
 - 贪婪搜索，
 
-- 集束搜索，以及
+- 集束（beam）搜索
 
 - 随机集束搜索
 
@@ -100,9 +100,9 @@ $$P(\mathbf w)= P(w_1)\cdot P(w_2 \vert w_1 )\dots \cdot P(w_n\vert w_1,\dots, w
 
 语言模型的评估可以是
 
-- **外在的**: 模型在拼写检查、语音转文字系统等组件中的表现如何，或者
+- **外在的**: extrinsic，模型在拼写检查、语音转文字系统等组件中的表现如何，或者
 
-- **内在的**: 分配的概率与测试语料库中的文本对应得有多好？
+- **内在的**: intrinsic，分配的概率与测试语料库中的文本对应得有多好？
 
 最广泛使用的内在评估指标是语料库的 **困惑度**。
 语言模型 $\mathcal M$ 在序列 $\mathbf w = \langle w_1,\dots, w_n\rangle$ 上的困惑度为
@@ -125,4 +125,39 @@ $$-\frac{1}{n} \left(\log P_{\mathcal M}(w_1) + \sum_{i=2}^n\log P_{\mathcal M}(
 
 这就是每个单词的平均交叉熵和负对数似然。
 
-一个简单的推论是：通过最小化平均交叉熵或最大化平均对数似然，也可以最小化模型在训练数据上的困惑度。
+一个简单的推论是：通过最小化平均交叉熵（cross-entropy）或最大化平均对数似然（log-likelihood），也可以最小化模型在训练数据上的困惑度（perplexity）。
+
+## 基于 N-gram 的建模
+
+### 概率估计
+
+我们如何从文本语料库中估计所需的 $P(\mathbf{w})$ 概率？我们可以尝试使用出现次数来获得最大似然估计：
+
+$$P(\mathbf{w}) \approx \frac{C(\mathbf{w})}{C(\mathrm{all \space texts \space in \space corpus})}$$
+
+但在任何现实的语料库中，大多数文本只出现一次，许多可能的文本根本没有出现。一个选项是切换到连续概率：
+
+$$P(w_{i} \vert w_1,\dots,w_{i-1})$$
+
+使用基于计数的估计，我们可以得到
+
+$$P(w_{i} \vert w_1,\dots,w_{i-1}) \approx \frac{C(\langle w_1,\dots,w_{i} \rangle)}{C(\langle w_1,\dots,w_{i-1} \rangle)}$$
+
+但同样会遇到数据稀疏性问题。缓解这一问题的一种方法是使用
+
+$$P(w_{i} \vert w_1,\dots,w_{i-1}) \approx P(w_{i} \vert w_{i-k},\dots,w_{i-1})$$
+
+的近似，对于某个 $k$，假设续词概率（近似）由序列中前 $k$ 个 token 决定。
+
+## N-gram 语言模型
+
+使用这种近似，$\langle w_1,\dots,w_n \rangle$ 序列的概率可以计算为
+
+$$P(w_1) \prod_{i=2}^k P(w_{i} \vert w_{1},\dots,w_{i-1}) \prod_{i=k+1}^n P(w_{i} \vert w_{i-k},\dots,w_{i-1})$$
+
+其主要优点是
+
+$$P(w_{i} \vert w_{i-k},\dots,w_{i-1}) \approx
+\frac{C(\langle w_{i-k},\dots,w_{i}\rangle)}{C(\langle w_{i-k},\dots,w_{i-1} \rangle)}$$
+
+的估计可以仅基于语料库中最长为 $k+1$ 的子序列计数，即所谓的 N-gram $(N=1, 2, 3,\dots)$。
