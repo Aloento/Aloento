@@ -138,7 +138,7 @@ date: 2024-09-23 23:04:11
 Penn Tree Bank 附带的 [分词器 sed 脚本](ftp://ftp.cis.upenn.edu/pub/treebank/public_html/tokenizer.sed) 是一个很好的例子。几个具有代表性的规则（`\&` 指代完整匹配，`\n` 指代第 $n$ 个组）：
 
 - '\...' $\Rightarrow$ ' \... '（分隔省略号）
-- '\[,;:#\$%&\]' $\Rightarrow$ ' \\& '（分隔各种符号）
+- `[,;:#$%&]` $\Rightarrow$ ' \\& '（分隔各种符号）
 - (\[\^.\])(\[.\])(\[\])}\"'\]\*)\[\]\*\ $\Rightarrow$ '\\1 \\2\\3'（假设句子输入并仅分隔最终句号）
 - \"'ll\" $\Rightarrow$ \" 'll\"（分隔缩略词 'll）
 
@@ -146,7 +146,7 @@ Penn Tree Bank 附带的 [分词器 sed 脚本](ftp://ftp.cis.upenn.edu/pub/tree
 
 标准解决方案是在执行相关替换之前，将有问题的表达式替换为无问题的占位符，例如：
 
-(etc\\. $\vert$ i\\.e\\. $\vert$ e\\.g\\.) $\Rightarrow <abbrev>$
+(etc\\. $\vert$ i\\.e\\. $\vert$ e\\.g\\.) $\Rightarrow$ \<abbrev\>
 
 此解决方案需要跟踪占位符替换，并在执行有问题的规则后恢复原始内容。
 
