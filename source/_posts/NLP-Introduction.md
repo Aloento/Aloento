@@ -100,7 +100,7 @@ date: 2024-09-18 15:53:24
 
 一种有影响力的 NLP 观点认为其核心任务是提供一个**模块管道**，该管道依次生成通用的语言分析，每个模块基于前一个模块的输出构建：
 
-![来自 [spaCy NLP 库文档](https://spacy.io/usage/processing-pipelines) 的图示。](https://spacy.io/images/pipeline.svg)
+![https://spacy.io/usage/processing-pipelines](https://spacy.io/images/pipeline.svg)
 
 然后，专门的 NLP 应用程序作为这个通用管道元素之上的相对简单的附加组件构建。
 
@@ -181,7 +181,7 @@ date: 2024-09-18 15:53:24
 
 词汇语义本体如[WordNet](https://wordnet.princeton.edu/)和[FrameNet](http://framenet.icsi.berkeley.edu/)试图枚举大量词义之间的语义关系。
 
-![语义网络片段 ([维基百科: 语义网络](https://en.wikipedia.org/wiki/Semantic_network)).](https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Semantic_Net.svg/1920px-Semantic_Net.svg.png)
+![https://en.wikipedia.org/wiki/Semantic_network](https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Semantic_Net.svg/1920px-Semantic_Net.svg.png)
 
 > 关系信息通常以三元组的形式表示，包括源、目标和它们之间的谓词（关系）。  
 > 通过关系数据库和语义网络来表示语义信息。  

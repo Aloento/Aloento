@@ -2,7 +2,7 @@
 title: NLP-Classification-SequenceTagging
 toc: true
 categories:
-  - [AI, NLP]
+ - [AI, NLP]
 tags: [笔记, AI, NLP]
 date: 2024-10-05 20:04:00
 ---
@@ -21,8 +21,8 @@ date: 2024-10-05 20:04:00
 
 - **情感分析**：根据文档表达的情感进行分类。标签集示例：
 
-  - { positive, negative, ambigous }
-  - { admiration, amusement, annoyance, approval, ..., sadness, surprise }
+- { positive, negative, ambigous }
+- { admiration, amusement, annoyance, approval, ..., sadness, surprise }
 
 - **垃圾邮件检测**：SPAM，二分类决定消息是否为未经请求的邮件
 - **作者身份检测**：从指定的作者集中确定谁写了文本
@@ -34,12 +34,12 @@ date: 2024-10-05 20:04:00
 
 - **手工设计的基于规则的系统**：例如，使用精心设计的与类别正相关或负相关的词列表。
 
-  这些系统可以达到良好的性能，但需要大量的手工工作，并且难以维护和适应。
+ 这些系统可以达到良好的性能，但需要大量的手工工作，并且难以维护和适应。
 
 - **机器学习方法**：在包含标记文档的监督数据集上学习的模型：
-  $\{\langle d_i, c_i \rangle\}_{i\in \{1, \dots, N\}}$
+ $\{\langle d_i, c_i \rangle\}_{i\in \{1, \dots, N\}}$
 
-  方法范围从线性机器学习方法如逻辑回归（logistic regression）到深度神经网络。
+ 方法范围从线性机器学习方法如逻辑回归（logistic regression）到深度神经网络。
 
 # 词袋表示法
 
@@ -70,7 +70,7 @@ $$TF{\text -}IDF(d)=\langle tf_{1,d}\cdot idf_1, \dots, tf_{N,d}\cdot idf_N\rang
 
 其中 $tf_{i,d}$ 只是 $w_i$ 在 $d$ 中的出现次数，而
 
-$$idf_i = \log\frac{\mathrm{\# of \space all \space documents}}{\mathrm{\# of \space documents \space containing} \space w_i  }$$
+$$idf_i = \log\frac{\mathrm{\# of \space all \space documents}}{\mathrm{\# of \space documents \space containing} \space w_i }$$
 
 ## 二进制词袋表示法
 
@@ -83,3 +83,110 @@ $$BOW_{bin}(d)=\mathop{\mathrm{sign}}(BOW(d))$$
 $$BOW_{bin}(d)=\langle \mathop{\mathrm{sign}}(c_{1,d}), \dots, \mathop{\mathrm{sign}}(c_{N,d})\rangle$$
 
 事实证明，在许多情况下，这些更简单且占用内存更少的表示法可以代替正常的 BOW 向量使用，而不会有明显的性能差异。
+
+# 朴素贝叶斯与词袋表示法
+
+Naive Bayes classifier with BOW
+
+在其最简单的形式中，朴素贝叶斯（NB）分类器是一种生成模型，建模 $\mathbf{x}$ 观测特征向量和它们的 $c$ 类别标签的联合分布为
+
+$$P(\mathbf{x}, c) = P(c)\prod_{i=1}^D P(x_i \space \vert \space c)$$
+
+该模型被称为“朴素”，因为它基于*条件独立假设*（conditional
+independence assumption），即在给定类别标签的情况下，所有观测特征彼此独立。
+
+NB 模型可以通过指定以下内容来精确描述：
+
+- 类别标签的分类分布 $P(c)$，以及
+- 每个 $x_i$ 观测特征和 $c_j$ 标签的 $P(x_i \space \vert \space c_j)$ 分布
+
+$P(c)$ 始终是一个分类（伯努利或“多项”）分布，而 $P(x_i \space \vert \space c_j)$ 分布的选择取决于 $x_i$ 的类型；对于连续的 $x_i$，它可以是任何连续分布，高斯分布是一个常见的选择。
+
+NB 模型可以通过将 NB 假设应用于单个标记来适应文本分类：假设每个标记是根据分类条件分布 $P(w \space | \space c)$ 独立选择的。如果 $\mathbf{x}$ 是一个词袋向量，$c$ 是一个类别标签，这意味着
+
+$$P(\mathbf{x}, c) = P(c) \prod_{i=1}^{|V|}P(w_i \space \vert \space c)^{x_i}$$
+
+为了数值稳定性，对两边取对数：
+
+$$\log P(\mathbf{x}, c) = \log P(c) + \sum_{i=1}^{|V|}x_i \log P(w_i \space \vert \space c)$$
+
+这意味着，给定一个 $\mathbf{x}$ 词袋向量和一个向量
+
+$$\theta_c=\langle \log P(w_1 \space \vert \space c),\dots,\log P(w_{|V|} \space \vert \space c) \rangle$$
+
+表示类别 $c$ 的条件对数概率，
+
+$$\log P(\mathbf{x}, c) = \log P(c) + \theta_c \cdot \mathbf{x}$$
+
+即 $(\mathbf{x}, c)$ 的对数概率对于每个 $c_i$ 是一个简单的线性函数。对于一个文档 $d$，预测最可能的类别也非常简单：
+
+$$\hat c = \mathop{\mathrm{argmax}}_{c\in C}(\log P(c) + \theta_{c} \cdot BOW(d))$$
+
+模型参数的最大似然估计可以基于简单的计数：
+
+$$P(c) \approx \frac{\# \mathrm{of} \space c \space \mathrm{documents}}{ \# \mathrm{of \space all \space documents}}$$
+
+$$P(w \space | \space c) \approx \frac{\# w \space \mathrm{occurrences \space in} \space c \space \mathrm{documents}}{\# of \space \mathrm{words \space in} \space c \space \mathrm{documents}}$$
+
+由于我们基本上在处理每个类别的（unigram）语言模型，数据稀疏性再次带来了问题。
+
+最极端的情况是，如果一个词 $w\in V$ 在任何 $c$ 类别的文档中都没有出现，那么基于语料库的最大似然估计 $P(w \space | \space c)=0$，因此，对于任何包含 $w$ 的非零计数的 $\mathbf{x}$ 词袋向量的文档，
+
+$$P(\mathbf{x}, c) = P(c) \prod_{i=1}^{|V|}P(w_i \space \vert \space c)^{x_i}=0$$
+
+无论它们包含任何其他词。
+
+解决方案是使用适当的平滑方法，例如，加一平滑。
+
+## 朴素贝叶斯的局限性
+
+尽管基于 BOW 的 NB 模型相对简单，可以用于估计和预测，并且表现尚可，但也存在一些缺点：
+
+- NB 条件独立假设相当不现实，并且在基本 BOW 模型中会导致误导性的概率预测
+- NB 假设使得使用 $N$-gram 基于 BOW 的特征向量比使用 unigram 更加值得怀疑
+- 对于判别任务使用完整的生成模型通常会带来一些性能损失
+
+## 判别线性方法
+
+在经典学习算法领域中，最重要的替代方法是使用 BOW 向量的*判别方法*之一：
+
+- 感知器变体 perceptron variant
+- 逻辑回归
+- 支持向量机（SVM），
+- 基于决策树的集成方法，如随机森林或梯度提升树
+
+这些模型不假设条件独立，并且在使用改进的（例如基于 $N$-gram 的）BOW 表示作为输入时没有问题。
+
+> 有些出乎意料的是，在某些应用中，在朴素贝叶斯文本分类器中使用重叠(overlapping)的 $N$-gram 实际上对性能有*益处*，例如，character $N$-gram 经常用于语言识别的 NB 模型中。
+
+# 序列标注
+
+序列标注任务通常是将给定有限标签集 $T$ 中的一个标签分配给可变长度输入序列的每个元素。在 NLP 中，输入序列通常是 $\langle w_1,\dots,w_n \rangle$ 的*标记*序列。因此，序列标注任务也被称为 **标记分类**。
+
+在传统的 NLP 流水线中，有些任务是明确的序列标注任务，例如词性标注（POS-tagging）和形态标注（morphological tagging）。其他任务，如名词短语分块（NP-chunking）、命名实体识别（NER）或关键词识别，可以通过简单的技巧转化为序列标注任务。
+
+## IOB 标注
+
+Inside-Outside-Beginning
+
+这些任务表面上是跨度查找和跨度标注任务：目标是找到属于某些类别的标记跨度。
+
+例如，在（最小）名词短语（NP）分块的情况下：
+
+![http://www.nltk.org/book/ch07.html](iob1.jpg)
+
+IOB 技巧是将 跨度识别/标注 （span identification） 任务重新表述为序列标注任务。如果有 $T_1,\dots,T_N$ 个要识别的跨度类型，那么我们引入三种类型的标记级别标签：
+
+- 对于所有跨度类型的 $B$（开始）标签：
+  $BT_1,\dots,BT_N$ 表示给定类型的跨度的第一个标记
+
+- 对于所有跨度类型的 $I$（内部）标签：
+  $IT_1,\dots,IT_N$ 表示一个标记在跨度内（作为第二个或更晚的元素），最后
+
+- 对于不属于任何要找到的跨度类型的标记，使用唯一的 $O$ 标签
+
+使用这些标签，跨度识别任务变成了序列标注任务。
+
+![http://www.nltk.org/book/ch07.html](iob2.jpg)
+
+除了 IOB（BIO）之外，还有其他方案，最流行的是 BIOES，它引入了 $ET_i$ *结束*标签，以及用于单标记跨度的 $ST_i$ 标签。
