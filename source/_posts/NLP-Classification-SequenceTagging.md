@@ -21,8 +21,8 @@ date: 2024-10-05 20:04:00
 
 - **情感分析**：根据文档表达的情感进行分类。标签集示例：
 
-- { positive, negative, ambigous }
-- { admiration, amusement, annoyance, approval, ..., sadness, surprise }
+  - { positive, negative, ambigous }
+  - { admiration, amusement, annoyance, approval, ..., sadness, surprise }
 
 - **垃圾邮件检测**：SPAM，二分类决定消息是否为未经请求的邮件
 - **作者身份检测**：从指定的作者集中确定谁写了文本
@@ -70,7 +70,9 @@ $$TF{\text -}IDF(d)=\langle tf_{1,d}\cdot idf_1, \dots, tf_{N,d}\cdot idf_N\rang
 
 其中 $tf_{i,d}$ 只是 $w_i$ 在 $d$ 中的出现次数，而
 
+<div>
 $$idf_i = \log\frac{\mathrm{\# of \space all \space documents}}{\mathrm{\# of \space documents \space containing} \space w_i }$$
+</div>
 
 ## 二进制词袋表示法
 
@@ -124,9 +126,13 @@ $$\hat c = \mathop{\mathrm{argmax}}_{c\in C}(\log P(c) + \theta_{c} \cdot BOW(d)
 
 模型参数的最大似然估计可以基于简单的计数：
 
-$$P(c) \approx \frac{\# \mathrm{of} \space c \space \mathrm{documents}}{ \# \mathrm{of \space all \space documents}}$$
+<div>
+$$P(c) \approx \frac{\# \mathrm{of} \space c \space \mathrm{documents}}{ \# \mathrm{of \space all \space documents }}$$
+</div>
 
+<div>
 $$P(w \space | \space c) \approx \frac{\# w \space \mathrm{occurrences \space in} \space c \space \mathrm{documents}}{\# of \space \mathrm{words \space in} \space c \space \mathrm{documents}}$$
+</div>
 
 由于我们基本上在处理每个类别的（unigram）语言模型，数据稀疏性再次带来了问题。
 
@@ -207,19 +213,232 @@ $$D=\{\langle \mathbf{x_1},\mathbf{y_1} \rangle,\dots, \langle \mathbf{x_N},\mat
 
 我们将讨论的方法都是*概率方法*（probabilistic）：它们要么建模 $P(\mathbf{X}, \mathbf{Y})$ 联合分布（generative model），要么建模 $P(\mathbf{Y} \space | \space \mathbf{X})$ 条件分布（判别模型，discriminative model）。
 
-\\begin{center}
-      \\begin{tikzpicture}[ampersand replacement=\\&]
-        \\matrix[matrix of math nodes,column sep=2em,row sep=3em] (m) {
-          Y_1 \\& Y_2 \\& Y_3 \\& \cdots \\& Y_{n}\\
-          X_1 \\& X_2 \\& X_3 \\& \dots \\& X_n\\
-        };
-        \\foreach \\X in {1,2,3,4}
-        {\\draw[-latex] (m-1-\\X) -- (m-1-\\the\\numexpr\\X+1) ;
-          \\ifnum\X=4
-          \\draw[-latex] (m-1-5) -- (m-2-5) ;
-          \\else
-          \\draw[-latex] (m-1-\\X) -- (m-2-\\X);
-          \\fi}
-        % \\draw[dashed] ([yshift=1ex]m.east) -- ([yshift=1ex]m.east-|m-1-1.east);
-      \\end{tikzpicture}
-\\end{center}
+# 隐马尔可夫模型
+
+(Hidden Markov models) HMMs 是基于假设**可观察**序列 $\mathbf{x}$ 的元素实际上依赖于位置上对应的**隐藏**序列 $\mathbf{y}$ 的元素的 $P(\mathbf{X}, \mathbf{Y})$ 分布的*生成模型*，而这些隐藏元素又根据马尔可夫模型分布。条件独立假设共同遵循以下图形模型：
+
+![tikzpicture](hmm.jpg)
+
+由于关于 $Y$ 的马尔可夫模型假设，有一个 $A$ 矩阵指定所有标签的**转移概率**，因此对于任何适当的 $k, i, j$，
+
+$$P(Y_k=y_j \space | \space Y_{k-1}=y_i) = a_{i j}$$
+
+HMMs 还假设 $P(X \space | \space Y)$ **发射概率**与位置无关：因此也有一个 $B$ 矩阵，对于任何 $k, i, j$，
+
+$$P(X_k= x_j \space | \space Y_{k}= y_i) = b_{i j}$$
+
+假设最终有一个包含每个可能 $y_i$ 标签的起始概率的 $\Pi$ 向量：
+
+$$P(Y_1 = y_i) = \pi_i,$$
+
+具体的 $\langle \mathbf{x}, \mathbf{y} \rangle =\langle \langle x_{l_1},\dots,x_{l_n} \rangle, \langle y_{m_1},\dots,y_{m_n} \rangle \rangle$ 对的概率可以计算为
+
+$$P(\mathbf{x}, \mathbf{y}) = \pi_{m_1} b_{m_1 l_1} \prod_{i=2}^na_{m_{i-1} m_i}b_{m_i l_i}.$$
+
+$A, B$ 和 $\Pi$ 中概率的最大似然估计 (MLE) 可以通过简单计数来计算。如果训练数据集包含 $N$ 个序列，那么
+
+<div>
+$$
+\begin{equation}
+\begin{gathered} \pi_i = \frac{C(\mathrm{first~~element~~is~~} y_i)}{N}\\ \nonumber
+ a_{ij} = \frac{C(\langle y_i,y_j\rangle)}{\sum_kC(\langle y_i,y_k\rangle)}\\ \nonumber
+ b_{ij} = \frac{C(y_i \mathrm{~~emits~~} x_j)}{C(y_i)} \nonumber
+\end{gathered}
+\end{equation}
+$$
+</div>
+
+与其他基于计数的 MLE 方法类似，在数据稀疏（sparse）的情况下可能需要平滑处理。
+
+# 维特比算法
+
+Viterbi algorithm
+
+给定一个训练好的 HMM 及其 $\pi, A, B$ 参数，以及一个长度为 $n$ 的输入序列 $\mathbf{x}$，我们希望确定最可能的对应标签序列 $\mathbf{y}$，即找到
+
+$$\mathop{\mathrm{argmax}}_{\mathbf{y}\in Y^n} P(\mathbf{y} | \mathbf{x}, \Pi, A, B)$$
+
+这等价于
+
+$$\mathop{\mathrm{argmax}}_{\mathbf{y}\in Y^n} P(\mathbf{x}, \mathbf{y} | \Pi, A, B)$$
+
+穷举搜索是不可行的，因为有 $|Y|^n$ 种可能的标签序列。
+
+## 动机：最小和算法
+
+我们如何根据如下图所示的图表找到 A 和 B 之间的最低成本路径？
+
+![min-sum1](min-sum-1.png)
+
+与时间复杂度可能是 A 和 B 之间最短路径长度的指数级的暴力（brute）解决方案不同，我们可以使用一个简单的 **消息传递** 方法。
+
+从 A 开始，每个节点
+
+- 接收来自其前驱节点（predecessors）的关于它们从 A 的最小和距离的消息
+- 基于这些消息，计算自己的最小和距离和入边，并
+- 将其最小和距离发送给所有后继节点
+
+最终，消息到达 B，B 能够计算出 A-B 的最小和距离，并且可以重建 A 和 B 之间的最小和路径。
+
+![min-sum2](min-sum-2.png)
+
+![Min-Sum algorithm message passing steps](min-sum-3.png)
+
+Min-Sum 算法可以适应解决我们的问题，因为它可以在不进行任何显著更改的情况下用于最大化节点之间路径上的乘积（max-product），并且 HMM 的 transition/emission 概率具有所需的有向无环图结构：
+
+![HMM 模型中的转移路径](min-sum-4.png)
+
+## The Viterbi algorithm
+
+更正式地说，HMM 的 conditional independence assumptions 有以下结果：如果我们知道，对于所有 $y_i\in Y$，值
+
+<div>
+$$
+\mathbf{y}^{n-1}_i = \mathop{\mathrm{argmax}}_{\mathbf{y}\in Y^{n-1}~\wedge~\mathbf{y}[n-1] = y_i} P(\mathbf{x}[1:n-1], \mathbf{y} ~|~ \Pi, A, B)
+$$
+</div>
+
+（即以 $y_i$ 结尾的最可能的 $n-1$ 长度标签序列），那么最可能的 $\mathbf{y}$ 可以通过仅比较 $|Y|^2$ 个延续来计算：
+
+<div>
+$$
+\mathbf{y} = \mathop{\mathrm{argmax}}_{\mathbf{y}\in \{\langle \mathbf{y}_i^{n-1},~y \rangle ~|~ i \in 1\dots |Y|~\wedge~ y \in Y\}} P(\mathbf{x}, \mathbf{y} ~|~ \Pi, A, B)
+$$
+</div>
+
+这就提出了以下算法：
+
+![Viterbi algorithm](vite.jpg)
+
+算法通常通过逐步填充一个 $|Y| \times \mathrm{length}(\mathbf{x})$ 表来实现。在*前向传递*中，它
+
+1. 计算 $y_i^t$ 的概率，并
+2. 维护到最可能的 $\mathbf{y}^{t-1}$ 的反向引用
+
+在*后向传递*中，选择最可能的 $y_i^n$ 并通过跟随反向引用恢复 $\mathbf{y}$。
+
+![https://cs.rice.edu/~ogilvie/comp571/viterbi-algorithm/](viterbi-5.jpg)
+
+维特比是一种 [动态规划](https://en.wikipedia.org/wiki/Dynamic_programming) 算法，与穷举搜索形成鲜明对比，其时间复杂度为 $\mathcal O(\mathrm{length}(\mathbf{x})|Y|^2)$
+
+跟踪部分 $\mathbf{y}_i^t$ 序列元素及其概率的表仅占用 $\mathcal{O}(\mathrm{length}(\mathbf{x})|Y|)$ 空间。
+
+直接计算要比较的概率需要乘以非常接近于零的数字，因此通常使用对数概率的和来进行计算。
+
+注意：正如我们所见，维特比算法也被称为 **最小和** 或 **最大积** 算法的应用。
+
+# 判别序列标注方法
+
+Discriminative methods
+
+与朴素贝叶斯序列分类器类似，HMM 是生成模型，建模输入和标签的概率，这在我们的设置中是不必要的。我们可以通过“反转”输入和标签之间的箭头并对 $\mathbf{X}$ 进行条件化来构建类似结构但*判别*的模型：
+
+![tikzpicture](disc.jpg)
+
+## 最大熵马尔可夫模型
+
+Maximum entropy Markov models (MEMMs)
+
+根据前面的图形模型假设，
+
+<div>
+$$
+P(\mathbf{Y}~|~\mathbf{X}) = P(Y_1~|~ \mathbf{X})\prod_{m=2}^n P(Y_m|Y_{m-1}, \mathbf{X})
+$$
+</div>
+
+MEMMs 通过使 $Y_m$ 仅在当前观测 $O_m$ 上条件依赖来形式化这个通用模型：
+
+<div>
+$$
+P(\mathbf{Y}~|~\mathbf{X}) = P(Y_1~|~O_1)\prod_{m=2}^n P(Y_m|Y_{m-1},O_m)
+$$
+</div>
+
+那么 $Y_m$ 如何依赖于 $\mathbf{X}$ 呢？诀窍在于如何定义 $O_m$。
+
+## 特征函数
+
+$Y_{m-1},O_m$ 对被定义为 $\mathbf{f}(y_k,\mathbf{x}, m)$，其中 $f(\cdot)$ 是一个基于 $Y_{m-1}=y_k$ 和 $x$ 在 $m$ 处生成 feature vector 的函数。
+
+在 NLP 中，我们仅在要标注元素周围的*上下文窗口*内对*local features*进行条件化。由语言学家设计的一些用于词性标注的示例特征：
+
+- 上下文窗口中 $x_m$ 周围的元素，例如 $\langle x_{m-1}, x_{m}, x_{m+1} \rangle$，
+
+- 上下文窗口元素的后缀（固定长度），
+
+- 上下文窗口元素的前缀（固定长度），
+
+- 上下文窗口元素的大小写信息，
+
+- 前一个元素的词性标注 $y_k$。
+
+## MEMMs
+
+个别的 $P(Y_m|Y_{m-1},X_m)$ 概率类似于使用 softmax 函数的*multinomial logistic regression*进行建模：
+
+<div>
+$$
+P(Y_m = y_i|Y_{m-1}=y_k,\mathbf{x})=\frac{\exp (\mathbf{w}_i \cdot \mathbf{f}(y_k,
+  \mathbf{x}, m))}{\sum_{j=1}^{|Y|}\exp (\mathbf{w}_j \cdot \mathbf{f}(y_k,
+  \mathbf{x}, m))}
+$$
+</div>
+
+其中每个 $\mathbf{w}_i$ 是 $y_i\in Y$ 标签的权重向量。
+
+MEMM 这个名称来源于在 NLP 中，多项逻辑回归更常被称为*maximum entropy*。
+
+## 标签偏置
+
+尽管 MEMMs 比 HMMs 更灵活（例如，标签可以依赖于上下文的其他特征而不仅仅是前一个标签），但它们也有重要的局限性。
+
+也许最重要的是标签概率是*局部归一化*的：$\sum_{y\in Y}P(y~|y_{m-1}, \mathbf{x}, m)=1$，无论模型对上下文有多“熟悉”，因此模型无法表达对给定上下文中的标签的一般低置信度。
+
+这导致了所谓的[Label bias](https://awni.github.io/label-bias/)问题：模型无法轻易从在低置信度情况下做出的过去标注错误中恢复。
+
+### 示例
+
+一个词性标注器将句子 *"cat sat"* 标注为 `ARTICLE VERB`，因为
+
+- 标注器无法从 `<S>` 处 *cat* 的偏斜后验分布（skewed posterior distribution）中恢复，使用**局部**归一化（图1）。
+- 未归一化的 $\mathbf{w}_i \cdot \mathbf{f}(\cdot)$ 观测值（图2）显示
+
+  1. 标注器对"*cat*" 开始一个句子没有信心，
+  2. **全局** `NOUN VERB` 具有更高的分数（对数和沿边缘相加）。
+
+![图1, memm_inference_normalized](memm_inference_normalized.jpg)
+
+![图2, memm_inference_unnormalized](memm_inference_unnormalized.jpg)
+
+## 条件随机场
+
+线性链条件随机场（Linear chain Conditional Random Fields）是判别模型，旨在避免标签偏置。它们假设以下 **undirected** 结构：
+
+![tikzpicture](crf.jpg)
+
+根据这些假设，
+
+<div>
+$$P(\mathbf{Y}~|~\mathbf{X}) = \frac{1}{Z(\mathbf{X})}\prod_{m=1}^{n-1}
+\phi_{m}(Y_m, Y_{m+1}, \mathbf{X})$$
+</div>
+
+与 MEMMs 有些类似，$\phi_m(\cdot)$ **势函数** （potential）通过特征函数和相应的权重向量线性建模。它们基本上是 softmax 的分子：
+
+$$\phi_m(y_m, y_{m+1},\mathbf{x})={\exp (\mathbf{w} \cdot
+      \mathbf{f}(y_m,y_{m+1}, \mathbf{x}, m))}$$
+
+关键区别在于归一化是*全局*的：
+
+<div>
+$$P(\mathbf{y}~|~\mathbf{x}) =
+    \frac{\exp(\sum_{m=1}^{n-1}\mathbf{w}\cdot\mathbf{f}(y_m,y_{m+1},
+    \mathbf{x}, m))} {\sum_{\mathbf{y}'\in
+    Y^n}\exp(\sum_{m=1}^{n-1}\mathbf{w}\cdot\mathbf{f}(y'_m,y'_{m+1},
+    \mathbf{x}, m))}$$
+</div>
+
+## 优化和推理
+
+MEMMs 和线性链 CRFs 都可以使用标准的凸优化技术进行优化，例如梯度下降，并且在训练模型后，可以使用维特比算法的变体有效地找到给定输入的最可能标签序列。
