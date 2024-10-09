@@ -122,7 +122,9 @@ $$\log P(\mathbf{x}, c) = \log P(c) + \theta_c \cdot \mathbf{x}$$
 
 即 $(\mathbf{x}, c)$ 的对数概率对于每个 $c_i$ 是一个简单的线性函数。对于一个文档 $d$，预测最可能的类别也非常简单：
 
+<div>
 $$\hat c = \mathop{\mathrm{argmax}}_{c\in C}(\log P(c) + \theta_{c} \cdot BOW(d))$$
+</div>
 
 模型参数的最大似然估计可以基于简单的计数：
 
@@ -209,7 +211,9 @@ IOB 技巧是将 跨度识别/标注 （span identification） 任务重新表�
 
 $$D=\{\langle \mathbf{x_1},\mathbf{y_1} \rangle,\dots, \langle \mathbf{x_N},\mathbf{y_N} \rangle\}$$
 
+<div>
 其中每对 $\langle \mathbf{x}_i, \mathbf{y}_i \rangle$ 包含一个要标注的序列 $\langle x_1^i,\dots,x_{n_i}^i\rangle$ 和对应的正确标签序列 $\langle y_1^i,\dots,y_{n_i}^i\rangle$。
+</div>
 
 我们将讨论的方法都是*概率方法*（probabilistic）：它们要么建模 $P(\mathbf{X}, \mathbf{Y})$ 联合分布（generative model），要么建模 $P(\mathbf{Y} \space | \space \mathbf{X})$ 条件分布（判别模型，discriminative model）。
 
