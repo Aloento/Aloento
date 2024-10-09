@@ -37,9 +37,9 @@ date: 2024-10-05 20:04:00
  这些系统可以达到良好的性能，但需要大量的手工工作，并且难以维护和适应。
 
 - **机器学习方法**：在包含标记文档的监督数据集上学习的模型：
- $\{\langle d_i, c_i \rangle\}_{i\in \{1, \dots, N\}}$
-
- 方法范围从线性机器学习方法如逻辑回归（logistic regression）到深度神经网络。
+  $\{\langle d_i, c_i \rangle\}_{i\in \{1, \dots, N\}}$
+  
+  方法范围从线性机器学习方法如逻辑回归（logistic regression）到深度神经网络。
 
 # 词袋表示法
 
@@ -190,3 +190,36 @@ IOB 技巧是将 跨度识别/标注 （span identification） 任务重新表�
 ![http://www.nltk.org/book/ch07.html](iob2.jpg)
 
 除了 IOB（BIO）之外，还有其他方案，最流行的是 BIOES，它引入了 $ET_i$ *结束*标签，以及用于单标记跨度的 $ST_i$ 标签。
+
+## 序列标注的挑战
+
+序列标注的主要挑战是元素标签与其他元素的特征（包括它们的标签）之间的复杂相互依赖性：在大多数 NLP 标注任务中，标签是 **强烈依赖上下文** 的。
+
+另一个重要问题是特征工程：哪些序列元素的特征与标注相关？如果要正确处理词汇表外的单词，那么至少有些特征可能应该基于单词的表面形式，例如其大写、后缀等。
+
+## 序列标注的监督方法
+
+这些方法假设有一个监督数据集
+
+$$D=\{\langle \mathbf{x_1},\mathbf{y_1} \rangle,\dots, \langle \mathbf{x_N},\mathbf{y_N} \rangle\}$$
+
+其中每对 $\langle \mathbf{x}_i, \mathbf{y}_i \rangle$ 包含一个要标注的序列 $\langle x_1^i,\dots,x_{n_i}^i\rangle$ 和对应的正确标签序列 $\langle y_1^i,\dots,y_{n_i}^i\rangle$。
+
+我们将讨论的方法都是*概率方法*（probabilistic）：它们要么建模 $P(\mathbf{X}, \mathbf{Y})$ 联合分布（generative model），要么建模 $P(\mathbf{Y} \space | \space \mathbf{X})$ 条件分布（判别模型，discriminative model）。
+
+\\begin{center}
+      \\begin{tikzpicture}[ampersand replacement=\\&]
+        \\matrix[matrix of math nodes,column sep=2em,row sep=3em] (m) {
+          Y_1 \\& Y_2 \\& Y_3 \\& \cdots \\& Y_{n}\\
+          X_1 \\& X_2 \\& X_3 \\& \dots \\& X_n\\
+        };
+        \\foreach \\X in {1,2,3,4}
+        {\\draw[-latex] (m-1-\\X) -- (m-1-\\the\\numexpr\\X+1) ;
+          \\ifnum\X=4
+          \\draw[-latex] (m-1-5) -- (m-2-5) ;
+          \\else
+          \\draw[-latex] (m-1-\\X) -- (m-2-\\X);
+          \\fi}
+        % \\draw[dashed] ([yshift=1ex]m.east) -- ([yshift=1ex]m.east-|m-1-1.east);
+      \\end{tikzpicture}
+\\end{center}
