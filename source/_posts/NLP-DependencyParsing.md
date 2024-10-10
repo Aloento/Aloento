@@ -162,9 +162,13 @@ date: 2024-10-06 17:20:27
 
 该过程保证在有限步数后结束，在此配置中，缓冲区为空，并且创建的依存图是整个输入的良构依存树：
 
-- 它会结束，因为在每一步中我们都会减少“依存图的 collective token distance”
+- 它会结束，因为在每一步中我们都会减少依存图的 “collective token distance”
 
-  $2 \cdot \#(\mathrm{缓冲区中的tokens}) + \#(\mathrm{堆栈中的tokens})$
+<div>
+$$
+2 \cdot \#(\mathrm{缓冲区中的tokens}) + \#(\mathrm{堆栈中的tokens})
+$$
+</div>
 
 - 缓冲区必须为空，因为否则移位操作将可用，并且堆栈只能包含根元素，原因类似
 
