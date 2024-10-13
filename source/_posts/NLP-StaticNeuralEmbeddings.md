@@ -162,15 +162,15 @@ $$\frac{C(w_i, w_j)C(\mathrm{\langle target~word, context~word\rangle~pairs~in~c
 
 在一个大型维基百科片段中，PMI 分数最高和最低的三组二元组：
 
- | 单词 1 | 单词 2 | PMI  |
- |--------|---------|------|
- | puerto | rico    | 10.03|
- | hong   | kong    | 9.72 |
- | los    | angeles | 9.56 |
- | $\cdots$ | $\cdots$ | $\cdots$ |
- | to     | and     | -3.08|
- | to     | in      | -3.12|
- | of     | and     | -3.70|
+| 单词 1   | 单词 2   | PMI      |
+| -------- | -------- | -------- |
+| puerto   | rico     | 10.03    |
+| hong     | kong     | 9.72     |
+| los      | angeles  | 9.56     |
+| $\cdots$ | $\cdots$ | $\cdots$ |
+| to       | and      | -3.08    |
+| to       | in       | -3.12    |
+| of       | and      | -3.70    |
 
 # GloVe
 

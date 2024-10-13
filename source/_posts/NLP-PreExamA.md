@@ -47,19 +47,19 @@ grammar 指导你如何构建句子，如何解析句子
 
 另一种是有条件生成，生成满足一定需求的句子，也就是有意义的句子
 
-## 与NLP管道的关系
+## 与 NLP 管道的关系
 
 在那时我们还没有 transformer 和端到端模型，所以我们需要一步一步的去拆解和分析句子
 
 也就是我们在管道中执行人为设计的算法，帮助计算机理解句子
 
-# A2 传统NLP管道中的元素和任务
+# A2 传统 NLP 管道中的元素和任务
 
 Elements and tasks in the traditional NLP pipeline (Structure/order of the pipeline, tokenization, sentence splitting, morphology, POS tagging, syntactic parsing, NER, coreference resolution, entity linking, WSD, semantic role labeling, semantic parsing)
 
 ## 管道的结构/顺序
 
-实际上PPT中有一个重要的内容没有提到，那就是管道的第一步：预处理
+实际上 PPT 中有一个重要的内容没有提到，那就是管道的第一步：预处理
 
 预处理基本就是删除特殊字符，然后统一大小写，去除停用词 the a an 等
 
@@ -221,7 +221,7 @@ P(Wn | W1, ..., Wn-1)，我下一个词的概率只跟我前面的词有关
 
 而内部评估是把每个词的概率相乘，然后变换来看整体置信度，或者 Perplexity
 
-# A6 基于N-gram的语言建模
+# A6 基于 N-gram 的语言建模
 
 N-gram-based language modeling (Estimating sequence and word probabilities, N-gram models, markov models, Smoothing)
 
@@ -235,7 +235,7 @@ N-gram-based language modeling (Estimating sequence and word probabilities, N-gr
 
 那为了解决 0 概率问题，我们可以采取 n-gram 模型
 
-## N-gram模型
+## N-gram 模型
 
 其实就是把连续改成离散，比如 bigram 就是只考虑前一个词，trigram 就是考虑前两个词
 
@@ -301,9 +301,9 @@ Sequence tagging with classical methods (Sequence tagging tasks, IOB tagging, su
 
 就是给句子中的每个词打标签，比如词性标注，命名实体识别等
 
-## IOB标注
+## IOB 标注
 
-名词短语不是有多个词么，整个标记为 NP，然后用 IOB 把这个NP拆开
+名词短语不是有多个词么，整个标记为 NP，然后用 IOB 把这个 NP 拆开
 
 某个实体的开头标 B，里面的标 I，不属于任何实体的标 O
 
@@ -373,13 +373,55 @@ Dependency parsing (Dependency grammar, projectivity, transition-based parser, g
 
 ## 依存语法
 
+前面提到过，找出谁依赖谁，谁支配谁，并且修饰词可以省略
+
+依存语法对句子有个类似于 AST 一样的约束，也就是有一个根
+
 ## 投射性
+
+但是很显然人类的语言不可能随时满足 AST，所以我们需要判断 projectivity
+
+比如，我喜欢吃苹果，有 我 -> 喜欢 <- 吃 <- 苹果 的线性关系，这就是投射的
+
+但是：苹果，我喜欢吃。这句话就会导致 苹果 -> 吃 与 ROOT -> 喜欢 的关系线交叉，这就是非投射的
+
+注意，一定有一个 ROOT 节点去指向句子的动词
 
 ## 基于转换的解析器
 
-## 基于图的解析器
+| 操作      | Stack                | Buffer            | Arcs                                      |
+| --------- | -------------------- | ----------------- | ----------------------------------------- |
+| INIT      | [ROOT]               | [I, like, apples] | []                                        |
+| SHIFT     | [ROOT, I]            | [like, apples]    | []                                        |
+| SHIFT     | [ROOT, I, like]      | [apples]          | []                                        |
+| LEFT-ARC  | [ROOT, like]         | [apples]          | [(like, I)]                               |
+| SHIFT     | [ROOT, like, apples] | []                | [(like, I)]                               |
+| RIGHT-ARC | [ROOT, like]         | []                | [(like, I), (like, apples)]               |
+| RIGHT-ARC | [ROOT]               | []                | [(ROOT, like), (like, I), (like, apples)] |
 
 ## 非投射性解析
+
+转换解析器只能生成投射树，这肯定是不够高的
+
+那我们可以使用 pseudo-projective parsing，它将非投射关系进行变形
+
+比如重新标注，插入额外标记等，等解析完成后，再将预处理的部分还原
+
+## 基于图的解析器
+
+```mermaid
+graph LR
+    ROOT --> I
+    ROOT --> like
+    ROOT --> apples
+    like <--> I
+    like <--> apples
+    I <--> apples
+```
+
+使用 ChuLiu 等评分算法对每一条边打分
+
+然后通过 maximum spanning tree 来找出最可能的依存关系
 
 # A10 基于词汇资源和潜在语义分析的词汇语义学
 
@@ -393,11 +435,11 @@ Lexical semantics based on lexical resources and LSA (Word senses and dictionari
 
 ## 潜在语义分析
 
-# A11 Word2vec和GloVe
+# A11 Word2vec 和 GloVe
 
 Word2vec and GloVe (CBOW and Skipgram tasks, neural embeddings, training architectures, negative sampling, GloVe algorithm)
 
-## CBOW和Skipgram任务
+## CBOW 和 Skipgram 任务
 
 ## 神经嵌入
 
@@ -405,7 +447,7 @@ Word2vec and GloVe (CBOW and Skipgram tasks, neural embeddings, training archite
 
 ## 负采样
 
-## GloVe算法
+## GloVe 算法
 
 # A12 评估词嵌入和基于内部词结构的嵌入
 
@@ -417,7 +459,7 @@ Evaluating word embeddings and embeddings based on internal word structure (Intr
 
 ## 子词[fastText]嵌入
 
-# A13 使用RNN进行语言建模和序列处理
+# A13 使用 RNN 进行语言建模和序列处理
 
 Language modeling and sequence processing with RNNs (Four types of sequence processing, sequence tagging, bidirectional RNNs, sequence encoding, sequence generation, seq2seq tasks, LSTM architecture)
 
@@ -425,12 +467,12 @@ Language modeling and sequence processing with RNNs (Four types of sequence proc
 
 ## 序列标注
 
-## 双向RNN
+## 双向 RNN
 
 ## 序列编码
 
 ## 序列生成
 
-## seq2seq任务
+## seq2seq 任务
 
-## LSTM架构
+## LSTM 架构
