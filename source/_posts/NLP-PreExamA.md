@@ -563,14 +563,61 @@ Language modeling and sequence processing with RNNs (Four types of sequence proc
 
 ## 四种类型的序列处理
 
+1. 单输入单输出，如图像分类
+2. 单输入多输出，如图像描述
+3. 多输入单输出，如情感分析
+4. 多输入多输出，如机器翻译
+
 ## 序列标注
+
+之前就提到过，比如 POS NER 等，可以使用一组 embedding -> LSTM -> softmax 来实现
 
 ## 双向 RNN
 
+也就是用两个 RNN，一个正向一个反向，然后把结果合并，这样能更好的捕捉上下文
+
 ## 序列编码
+
+首先我们要知道 Seq2Vec 是把序列编码成一个固定维度的向量
+
+那我们就可以使用 LSTM 的最后一层输出来表示整个序列
+
+双向 RNN 的话就用最大池化
+
+RNN 就是 `h_t = tanh(W_hx * x_t + W_hh * h_t-1 + b_h)`
+
+h_t 输出，W_hx 输入到隐藏权重，x_t 输入
+
+W_hh 隐藏到隐藏权重，h_t-1 前一刻的隐藏状态 ，b_h 隐藏偏置
 
 ## 序列生成
 
+Seq2Vec 或其他模型，比如ConvNN，可以生成一个向量，然后交给 LSTM 来生成序列
+
+那么 Vec2Seq 公式为 y_t = softmax(W_hy * h_t + b_y)
+
+y_t 输出，W_hy 隐藏到输出权重，h_t 隐藏状态，b_y 输出偏置
+
 ## seq2seq 任务
 
+把 Seq2Vec 和 Vec2Seq 结合起来，就叫 seq2seq 任务
+
+我们可以使用 教师强制 来训练，它是把真实的输出作为下一时刻的输入
+
+这样可以帮助模型更快的收敛，但是会导致推理时的性能下降
+
 ## LSTM 架构
+
+是 RNN 的一种增强，它有三个门，Input Forget Output
+
+它可以更好的处理长期依赖，避免梯度 vanishing 和 exploding
+
+流程如下
+
+1. 遗忘门决定丢弃多少信息
+
+2. 输入门决定添加多少信息
+
+3. 将遗忘门的输出与记忆单元相乘，然后加上输入门的输出
+
+4. 输出门决定输出多少信息，然后生成新的隐藏状态
