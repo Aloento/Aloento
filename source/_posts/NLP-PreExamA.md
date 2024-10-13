@@ -533,9 +533,29 @@ Evaluating word embeddings and embeddings based on internal word structure (Intr
 
 ## 内在评估
 
+我们可以通过词类比 Analogy，词相似度，词类别等
+
+对于词类比，我们可以测试类似于
+
+Wking - Wman + Wwoman
+
+= Wqueen 的概率，概率越大，表现越好
+
+而对于词相似度，我们可以比作看词联想游戏
+
+比如看到猫，可以想到狗，我们使用余弦相似度来衡量
+
+在合理的模型中，sim(猫, 狗) > sim(猫, 汽车)
+
 ## 外在评估
 
+可以使用 NER 等实际任务来评估词向量的性能
+
 ## 子词[fastText]嵌入
+
+传统方法对没见过的词无能为力，但是 fastText 可以通过子词来生成词向量，类似于 n-gram
+
+它跟 W2V 很像，只不过用了子词
 
 # A13 使用 RNN 进行语言建模和序列处理
 
