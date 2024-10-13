@@ -429,11 +429,49 @@ Lexical semantics based on lexical resources and LSA (Word senses and dictionari
 
 ## 词义和词典
 
+从词典中找出一个词的含义，查字典哥们
+
 ## 词汇关系
+
+synonymy 和 antonimy 同义词反义词
+
+还有动物（上）和老鼠（下）的关系，hypo-hypernymy
+
+还有 finger 和 hand 的 meronymy
+
+可以使用 WordNet 来查找这些关系并进行消歧
 
 ## 词向量
 
+WN 是手动标注的，这不好，我们可以从语料库中学习词向量
+
+也就是根据词的上下文，和相似分布，来猜测词的含义
+
+使用共现矩阵
+
+| 词-文档 | 文档 1 | 文档 2 |
+| ------- | ------ | ------ |
+| 词 1    | 1      | 0      |
+| 词 2    | 0      | 1      |
+
+是统计词在文档中出现的次数
+
+和
+
+| 词-词 | 词 1 | 词 2 |
+| ----- | ---- | ---- |
+| 词 1  |      | 1    |
+| 词 2  | 1    |      |
+
+是统计词在同一个文档中一起出现的次数
+
 ## 潜在语义分析
+
+然后我们使用 SVD 来降维，找出词的潜在语义 LSA
+
+C = USV，U 和 V 是 orthonormal，S 是 diagonal
+
+U：词矩阵，V：文档矩阵，S：不同维度的重要性
 
 # A11 Word2vec 和 GloVe
 
