@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>NLP-DialogSystems - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="Chatbot"><meta property="og:type" content="blog"><meta property="og:title" content="NLP-DialogSystems"><meta property="og:url" content="https://aloen.to/AI/NLP/NLP-DialogSystems/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="Chatbot"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/gus_1.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/gus_2.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/gus_3.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/frame.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/dialog-state.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/slot_detection.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/dialog_state_tracker.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/dialog_state_tracker_bert.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/dialog_state_tracker_2.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/content_planning.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/template.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/seq2seq_nlg.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/simple_tod_2.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/simple_tod_1.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DialogSystems/dialog_schema.png"><meta property="article:published_time" content="2024-11-07T10:19:14.000Z"><meta property="article:modified_time" content="2024-11-07T12:35:56.626Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="笔记"><meta property="article:tag" content="AI"><meta property="article:tag" content="NLP"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/AI/NLP/NLP-DialogSystems/gus_1.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/AI/NLP/NLP-DialogSystems/"},"headline":"NLP-DialogSystems","image":["https://aloen.to/AI/NLP/NLP-DialogSystems/gus_1.png","https://aloen.to/AI/NLP/NLP-DialogSystems/gus_2.png","https://aloen.to/AI/NLP/NLP-DialogSystems/gus_3.png","https://aloen.to/AI/NLP/NLP-DialogSystems/frame.png","https://aloen.to/AI/NLP/NLP-DialogSystems/dialog-state.png","https://aloen.to/AI/NLP/NLP-DialogSystems/slot_detection.png","https://aloen.to/AI/NLP/NLP-DialogSystems/dialog_state_tracker.png","https://aloen.to/AI/NLP/NLP-DialogSystems/dialog_state_tracker_bert.png","https://aloen.to/AI/NLP/NLP-DialogSystems/dialog_state_tracker_2.png","https://aloen.to/AI/NLP/NLP-DialogSystems/content_planning.png","https://aloen.to/AI/NLP/NLP-DialogSystems/template.png","https://aloen.to/AI/NLP/NLP-DialogSystems/seq2seq_nlg.png","https://aloen.to/AI/NLP/NLP-DialogSystems/simple_tod_2.png","https://aloen.to/AI/NLP/NLP-DialogSystems/simple_tod_1.png","https://aloen.to/AI/NLP/NLP-DialogSystems/dialog_schema.png"],"datePublished":"2024-11-07T10:19:14.000Z","dateModified":"2024-11-07T12:35:56.626Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/AI/NLP/NLP-DialogSystems/"}},"description":"Chatbot"}</script><link rel="canonical" href="https://aloen.to/AI/NLP/NLP-DialogSystems/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-07T10:19:14.000Z" title="11/7/2024, 10:19:14 AM">2024-11-07</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-07T12:35:56.626Z" title="11/7/2024, 12:35:56 PM">2024-11-07</time></span><span class="level-item"><a class="link-muted" href="/categories/AI/">AI</a><span> / </span><a class="link-muted" href="/categories/AI/NLP/">NLP</a></span><span class="level-item">20 minutes read (About 3063 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">NLP-DialogSystems</h1><div class="content"><p>Chatbot</p>
+<span id="more"></span>
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h2 id="对话系统"><a href="#对话系统" class="headerlink" title="对话系统"></a>对话系统</h2><ul>
+<li><p>它们通过进行对话与用户交流</p>
+</li>
+<li><p>对话的形式可以是</p>
+<ul>
+<li><strong>口语</strong></li>
+<li><strong>书面</strong>（文本）</li>
+<li><strong>混合</strong>：除了语音和&#x2F;或文本对话外，还可以包含带有按钮的对话框等GUI元素</li>
+</ul>
+</li>
+<li><p>典型的环境包括</p>
+<ul>
+<li>消息平台（例如，Slack和Facebook Messenger）</li>
+<li>智能手机助手（Siri，Cortana等）</li>
+<li>智能音箱（例如，Alexa）</li>
+<li>汽车（例如，Google Android Auto）</li>
+</ul>
+</li>
+</ul>
+<h2 id="对话系统的类型"><a href="#对话系统的类型" class="headerlink" title="对话系统的类型"></a>对话系统的类型</h2><p>通常区分 <strong>任务导向</strong> （task-oriented）和 <strong>开放域</strong> （open domain）对话系统（后者也称为 <strong>聊天机器人</strong>）。</p>
+<ul>
+<li><p><strong>任务导向对话系统</strong>：目标是在预定义的任务集中完成一个或多个任务，例如，订购某物、打电话、转账、获取路线等</p>
+</li>
+<li><p><strong>开放域对话系统</strong>：</p>
+<ul>
+<li>目标是开放式和非结构化的扩展对话</li>
+<li>没有预定的任务（或任务集）作为目标</li>
+<li>在许多情况下，主要结果只是“娱乐”</li>
+<li>可以作为主要任务导向系统的附加组件</li>
+</ul>
+</li>
+</ul>
+<p>另一种重要的分类是根据谁发起和控制对话。对话可以是</p>
+<ul>
+<li><p><strong>用户发起</strong>：例如，手机助手。对话通常非常简短，例如，用户问题和系统回答使用手机助手</p>
+</li>
+<li><p><strong>系统控制</strong>：变体包括</p>
+<ul>
+<li>系统发起并控制，例如通过警告或提醒用户某事</li>
+<li>用户通过请求指示发起，从那里系统指示而无需用户的基本输入</li>
+<li>用户通过请求服务发起，从那里系统通过提问帮助用户“填写问卷”</li>
+</ul>
+</li>
+<li><p><strong>混合主动性</strong>：有几个回合，系统和用户都可以主动（initiative） — 这些通常是开放域对话系统</p>
+</li>
+</ul>
+<h2 id="一般对话需求"><a href="#一般对话需求" class="headerlink" title="一般对话需求"></a>一般对话需求</h2><p>系统需要能够再现人类之间对话的重要特征，包括但不限于：</p>
+<h3 id="语境建立"><a href="#语境建立" class="headerlink" title="语境建立"></a>语境建立</h3><p>Grounding，通过说话者不断确认理解对方所说内容，建立一个不断演变的 <strong>共同语境</strong>（common ground）。</p>
+<p>说话者</p>
+<ul>
+<li><strong>引入</strong> 新的信息，</li>
+<li><strong>确认</strong> 添加的信息（通过手势或口头确认），</li>
+<li>如果需要，<strong>请求澄清</strong>。</li>
+</ul>
+<h3 id="邻接对"><a href="#邻接对" class="headerlink" title="邻接对"></a>邻接对</h3><p>Adjacency pairs，话语类型与响应期望相关联：</p>
+<ul>
+<li><p>问题 $\Rightarrow$ 答案</p>
+</li>
+<li><p>提议 $\Rightarrow$ 接受</p>
+</li>
+<li><p>赞美 $\Rightarrow$ 降低 等</p>
+</li>
+<li><p>question $\Rightarrow$ answer</p>
+</li>
+<li><p>proposal $\Rightarrow$ acceptance</p>
+</li>
+<li><p>compliment $\Rightarrow$ downplayer etc.</p>
+</li>
+</ul>
+<h3 id="语用推理"><a href="#语用推理" class="headerlink" title="语用推理"></a>语用推理</h3><p>Pragmatic inferences，我们通过假设话语（utterances）是</p>
+<ul>
+<li>相关的</li>
+<li>信息丰富的</li>
+<li>真实的</li>
+<li>清晰简洁的（或者至少说话者的目标是这样）来推断说话者的意思</li>
+</ul>
+<h1 id="开放域对话系统"><a href="#开放域对话系统" class="headerlink" title="开放域对话系统"></a>开放域对话系统</h1><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ol>
+<li><p><strong>基于规则</strong></p>
+<p> 传统上，基于规则的“模式匹配和替换”类型系统被使用，著名的有</p>
+<ul>
+<li><strong>Eliza</strong> (1966)，模拟罗杰斯心理学家</li>
+<li><strong>PARRY</strong> (1971)，用于研究精神分裂症</li>
+</ul>
+</li>
+<li><p><strong>基于语料库</strong></p>
+<p> 更现代的替代方法当然是构建一个基于语料库（Corpus）的系统，该系统在包含大量对话的数据集上进行训练。</p>
+</li>
+</ol>
+<h2 id="基于语料库的方法"><a href="#基于语料库的方法" class="headerlink" title="基于语料库的方法"></a>基于语料库的方法</h2><ul>
+<li><p><strong>检索（retrieval）响应</strong>：使用数据集中</p>
+<ul>
+<li>与最后一轮最相似的发言</li>
+<li>是与最后一轮最相似的发言的响应的发言</li>
+<li>相似性可以是完全预训练的，或基于 训练&#x2F;微调 的嵌入</li>
+</ul>
+</li>
+<li><p><strong>生成响应</strong>：在数据集上训练一个生成模型，典型的架构包括：</p>
+<ul>
+<li>基于RNN或Transformer的编码器-解码器</li>
+<li>一个微调的“预测下一个”语言模型，例如GPT类架构。我们将在下一讲中讨论这种替代方法</li>
+</ul>
+</li>
+</ul>
+<h1 id="任务导向对话系统"><a href="#任务导向对话系统" class="headerlink" title="任务导向对话系统"></a>任务导向对话系统</h1><p>Task-oriented dialog systems</p>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p>大多数任务导向对话系统（TODs）基于（某种变体的）<strong>框架</strong>，即用户意图的结构化表示，包含可以用 <strong>值</strong> 填充的 <strong>slots</strong>。槽值可以是另一个框架。</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/gus_1.png" alt="gus_1"></p>
+<p><img src="/AI/NLP/NLP-DialogSystems/gus_2.png" alt="GUS对话系统中使用的框架"></p>
+<p>基于框架的TOD系统会提出问题，帮助填充框架槽，直到填满当前目标任务所需的所有槽，然后执行任务。</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/gus_3.png" alt="GUS对话片段"></p>
+<h2 id="早期基于框架的架构"><a href="#早期基于框架的架构" class="headerlink" title="早期基于框架的架构"></a>早期基于框架的架构</h2><p>早期基于框架的任务导向对话系统（TODs）具有以下组件：</p>
+<ul>
+<li><p><strong>控制结构</strong>：一个生产规则系统，控制如何操作槽值以及根据实际状态和用户输入提出哪些问题</p>
+</li>
+<li><p><strong>自然语言理解</strong>（NLU）：一个基于规则的NLP模块，确定话语的<strong>domain</strong>（一般主题）、<strong>意图</strong>（intent，具体目标）和<strong>槽 和 填充值</strong></p>
+</li>
+<li><p><strong>自然语言生成</strong>（NLG）模块：一个基于模板的系统，用于生成适当的系统问题给用户</p>
+</li>
+<li><p>可选的<strong>自动语音识别</strong>（ASR）模块，通常基于任务特定的词汇和 语法&#x2F;语言 模型</p>
+</li>
+</ul>
+<h3 id="Natural-language-generation"><a href="#Natural-language-generation" class="headerlink" title="Natural language generation"></a>Natural language generation</h3><p><img src="/AI/NLP/NLP-DialogSystems/frame.png" alt="传统基于框架的对话系统中NLG组件的槽相关问题"></p>
+<h3 id="Natural-language-understanding"><a href="#Natural-language-understanding" class="headerlink" title="Natural language understanding"></a>Natural language understanding</h3><p>NLU 任务是确定每个用户话语的领域、意图和槽填充。例如，对于</p>
+<p><em>Show me morning flights from Boston to San Francisco on Tuesday</em></p>
+<p>我们希望得到如下分析：</p>
+<table>
+<thead>
+<tr>
+<th>DOMAIN</th>
+<th>AIR-TRAVEL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INTENT</td>
+<td>SHOW-FLIGHTS</td>
+</tr>
+<tr>
+<td>ORIGIN-CITY</td>
+<td>Boston</td>
+</tr>
+<tr>
+<td>ORIGIN-DATE</td>
+<td>Tuesday</td>
+</tr>
+<tr>
+<td>ORIGIN-TIME</td>
+<td>morning</td>
+</tr>
+<tr>
+<td>DEST-CITY</td>
+<td>San Francisco</td>
+</tr>
+</tbody></table>
+<h1 id="对话状态系统"><a href="#对话状态系统" class="headerlink" title="对话状态系统"></a>对话状态系统</h1><p>现代、更复杂的基于框架的TODs方法的化身是 <strong>Dialog-state systems</strong> 架构。</p>
+<p>与早期系统相比，主要区别在于</p>
+<ul>
+<li><p>将 <strong>控制</strong> 分解为两个独立的模块：</p>
+<ul>
+<li><p><strong>对话状态跟踪器</strong>（也称为 <strong>belief state tracker</strong>），根据对话历史计算当前更新的对话状态（用户目标，即填充的槽值等）</p>
+</li>
+<li><p><strong>对话策略</strong>，根据实际状态确定下一个系统动作</p>
+</li>
+</ul>
+</li>
+<li><p>在所有模块中广泛使用 <strong>机器学习方法</strong>，而不是早期系统的基于规则的方法</p>
+</li>
+</ul>
+<p>基于语音的系统的完整架构：</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/dialog-state.png" alt="dialog-state"></p>
+<h2 id="实现NLU组件"><a href="#实现NLU组件" class="headerlink" title="实现NLU组件"></a>实现NLU组件</h2><p>识别用户话语中的<strong>领域</strong>、<strong>意图</strong>和<strong>槽值&#x2F;实体</strong>可以通过分类器和序列标注模型来实现：</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/slot_detection.png" alt="使用预训练编码器和IOB标注识别目的地和时间槽值"></p>
+<h2 id="对话状态跟踪"><a href="#对话状态跟踪" class="headerlink" title="对话状态跟踪"></a>对话状态跟踪</h2><p>基于NLU的（N-best）输出 和&#x2F;或 对话历史，跟踪器确定发生的<strong>对话行为</strong>，以及当前（更新的）<strong>对话状态</strong>。这可以通过生成一组候选状态并对其进行评分来实现：</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/dialog_state_tracker.png" alt="dialog_state_tracker"></p>
+<p>评分器可以基于像BERT这样的预训练编码器：</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/dialog_state_tracker_bert.png" alt="dialog_state_tracker_bert"></p>
+<p>除了对完整的对话状态进行评分，还可以单独对（槽，值）对进行评分：</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/dialog_state_tracker_2.png" alt="dialog_state_tracker_2"></p>
+<h3 id="NLU"><a href="#NLU" class="headerlink" title="NLU"></a>NLU</h3><ul>
+<li><p>如前两个示例中所示，现代对话状态跟踪器经常直接使用用户话语作为输入，而不需要在对话架构中独立的NLU组件</p>
+</li>
+<li><p>基于机器学习的NLU和对话状态跟踪模块的对话系统通常通过首先开发一个基于规则的系统来启动，并使用它来生成一个“银”标注的数据集（当然，验证数据集仍然是完全手动标注的。）</p>
+</li>
+</ul>
+<h2 id="对话策略"><a href="#对话策略" class="headerlink" title="对话策略"></a>对话策略</h2><p><strong>Dialog policy</strong> 决定系统接下来应该采取的行动，基于对话状态和可能的对话历史的其他元素。最重要的行动类型是 <strong>系统对话行为</strong>（例如，提问、确认请求等）、<strong>查询数据库</strong> 和外部 <strong>API 调用</strong>。</p>
+<p>对话策略通常可以实现为一个分类器，因为通常有一个有限（且通常较小）的可能行动集合可供选择。策略模块可以实现为</p>
+<ul>
+<li><strong>基于规则</strong> 的系统</li>
+<li>使用 <strong>监督学习</strong> 的机器学习模型</li>
+<li>使用 <strong>强化学习</strong> 优化的机器学习模型（可能在监督预训练之后）</li>
+</ul>
+<h2 id="NLG"><a href="#NLG" class="headerlink" title="NLG"></a>NLG</h2><p>最后，当所需的行动是一种系统话语时，<strong>NLG</strong> 组件根据具体的行动、对话状态和（可选的）对话历史生成实际的句子。</p>
+<p>NLG 任务通常分解为</p>
+<ul>
+<li><p><strong>话语规划</strong>：规划话语的内容（应提到哪些槽&#x2F;值，可能还有它们的顺序和分组）</p>
+</li>
+<li><p><strong>话语实现</strong>：实际生成计划内容的自然语言表达</p>
+</li>
+</ul>
+<p><img src="/AI/NLP/NLP-DialogSystems/content_planning.png" alt="对话中计划内容的替代实现"></p>
+<p>简化生成任务和缓解数据稀疏性的一种广泛使用的策略是生成 <strong>去词化模板</strong>，其中包含槽值的占位符，然后用所需的槽值替换它们。</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/template.png" alt="去词化生成示例"></p>
+<p>话语或其模板的生成可以实现为基于规则的系统或机器学习模型；最近的实现通常使用 <strong>序列到序列模型</strong>：</p>
+<p><img src="/AI/NLP/NLP-DialogSystems/seq2seq_nlg.png" alt="seq2seq_nlg"></p>
+<h2 id="简化的架构和模型"><a href="#简化的架构和模型" class="headerlink" title="简化的架构和模型"></a>简化的架构和模型</h2><p>广泛使用的seq2seq模型用于实现独立的对话状态系统模块，以及在单独训练的模块之间的错误传播，导致了提出训练一个（基于预训练语言模型的）单一多任务seq2seq模型，<strong>SimpleTOD</strong>，同时用于</p>
+<ul>
+<li>对话（信念）状态跟踪</li>
+<li>对话策略</li>
+<li>自然语言生成（NLG）</li>
+</ul>
+<p><img src="/AI/NLP/NLP-DialogSystems/simple_tod_2.png" alt="simple_tod_2"></p>
+<p><img src="/AI/NLP/NLP-DialogSystems/simple_tod_1.png" alt="一个SimpleTOD对话片段"></p>
+<p>当然，类似SimpleTOD的方法仍然需要一个带有对话动作和对话状态标注的数据集进行训练，并且需要关于领域意图和 实体类型&#x2F;槽 的通用信息。因此，为具体任务或任务训练的模型不能用于其他任务，除非重新训练。</p>
+<p>一个有趣的研究领域是训练完全通用的任务导向对话模型，这些模型明确地以任务导向对话描述为条件，即所谓的 <strong>对话模式图</strong> （dialog schema graphs）。</p>
+<h2 id="对话模式图"><a href="#对话模式图" class="headerlink" title="对话模式图"></a>对话模式图</h2><p><img src="/AI/NLP/NLP-DialogSystems/dialog_schema.png" alt="对话模式图"></p>
+<h2 id="基于模式的任务导向对话数据集"><a href="#基于模式的任务导向对话数据集" class="headerlink" title="基于模式的任务导向对话数据集"></a>基于模式的任务导向对话数据集</h2><p>有几个基于模式的任务导向对话数据集可用，这些数据集除了包含注释对话外，还包含模式图：</p>
+<ul>
+<li><strong>STAR</strong> 数据集包含 13 个领域中的 5,820 个任务导向对话，共 127,833 个话语</li>
+<li><strong>SGD</strong> Schema-Guided Dialog 数据集包含 20,000 个对话</li>
+<li><strong>SGD-X</strong> 数据集“通过为每个模式扩展 5 个众包变体来扩展 SGD 数据集，这些变体在语义上相似但风格上多样”</li>
+</ul>
+<h1 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h1><h2 id="评估开放域对话系统"><a href="#评估开放域对话系统" class="headerlink" title="评估开放域对话系统"></a>评估开放域对话系统</h2><p>基于某种类型的距离与预定义的正确行为的度量不起作用，因为在任何给定回合中正确响应的集合太大。相反，人类 <strong>参与者</strong> （participants）或 <strong>观察者</strong> （observers）根据各种质量方面评估系统产生的对话行为，例如：</p>
+<ul>
+<li>对话有多 <strong>吸引人</strong></li>
+<li>话语是否 <strong>像人类</strong></li>
+<li>响应在上下文中是否 <strong>有意义</strong></li>
+<li>是否 <strong>流畅</strong></li>
+<li>是否避免 <strong>重复</strong></li>
+</ul>
+<h2 id="评估任务导向对话系统"><a href="#评估任务导向对话系统" class="headerlink" title="评估任务导向对话系统"></a>评估任务导向对话系统</h2><p>一个核心指标是 <strong>绝对任务成功率</strong>：根据用户的意图，多少百分比的对话导致任务成功执行。</p>
+<p>对于基于槽的系统，还可以测量 <strong>槽错误率</strong>：系统正确填充的槽的百分比。</p>
+<p>除了这些与成功相关的指标外，用户评估中的 <strong>用户满意度</strong> 和 <strong>总体对话质量</strong> 也非常有用。（细粒度指标可以测量类似于开放域系统的方面。）</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>NLP-DialogSystems</p><p><a href="https://aloen.to/AI/NLP/NLP-DialogSystems/">https://aloen.to/AI/NLP/NLP-DialogSystems/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2024-11-07</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-11-07</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/AI/">AI</a><a class="link-muted mr-2" rel="tag" href="/tags/NLP/">NLP</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/NLP/NLP-Transformers/"><span class="level-item">NLP-Transformers</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">35</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">34</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">13</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">13</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">13</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">24</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#介绍"><span class="level-left"><span class="level-item">1</span><span class="level-item">介绍</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#对话系统"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">对话系统</span></span></a></li><li><a class="level is-mobile" href="#对话系统的类型"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">对话系统的类型</span></span></a></li><li><a class="level is-mobile" href="#一般对话需求"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">一般对话需求</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#语境建立"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">语境建立</span></span></a></li><li><a class="level is-mobile" href="#邻接对"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">邻接对</span></span></a></li><li><a class="level is-mobile" href="#语用推理"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">语用推理</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#开放域对话系统"><span class="level-left"><span class="level-item">2</span><span class="level-item">开放域对话系统</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#方法"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">方法</span></span></a></li><li><a class="level is-mobile" href="#基于语料库的方法"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">基于语料库的方法</span></span></a></li></ul></li><li><a class="level is-mobile" href="#任务导向对话系统"><span class="level-left"><span class="level-item">3</span><span class="level-item">任务导向对话系统</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#框架"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">框架</span></span></a></li><li><a class="level is-mobile" href="#早期基于框架的架构"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">早期基于框架的架构</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Natural-language-generation"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">Natural language generation</span></span></a></li><li><a class="level is-mobile" href="#Natural-language-understanding"><span class="level-left"><span class="level-item">3.2.2</span><span class="level-item">Natural language understanding</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#对话状态系统"><span class="level-left"><span class="level-item">4</span><span class="level-item">对话状态系统</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#实现NLU组件"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">实现NLU组件</span></span></a></li><li><a class="level is-mobile" href="#对话状态跟踪"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">对话状态跟踪</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#NLU"><span class="level-left"><span class="level-item">4.2.1</span><span class="level-item">NLU</span></span></a></li></ul></li><li><a class="level is-mobile" href="#对话策略"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">对话策略</span></span></a></li><li><a class="level is-mobile" href="#NLG"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">NLG</span></span></a></li><li><a class="level is-mobile" href="#简化的架构和模型"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">简化的架构和模型</span></span></a></li><li><a class="level is-mobile" href="#对话模式图"><span class="level-left"><span class="level-item">4.6</span><span class="level-item">对话模式图</span></span></a></li><li><a class="level is-mobile" href="#基于模式的任务导向对话数据集"><span class="level-left"><span class="level-item">4.7</span><span class="level-item">基于模式的任务导向对话数据集</span></span></a></li></ul></li><li><a class="level is-mobile" href="#评估"><span class="level-left"><span class="level-item">5</span><span class="level-item">评估</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#评估开放域对话系统"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">评估开放域对话系统</span></span></a></li><li><a class="level is-mobile" href="#评估任务导向对话系统"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">评估任务导向对话系统</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-07T10:19:14.000Z">2024-11-07</time></p><p class="title"><a href="/AI/NLP/NLP-DialogSystems/">NLP-DialogSystems</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-06T10:18:54.000Z">2024-11-06</time></p><p class="title"><a href="/AI/NLP/NLP-Transformers/">NLP-Transformers</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-11T12:41:56.000Z">2024-10-11</time></p><p class="title"><a href="/AI/NLP/NLP-PreExamA/">NLP-PreExamA</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-10T13:07:12.000Z">2024-10-10</time></p><p class="title"><a href="/AI/NLP/NLP-Seq2Seq/">NLP-Seq2Seq</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-09T13:05:18.000Z">2024-10-09</time></p><p class="title"><a href="/AI/NLP/NLP-RNNs/">NLP-RNNs</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2024 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
