@@ -223,7 +223,7 @@ ELMo（来自语言模型的嵌入，Embeddings from Language Models），第一
 
 该架构首先使用字符级卷积生成上下文无关的嵌入，然后使用前向和后向双向 LSTM 层（它们的数量 $n$ 是一个可变的超参数）通过权重共享的 softmax 层预测下一个/上一个标记。
 
-![elmo](figures/elmo.eps)
+![elmo](elmo.jpg)
 
 在第一近似（approximation）中，上下文相关的嵌入是模型生成的所有 $2n +1$ 个中间表示（$2n$ 个基于上下文的 LSTM 和一个静态字符的表示）。
 
@@ -241,7 +241,7 @@ FLAIR 是一种与 ELMo 密切相关的上下文嵌入模型，但
 
 FLAIR 嵌入在序列标注任务中被证明非常有用，使用它们的浅层模型目前在命名实体识别（NER）和词性标注（POS-tagging）中排名第二。
 
-![flair](figures/flair.eps)
+![flair](flair.jpg)
 
 ## 基于 Transformer 的上下文嵌入
 
@@ -257,7 +257,7 @@ GPT（Generative Pre-Training）是一种基于 BPE 的，仅使用解码器的 
 
 与 ELMo 类似，GPT 的主要目标是提供一个有用的预训练“特征提取”模块，可以针对监督的 NLP 任务进行微调。微调意味着在监督下游任务上以端到端的方式更改预训练的 GPT 权重。
 
-![gpt](figures/gpt.eps)
+![gpt](gpt.jpg)
 
 ## BERT
 
@@ -273,13 +273,13 @@ GPT（Generative Pre-Training）是一种基于 BPE 的，仅使用解码器的 
 
 目标是猜测随机掩码的标记：
 
-![bert1](figures/bert1.eps)
+![bert1](bert1.jpg)
 
 ### 下一句预测
 
 第二个目标是判断两句话在训练语料库中是否相互跟随或是随机抽取的：
 
-![bert2](figures/bert2.eps)
+![bert2](bert2.jpg)
 
 ## 微调上下文嵌入
 
@@ -312,7 +312,7 @@ GPT（Generative Pre-Training）是一种基于 BPE 的，仅使用解码器的 
 
 Big Bird 上下文嵌入模型结合了所有这些线性注意力类型，以显著增加输入标记的数量，而不会显著改变内存需求：
 
-![bigbird](figures/bigbird.eps)
+![bigbird](bigbird.jpg)
 
 ## 少样本学习、单样本学习和零样本学习
 

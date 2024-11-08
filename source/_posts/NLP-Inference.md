@@ -101,11 +101,11 @@ llama.cpp 是一个流行的在 $C^{++}$ 上运行的 LLM CPU 推理库（也有
 
 Flashdecoding++ 还通过双缓冲升级了通用矩阵乘法（General Matrix Multiplication，GEMM），以解决低批次大小下的内存延迟问题，并根据给定的 LLM 和批次大小启发式地选择最佳实现。
 
-![Softmax 计算类型](./figures/stable_softmax.png)
+![Softmax 计算类型](stable_softmax.png)
 
 ### 最大注意力值
 
-![最大注意力值](./figures/attn_score_distrib.png)
+![最大注意力值](attn_score_distrib.png)
 
 ## 处理并发请求
 
@@ -117,7 +117,7 @@ Flashdecoding++ 还通过双缓冲升级了通用矩阵乘法（General Matrix M
 
 ### Flashdecoding++
 
-![解码器推理从预填充和解码阶段需要完全不同的计算方法](./figures/flashdecpp.png)
+![解码器推理从预填充和解码阶段需要完全不同的计算方法](flashdecpp.png)
 
 ## 并发请求的问题
 
@@ -137,15 +137,15 @@ Pages（小的固定大小内存块）用于存储 KV 缓存，以使逻辑上�
 
 ## 内存问题
 
-![内存问题 预分配但未使用和碎片化的序列可能会占用 5-15% 的 GPU 内存](./figures/paged_attn_fragment.png)
+![内存问题 预分配但未使用和碎片化的序列可能会占用 5-15% 的 GPU 内存](paged_attn_fragment.png)
 
 ### vLLM 虚拟化
 
-![虚拟化缓存处理](./figures/vllm.png)
+![虚拟化缓存处理](vllm.png)
 
 ### 逻辑 vs 物理内存
 
-![逻辑 vs 物理内存](./figures/paging.png)
+![逻辑 vs 物理内存](paging.png)
 
 ## Solving cache problems
 
@@ -155,7 +155,7 @@ Pages（小的固定大小内存块）用于存储 KV 缓存，以使逻辑上�
 
 ### Hydragen
 
-![Hydragen 的前缀和后缀单独计算](./figures/hydragen.png)
+![Hydragen 的前缀和后缀单独计算](hydragen.png)
 
 ## Piggybacking 和连续批处理
 
@@ -171,11 +171,11 @@ DeepSpeed-FastGen 还测量了最佳 GPU 吞吐量曲线，并使用此启发式
 
 ### Sarathi 解决的气泡效应
 
-![Sarathi 的高效微批处理解决的气泡效应](./figures/sarathi.png)
+![Sarathi 的高效微批处理解决的气泡效应](sarathi.png)
 
 ### GPU 利用率
 
-![不同上下文长度的 GPU 利用率曲线，超过约 400 个标记后吞吐量没有优势](./figures/splitfuse_saturation.png)
+![不同上下文长度的 GPU 利用率曲线，超过约 400 个标记后吞吐量没有优势](splitfuse_saturation.png)
 
 ## 混合预填充和解码
 
@@ -188,6 +188,6 @@ DeepSpeed-FastGen 还测量了最佳 GPU 吞吐量曲线，并使用此启发式
 
 根据当前负载和预期的解码长度，将 GPU 分配给预填充或解码任务（像这样的解决方案开发了一个长度预测模型来实现这一点）。
 
-## 解耦预填充和解码
+### 解耦预填充和解码
 
-![通过使用单独的资源进行预填充和解码，我们可以分别优化这两个任务](./figures/tetrinfer.png)
+![通过使用单独的资源进行预填充和解码，我们可以分别优化这两个任务](tetrinfer.png)
