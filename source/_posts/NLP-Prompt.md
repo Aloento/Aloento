@@ -15,11 +15,11 @@ date: 2024-11-09 18:19:40
 
 描述 GPT-3 的论文介绍了一种使用预训练语言模型进行下游任务的新范式：只需适当地提示模型，并将输出映射到任务的输出域，而无需任何微调。他们区分了三种场景：
 
-![zero-shot](./figures/zero-shot.png)
+![zero-shot](zero-shot.png)
 
-![one-shot](./figures/one-shot.png)
+![one-shot](one-shot.png)
 
-![少样本或上下文学习](./figures/few-shot.png)
+![少样本或上下文学习](few-shot.png)
 
 ## 一般提示规则
 
@@ -87,7 +87,7 @@ $\vdots$
 
 构建一个由**触发词**组成的提示模板，例如 AutoPrompt 算法：
 
-![autoprompt](./figures/autoprompt.png)
+![autoprompt](autoprompt.png)
 
 这些词由与坐标下降相关的算法找到：
 
@@ -103,17 +103,17 @@ $\vdots$
 
 可以将提示生成视为条件文本生成问题，并使用标准的 seq2seq 模型来解决。例如，使用预训练的 T5 生成在数据集上具有 高对数似然 的提示候选（使用束搜索）：
 
-![generationimg](./figures/generation.png)
+![generationimg](generation.png)
 
 一种更激进的方法是提示大型语言模型生成指令：
 
-![promptprompt](./figures/promptprompt.png)
+![promptprompt](promptprompt.png)
 
 ## 提示评分
 
 最后，基于 BERT 的常识知识提取器，基于一组手工设计的提示模板，但对于任何具体的数据点，选择根据第二个预训练的单向语言模型（测量“连贯性”）具有最高概率的模板实例。
 
-![scoring](./figures/scoring.png)
+![scoring](scoring.png)
 
 # 示例选择
 
@@ -121,7 +121,7 @@ $\vdots$
 
 从训练数据中选择相似和随机的示例用于少样本预测：
 
-![kate](./figures/kate.png)
+![kate](kate.png)
 
 ## 对比学习
 
@@ -137,7 +137,7 @@ $\vdots$
 
 学习任务特定的嵌入向量序列，以作为实际输入（以及编码器-解码器的输出）嵌入的前缀：
 
-![prefix_tuning](./figures/prefix_tuning.png)
+![prefix_tuning](prefix_tuning.png)
 
 - 这些向量仅使用训练集上的对数似然目标进行微调
 - 作者实验了仅将前缀的 **输入** 嵌入作为可学习参数与在 **所有层** 中前缀嵌入的处理方式，后者方法带来了显著更好的结果
@@ -165,7 +165,7 @@ LM 输出到下游任务输出域的映射也可以进行优化。
 
 一个简单的映射示例：$v(\cdot)$ “口头化”函数将下游主题分类任务的类标签映射到答案标记。（输入是一个“填空问题”，模型预测其中的内容。）
 
-![verbalizer](./figures/verbalizer.png)
+![verbalizer](verbalizer.png)
 
 找到每个 $y\in \mathcal{Y}$ 对应的合适答案集的方法包括
 
@@ -217,23 +217,23 @@ LM 输出到下游任务输出域的映射也可以进行优化。
 
 Self-consistency sampling for COT，通过采样多个答案，即多个推理路径，而不是单一的贪婪解码，并将结果集成，例如通过多数投票，可以经常改善结果：
 
-![self-consistency](./figures/self-consistency.png)
+![self-consistency](self-consistency.png)
 
 ## 自问自答
 
 Self-ask 提示模型明确提出并回答后续问题也是一种有用的策略：
 
-![self-ask](./figures/self-ask.png)
+![self-ask](self-ask.png)
 
 ## 知识生成
 
 对于常识推理任务，提示大型语言模型生成相关知识也可能是有益的。（具体的表述和示例取决于任务。）生成的知识片段用于回答问题：
 
-![Knowledge generation prompt](./figures/knowledge_generation.png)
+![Knowledge generation prompt](knowledge_generation.png)
 
 通过采样生成多个知识提示的答案，并使用它们生成问题的答案。可以通过多数投票选择最佳答案：
 
-![Knowledge generation prompt](./figures/knowledge_generation_2.png)
+![Knowledge generation prompt](knowledge_generation_2.png)
 
 ## 更复杂的思维结构
 
@@ -250,7 +250,7 @@ chain），但复杂的人类推理经常涉及
 
 ## 思维树提示
 
-![tree-of-thought](./figures/tree-of-thought.png)
+![tree-of-thought](tree-of-thought.png)
 
 主要组件是：
 
@@ -259,7 +259,7 @@ chain），但复杂的人类推理经常涉及
 - **评估** 思维
 - 决定下一个扩展节点的 **搜索策略**（例如，广度优先搜索）
 
-![将 T-o-T 提示应用于 24 点游戏任务。任务是找到输入数字的算术运算，使其结果为 24](./figures/t-o-t-2.png)
+![将 T-o-T 提示应用于 24 点游戏任务。任务是找到输入数字的算术运算，使其结果为 24](t-o-t-2.png)
 
 有尝试通过单一提示引出类似思维树的推理，例如，@tree-of-thought-prompting 使用以下示例提示：
 
@@ -276,7 +276,7 @@ chain），但复杂的人类推理经常涉及
 
 树思维理念的自然扩展是添加思维路径的**聚合**。这导致将 T-o-t 提示推广到支持任意有向无环图拓扑的**Graph-of-thoughts**框架：
 
-![g-o-t](./figures/g-o-t.png)
+![g-o-t](g-o-t.png)
 
 当然，增加的复杂性需要更复杂的架构，例如，使用以下模块（适应实际任务）：
 
@@ -289,7 +289,7 @@ chain），但复杂的人类推理经常涉及
 
 连锁思维提示的一个有趣研究方向是提示 LLM 进行**形式推理**或**计算**步骤（例如，Python 语句），并通过外部解释器或推理器执行这些步骤生成最终答案。
 
-![program-aided](./figures/program-aided.png)
+![program-aided](program-aided.png)
 
 # 漏洞
 
@@ -308,24 +308,24 @@ Metaprompted
 
 > \dots LLM 生成目标函数的新解，然后将新解及其得分添加到元提示中以进行下一步优化。
 
-![llm_metaopt](figures/llm_metaopt.png)
+![llm_metaopt](llm_metaopt.png)
 
 ## LLM 作为优化器：在提示中的应用
 
-![优化器元提示实例的前半部分，用于解决小学数学问题](figures/metaprompt_1.png)
+![优化器元提示实例的前半部分，用于解决小学数学问题](metaprompt_1.png)
 
 ## LLM 作为优化器：在提示中的应用 I
 
-![优化器元提示实例的后半部分，用于解决小学数学问题](figures/metaprompt_2.png)
+![优化器元提示实例的后半部分，用于解决小学数学问题](metaprompt_2.png)
 
 ## LLM 作为优化器：在提示中的应用 II
 
 发现元提示优化器方法在 GSM8K 数学问题数据集上表现优于众所周知的手动提示工程方法，如“积极思考”和“链式思维”：
 
-![metaprompt_3](figures/metaprompt_3.png)
+![metaprompt_3](metaprompt_3.png)
 
 ## 意想不到的最佳提示
 
 此外，最佳提示通常是令人惊讶和古怪的：
 
-![Llama2-70B 的最佳提示，由同一模型在 https://github.com/openai/grade-school-math 小学数学问题数据集子集上优化](figures/excentric_prompt.png)
+![Llama2-70B 的最佳提示，由同一模型在 https://github.com/openai/grade-school-math 小学数学问题数据集子集上优化](excentric_prompt.png)
