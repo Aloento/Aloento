@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>NLP-Zoo - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="模型介绍 神 TM 动物园"><meta property="og:type" content="blog"><meta property="og:title" content="NLP-Zoo"><meta property="og:url" content="https://aloen.to/AI/NLP/NLP-Zoo/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="模型介绍 神 TM 动物园"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/sesame.jpg"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/gpt2_zero_shot_lm.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/gpt2_zero_shot_nlp.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/model_size_growth2.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/llama_chinchilla.jpg"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/coding_monkey.jpg"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/code_llama.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/code_llama_results.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/clips.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-Zoo/flamingo.png"><meta property="article:published_time" content="2024-11-12T10:20:35.000Z"><meta property="article:modified_time" content="2024-11-13T18:12:40.312Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="笔记"><meta property="article:tag" content="AI"><meta property="article:tag" content="NLP"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/AI/NLP/NLP-Zoo/sesame.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/AI/NLP/NLP-Zoo/"},"headline":"NLP-Zoo","image":["https://aloen.to/AI/NLP/NLP-Zoo/sesame.jpg","https://aloen.to/AI/NLP/NLP-Zoo/gpt2_zero_shot_lm.png","https://aloen.to/AI/NLP/NLP-Zoo/gpt2_zero_shot_nlp.png","https://aloen.to/AI/NLP/NLP-Zoo/model_size_growth2.png","https://aloen.to/AI/NLP/NLP-Zoo/llama_chinchilla.jpg","https://aloen.to/AI/NLP/NLP-Zoo/coding_monkey.jpg","https://aloen.to/AI/NLP/NLP-Zoo/code_llama.png","https://aloen.to/AI/NLP/NLP-Zoo/code_llama_results.png","https://aloen.to/AI/NLP/NLP-Zoo/clips.png","https://aloen.to/AI/NLP/NLP-Zoo/flamingo.png"],"datePublished":"2024-11-12T10:20:35.000Z","dateModified":"2024-11-13T18:12:40.312Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/AI/NLP/NLP-Zoo/"}},"description":"模型介绍 神 TM 动物园"}</script><link rel="canonical" href="https://aloen.to/AI/NLP/NLP-Zoo/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-12T10:20:35.000Z" title="11/12/2024, 10:20:35 AM">2024-11-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-13T18:12:40.312Z" title="11/13/2024, 6:12:40 PM">2024-11-14</time></span><span class="level-item"><a class="link-muted" href="/categories/AI/">AI</a><span> / </span><a class="link-muted" href="/categories/AI/NLP/">NLP</a></span><span class="level-item">26 minutes read (About 3942 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">NLP-Zoo</h1><div class="content"><p>模型介绍 <del>神 TM 动物园</del></p>
+<span id="more"></span>
+
+<h1 id="LLM-Zoo"><a href="#LLM-Zoo" class="headerlink" title="LLM Zoo"></a>LLM Zoo</h1><p>我们已经看到了动物园中的一些居民…</p>
+<p><img src="/AI/NLP/NLP-Zoo/sesame.jpg" alt="sesame"></p>
+<p>但还有更多！我们将看看一些最重要的语言模型。</p>
+<p>（注意：大多数模型在发布时在许多 NLP&#x2F;NLU 数据集上达到了最先进的水平。我们不会在每个模型下提到这一点。）</p>
+<h1 id="BERT-家族"><a href="#BERT-家族" class="headerlink" title="BERT 家族"></a>BERT 家族</h1><h2 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h2><p>提醒一下：<a target="_blank" rel="noopener" href="https://github.com/google-research/bert">BERT</a> 是一种基于<strong>transformer encoder</strong>架构的上下文（子）词表示。它在两个自我监督任务上进行了训练：</p>
+<ul>
+<li>掩码语言模型（MLM）</li>
+<li>下一句预测（NSP）</li>
+</ul>
+<p>它有几种尺寸：</p>
+<ul>
+<li>基础版：12 个 Transformer 块，110M 参数</li>
+<li>大型版：24 个 Transformer 块，340M 参数</li>
+</ul>
+<p>BERT 催生了一整个模型家族，它们保留了架构并通过微调细节寻求改进。</p>
+<h2 id="超参数"><a href="#超参数" class="headerlink" title="超参数"></a>超参数</h2><p>Hyperparameters，BERT 带来了两个新的训练任务，但 NSP 被证明太简单了。</p>
+<ul>
+<li>ALBERT 用句子顺序预测替代了它</li>
+<li>RoBERTa 完全放弃了这个任务</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/fairseq/tree/main/examples/roberta">RoBERTa</a> 证明了训练<em>更长时间</em>和使用<em>更多数据</em>的重要性。</p>
+<ul>
+<li>数据大小：16GB $\rightarrow$ 160GB</li>
+<li>批量大小：256 $\rightarrow$ 8K</li>
+<li>训练步骤：100K（相对）$\rightarrow$ 500K</li>
+<li>动态掩码：<code>[MASK]</code>标记的位置每次运行都会改变</li>
+</ul>
+<p>这些变化在各种任务上带来了$3-4%$的改进（例如在 SQuaD 上减少了$60%$的错误率）。</p>
+<h2 id="跨距"><a href="#跨距" class="headerlink" title="跨距"></a>跨距</h2><p>Spans，BERT 的掩码方案（<code>[MASK]</code>替换单个标记）使其在生成任务中难以使用（例如在问答中填充答案）：</p>
+<p><em>奥克尼群岛上最古老的定居点是什么？</em></p>
+<ul>
+<li><code>最古老的定居点是[MASK]。</code></li>
+<li><code>最古老的定居点是[MASK] [MASK]。</code></li>
+<li>…</li>
+</ul>
+<p>（Skara Brae 实际上是 4 个标记：<code>S ##kara B ##rae</code>）</p>
+<p>另一个问题是被掩码的标记被假定为条件独立的。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/SpanBERT">SpanBERT</a></p>
+<ul>
+<li>掩码随机长度的跨距（平均 3.8 个标记）</li>
+<li>基于跨距周围的标记预测它们：$\mathbf{y}<em>i &#x3D; f(\mathbf{x}</em>{s-1}, \mathbf{x}<em>{e+1}, \mathbf{p}</em>{i-s+1})$</li>
+<li>引入了跨距边界目标 $\mathcal{L}_{SBO}$，使得</li>
+</ul>
+<p>$$<br>\mathcal{L}(x_i) &#x3D; \mathcal{L}<em>{MLM}(x_i) + \mathcal{L}</em>{SBO}(x_i) &#x3D; -\log P(x_i|\mathbf{x}_i) - \log P(x_i|\mathbf{y}_i)<br>$$</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zihangdai/xlnet">XLNet</a></p>
+<ul>
+<li>完全不使用<code>[MASK]</code>标记或 MLM</li>
+<li><strong>自回归</strong> autoregressive 训练任务在<strong>排列</strong>序列上（仍然是双向上下文）</li>
+<li>可以建模上下文和目标之间的依赖关系</li>
+</ul>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>训练类似 BERT 的模型速度慢且占用大量内存。<a target="_blank" rel="noopener" href="https://github.com/google-research/albert">ALBERT</a>通过以下方式解决了这些问题：</p>
+<ol>
+<li><p>将$V \times H$嵌入矩阵分解为两个矩阵：<br>$V \times E$ 和 $E \times H$；<br>（$V$：词汇表，$H$：隐藏层大小，$E$：嵌入大小；在 BERT 中，$E &#x3D; H$）</p>
+</li>
+<li><p>层之间的权重共享</p>
+</li>
+</ol>
+<p>结果模型的参数比相应的 BERT 模型少 18 倍，训练速度快约 1.7 倍。然而，更大的模型（xxlarge）在性能上超过了 BERT Large （如果它们能收敛的话…）。</p>
+<h2 id="新技术"><a href="#新技术" class="headerlink" title="新技术"></a>新技术</h2><p>DeBERTa 通过技术创新改进了常规 BERT：</p>
+<ol>
+<li><strong>解耦注意力</strong>（disentangled）机制为每个标记分配两个向量：<ul>
+<li>内容</li>
+<li>位置</li>
+</ul>
+</li>
+<li><em>相对位置编码</em></li>
+<li>在 softmax 层之前引入<em>绝对位置</em></li>
+</ol>
+<p>它在 SuperGLUE 中表现优于人类基线（90.3 对 89.8）。</p>
+<h1 id="全栈模型"><a href="#全栈模型" class="headerlink" title="全栈模型"></a>全栈模型</h1><h2 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h2><p><strong>文本到文本转换 Transformer</strong>通过以下方式解决 NLP 任务：</p>
+<ol>
+<li>将它们转换为带提示的 seq2seq 问题</li>
+<li>用解码器替换 BERT 上的分类器头</li>
+</ol>
+<p>它的训练方式为：</p>
+<ol>
+<li><strong>去噪</strong> Denoising 目标：丢弃 15%的标记（类似于 MLM；优于自回归目标）</li>
+<li>多任务预训练</li>
+<li>在单个 NLP 任务上进行微调</li>
+</ol>
+<p>最大的模型有 110 亿参数，并在 1 万亿个标记上进行了训练。</p>
+<h1 id="解码器模型"><a href="#解码器模型" class="headerlink" title="解码器模型"></a>解码器模型</h1><h2 id="GPT-家族"><a href="#GPT-家族" class="headerlink" title="GPT 家族"></a>GPT 家族</h2><p>GPT 家族是最著名的大型语言模型（LLM）。它们由<a target="_blank" rel="noopener" href="https://openai.com/">OpenAI</a>创建，规模不断增加：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>参数量</th>
+<th>语料库</th>
+<th>上下文长度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/openai-gpt">GPT-1</a></td>
+<td>110M</td>
+<td>1B</td>
+<td>512</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/gpt2">GPT-2</a></td>
+<td>1.5B</td>
+<td>40GB</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>GPT-3</td>
+<td>175B</td>
+<td>300B</td>
+<td>2048</td>
+</tr>
+<tr>
+<td>InstructGPT</td>
+<td>175B</td>
+<td>77k</td>
+<td>2048</td>
+</tr>
+<tr>
+<td>GPT-4</td>
+<td>?</td>
+<td>?</td>
+<td>8192^*^</td>
+</tr>
+</tbody></table>
+<p>^*^GPT-3.5 和 GPT-4 的详细信息尚不可用。有一些估计，但<a target="_blank" rel="noopener" href="https://tooabstractive.com/how-to-tech/difference-between-gpt-1-gpt-2-gpt-3-gpt-4/">许多</a>甚至无法正确描述之前的模型。</p>
+<h2 id="GPT-1"><a href="#GPT-1" class="headerlink" title="GPT-1"></a>GPT-1</h2><p>最初，GPT 被设计为一个自然语言理解（NLU）框架，类似于 ELMo 或 BERT：</p>
+<ul>
+<li>它是第一个推广预训练 + 微调方法用于 NLP 任务的模型</li>
+<li>自回归预训练<strong>并非</strong>出于文本生成的动机</li>
+</ul>
+<p>结果：</p>
+<ul>
+<li>GPT-1 在测试的 12 个任务中有 9 个达到了最先进的水平</li>
+<li>它展示了一些零样本能力</li>
+</ul>
+<h2 id="GPT-2"><a href="#GPT-2" class="headerlink" title="GPT-2"></a>GPT-2</h2><p>更大的模型尺寸带来了更好的零样本性能：</p>
+<p><img src="/AI/NLP/NLP-Zoo/gpt2_zero_shot_lm.png" alt="LM 任务上的零样本性能"></p>
+<p><img src="/AI/NLP/NLP-Zoo/gpt2_zero_shot_nlp.png" alt="NLP 任务上的零样本性能"></p>
+<h2 id="GPT-3"><a href="#GPT-3" class="headerlink" title="GPT-3"></a>GPT-3</h2><p>架构和训练的变化：</p>
+<ul>
+<li>交替使用密集和稀疏（dense and sparse）注意力层</li>
+<li>采样训练（并非使用所有训练数据）</li>
+</ul>
+<p>在几个任务上的少样本性能非常接近最先进水平。</p>
+<p>问题：</p>
+<ul>
+<li>防止基准测试的记忆化</li>
+<li>输出中的偏见（性别、种族、宗教）</li>
+<li>训练期间的高能耗（通过相对较小的训练语料库缓解）</li>
+</ul>
+<h2 id="InstructGPT"><a href="#InstructGPT" class="headerlink" title="InstructGPT"></a>InstructGPT</h2><p>增加了指令支持。</p>
+<ul>
+<li>RLHF（之前提到过）</li>
+<li>与增加预训练分布对数似然的更新混合，以防止模型退化</li>
+<li>1.3B 的 InstructGPT 比 175B 的 GPT-3 更受欢迎</li>
+<li>API prompts 比 FLAN 或 T0 数据集更好</li>
+<li>降低了毒性（toxicity），但没有减少偏见（bias）</li>
+</ul>
+<h2 id="GPT-4"><a href="#GPT-4" class="headerlink" title="GPT-4"></a>GPT-4</h2><p>更大、更好、多模态（视觉）。在考试中表现达到人类水平（前 10%）。</p>
+<p>指令：</p>
+<ul>
+<li>对考试没有帮助</li>
+<li>扭曲（Skews）了<strong>置信度校准</strong>（calibration）（答案的对数似然与实际表现的相关性）</li>
+</ul>
+<p>两种安全方法：</p>
+<ul>
+<li>RLHF</li>
+<li>基于规则的奖励模型（RBRMs）</li>
+</ul>
+<h2 id="其他模型家族"><a href="#其他模型家族" class="headerlink" title="其他模型家族"></a>其他模型家族</h2><p>GPT 并不是唯一的 LLM 模型“家族”。还有一些竞争对手，包括开源和闭源的。</p>
+<ol>
+<li>闭源<ul>
+<li><a target="_blank" rel="noopener" href="https://claude.ai/">Claude</a>（版本 3）</li>
+<li>Google 的 <a target="_blank" rel="noopener" href="https://gemini.google.com/">Gemini</a></li>
+</ul>
+</li>
+<li>开源<ul>
+<li>Meta 的 Llama（版本 <a target="_blank" rel="noopener" href="https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/">3.2</a>）</li>
+<li><a target="_blank" rel="noopener" href="https://docs.mistral.ai/">Mistral</a>（版本 0.3）</li>
+<li>阿里巴巴的 <a target="_blank" rel="noopener" href="https://huggingface.co/Qwen">Qwen</a>（版本 2.5）</li>
+</ul>
+</li>
+</ol>
+<h2 id="其他模型"><a href="#其他模型" class="headerlink" title="其他模型"></a>其他模型</h2><p>仅解码自回归模型已成为事实上的 LLM 标准，并且提出了许多其他模型。以下是一些值得注意的例子。</p>
+<ul>
+<li><strong>Megatron</strong><ul>
+<li>GPT（8.3B）和 BERT（3.9B）版本。训练于 174GB 文本</li>
+<li>引入了<strong>模型并行</strong>（parallelism）</li>
+</ul>
+</li>
+<li><strong>Gopher</strong><ul>
+<li>280B，训练于 <em>MassiveText</em>，但仅在 2350B 中的 300B 标记上（12.8%）</li>
+<li>使用<strong>相对位置编码</strong>，允许对比训练期间看到的更长序列进行推理</li>
+</ul>
+</li>
+<li><strong>GLaM</strong><ul>
+<li>一个稀疏模型，具有 1.2T 参数，训练于 1.6T 标记</li>
+<li>使用<strong>专家混合</strong>（Mixture of Experts）层与 transformer 层交错</li>
+<li>每个标记仅激活模型的 8%（96.6B）<br>训练成本是 GPT-3 的 $\frac{1}{3}$</li>
+</ul>
+</li>
+<li><strong>LaMDA</strong><ul>
+<li>137B，训练于 1.56T 标记</li>
+<li>一个专门用于对话的模型；训练语料库的 50% 由对话组成</li>
+<li>针对质量、安全性和基础性（“基础指标”）进行微调</li>
+<li>端到端模型，包括调用外部 IR 系统以确保基础性</li>
+</ul>
+</li>
+<li><strong>FLAN</strong><ul>
+<li>基于 LaMDA。使用<strong>数据集成</strong>方法进行指令微调，来自 62 个 NLP 数据集</li>
+<li>比 LaMDA、GPT-3 或 GLaM 更好的零样本性能</li>
+</ul>
+</li>
+<li><strong>PaLM</strong><ul>
+<li>最大的模型之一：540B 参数，训练于 780B 文本</li>
+<li>使用<strong>Pathways</strong>技术在 2 个 Pods 中的 6144 个 TPU v4 芯片上训练</li>
+<li>不连续的改进：在某个模型大小之后准确性急剧跳跃（而不是连续的幂律）</li>
+<li>突破性表现。在几个任务上，它比<ul>
+<li>平均人类表现</li>
+<li>监督系统<br>更好</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="负面趋势"><a href="#负面趋势" class="headerlink" title="负面趋势"></a>负面趋势</h1><h2 id="扩展法则"><a href="#扩展法则" class="headerlink" title="扩展法则"></a>扩展法则</h2><p>已经证明，增加模型规模会沿着幂律曲线提高性能。这导致了越来越大的模型被发布。</p>
+<p><img src="/AI/NLP/NLP-Zoo/model_size_growth2.png" alt="揭示大型语言模型（LLM）的力量(https://medium.com/@harishdatalaunveiling-the-power-of-large-language-models-llms-e235c4eba8a9)"></p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>大型模型有几个问题：</p>
+<ul>
+<li>它们的训练和推理成本很高</li>
+<li>只有少数参与者能够负担得起训练它们</li>
+<li>即使在“低端”设备（例如 8 个 A100）上运行它们也是有问题的</li>
+<li>它们有相当大的<strong>碳足迹</strong>，以至于论文现在通常会报告它</li>
+<li>大多数模型是专有的和闭源的</li>
+</ul>
+<h2 id="新趋势"><a href="#新趋势" class="headerlink" title="新趋势"></a>新趋势</h2><p><img src="/AI/NLP/NLP-Zoo/llama_chinchilla.jpg" alt="llama_chinchilla"></p>
+<h2 id="Chinchilla"><a href="#Chinchilla" class="headerlink" title="Chinchilla"></a>Chinchilla</h2><p>最近出现了一种新趋势，即在更多的标记上训练较小的模型，以实现可比甚至更好的结果。这是可能的，因为</p>
+<ul>
+<li>上述模型通常训练不足</li>
+<li>指令微调非常有效且便宜</li>
+</ul>
+<p><strong>Chinchilla</strong></p>
+<ul>
+<li>70B 参数，训练于 1.5T 标记</li>
+<li>使用与 Gopher 相同数量的 FLOPs 和相同的训练集</li>
+<li>性能优于 GPT-3 和 Gopher</li>
+</ul>
+<h2 id="LLaMa"><a href="#LLaMa" class="headerlink" title="LLaMa"></a>LLaMa</h2><p>Chinchilla 是闭源的。<strong>LLaMa</strong> 是基于开放数据源创建类似 Chinchilla 模型的尝试。</p>
+<ul>
+<li>最大的模型是 65B，训练于 1.4T 标记</li>
+<li>包括架构上的“最佳实践”<ul>
+<li>预归一化（GPT3）：在输入而不是输出上归一化</li>
+<li>SwiGLU 激活（PaLM）</li>
+<li>旋转位置嵌入（GPTNeo）</li>
+</ul>
+</li>
+<li>即使是 13B 模型也优于 GPT-3</li>
+</ul>
+<p>注意：不能用于商业用途。</p>
+<h2 id="LLaMa-变体"><a href="#LLaMa-变体" class="headerlink" title="LLaMa 变体"></a>LLaMa 变体</h2><ul>
+<li><p><strong>LLaMa2</strong></p>
+<ul>
+<li>更大（70B 参数，2.0T 标记，4k 上下文）</li>
+<li>聊天指令</li>
+<li>可以用于商业用途</li>
+</ul>
+</li>
+<li><p><strong>Alpaca</strong></p>
+<ul>
+<li>斯坦福基于 LLaMa 7B 的指令模型。便宜（$600）</li>
+<li>基于 ChatGPT 的 Self-instruct（不可商业使用）</li>
+</ul>
+</li>
+<li><p><strong>Vicuna</strong></p>
+<ul>
+<li>基于 LLaMa 13B + 来自 <a target="_blank" rel="noopener" href="https://sharegpt.com/">ShareGPT</a> 的 70k 交互，成本 $300</li>
+<li>比 Alpaca 好 90%，在 GPT-4 评判下接近 ChatGPT 10% 以内</li>
+</ul>
+</li>
+</ul>
+<h1 id="多语言模型"><a href="#多语言模型" class="headerlink" title="多语言模型"></a>多语言模型</h1><p>上述大多数模型仅在英语数据上训练，或最多包含 10%的非英语文本。然而，有几个模型有多语言版本。</p>
+<ul>
+<li><p><strong>mBERT</strong>：</p>
+<ul>
+<li>一个多语言的 BERT 基础模型</li>
+<li>在 104 种语言的维基百科上训练</li>
+</ul>
+</li>
+<li><p><strong>XLM-RoBERTa</strong></p>
+<ul>
+<li>在 2.5TB 的 Common Crawl（CC）数据上训练，涵盖 100 种语言</li>
+<li>在低资源语言上比 mBERT 高出 23%</li>
+<li>性能与单语言的 RoBERTa 相当</li>
+</ul>
+<p>XLM-RoBERTa 证明了维基百科不足以训练一个有竞争力的模型。</p>
+</li>
+<li><p><strong>mT5</strong></p>
+<ul>
+<li>在包含 10,000 页或更多页面的 101 种语言的 CC 数据上训练</li>
+<li>单语言性能接近 T5</li>
+<li>跨语言零样本性能是最先进的，但偶尔会意外翻译成英语</li>
+</ul>
+</li>
+<li><p><strong>BLOOM</strong></p>
+<ul>
+<li>一个在 46 种自然语言和 13 种编程语言上训练的解码器模型</li>
+<li>1.61TB 的 ROOTS 语料库由国际研究人员合作编译</li>
+<li>BLOOMZ 变体经过多语言多任务微调</li>
+<li>迄今为止最强大的多语言 LLM</li>
+</ul>
+</li>
+</ul>
+<h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><p><img src="/AI/NLP/NLP-Zoo/coding_monkey.jpg" alt="coding_monkey"></p>
+<p>许多 LLM 在预训练语料库中使用了一些源代码。这有助于推理，并允许它们进行一定程度的代码生成。而编码模型则明确为后者任务进行训练。</p>
+<p><strong>Code Llama</strong>是基于 LLaMa 2 的模型。它有相同的尺寸。由于编码模型还需要理解自然语言（NL）指令，因此基于常规 LLM 的模型表现更好。</p>
+<p>它有三个版本：</p>
+<ul>
+<li><em>Code Llama</em>：基础模型</li>
+<li><em>Code Llama</em> - Instruct：微调版本</li>
+<li><em>Code Llama</em> - Python：进一步在 Python 代码上训练</li>
+</ul>
+<h2 id="Code-Llama-详情"><a href="#Code-Llama-详情" class="headerlink" title="Code Llama 详情"></a>Code Llama 详情</h2><p><img src="/AI/NLP/NLP-Zoo/code_llama.png" alt="Code Llama pipeline. Stages are annotated with the number of training tokens."></p>
+<p>训练语料库（500B）：</p>
+<ul>
+<li>85% 来自 GitHub 的源代码</li>
+<li>8% 与代码相关的 NL 讨论（如 StackOverflow 等）</li>
+<li>7% NL 批次以保持 NLU 性能</li>
+</ul>
+<p>Python 模型使用额外的 100B 个 Python 代码标记进行训练。</p>
+<h2 id="训练特点"><a href="#训练特点" class="headerlink" title="训练特点"></a>训练特点</h2><p>Code Llama 有两个额外的训练目标：</p>
+<ol>
+<li><strong>填充</strong>：在给定上下文的情况下预测程序的缺失部分<ul>
+<li>用于代码补全、文档生成等</li>
+<li>仅较小的模型进行训练</li>
+</ul>
+</li>
+<li><strong>长输入上下文</strong>：以实现库级别的推理<ul>
+<li>将最大上下文长度从 4096 增加到 100,000</li>
+<li>在专门的<em>长上下文微调</em>阶段进行训练</li>
+</ul>
+</li>
+</ol>
+<p><strong>指令微调</strong>通过自我指令完成：</p>
+<ul>
+<li>生成单元测试和代码</li>
+<li>添加通过测试的第一个代码片段</li>
+</ul>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="/AI/NLP/NLP-Zoo/code_llama_results.png" alt="Results excerpt from [the official page](https://ai.meta.com/blog/code-llama-large-language-model-coding/?_fb_noscript=1)"></p>
+<p>指令：LLaMa 2 + 自我指令。生成单元测试和代码，并添加通过单元测试的代码。</p>
+<h2 id="其他模型-1"><a href="#其他模型-1" class="headerlink" title="其他模型"></a>其他模型</h2><p>闭源：</p>
+<ul>
+<li>Codex&#x2F;copilot</li>
+<li>AlphaCode</li>
+<li>phi-1</li>
+<li>GPT-4</li>
+</ul>
+<p>开源：</p>
+<ul>
+<li>SantaCoder</li>
+<li>StarCoder</li>
+</ul>
+<h1 id="多模态"><a href="#多模态" class="headerlink" title="多模态"></a>多模态</h1><h2 id="图像-文本模型"><a href="#图像-文本模型" class="headerlink" title="图像-文本模型"></a>图像-文本模型</h2><p>与 GPT-3 相比，GPT-4 的主要创新是其多模态性；特别是其使用图像输入的能力。然而，它并不是第一个具有图像到文本能力的系统。</p>
+<p>主要的视觉机器学习目标是<strong>图像分类</strong>：给定一张图像，系统必须返回描述其内容的标签（集）。这通常通过在数百万标记图像上训练的监督系统来完成。</p>
+<p>使用大型语言模型（LLM），可以在大型未标记的文本+图像语料库（网络数据）上预训练具有良好零样本性能的通用模型。以下是两个例子。</p>
+<h2 id="CLIP"><a href="#CLIP" class="headerlink" title="CLIP"></a>CLIP</h2><p>CLIP 通过将图像和文本编码到相同的嵌入空间来执行图像分类。</p>
+<p><img src="/AI/NLP/NLP-Zoo/clips.png" alt="clips"></p>
+<p>在训练期间，编码器使用<strong>对比目标</strong>进行训练。在测试时，类标签被编码，并返回与图像最（余弦）相似的标签。</p>
+<h2 id="Flamingo"><a href="#Flamingo" class="headerlink" title="Flamingo"></a>Flamingo</h2><p>Flamingo 是一个“<em>视觉语言模型</em>”，可以基于混合的文本和视觉输入生成文本。</p>
+<p><img src="/AI/NLP/NLP-Zoo/flamingo.png" alt="flamingo"></p>
+<p>它使用冻结的视觉和文本编码器（例如 CLIP 和 Chinchilla），并且只训练操作其输出的语言模型。</p>
+<h1 id="开源模型"><a href="#开源模型" class="headerlink" title="开源模型"></a>开源模型</h1><p>上面讨论的许多模型都是闭源的；通常，训练数据也由专有语料库组成。然而，现在有几个开源的 LLM 可在 Hugging Face Hub 上使用：</p>
+<ul>
+<li>BLOOM 是完全开源的，数据和模型都是如此。然而，它的开发已经完成，不再进一步更新</li>
+<li>LLaMa 是在开放数据上训练的，LLaMa 2 及以上版本可以免费使用。Llama 3.x 提供从 1B 到 405B 的模型</li>
+<li>Mistral 是另一个替代方案，提供指令微调和 MoE 模型供下载</li>
+</ul>
+<h2 id="LAION"><a href="#LAION" class="headerlink" title="LAION"></a>LAION</h2><p><a target="_blank" rel="noopener" href="https://laion.ai/">LAION</a>（Large-scale Artificial Intelligence Open Network 大规模人工智能开放网络）旨在提供 100% 免费和开放的 LLM 管道，包括数据集、工具和模型。</p>
+<p>一些精选项目：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mlfoundations/open_clip">Openclip</a>：CLIP 的开源重新实现</li>
+<li>LAION5B：一个包含近 60 亿图像-文本对的语料库</li>
+<li><a target="_blank" rel="noopener" href="https://open-assistant.io/">OpenAssistant</a>：正在开发的开源对话 AI。你也可以通过以下方式提供帮助：<ul>
+<li>添加新对话</li>
+<li>标记现有对话</li>
+<li>等等</li>
+</ul>
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>NLP-Zoo</p><p><a href="https://aloen.to/AI/NLP/NLP-Zoo/">https://aloen.to/AI/NLP/NLP-Zoo/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2024-11-12</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-11-14</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/AI/">AI</a><a class="link-muted mr-2" rel="tag" href="/tags/NLP/">NLP</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/AI/NLP/NLP-DatasetsBenchmarks/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">NLP-DatasetsBenchmarks</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/NLP/NLP-Tooling/"><span class="level-item">NLP-Tooling</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">41</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">34</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">19</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">30</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#LLM-Zoo"><span class="level-left"><span class="level-item">1</span><span class="level-item">LLM Zoo</span></span></a></li><li><a class="level is-mobile" href="#BERT-家族"><span class="level-left"><span class="level-item">2</span><span class="level-item">BERT 家族</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#BERT"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">BERT</span></span></a></li><li><a class="level is-mobile" href="#超参数"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">超参数</span></span></a></li><li><a class="level is-mobile" href="#跨距"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">跨距</span></span></a></li><li><a class="level is-mobile" href="#性能"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">性能</span></span></a></li><li><a class="level is-mobile" href="#新技术"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">新技术</span></span></a></li></ul></li><li><a class="level is-mobile" href="#全栈模型"><span class="level-left"><span class="level-item">3</span><span class="level-item">全栈模型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#T5"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">T5</span></span></a></li></ul></li><li><a class="level is-mobile" href="#解码器模型"><span class="level-left"><span class="level-item">4</span><span class="level-item">解码器模型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#GPT-家族"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">GPT 家族</span></span></a></li><li><a class="level is-mobile" href="#GPT-1"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">GPT-1</span></span></a></li><li><a class="level is-mobile" href="#GPT-2"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">GPT-2</span></span></a></li><li><a class="level is-mobile" href="#GPT-3"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">GPT-3</span></span></a></li><li><a class="level is-mobile" href="#InstructGPT"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">InstructGPT</span></span></a></li><li><a class="level is-mobile" href="#GPT-4"><span class="level-left"><span class="level-item">4.6</span><span class="level-item">GPT-4</span></span></a></li><li><a class="level is-mobile" href="#其他模型家族"><span class="level-left"><span class="level-item">4.7</span><span class="level-item">其他模型家族</span></span></a></li><li><a class="level is-mobile" href="#其他模型"><span class="level-left"><span class="level-item">4.8</span><span class="level-item">其他模型</span></span></a></li></ul></li><li><a class="level is-mobile" href="#负面趋势"><span class="level-left"><span class="level-item">5</span><span class="level-item">负面趋势</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#扩展法则"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">扩展法则</span></span></a></li><li><a class="level is-mobile" href="#问题"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">问题</span></span></a></li><li><a class="level is-mobile" href="#新趋势"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">新趋势</span></span></a></li><li><a class="level is-mobile" href="#Chinchilla"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">Chinchilla</span></span></a></li><li><a class="level is-mobile" href="#LLaMa"><span class="level-left"><span class="level-item">5.5</span><span class="level-item">LLaMa</span></span></a></li><li><a class="level is-mobile" href="#LLaMa-变体"><span class="level-left"><span class="level-item">5.6</span><span class="level-item">LLaMa 变体</span></span></a></li></ul></li><li><a class="level is-mobile" href="#多语言模型"><span class="level-left"><span class="level-item">6</span><span class="level-item">多语言模型</span></span></a></li><li><a class="level is-mobile" href="#编码"><span class="level-left"><span class="level-item">7</span><span class="level-item">编码</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Code-Llama-详情"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">Code Llama 详情</span></span></a></li><li><a class="level is-mobile" href="#训练特点"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">训练特点</span></span></a></li><li><a class="level is-mobile" href="#结果"><span class="level-left"><span class="level-item">7.3</span><span class="level-item">结果</span></span></a></li><li><a class="level is-mobile" href="#其他模型-1"><span class="level-left"><span class="level-item">7.4</span><span class="level-item">其他模型</span></span></a></li></ul></li><li><a class="level is-mobile" href="#多模态"><span class="level-left"><span class="level-item">8</span><span class="level-item">多模态</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#图像-文本模型"><span class="level-left"><span class="level-item">8.1</span><span class="level-item">图像-文本模型</span></span></a></li><li><a class="level is-mobile" href="#CLIP"><span class="level-left"><span class="level-item">8.2</span><span class="level-item">CLIP</span></span></a></li><li><a class="level is-mobile" href="#Flamingo"><span class="level-left"><span class="level-item">8.3</span><span class="level-item">Flamingo</span></span></a></li></ul></li><li><a class="level is-mobile" href="#开源模型"><span class="level-left"><span class="level-item">9</span><span class="level-item">开源模型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#LAION"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">LAION</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-13T10:20:55.000Z">2024-11-13</time></p><p class="title"><a href="/AI/NLP/NLP-DatasetsBenchmarks/">NLP-DatasetsBenchmarks</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-12T10:20:35.000Z">2024-11-12</time></p><p class="title"><a href="/AI/NLP/NLP-Zoo/">NLP-Zoo</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-11T10:20:07.000Z">2024-11-11</time></p><p class="title"><a href="/AI/NLP/NLP-Tooling/">NLP-Tooling</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-10T10:19:54.000Z">2024-11-10</time></p><p class="title"><a href="/AI/NLP/NLP-Alignments/">NLP-Alignments</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-09T10:19:40.000Z">2024-11-09</time></p><p class="title"><a href="/AI/NLP/NLP-Prompt/">NLP-Prompt</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2024 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
