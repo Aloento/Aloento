@@ -26,7 +26,7 @@ Augmenting Language Models
 
 知识可以以少样本的方式注入，这可以解释为克服幻觉。通过逐步处理，增强模型可以使用低复杂度的知识源来回答复杂问题。
 
-![通用增强语言模型架构](external%20knowledge%20source.png)
+![通用增强语言模型架构](external_knowledge_source.png)
 
 ## 与提示的连接
 
