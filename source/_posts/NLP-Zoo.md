@@ -70,12 +70,21 @@ Spans，BERT 的掩码方案（`[MASK]`替换单个标记）使其在生成任�
 [SpanBERT](https://github.com/facebookresearch/SpanBERT)
 
 - 掩码随机长度的跨距（平均 3.8 个标记）
-- 基于跨距周围的标记预测它们：$\mathbf{y}_i = f(\mathbf{x}_{s-1}, \mathbf{x}_{e+1}, \mathbf{p}_{i-s+1})$
+- 基于跨距周围的标记预测它们：
+
+<div>
+$$
+\mathbf{y}_i = f(\mathbf{x}_{s-1}, \mathbf{x}_{e+1}, \mathbf{p}_{i-s+1})
+$$
+</div>
+
 - 引入了跨距边界目标 $\mathcal{L}_{SBO}$，使得
 
+<div>
 $$
 \mathcal{L}(x_i) = \mathcal{L}_{MLM}(x_i) + \mathcal{L}_{SBO}(x_i) = -\log P(x_i|\mathbf{x}_i) - \log P(x_i|\mathbf{y}_i)
 $$
+</div>
 
 [XLNet](https://github.com/zihangdai/xlnet)
 
@@ -136,9 +145,9 @@ GPT 家族是最著名的大型语言模型（LLM）。它们由[OpenAI](https:/
 | [GPT-2](https://huggingface.co/gpt2)       | 1.5B   | 40GB   | 1024       |
 | GPT-3                                      | 175B   | 300B   | 2048       |
 | InstructGPT                                | 175B   | 77k    | 2048       |
-| GPT-4                                      | ?      | ?      | 8192^\*^   |
+| GPT-4                                      | ?      | ?      | 8192       |
 
-^\*^GPT-3.5 和 GPT-4 的详细信息尚不可用。有一些估计，但[许多](https://tooabstractive.com/how-to-tech/difference-between-gpt-1-gpt-2-gpt-3-gpt-4/)甚至无法正确描述之前的模型。
+GPT-3.5 和 GPT-4 的详细信息尚不可用。有一些估计，但[许多](https://tooabstractive.com/how-to-tech/difference-between-gpt-1-gpt-2-gpt-3-gpt-4/)甚至无法正确描述之前的模型。
 
 ## GPT-1
 
