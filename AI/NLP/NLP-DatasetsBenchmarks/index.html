@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>NLP-DatasetsBenchmarks - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="NLP-DatasetsBenchmarks"><meta property="og:url" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/"><meta property="og:site_name" content="Aloento"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/img/og_image.png"><meta property="article:published_time" content="2024-11-13T10:20:55.000Z"><meta property="article:modified_time" content="2024-11-13T18:12:40.188Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="笔记"><meta property="article:tag" content="AI"><meta property="article:tag" content="NLP"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/"},"headline":"NLP-DatasetsBenchmarks","image":["https://aloen.to/img/og_image.png"],"datePublished":"2024-11-13T10:20:55.000Z","dateModified":"2024-11-13T18:12:40.188Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/"}},"description":""}</script><link rel="canonical" href="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>NLP-DatasetsBenchmarks - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="数据集，基准测试，引导"><meta property="og:type" content="blog"><meta property="og:title" content="NLP-DatasetsBenchmarks"><meta property="og:url" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="数据集，基准测试，引导"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/compute_vs_tokens.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/the_pile.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/cc_monthly.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/cc_cumulative.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/roots_languages.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/open_assistant.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/hamlet.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/alpaca_logo.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/evolinstruct.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/wizard_results.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/orca_results.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/orca_results2.png"><meta property="article:published_time" content="2024-11-13T10:20:55.000Z"><meta property="article:modified_time" content="2024-11-14T16:09:33.542Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="笔记"><meta property="article:tag" content="AI"><meta property="article:tag" content="NLP"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/compute_vs_tokens.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/"},"headline":"NLP-DatasetsBenchmarks","image":["https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/compute_vs_tokens.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/the_pile.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/cc_monthly.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/cc_cumulative.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/roots_languages.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/open_assistant.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/hamlet.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/alpaca_logo.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/evolinstruct.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/wizard_results.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/orca_results.png","https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/orca_results2.png"],"datePublished":"2024-11-13T10:20:55.000Z","dateModified":"2024-11-14T16:09:33.542Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/"}},"description":"数据集，基准测试，引导"}</script><link rel="canonical" href="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -29,8 +29,514 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-13T10:20:55.000Z" title="11/13/2024, 10:20:55 AM">2024-11-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-13T18:12:40.188Z" title="11/13/2024, 6:12:40 PM">2024-11-14</time></span><span class="level-item"><a class="link-muted" href="/categories/AI/">AI</a><span> / </span><a class="link-muted" href="/categories/AI/NLP/">NLP</a></span><span class="level-item">a few seconds read (About 1 word)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">NLP-DatasetsBenchmarks</h1><div class="content"><span id="more"></span>
-</div><div class="article-licensing box"><div class="licensing-title"><p>NLP-DatasetsBenchmarks</p><p><a href="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/">https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2024-11-13</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-11-14</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/AI/">AI</a><a class="link-muted mr-2" rel="tag" href="/tags/NLP/">NLP</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/NLP/NLP-Zoo/"><span class="level-item">NLP-Zoo</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">41</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">34</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">19</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">30</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-13T10:20:55.000Z">2024-11-13</time></p><p class="title"><a href="/AI/NLP/NLP-DatasetsBenchmarks/">NLP-DatasetsBenchmarks</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-12T10:20:35.000Z">2024-11-12</time></p><p class="title"><a href="/AI/NLP/NLP-Zoo/">NLP-Zoo</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-11T10:20:07.000Z">2024-11-11</time></p><p class="title"><a href="/AI/NLP/NLP-Tooling/">NLP-Tooling</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-10T10:19:54.000Z">2024-11-10</time></p><p class="title"><a href="/AI/NLP/NLP-Alignments/">NLP-Alignments</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-09T10:19:40.000Z">2024-11-09</time></p><p class="title"><a href="/AI/NLP/NLP-Prompt/">NLP-Prompt</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2024 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-13T10:20:55.000Z" title="11/13/2024, 10:20:55 AM">2024-11-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-14T16:09:33.542Z" title="11/14/2024, 4:09:33 PM">2024-11-15</time></span><span class="level-item"><a class="link-muted" href="/categories/AI/">AI</a><span> / </span><a class="link-muted" href="/categories/AI/NLP/">NLP</a></span><span class="level-item">31 minutes read (About 4688 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">NLP-DatasetsBenchmarks</h1><div class="content"><p>数据集，基准测试，引导</p>
+<span id="more"></span>
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>众所周知，LLM 需要庞大的文本语料库进行（预）训练。<br>实际上，我们使用几种类型的数据集来训练和&#x2F;或评估 LLM：</p>
+<ul>
+<li>预训练语料库</li>
+<li>微调数据集</li>
+<li>指令微调数据集</li>
+<li>基准测试</li>
+</ul>
+<p>在本讲座中，我们将详细讨论这些类型，并了解每种类型的最流行示例。</p>
+<h1 id="预训练"><a href="#预训练" class="headerlink" title="预训练"></a>预训练</h1><p>LLM（顾名思义）总是通过某种形式的语言建模目标进行训练：</p>
+<ul>
+<li>因果（自回归）语言建模</li>
+<li>掩码语言建模（MLM）</li>
+<li>等等</li>
+</ul>
+<p>这种类型的预训练只能在庞大的文本语料库上进行（取决于模型大小）。LLM 需要比 人类儿童&#x2F;年轻人 遇到的文本数据多得多。另一方面，</p>
+<ul>
+<li>LLM 没有多感官输入（有些在某种程度上有）</li>
+<li>我们之前看到一次性标签会减慢收敛速度</li>
+</ul>
+<h2 id="预训练语料库大小"><a href="#预训练语料库大小" class="headerlink" title="预训练语料库大小"></a>预训练语料库大小</h2><p><img src="/AI/NLP/NLP-DatasetsBenchmarks/compute_vs_tokens.png" alt="参数大小（通过 FLOPs）与最佳标记数的函数关系。一个 67B 模型需要大约 1.5T 标记进行预训练"></p>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><p>预训练语料库通常来自多种来源的混合：</p>
+<ul>
+<li>网络文本</li>
+<li>书籍和娱乐</li>
+<li>学术存储库</li>
+<li>程序代码</li>
+<li>对话数据</li>
+<li>杂项</li>
+</ul>
+<p><strong>the Pile</strong> 的组成：一个 800GB 的英语语料库用于 LLM 预训练。它由 22 个数据集创建，组成如下：</p>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/the_pile.png" alt="按有效大小划分的 Pile 组件的树图"></p>
+<h2 id="网络文本"><a href="#网络文本" class="headerlink" title="网络文本"></a>网络文本</h2><p>通常是任何预训练语料库中最大的组成部分。</p>
+<p>优点：</p>
+<ul>
+<li>易于获取，通常以网络抓取格式存在</li>
+<li>数据量大</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>质量参差不齐，通常低于其他来源</li>
+<li>即使是好的页面也包含非内容元素（例如广告）</li>
+<li>文本重复</li>
+<li>偏见、有害、极端内容</li>
+<li>AI 生成&#x2F;自动翻译的内容</li>
+</ul>
+<h2 id="网络文本语料库"><a href="#网络文本语料库" class="headerlink" title="网络文本语料库"></a>网络文本语料库</h2><p>Corpora</p>
+<p><strong><a target="_blank" rel="noopener" href="https://commoncrawl.org/">Common Crawl (CC)</a></strong>:</p>
+<ul>
+<li>一个免费的、开放的网络抓取数据存储库，以 WARC 格式提供</li>
+<li>大约每月一次新的抓取</li>
+<li>数据量达到 PB 级；2023 年 9&#x2F;10 月的抓取数据为 100TB</li>
+<li>构成了大多数用于预训练的网络文本语料库的基础</li>
+</ul>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/cc_monthly.png" alt="cc_monthly"></p>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/cc_cumulative.png" alt="cc_cumulative"></p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/WARC_(file_format)">Web ARChive 格式</a></p>
+<h3 id="English"><a href="#English" class="headerlink" title="English"></a>English</h3><p><strong>C4</strong>:</p>
+<ul>
+<li>从 2019 年 4 月的 CC 转储创建；750GB</li>
+<li>用于预训练 T5</li>
+<li>过滤包含不良词汇的文档（减少 $3\times$）</li>
+</ul>
+<p><strong>WebText</strong>:</p>
+<ul>
+<li>GPT-2 的预训练语料库</li>
+<li>800 万文档，40GB</li>
+<li>从“策划”的文档中创建：Reddit 上至少有 3 个 karma 的外部链接</li>
+<li>不包括 Wikipedia，以避免 GPT-2 的测试集与训练集重叠</li>
+<li>专有</li>
+</ul>
+<p><strong>OpenWebText</strong>:</p>
+<ul>
+<li>WebText 的开源重新实现</li>
+</ul>
+<h3 id="Multilingual"><a href="#Multilingual" class="headerlink" title="Multilingual"></a>Multilingual</h3><p><strong>OSCAR</strong>:</p>
+<ul>
+<li>一个巨大的多语言语料库，由单个每月 CC 抓取创建</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/oscar-project/ungoliant">Ungoliant</a> 数据管道</li>
+<li>标记数量：<ul>
+<li>英语：3770 亿</li>
+<li>匈牙利语：46 亿</li>
+<li>约鲁巴语：1 千</li>
+</ul>
+</li>
+</ul>
+<p><strong>ROOTS</strong>:</p>
+<ul>
+<li>一个 1.6TB 的语料库</li>
+<li>由 <a target="_blank" rel="noopener" href="https://bigscience.huggingface.co/">BigScience</a> 编译<ul>
+<li>国际研究人员合作</li>
+<li>Hugging Face 支持</li>
+</ul>
+</li>
+<li>用于预训练 BLOOM</li>
+</ul>
+<h3 id="ROOTS-中的语言"><a href="#ROOTS-中的语言" class="headerlink" title="ROOTS 中的语言"></a>ROOTS 中的语言</h3><p>ROOTS 的语言分布。此外，与其他语料库（例如 OSCAR）相比，英语被高度下采样。</p>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/roots_languages.png" alt="ROOTS 语言概览"></p>
+<p><strong>mC4</strong>:</p>
+<ul>
+<li>C4 的多语言版本 (<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/allenai/c4">Hugging Face HUB</a>)</li>
+<li>基于整个 CC 语料库（截至 2021 年），因此有足够的数据用于中等规模的语言，如匈牙利语（390 亿标记）</li>
+<li>并未真正清理过，因此标记数量有些乐观</li>
+</ul>
+<p><strong>llm-datasets</strong></p>
+<ul>
+<li>数据集和脚本的 <a target="_blank" rel="noopener" href="https://github.com/malteos/llm-datasets">GitHub 仓库</a></li>
+<li>包含 Common Crawl 以外的语料库</li>
+</ul>
+<h2 id="如何预处理-Common-Crawl"><a href="#如何预处理-Common-Crawl" class="headerlink" title="如何预处理 Common Crawl"></a>如何预处理 Common Crawl</h2><p>基于 Common Crawl 创建特定语言的网络文本语料库看似简单，但实际上是一个多步骤的过程，存在许多陷阱。这里我们回顾一下 <a target="_blank" rel="noopener" href="https://github.com/DavidNemeskey/cc_corpus">cc_corpus</a> 所采取的步骤，这是用于创建 Webcorpus 2 的管道。</p>
+<p><strong>要求</strong>：下载所有（多个）每月转储，因为只有英语在一个转储中有足够的标记。</p>
+<ol>
+<li><p>下载索引</p>
+<ul>
+<li>CC 索引是按域名而不是按语言划分的</li>
+<li>例如，对于匈牙利语，我们下载<ul>
+<li><code>.hu</code> 顶级域名</li>
+<li>根据 OSCAR 统计，包含许多匈牙利语页面的其他域名</li>
+</ul>
+</li>
+<li>在每月索引转储之间去重 URL</li>
+</ul>
+</li>
+<li><p>下载数据</p>
+<ul>
+<li>CC 不应被 DDoS</li>
+<li>WARC 文件需要大量空间</li>
+</ul>
+</li>
+<li><p>去除样板</p>
+<ul>
+<li>去除网页的非内容部分（导航、广告、图片、表格等）</li>
+<li>我们使用 jusText 和自定义代码去除 JS &#x2F; cookie 警告</li>
+<li>需要处理各种文件类型（HTML、RSS、文本等）</li>
+</ul>
+</li>
+<li><p>过滤</p>
+<ul>
+<li>语言过滤</li>
+<li>基于质量的过滤：<ul>
+<li>文档长度</li>
+<li>还可以使用例如样板比例、某些 HTML 标签的长度等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>去重</p>
+<ul>
+<li>文档级去重以保持文本完整性<ul>
+<li>MinHash–LSH 设置</li>
+<li>需要大量内存，否则会非常慢</li>
+</ul>
+</li>
+<li>可选：按域名去重频繁段落（基于内容的样板去除）</li>
+</ul>
+</li>
+</ol>
+<p>硬件设置：</p>
+<ul>
+<li>在单个服务器上运行；多服务器通信正在进行中</li>
+<li>所有类似映射的步骤都是高度并行的，以充分利用 多核&#x2F;CPU 服务器</li>
+<li>一台具有 768GB 内存的服务器用于去重</li>
+</ul>
+<h2 id="特殊网络文本数据集"><a href="#特殊网络文本数据集" class="headerlink" title="特殊网络文本数据集"></a>特殊网络文本数据集</h2><p><strong>Wikipedia</strong>:</p>
+<ul>
+<li>非常优质的编辑资源，大多真实</li>
+<li>大小取决于语言，例如英语是匈牙利语的 10 倍</li>
+<li>预处理并不简单，因为标记格式：<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/attardi/wikiextractor">wikiextractor</a> 尝试解决这个问题</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/DavidNemeskey/zim_to_corpus">zim_to_corpus</a> 从 <a target="_blank" rel="noopener" href="https://kiwix.org/">Kiwix</a> 的预处理 .zim 存档中提取文本</li>
+</ul>
+</li>
+</ul>
+<p><strong>Stack Overflow</strong>, <strong>Reddit</strong>:</p>
+<ul>
+<li>策划的数据集（points &#x2F; karma）</li>
+<li>可用于问答、编程等</li>
+</ul>
+<h2 id="编辑文本"><a href="#编辑文本" class="headerlink" title="编辑文本"></a>编辑文本</h2><p>编辑文本是高质量文本的重要来源。不幸的是，与网络文本相比，数量上要难得多。</p>
+<p>编辑文本通常有两种格式：</p>
+<ol>
+<li><p><em>数字原生</em>：从一开始就为数字消费准备的文本。通常可以直接使用，但</p>
+<ul>
+<li>可能需要去除样板：表格、图形、页眉&#x2F;页脚</li>
+<li>编码问题确实会发生，尤其是 PDF</li>
+</ul>
+</li>
+<li><p>扫描：原本在纸上的数字化文档。<em>版面分析</em> 和 <em>光学字符识别 (OCR)</em> 的质量可能从可接受到非常糟糕不等。</p>
+</li>
+</ol>
+<h2 id="编辑文本-Prose"><a href="#编辑文本-Prose" class="headerlink" title="编辑文本 &#x2F; Prose"></a>编辑文本 &#x2F; Prose</h2><p>自 BERT 以来，常规散文（如书籍）一直是 LLM 训练方案的一部分。文本的水平因体裁而异，导致训练语料库多样化。</p>
+<p><strong>BookCorpus</strong></p>
+<ul>
+<li>一个由 7,185 本自出版书籍创建的 985M 字语料库</li>
+<li>用于训练 GPT 和 BERT，但后来被撤回，不公开提供</li>
+<li>BookCorpus2 (the Pile)：BookCorpus 的扩展，大约 17k 本书</li>
+</ul>
+<p><strong>已出版书籍语料库</strong>：</p>
+<ul>
+<li>Books1-2 (GPT-3)：67B 标记</li>
+<li>Books3，Project Gutenberg (the Pile)：分别约 187k 和 27k 本书</li>
+<li>匈牙利电子图书馆 (MEK)：32,830 本书，800M 标记</li>
+</ul>
+<p><strong>OpenSubtitles</strong>：</p>
+<ul>
+<li>从电影和电视字幕创建了 1689 个双语文本</li>
+<li>可以从中提取大约 300M 字的语料库</li>
+<li>语料库主要由对话组成</li>
+</ul>
+<p>书籍等是预训练语料库的重要且非常有用的部分。然而，它们并非完全安全：</p>
+<ul>
+<li>可能存在有问题的内容（色情、有害等）</li>
+<li>在模型中使用它们可能导致 <strong>版权侵犯</strong></li>
+</ul>
+<h2 id="编辑文本-Professional"><a href="#编辑文本-Professional" class="headerlink" title="编辑文本 &#x2F; Professional"></a>编辑文本 &#x2F; Professional</h2><p>通常是非常高质量的专业文本，具有自己的术语。</p>
+<ol>
+<li><p><strong>学术存储库</strong>：</p>
+<ul>
+<li>非常高水平的文本</li>
+<li>许多表格、图形等，打断文本流</li>
+<li>通常需要大学访问权限（和爬虫）来下载论文</li>
+</ul>
+</li>
+<li><p><strong>议会记录</strong>：</p>
+<ul>
+<li>国家 &#x2F; 欧盟 &#x2F; 等等</li>
+<li>有些可能提供 REST API，有些需要爬取</li>
+</ul>
+</li>
+<li><p>法律、裁决、法规等</p>
+</li>
+<li><p><strong>新闻</strong>：</p>
+<ul>
+<li>大量且重要的来源，但也可能有偏见和有害内容</li>
+<li>极端重复</li>
+<li>通常在付费墙后面</li>
+</ul>
+</li>
+<li><p><strong>私人数据</strong>：</p>
+<ul>
+<li>公司规则和公司内部通信</li>
+<li>知识等</li>
+</ul>
+</li>
+</ol>
+<h2 id="杂项数据"><a href="#杂项数据" class="headerlink" title="杂项数据"></a>杂项数据</h2><p><strong>对话</strong></p>
+<ul>
+<li>对于聊天机器人非常重要</li>
+<li>对于通用对话：电影、书籍等</li>
+<li>最重要的来源：互联网论坛、实际客户服务互动</li>
+</ul>
+<p><strong>编程</strong></p>
+<ul>
+<li>来自 CVS 服务（GitHub、SourceForge 等）的开源项目</li>
+<li><strong>版权</strong>和<strong>许可证违规</strong>是一个可能带来<a target="_blank" rel="noopener" href="https://www.theverge.com/2022/11/8/23446821/microsoft-openai-github-copilot-class-action-lawsuit-ai-copyright-violation-training-data">法律后果</a>的问题</li>
+</ul>
+<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><h2 id="指令获取"><a href="#指令获取" class="headerlink" title="指令获取"></a>指令获取</h2><p>我们在前一讲中讨论了指令微调数据集的编译方式：</p>
+<ul>
+<li>手动 &#x2F; 众包努力</li>
+<li>从用户收集数据</li>
+<li>将 NLP 任务转换为指令</li>
+<li>自我指令</li>
+</ul>
+<p>我们已经看到 FLAN 如何将 NLP 任务转换为指令，但我们跳过了第一类。</p>
+<h2 id="Manual-Instructions"><a href="#Manual-Instructions" class="headerlink" title="Manual Instructions"></a>Manual Instructions</h2><p>手动创建指令数据集需要众包（crowdsourcing）。两个例子：</p>
+<ol>
+<li><p>Databricks 的 **<a target="_blank" rel="noopener" href="https://github.com/databrickslabs/dolly">Dolly</a>**：</p>
+<ul>
+<li>包含 15,000 对提示&#x2F;响应对</li>
+<li>由 5,000 多名 Databricks 员工创建</li>
+</ul>
+</li>
+<li><p>**<a target="_blank" rel="noopener" href="https://sharegpt.com/">ShareGPT</a>**：</p>
+<ul>
+<li>用户分享他们与 ChatGPT 的对话</li>
+<li>质量非常好，但由于 OpenAI 的许可证存在问题</li>
+<li>被用于训练 Vicuna</li>
+</ul>
+</li>
+<li><p>LAION 的 <strong><a target="_blank" rel="noopener" href="https://open-assistant.io/">Open-Assistant</a></strong></p>
+<ul>
+<li>由志愿者编译</li>
+<li>英语和西班牙语代表性很好，但其他语言代表性不足</li>
+</ul>
+</li>
+</ol>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/open_assistant.png" alt="open_assistant"></p>
+<h2 id="Self-instruct"><a href="#Self-instruct" class="headerlink" title="Self-instruct"></a>Self-instruct</h2><p>两个自我指令数据集的例子：</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/tatsu-lab/alpaca">Alpaca</a>：</p>
+<ul>
+<li>使用 OpenAI 的 <code>text-davinci-003</code> 创建的最著名的自我指令数据集</li>
+<li>页面包含有关如何使用 GPT3 进行指令生成的良好建议</li>
+<li>由于 GPT3 许可证，不能用于商业目的</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/WizardLM/WizardLM_evol_instruct_70k">WizardLM</a>：</p>
+<ul>
+<li>使用 Evol-Instruct 从 Alpaca 创建</li>
+</ul>
+</li>
+</ol>
+<h1 id="微调"><a href="#微调" class="headerlink" title="微调"></a>微调</h1><h2 id="微调数据集"><a href="#微调数据集" class="headerlink" title="微调数据集"></a>微调数据集</h2><p>已经证明，具有分类器头的 LLM 可以在 NLP 数据集上进行微调，以达到最先进的结果。这包括</p>
+<ul>
+<li>传统的 NLP 任务（NP 分块、NER、依存解析等）</li>
+<li>NLU 任务（问答、自然语言推理等）</li>
+<li>各种分类数据集（情感分析、主题分类等）<br>这些通常在树库上进行训练</li>
+</ul>
+<p>微调数据集具有训练-开发-测试拆分，因此它们也作为基准数据集。</p>
+<h2 id="传统数据集"><a href="#传统数据集" class="headerlink" title="传统数据集"></a>传统数据集</h2><table>
+<thead>
+<tr>
+<th>任务</th>
+<th>英语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>命名实体识别</td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/conll2003">CONLL 2003</a></td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/juand-r/entity-recognition-datasets">其他数据集</a></td>
+</tr>
+<tr>
+<td>NP 分块</td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/conll2003">CONLL 2003</a></td>
+</tr>
+<tr>
+<td>依存关系</td>
+<td><a target="_blank" rel="noopener" href="https://universaldependencies.org/">Universal Dependencies</a></td>
+</tr>
+<tr>
+<td>解析</td>
+<td><a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/LDC99T42">Penn TreeBank</a></td>
+</tr>
+</tbody></table>
+<p><strong>其他资源</strong></p>
+<ul>
+<li>可以在 <a target="_blank" rel="noopener" href="http://nlpprogress.com/">NLP-progress page</a> 上跟踪 NLP 任务的进展</li>
+<li>有各种 NLP 数据集列表：<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/niderhoff/nlp-datasets">Awesome NLP &#x2F; Datasets</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/niderhoff/nlp-datasets">nlp-datasets</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/oroszgy/awesome-hungarian-nlp#datasets">Awesome Hungarian NLP &#x2F; Datasets</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="NLU-数据集"><a href="#NLU-数据集" class="headerlink" title="NLU 数据集"></a>NLU 数据集</h2><p>这些数据集包括传统 NLP 可以（和不能）解决的任务，但 LLM 可以。因此，这些数据集是 LLM 的便捷基准。</p>
+<ol>
+<li>**<a target="_blank" rel="noopener" href="https://gluebenchmark.com/">GLUE</a>**：<ul>
+<li>一个包含 9 个任务的 NLU 基准（句子相似性、释义、QA 等）</li>
+<li>测试集不共享；在线排行榜</li>
+</ul>
+</li>
+<li>**<a target="_blank" rel="noopener" href="https://super.gluebenchmark.com/">SuperGLUE</a>**：<ul>
+<li>8 个精心策划的任务（开放、困难、宽松许可等）</li>
+</ul>
+</li>
+<li>**<a target="_blank" rel="noopener" href="https://rajpurkar.github.io/SQuAD-explorer/">SQuAD2.0</a>**：<ul>
+<li>由众包工人编译</li>
+<li>10 万个问题加上 5 万个对抗性、无法回答的问题</li>
+</ul>
+</li>
+<li>**<a target="_blank" rel="noopener" href="https://github.com/hendrycks/test">MMLU</a>**：<ul>
+<li>一个仅用于测试的基准，包含 57 个主题中的 15,687 个选择题</li>
+</ul>
+</li>
+</ol>
+<h2 id="对抗性基准测试"><a href="#对抗性基准测试" class="headerlink" title="对抗性基准测试"></a>对抗性基准测试</h2><p><strong>问题</strong>：基准测试被越来越好的模型“快速”清除。我们能否创建更难的基准，使其持续时间更长？</p>
+<p><strong>模型脆弱性</strong>：证据表明</p>
+<ul>
+<li>自然语言推理（NLI）数据集由于（注释者）偏见而表现出虚假的统计模式</li>
+<li>模型实际上学习了这些模式，而不是推理</li>
+<li>因此，它们是脆弱的，可以被非专家注释者打破</li>
+</ul>
+<p><strong>想法</strong>：人类与模型循环启用训练（HAMLET）。</p>
+<h2 id="对抗性-NLI"><a href="#对抗性-NLI" class="headerlink" title="对抗性 NLI"></a>对抗性 NLI</h2><p><strong>对抗性 NLI (Adversarial)</strong> 通过在注释者和模型之间引入“军备竞赛”编译而成。</p>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/hamlet.png" alt="hamlet"></p>
+<p>这导致</p>
+<ul>
+<li>一个良好的训练集，可以很好地转移到其他 NLI 基准</li>
+<li>一个非常难的训练集</li>
+</ul>
+<h2 id="测试工具"><a href="#测试工具" class="headerlink" title="测试工具"></a>测试工具</h2><p>LLM 测试越来越多地通过 <strong>测试工具</strong> 自动化：</p>
+<ul>
+<li>Google 的 <a target="_blank" rel="noopener" href="https://github.com/google/BIG-bench">BIG-bench</a></li>
+<li>EleutherAI 的 <a target="_blank" rel="noopener" href="https://github.com/EleutherAI/lm-evaluation-harness">lm-evaluation-harness</a></li>
+</ul>
+<p>两者都包含 200 多个任务，并提供</p>
+<ul>
+<li>新任务的轻松集成；</li>
+<li>使用所有任务评估模型。</li>
+</ul>
+<p>可重复的测试使得竞争成为可能，例如 **<a target="_blank" rel="noopener" href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">Open LLM Leaderboard</a>**。</p>
+<h1 id="Bootstrapping"><a href="#Bootstrapping" class="headerlink" title="Bootstrapping"></a>Bootstrapping</h1><h2 id="什么是引导？"><a href="#什么是引导？" class="headerlink" title="什么是引导？"></a>什么是引导？</h2><p><strong>引导</strong> 是一种使用现有资源创建新资源的方法。</p>
+<p>在我们的例子中，我们将使用现有的预训练模型来创建新的数据集以训练新模型。<br>我们通常使用现有的最大、性能最好的模型。在 2023 年底，这些模型是私有的 GPT-4 和开源的 LLaMa2-70B。</p>
+<p>引导是：</p>
+<ul>
+<li>成本效益高</li>
+<li>快速</li>
+<li>易于实施</li>
+<li>能够生成高复杂度数据</li>
+<li>有风险（许可证问题、质量问题）</li>
+</ul>
+<h1 id="使用现有模型生成数据"><a href="#使用现有模型生成数据" class="headerlink" title="使用现有模型生成数据"></a>使用现有模型生成数据</h1><h2 id="“自我”指令"><a href="#“自我”指令" class="headerlink" title="“自我”指令"></a>“自我”指令</h2><p>在这里，我们使用现有模型为我们自己的模型生成数据。在这种情况下，另一个模型是教师，我们的模型是学生。</p>
+<p><strong>重要区别</strong>：与蒸馏相反，我们不使用教师在向量级别的预测，而是使用教师在数据集中的标记级别输出。这样就不需要直接访问教师模型。</p>
+<p>斯坦福 Alpaca 声称，这种方式的指令微调具有成本效益且快速。它可以在几百美元内完成。</p>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/alpaca_logo.png" alt="alpaca_logo"></p>
+<h2 id="零样本链式思维"><a href="#零样本链式思维" class="headerlink" title="零样本链式思维"></a>零样本链式思维</h2><p>可靠的链式思维（chain-of-thought）提示需要一些示例才能工作。通过使用 CoT 提示，我们可以为给定主题生成大量的 CoT 完成数据集。</p>
+<p>WizardLM 通过使用 <em>Evol-Instruct</em> 逐步演变给定任务的指令，采用了一种更抽象的指令生成方法。这样生成的指令将覆盖任务空间的更广范围，并具有更复杂的提示。</p>
+<p>我们提示我们的 LLM 生成指令的修改版本，然后使用这些版本生成数据集。这些修改步骤可以链接在一起。</p>
+<h2 id="Evol-Instruct"><a href="#Evol-Instruct" class="headerlink" title="Evol-Instruct"></a>Evol-Instruct</h2><p>任务演变的示例（对于基本任务“1+1&#x3D;？”）：</p>
+<ul>
+<li>深化：在什么情况下 1+1 不等于 2？</li>
+<li>增加推理：如果 x^3 + 2x + 3 &#x3D; 7，x 的值是多少？</li>
+<li>具体化：如果你有一个苹果，有人给你另一个香蕉，你有多少水果？</li>
+<li>添加约束：如何在哥德巴赫猜想中证明 1 + 1 &#x3D; 2？</li>
+<li>复杂输入：1&#x2F;(sqrt(2) + 4^2) &#x3D; ？</li>
+<li>广度演变（变异）：真空中光速是多少？</li>
+<li>增加演变推理（上述）：光在真空中比声音快多少倍？</li>
+</ul>
+<h2 id="演变步骤"><a href="#演变步骤" class="headerlink" title="演变步骤"></a>演变步骤</h2><p><img src="/AI/NLP/NLP-DatasetsBenchmarks/evolinstruct.png" alt="evolinstruct"></p>
+<h2 id="移除演变"><a href="#移除演变" class="headerlink" title="移除演变"></a>移除演变</h2><p>当以下情况发生时，消除中间结果：</p>
+<ol>
+<li>演变后的指令相比原始指令没有提供任何信息增益。使用 ChatGPT 来做出这个决定</li>
+<li>演变后的指令使得 LLM 难以生成响应。如果生成的响应包含“对不起”且长度相对较短（即少于 80 个单词），通常表明 LLM 难以响应演变后的指令</li>
+<li>LLM 生成的响应仅包含标点符号和停用词</li>
+<li>演变后的指令明显复制了一些来自演变提示的词语，例如“给定提示”、“重写提示”、“#重写提示#”等</li>
+</ol>
+<h2 id="EvolInstruct-的效果"><a href="#EvolInstruct-的效果" class="headerlink" title="EvolInstruct 的效果"></a>EvolInstruct 的效果</h2><p>EvolInstruct 微调能够提高高复杂度任务的性能，如下图所示。</p>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/wizard_results.png" alt="wizard_results"></p>
+<h2 id="Orca"><a href="#Orca" class="headerlink" title="Orca"></a>Orca</h2><p>EvolInstruct 在指令生成方面引入了多样性。与此相反，Orca 深入研究了响应生成方面，特别是推理和解释生成。在原始论文中，他们为 LLM 定义了各种系统提示，以指导响应生成风格。</p>
+<p>一些示例包括：</p>
+<ul>
+<li>你是一个 AI 助手。提供详细的答案，使用户不需要在外部搜索来理解答案</li>
+<li>你应该描述任务并解释你的答案。在回答选择题时，首先输出正确答案。然后解释为什么其他答案是错误的。想象你在回答一个五岁孩子的问题</li>
+</ul>
+<h2 id="解释调优的优势"><a href="#解释调优的优势" class="headerlink" title="解释调优的优势"></a>解释调优的优势</h2><p>小模型通过解释调优可以轻松解决困难和专业任务。</p>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/orca_results.png" alt="orca_results"></p>
+<p>小模型通过解释调优可以轻松解决困难和专业任务。</p>
+<p><img src="/AI/NLP/NLP-DatasetsBenchmarks/orca_results2.png" alt="orca_results2"></p>
+<h2 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h2><p>评估复杂模型很难，因为没有明确的方法来评估开放域性能。常见的方法包括人工和 LLM 评审。</p>
+<p>人工评审昂贵且缓慢，但可以通过众包来加速和稳定这一过程，例如 Chatbot Arena。Chatbot Arena 是一个评估聊天机器人的平台，用户可以与多个机器人聊天并表示他们的偏好。</p>
+<p>LLM 评审更快且更便宜，但偏见更大。利用方法包括：两个答案的成对比较、单个答案评分（分数分配）、参考引导评分（分数分配）。</p>
+<h2 id="模型偏见"><a href="#模型偏见" class="headerlink" title="模型偏见"></a>模型偏见</h2><p>根据 LLM 的评审，评审员倾向于第一个答案以及较长的答案。值得使用对称评估。“重命名”提示表明某些模型（如 Claude-v1）也对名称（如助手 A、助手 B 等）存在偏见。</p>
+<table>
+<thead>
+<tr>
+<th>评审员</th>
+<th>提示</th>
+<th>一致性</th>
+<th>偏向第一个</th>
+<th>偏向第二个</th>
+<th>错误</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude-v1</td>
+<td>默认</td>
+<td>23.8%</td>
+<td>75.0%</td>
+<td>0.0%</td>
+<td>1.2%</td>
+</tr>
+<tr>
+<td>Claude-v1</td>
+<td>重命名</td>
+<td>56.2%</td>
+<td>11.2%</td>
+<td>28.7%</td>
+<td>3.8%</td>
+</tr>
+<tr>
+<td>GPT-3.5</td>
+<td>默认</td>
+<td>46.2%</td>
+<td>50.0%</td>
+<td>1.2%</td>
+<td>2.5%</td>
+</tr>
+<tr>
+<td>GPT-3.5</td>
+<td>重命名</td>
+<td>51.2%</td>
+<td>38.8%</td>
+<td>6.2%</td>
+<td>3.8%</td>
+</tr>
+<tr>
+<td>GPT-4</td>
+<td>默认</td>
+<td>65.0%</td>
+<td>30.0%</td>
+<td>5.0%</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>GPT-4</td>
+<td>重命名</td>
+<td>66.2%</td>
+<td>28.7%</td>
+<td>5.0%</td>
+<td>0.0%</td>
+</tr>
+</tbody></table>
+</div><div class="article-licensing box"><div class="licensing-title"><p>NLP-DatasetsBenchmarks</p><p><a href="https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/">https://aloen.to/AI/NLP/NLP-DatasetsBenchmarks/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2024-11-13</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-11-15</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/AI/">AI</a><a class="link-muted mr-2" rel="tag" href="/tags/NLP/">NLP</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/AI/NLP/NLP-MixtureModels/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">NLP-MixtureModels</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/NLP/NLP-Zoo/"><span class="level-item">NLP-Zoo</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">42</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">34</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">20</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">20</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">20</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">31</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#介绍"><span class="level-left"><span class="level-item">1</span><span class="level-item">介绍</span></span></a></li><li><a class="level is-mobile" href="#预训练"><span class="level-left"><span class="level-item">2</span><span class="level-item">预训练</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#预训练语料库大小"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">预训练语料库大小</span></span></a></li><li><a class="level is-mobile" href="#来源"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">来源</span></span></a></li><li><a class="level is-mobile" href="#网络文本"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">网络文本</span></span></a></li><li><a class="level is-mobile" href="#网络文本语料库"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">网络文本语料库</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#English"><span class="level-left"><span class="level-item">2.4.1</span><span class="level-item">English</span></span></a></li><li><a class="level is-mobile" href="#Multilingual"><span class="level-left"><span class="level-item">2.4.2</span><span class="level-item">Multilingual</span></span></a></li><li><a class="level is-mobile" href="#ROOTS-中的语言"><span class="level-left"><span class="level-item">2.4.3</span><span class="level-item">ROOTS 中的语言</span></span></a></li></ul></li><li><a class="level is-mobile" href="#如何预处理-Common-Crawl"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">如何预处理 Common Crawl</span></span></a></li><li><a class="level is-mobile" href="#特殊网络文本数据集"><span class="level-left"><span class="level-item">2.6</span><span class="level-item">特殊网络文本数据集</span></span></a></li><li><a class="level is-mobile" href="#编辑文本"><span class="level-left"><span class="level-item">2.7</span><span class="level-item">编辑文本</span></span></a></li><li><a class="level is-mobile" href="#编辑文本-Prose"><span class="level-left"><span class="level-item">2.8</span><span class="level-item">编辑文本 / Prose</span></span></a></li><li><a class="level is-mobile" href="#编辑文本-Professional"><span class="level-left"><span class="level-item">2.9</span><span class="level-item">编辑文本 / Professional</span></span></a></li><li><a class="level is-mobile" href="#杂项数据"><span class="level-left"><span class="level-item">2.10</span><span class="level-item">杂项数据</span></span></a></li></ul></li><li><a class="level is-mobile" href="#指令"><span class="level-left"><span class="level-item">3</span><span class="level-item">指令</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#指令获取"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">指令获取</span></span></a></li><li><a class="level is-mobile" href="#Manual-Instructions"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">Manual Instructions</span></span></a></li><li><a class="level is-mobile" href="#Self-instruct"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">Self-instruct</span></span></a></li></ul></li><li><a class="level is-mobile" href="#微调"><span class="level-left"><span class="level-item">4</span><span class="level-item">微调</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#微调数据集"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">微调数据集</span></span></a></li><li><a class="level is-mobile" href="#传统数据集"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">传统数据集</span></span></a></li><li><a class="level is-mobile" href="#NLU-数据集"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">NLU 数据集</span></span></a></li><li><a class="level is-mobile" href="#对抗性基准测试"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">对抗性基准测试</span></span></a></li><li><a class="level is-mobile" href="#对抗性-NLI"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">对抗性 NLI</span></span></a></li><li><a class="level is-mobile" href="#测试工具"><span class="level-left"><span class="level-item">4.6</span><span class="level-item">测试工具</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Bootstrapping"><span class="level-left"><span class="level-item">5</span><span class="level-item">Bootstrapping</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#什么是引导？"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">什么是引导？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#使用现有模型生成数据"><span class="level-left"><span class="level-item">6</span><span class="level-item">使用现有模型生成数据</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#“自我”指令"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">“自我”指令</span></span></a></li><li><a class="level is-mobile" href="#零样本链式思维"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">零样本链式思维</span></span></a></li><li><a class="level is-mobile" href="#Evol-Instruct"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">Evol-Instruct</span></span></a></li><li><a class="level is-mobile" href="#演变步骤"><span class="level-left"><span class="level-item">6.4</span><span class="level-item">演变步骤</span></span></a></li><li><a class="level is-mobile" href="#移除演变"><span class="level-left"><span class="level-item">6.5</span><span class="level-item">移除演变</span></span></a></li><li><a class="level is-mobile" href="#EvolInstruct-的效果"><span class="level-left"><span class="level-item">6.6</span><span class="level-item">EvolInstruct 的效果</span></span></a></li><li><a class="level is-mobile" href="#Orca"><span class="level-left"><span class="level-item">6.7</span><span class="level-item">Orca</span></span></a></li><li><a class="level is-mobile" href="#解释调优的优势"><span class="level-left"><span class="level-item">6.8</span><span class="level-item">解释调优的优势</span></span></a></li><li><a class="level is-mobile" href="#模型评估"><span class="level-left"><span class="level-item">6.9</span><span class="level-item">模型评估</span></span></a></li><li><a class="level is-mobile" href="#模型偏见"><span class="level-left"><span class="level-item">6.10</span><span class="level-item">模型偏见</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-14T10:21:29.000Z">2024-11-14</time></p><p class="title"><a href="/AI/NLP/NLP-MixtureModels/">NLP-MixtureModels</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-13T10:20:55.000Z">2024-11-13</time></p><p class="title"><a href="/AI/NLP/NLP-DatasetsBenchmarks/">NLP-DatasetsBenchmarks</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-12T10:20:35.000Z">2024-11-12</time></p><p class="title"><a href="/AI/NLP/NLP-Zoo/">NLP-Zoo</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-11T10:20:07.000Z">2024-11-11</time></p><p class="title"><a href="/AI/NLP/NLP-Tooling/">NLP-Tooling</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-10T10:19:54.000Z">2024-11-10</time></p><p class="title"><a href="/AI/NLP/NLP-Alignments/">NLP-Alignments</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2024 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
