@@ -79,7 +79,15 @@ $$I_{batch}(X) = \sum\limits_{x\in X} G(x)$$
 
 $I_{batch}(X)$ 是批次 $X$ 中输入的专家重要性之和的向量。损失与专家重要性变异（coefficient）系数成正比：
 
-$\mathcal{L}_{importance} = w_{importance} \cdot CV(X)$ 其中 $w_{importance}$ 是一个超参数，$CV(X) = \frac{\sigma(I_{batch}(X))}{\mu(I_{batch}(X))}$ 是变异系数。
+<div>
+$$\mathcal{L}_{importance} = w_{importance} \cdot CV(X)$$
+</div>
+
+其中 $w_{importance}$ 是一个超参数，
+
+$$CV(X) = \frac{\sigma(I_{batch}(X))}{\mu(I_{batch}(X))}$$
+
+是变异系数。
 
 ## 优化和负载均衡
 

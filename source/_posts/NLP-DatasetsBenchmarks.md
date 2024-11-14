@@ -295,12 +295,12 @@ ROOTS 的语言分布。此外，与其他语料库（例如 OSCAR）相比，�
 
 手动创建指令数据集需要众包（crowdsourcing）。两个例子：
 
-1. Databricks 的 **[Dolly](https://github.com/databrickslabs/dolly)**：
+1. Databricks 的 [Dolly](https://github.com/databrickslabs/dolly)：
 
    - 包含 15,000 对提示/响应对
    - 由 5,000 多名 Databricks 员工创建
 
-2. **[ShareGPT](https://sharegpt.com/)**：
+2. [ShareGPT](https://sharegpt.com/)：
 
    - 用户分享他们与 ChatGPT 的对话
    - 质量非常好，但由于 OpenAI 的许可证存在问题
@@ -360,15 +360,15 @@ ROOTS 的语言分布。此外，与其他语料库（例如 OSCAR）相比，�
 
 这些数据集包括传统 NLP 可以（和不能）解决的任务，但 LLM 可以。因此，这些数据集是 LLM 的便捷基准。
 
-1. **[GLUE](https://gluebenchmark.com/)**：
+1. [GLUE](https://gluebenchmark.com/)：
    - 一个包含 9 个任务的 NLU 基准（句子相似性、释义、QA 等）
    - 测试集不共享；在线排行榜
-2. **[SuperGLUE](https://super.gluebenchmark.com/)**：
+2. [SuperGLUE](https://super.gluebenchmark.com/)：
    - 8 个精心策划的任务（开放、困难、宽松许可等）
-3. **[SQuAD2.0](https://rajpurkar.github.io/SQuAD-explorer/)**：
+3. [SQuAD2.0](https://rajpurkar.github.io/SQuAD-explorer/)：
    - 由众包工人编译
    - 10 万个问题加上 5 万个对抗性、无法回答的问题
-4. **[MMLU](https://github.com/hendrycks/test)**：
+4. [MMLU](https://github.com/hendrycks/test)：
    - 一个仅用于测试的基准，包含 57 个主题中的 15,687 个选择题
 
 ## 对抗性基准测试
