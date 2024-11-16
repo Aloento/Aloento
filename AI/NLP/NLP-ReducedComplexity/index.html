@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>NLP-ReducedComplexity - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="精简"><meta property="og:type" content="blog"><meta property="og:title" content="NLP-ReducedComplexity"><meta property="og:url" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="精简"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/gptq_results.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/nf4_values.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/awq_results.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/adapters.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/adapters_graph.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/lora_decomposition.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/intrinsic_dimension.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/prefix_tuning_fig1.png"><meta property="article:published_time" content="2024-11-16T10:22:06.000Z"><meta property="article:modified_time" content="2024-11-16T20:54:38.726Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="笔记"><meta property="article:tag" content="AI"><meta property="article:tag" content="NLP"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/AI/NLP/NLP-ReducedComplexity/gptq_results.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/AI/NLP/NLP-ReducedComplexity/"},"headline":"NLP-ReducedComplexity","image":["https://aloen.to/AI/NLP/NLP-ReducedComplexity/gptq_results.png","https://aloen.to/AI/NLP/NLP-ReducedComplexity/nf4_values.png","https://aloen.to/AI/NLP/NLP-ReducedComplexity/awq_results.png","https://aloen.to/AI/NLP/NLP-ReducedComplexity/adapters.png","https://aloen.to/AI/NLP/NLP-ReducedComplexity/adapters_graph.png","https://aloen.to/AI/NLP/NLP-ReducedComplexity/lora_decomposition.png","https://aloen.to/AI/NLP/NLP-ReducedComplexity/intrinsic_dimension.png","https://aloen.to/AI/NLP/NLP-ReducedComplexity/prefix_tuning_fig1.png"],"datePublished":"2024-11-16T10:22:06.000Z","dateModified":"2024-11-16T20:54:38.726Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/AI/NLP/NLP-ReducedComplexity/"}},"description":"精简"}</script><link rel="canonical" href="https://aloen.to/AI/NLP/NLP-ReducedComplexity/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-16T10:22:06.000Z" title="11/16/2024, 10:22:06 AM">2024-11-16</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-16T20:54:38.726Z" title="11/16/2024, 8:54:38 PM">2024-11-17</time></span><span class="level-item"><a class="link-muted" href="/categories/AI/">AI</a><span> / </span><a class="link-muted" href="/categories/AI/NLP/">NLP</a></span><span class="level-item">23 minutes read (About 3491 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">NLP-ReducedComplexity</h1><div class="content"><p>精简</p>
+<span id="more"></span>
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>从第一天开始，LLM 的参数数量就一直在增加，即使在神经 LMs 的扩展规律确立之前也是如此。如前所述，大型模型存在各种问题：</p>
+<ul>
+<li>不利的环境影响</li>
+<li>非常高的硬件要求<ul>
+<li>推理</li>
+<li>微调</li>
+</ul>
+</li>
+</ul>
+<p>在今天的讲座中，我们将看到一些可能缓解这些问题的方法。</p>
+<p>这些“规律”不是严格的数学构造，更像是摩尔定律。</p>
+<h1 id="蒸馏"><a href="#蒸馏" class="headerlink" title="蒸馏"></a>蒸馏</h1><h2 id="知识-distillation"><a href="#知识-distillation" class="headerlink" title="知识 distillation"></a>知识 distillation</h2><p>LMs（或任何分类模型）通常通过最小化模型预测与<em>独热</em>训练标签之间的交叉熵来进行训练。</p>
+<p>这种设置忽略了单词之间的关系（例如同义词）。例如，模型最终会学到<em>汽车</em>、<em>火车</em>和<em>卡车</em>都是车辆，但在任何训练句子中，只有一个是正确的，并且只有它的概率会增加。这会减慢训练速度。</p>
+<p><strong>知识蒸馏</strong>使用较大模型（<em>教师</em>）的输出来替换训练较小模型（通常是<em>学生</em>）时的独热标签。</p>
+<p>学生通过<em>蒸馏损失</em>进行训练：即与教师的（软）目标分布的交叉熵：</p>
+<p>$$L_{ce} &#x3D; \sum_i t_i * log(s_i)$$</p>
+<p>还使用了参数化的 softmax 版本</p>
+<p>$$p_i &#x3D; \frac{\exp{(z_i &#x2F; T)}}{\sum_j \exp{(z_j&#x2F;T)}}$$</p>
+<p>其中 $T$ 是控制分布平滑度的<em>温度</em>。在训练期间，使用 $T&gt;1$ 的值来放大教师知识中的隐含 implicit 泛化 generalization。</p>
+<h2 id="DistilBERT"><a href="#DistilBERT" class="headerlink" title="DistilBERT"></a>DistilBERT</h2><p>DistilBERT 将 BERT-base 蒸馏为一个层数减半的模型。训练损失有三个组成部分：</p>
+<ul>
+<li>蒸馏损失 $L_{ce}$</li>
+<li><em>掩码语言模型</em> 损失 $L_{mlm}$</li>
+<li><em>余弦嵌入损失</em> $L_{cos}$ 用于对齐隐藏向量</li>
+</ul>
+<p>小模型保留了 BERT 在 GLUE 上 $97%$ 的性能，同时体积减少了 $40%$，推理时间加快了 $60%$。</p>
+<p>蒸馏主要用于预训练，但在一个任务中，微调后的模型也通过蒸馏进行训练。</p>
+<h2 id="Switch-Transformer"><a href="#Switch-Transformer" class="headerlink" title="Switch Transformer"></a>Switch Transformer</h2><p>Switch Transformer 是一个拥有 1.6T 参数的 LLM。该模型使用 <strong>专家混合</strong> 设置来实现稀疏性：</p>
+<ul>
+<li>Hard 专家切换：一次只激活一个专家</li>
+<li>MoE 仅应用于 FF 层</li>
+<li>预训练速度提高 $7\times$</li>
+</ul>
+<p>该模型非常强大，但太大而无法有效使用。使用与 DistilBERT 相同的技术：</p>
+<ul>
+<li>从教师模型初始化学生权重</li>
+<li>硬损失和软（教师）损失的 $75$–$25%$ 混合</li>
+</ul>
+<p>蒸馏后的 <em>密集</em> dense 模型（压缩率为 $80-99%$）仍保留了教师模型质量提升的约 $30%$。</p>
+<h1 id="量化"><a href="#量化" class="headerlink" title="量化"></a>量化</h1><p><strong>量化</strong> 是将连续值映射到一小组离散 discrete 值的过程。<br>除了蒸馏，它是另一种减少 LLM 内存使用的方法，使得在单个 GPU 上运行大型模型成为可能。</p>
+<p>形式上，量化的目标是给定（层）权重矩阵 $\mathbf{W}$ 和层输入 $\mathbf{X}$，找到量化后的权重矩阵 $\mathbf{\hat{W}}$ 使得</p>
+<p>$$\mathbf{\hat{W}} &#x3D; \textrm{argmin}_\mathbf{W_q} |\mathbf{WX} - \mathbf{W_qX}|_2^2$$</p>
+<h2 id="量化-LLMs"><a href="#量化-LLMs" class="headerlink" title="量化 LLMs"></a>量化 LLMs</h2><p>量化 LLMs 并不是一项简单的任务：</p>
+<ul>
+<li>最简单的<em>四舍五入到最接近</em>（round-to-nearest）方法仅在 8 位&#x2F;权重时效果良好</li>
+<li>需要<em>模型再训练</em>的高级方法在 GPT-3 级别的模型（如 OPT-175B 或 BLOOM）上非常昂贵</li>
+<li><em>训练后</em>（一次性）方法复杂且在大约 15 亿参数时变得不可行</li>
+</ul>
+<p>引入了 GPTQ &#x2F; OPTQ 算法，这是第一个可以将 OPT 或 BLOOM 量化到 3-4 位的算法。</p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>该算法是<em>Optimal Brain Quantization</em>算法的增强版本。OBQ 逐行逐个权重地量化 $\mathbf{W}$，始终更新剩余权重以补偿量化误差。</p>
+<p>OBQ 需要 4 小时来量化一个 1 亿参数的模型。为了处理大型 LLMs，该算法</p>
+<ul>
+<li>每列仅更新一次权重</li>
+<li>使用惰性批处理以实现高内存吞吐量</li>
+<li>解决数值不稳定性</li>
+</ul>
+<p>量化仅改善模型的内存需求。为了加速推理（$3.2-4.5\times$），实现了特殊的反量化内核。</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>GPTQ 可以在大约 4 小时内将 OPT 和 BLOOM 量化到每个权重 4 位和 3 位。</p>
+<p><img src="/AI/NLP/NLP-ReducedComplexity/gptq_results.png" alt="gptq_results"></p>
+<p>观察结果：</p>
+<ul>
+<li>最大量化模型的困惑度在 fp16 模型的 1-2 点以内</li>
+<li>对于较小的模型，差异更大，因为量化不那么重要</li>
+</ul>
+<h2 id="数据高效量化"><a href="#数据高效量化" class="headerlink" title="数据高效量化"></a>数据高效量化</h2><p>GPTQ 算法确实需要大量高质量数据来优化量化权重，因为它旨在匹配量化模型和原始模型之间的激活。现代量化方法利用不同的假设&#x2F;指标来实现更高效的数据量化。</p>
+<ul>
+<li>NormalFloat 4-bit [“bitsnbytes” 或 “bnb” 风格] 量化假设权重的某种分布来设计最佳量化级别。它不需要任何数据来量化权重</li>
+<li>Activation-aware Weight Quantization (AWQ) 仅使用激活幅度来选择性地量化权重，从而使其对数据的变化或缺乏更具鲁棒性</li>
+</ul>
+<h2 id="基本量化"><a href="#基本量化" class="headerlink" title="基本量化"></a>基本量化</h2><p>标准量化将原始表示范围映射到较小的范围，四舍五入到固定（较小）数量的量化级别</p>
+<p>$$\mathbf{X}^{\text{Int8}} &#x3D; \text{round}(c^{\text{FP32}} \cdot \mathbf{X}^{\text{FP32}})$$</p>
+<p>其中 $c^{FP32} &#x3D; \frac{127}{\text{absmax}(\mathbf{X}^{\text{FP32}})}$ 是基于最大值的最佳量化常数。</p>
+<p>为了防止异常权重影响最大值，我们可以根据权重分布的<em>分位数</em>选择量化常数，并选择权重矩阵的<em>块</em>进行单独量化。</p>
+<h2 id="“BitsnBytes”-或-QLoRA-风格量化"><a href="#“BitsnBytes”-或-QLoRA-风格量化" class="headerlink" title="“BitsnBytes” 或 QLoRA 风格量化"></a>“BitsnBytes” 或 QLoRA 风格量化</h2><p>结合了块级和基于分位数的方法。</p>
+<p>由于大多数深度学习模型权重是通过归一化训练的，它们大多遵循正态分布。缩放这些权重很容易，因为如果我们假设均值为 0，则只需要一个 $\sigma$ 参数。</p>
+<p>这将导致一个缩放的正态分布，其中 Normal Float 数据格式非常有用。在这里，我们定义量化级别，使它们之间的概率质量相等，而不是算术四舍五入。</p>
+<p>为了进一步减少内存消耗：块的量化常数（在这种情况下为 $\sigma$ 值）再次量化（双重量化）。</p>
+<h2 id="NF4-可能值"><a href="#NF4-可能值" class="headerlink" title="NF4 可能值"></a>NF4 可能值</h2><p><img src="/AI/NLP/NLP-ReducedComplexity/nf4_values.png" alt="量化级别（权重可以取的可能值）在正态分布上的分布。"></p>
+<h2 id="激活感知权重量化"><a href="#激活感知权重量化" class="headerlink" title="激活感知权重量化"></a>激活感知权重量化</h2><p>Activation-Aware Weight 是一种数据高效的方法，其主要创新是保持一组显著权重在原始精度（fp16）下，并在量化前按重要性比例缩放权重（同时按此缩放因子划分输入通道）$Q(w) &#x3D; 1&#x2F;c \cdot \text{round}(c\cdot w \cdot s)$，而输入则反向缩放传递 $x&#x2F;s$ 到层。这里我们使用块状线性绝对最大缩放 ($c$) 和通道级缩放因子 ($s$)，该因子由小数据集上的激活幅度确定。</p>
+<p>激活幅度计算为：$A_d &#x3D; \sum_{i&#x3D;1}^{N} |x_{i,d}|$，其中 $N$ 是数据集中的样本数量，$d$ 是通道索引。通道 $\hat{d} &#x3D; \text{argmax}_d (A_d)$ 的权重保持为 fp16，其余部分进行量化。</p>
+<h2 id="AWQ-基准测试结果"><a href="#AWQ-基准测试结果" class="headerlink" title="AWQ 基准测试结果"></a>AWQ 基准测试结果</h2><p>缩放因子 $s$ 为每个通道确定为 $s_d &#x3D; A_d^{\alpha}$，其中 $\alpha$ 是通过网格搜索找到的可调参数。使用 $\alpha&#x3D;0$ 意味着没有缩放，而通常考虑最多线性缩放 $\alpha&#x3D;1$。在量化之前，放大的权重在给定通道上分布得更广，这导致较小的量化误差，同时可能增加其他通道的误差。AWQ 不使用基于梯度的优化，而是在前向传递中使用小数据集进行 $A_d$ 和 $\alpha$ 计算。</p>
+<p><img src="/AI/NLP/NLP-ReducedComplexity/awq_results.png" alt="简单舍入（RTN）、随机、权重幅度和激活幅度量化设置的 AWQ 基准测试结果"></p>
+<h2 id="高效量化推理"><a href="#高效量化推理" class="headerlink" title="高效量化推理"></a>高效量化推理</h2><p>CPU 和 GPU 并不总是为混合精度操作做好准备（因此每个操作可能需要在使用全精度输入之前暂时反量化权重）。因此，需要专门的内核或表示来存储和处理量化模型，以避免内存或计算开销。目前首选 MARLIN 内核。</p>
+<p>对于内存高效的权重存储，应使用特定平台的打包数据类型（例如：在 32 位变量中存储 8x 4 位权重）。</p>
+<h1 id="高效适应"><a href="#高效适应" class="headerlink" title="高效适应"></a>高效适应</h1><p>Efficient Adaptation</p>
+<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>自 BERT 以来，通过微调将 LLM 知识转移到 NLP 任务上一直是实现最先进性能的方法。然而，微调在参数上效率低下：每个任务都需要一个新模型。</p>
+<p>两个相关概念：</p>
+<ul>
+<li><strong>多任务学习</strong> 在多个任务上微调模型。然而，在微调时可能并非所有任务都可用——我们感兴趣的任务可能会缺失。</li>
+<li><strong>持续学习</strong> 系统旨在从任务流中学习。每当出现新任务时，模型需要能够处理它<em>而不会忘记以前的任务</em>。</li>
+</ul>
+<h2 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h2><p>适配器通过以下方式解决了持续学习和微调浪费的问题：</p>
+<ul>
+<li><p>向原始模型添加特定任务的小型<strong>适配器模块</strong> adapter</p>
+</li>
+<li><p>冻结原始模型的权重</p>
+</li>
+<li><p>在微调期间仅训练适配器模块</p>
+</li>
+<li><p>在 transformer 层的两个子层之后插入适配器</p>
+</li>
+<li><p>将它们初始化为接近身份</p>
+</li>
+<li><p>通过使用<strong>瓶颈适配器</strong>将 $d$ 维数据投影到 $m$ 维并返回来限制附加参数的数量</p>
+</li>
+</ul>
+<p><img src="/AI/NLP/NLP-ReducedComplexity/adapters.png" alt="带有适配器的 Transformer 层（左）；bottleneck 适配器层（右）"></p>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>适配器方法的替代方法是仅微调<em>顶层</em>。下层通常计算通用特征；顶层特定于任务。</p>
+<p>然而，适配器以两个数量级更少的参数（$1.14-3.6%$）实现了相同的结果：</p>
+<p><img src="/AI/NLP/NLP-ReducedComplexity/adapters_graph.png" alt="适配器图"></p>
+<h2 id="低秩适应-LoRA"><a href="#低秩适应-LoRA" class="headerlink" title="低秩适应 (LoRA)"></a>低秩适应 (LoRA)</h2><p>Low-rank adaptation 通过稍微不同的方式解决了与适配器相同的问题。它不是在原始模型的组件<em>之后</em>添加新的可训练层，而是添加<em>低秩分解矩阵</em>，以<em>并行</em>于原始冻结矩阵表示适应所需的变化：</p>
+<p><img src="/AI/NLP/NLP-ReducedComplexity/lora_decomposition.png" alt="lora_decomposition"></p>
+<p>LoRA 类似于适配器：</p>
+<ul>
+<li>添加小型、低维模块——通常 $r&#x3D;2$ 或 $4$ 就足够了</li>
+<li>为每个任务训练一组不同的模块</li>
+<li>模块大小与适配器相似</li>
+<li>确保高效微调</li>
+</ul>
+<p>然而，有一些关键区别：</p>
+<ul>
+<li>LoRA 仅应用于自注意力矩阵 ($W_k, W_q, W_v, W_o$)</li>
+<li>LoRA 模块可以在推理时与冻结矩阵合并，这不会产生与适配器相比的<em>推理延迟</em></li>
+<li>LoRA 通常在下游任务上取得略好的结果</li>
+</ul>
+<h2 id="内在维度"><a href="#内在维度" class="headerlink" title="内在维度"></a>内在维度</h2><p>为什么我们可以使用 SGD 在特定任务的小数据集上微调百万&#x2F;十亿参数模型，而无需归一化？为什么低秩适应技术（瓶颈适配器、LoRA）适用于微调？Intrinsic Dimensions 可能提供了答案。</p>
+<p>目标函数的<strong>内在维度</strong>是解决优化任务所需的最小维度。在我们的情况下，这转化为：</p>
+<p>我们需要多少参数（除了未微调的预训练模型）才能达到至少 $90%$ 的完全微调模型的性能？</p>
+<h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p>计算最低维度 $d$ 是不可行的；我们只能通过启发式方法近似。设 $\theta^D$ 为微调模型的 $D$ 维参数，$\theta_0^D$ 为原始模型的参数。那么，我们正在寻找最低的 $d$ 使得</p>
+<p>$$\theta^D &#x3D; \theta_0^D + P(\theta^d)$$</p>
+<p>其中 $P: \mathbb{R}^d \rightarrow \mathbb{R}^D$</p>
+<p>在原始公式中，$\theta_0^D$ 是<em>完整模型</em>的参数。此公式扩展为考虑多个层。LoRA 在此框架中定义为 $P(\theta^d) &#x3D; B$。</p>
+<h3 id="寻找-d"><a href="#寻找-d" class="headerlink" title="寻找 $d$"></a>寻找 $d$</h3><p>找到 $d$ 的唯一方法是通过超参数搜索。</p>
+<ul>
+<li>内在维度是下游任务相对于预训练模型的<em>最小描述长度</em></li>
+<li>从这个角度看，内在维度与压缩有关，因此它也与模型的泛化能力相关</li>
+<li>较大的模型允许<em>更小</em>的内在维度</li>
+</ul>
+<p><img src="/AI/NLP/NLP-ReducedComplexity/intrinsic_dimension.png" alt="intrinsic_dimension"></p>
+<h2 id="P-Tuning"><a href="#P-Tuning" class="headerlink" title="P^*^-Tuning"></a>P^*^-Tuning</h2><p><strong>p^*^-tuning</strong> 是一组用于<em>轻量级微调</em>的方法。它的灵感来自 prompting。在这里，可训练的组件是任务特定的自由参数“tokens”，插入到实际输入之前（也称为<em>软提示</em>）。</p>
+<p><img src="/AI/NLP/NLP-ReducedComplexity/prefix_tuning_fig1.png" alt="prefix_tuning_fig1"></p>
+<p>p^*^-tuning 适用于仅解码器和全栈模型。</p>
+<h2 id="前缀微调"><a href="#前缀微调" class="headerlink" title="前缀微调"></a>前缀微调</h2><p><strong>前缀微调</strong> 将软 tokens（<strong>前缀</strong>）添加到输入嵌入和每一层的输入中。</p>
+<ul>
+<li>前缀微调需要大约 $0.1%$ 的额外参数</li>
+<li>与适配器相比，这是 $30\times$ 的减少</li>
+<li>前缀微调<ul>
+<li>优于适配器</li>
+<li>获得与微调相当的性能</li>
+<li>在低数据设置中优于微调</li>
+</ul>
+</li>
+</ul>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p><strong>提示微调</strong> 类似于前缀微调，但提示仅添加到输入嵌入中。</p>
+<p><strong>P-tuning</strong> 训练一个 LSTM 来生成软提示（不仅仅是前缀）。它在多个数据集上比提示微调高出 $15-20$ 分。</p>
+<p><strong>P-tuning V2</strong> 对于 Transformer <em>编码器</em>模型，实际上与前缀微调相同。</p>
+<h2 id="PEFT-库"><a href="#PEFT-库" class="headerlink" title="PEFT 库"></a>PEFT 库</h2><p>参数高效微调 <a target="_blank" rel="noopener" href="https://huggingface.co/docs/peft/index">(PEFT) 库</a> 支持所有这些方法（以及更多）。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>NLP-ReducedComplexity</p><p><a href="https://aloen.to/AI/NLP/NLP-ReducedComplexity/">https://aloen.to/AI/NLP/NLP-ReducedComplexity/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2024-11-16</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-11-17</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/AI/">AI</a><a class="link-muted mr-2" rel="tag" href="/tags/NLP/">NLP</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/NLP/NLP-PreExamB/"><span class="level-item">NLP-PreExamB</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">45</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">34</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">23</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">23</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">23</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">23</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">34</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#介绍"><span class="level-left"><span class="level-item">1</span><span class="level-item">介绍</span></span></a></li><li><a class="level is-mobile" href="#蒸馏"><span class="level-left"><span class="level-item">2</span><span class="level-item">蒸馏</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#知识-distillation"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">知识 distillation</span></span></a></li><li><a class="level is-mobile" href="#DistilBERT"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">DistilBERT</span></span></a></li><li><a class="level is-mobile" href="#Switch-Transformer"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">Switch Transformer</span></span></a></li></ul></li><li><a class="level is-mobile" href="#量化"><span class="level-left"><span class="level-item">3</span><span class="level-item">量化</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#量化-LLMs"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">量化 LLMs</span></span></a></li><li><a class="level is-mobile" href="#算法"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">算法</span></span></a></li><li><a class="level is-mobile" href="#结果"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">结果</span></span></a></li><li><a class="level is-mobile" href="#数据高效量化"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">数据高效量化</span></span></a></li><li><a class="level is-mobile" href="#基本量化"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">基本量化</span></span></a></li><li><a class="level is-mobile" href="#“BitsnBytes”-或-QLoRA-风格量化"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">“BitsnBytes” 或 QLoRA 风格量化</span></span></a></li><li><a class="level is-mobile" href="#NF4-可能值"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">NF4 可能值</span></span></a></li><li><a class="level is-mobile" href="#激活感知权重量化"><span class="level-left"><span class="level-item">3.8</span><span class="level-item">激活感知权重量化</span></span></a></li><li><a class="level is-mobile" href="#AWQ-基准测试结果"><span class="level-left"><span class="level-item">3.9</span><span class="level-item">AWQ 基准测试结果</span></span></a></li><li><a class="level is-mobile" href="#高效量化推理"><span class="level-left"><span class="level-item">3.10</span><span class="level-item">高效量化推理</span></span></a></li></ul></li><li><a class="level is-mobile" href="#高效适应"><span class="level-left"><span class="level-item">4</span><span class="level-item">高效适应</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#动机"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">动机</span></span></a></li><li><a class="level is-mobile" href="#适配器"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">适配器</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#性能"><span class="level-left"><span class="level-item">4.2.1</span><span class="level-item">性能</span></span></a></li></ul></li><li><a class="level is-mobile" href="#低秩适应-LoRA"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">低秩适应 (LoRA)</span></span></a></li><li><a class="level is-mobile" href="#内在维度"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">内在维度</span></span></a></li><li><a class="level is-mobile" href="#数学公式"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">数学公式</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#寻找-d"><span class="level-left"><span class="level-item">4.5.1</span><span class="level-item">寻找 $d$</span></span></a></li></ul></li><li><a class="level is-mobile" href="#P-Tuning"><span class="level-left"><span class="level-item">4.6</span><span class="level-item">P^*^-Tuning</span></span></a></li><li><a class="level is-mobile" href="#前缀微调"><span class="level-left"><span class="level-item">4.7</span><span class="level-item">前缀微调</span></span></a></li><li><a class="level is-mobile" href="#其他方法"><span class="level-left"><span class="level-item">4.8</span><span class="level-item">其他方法</span></span></a></li><li><a class="level is-mobile" href="#PEFT-库"><span class="level-left"><span class="level-item">4.9</span><span class="level-item">PEFT 库</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-16T10:22:06.000Z">2024-11-16</time></p><p class="title"><a href="/AI/NLP/NLP-ReducedComplexity/">NLP-ReducedComplexity</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-15T16:13:57.000Z">2024-11-16</time></p><p class="title"><a href="/AI/NLP/NLP-PreExamB/">NLP-PreExamB</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-15T10:21:49.000Z">2024-11-15</time></p><p class="title"><a href="/AI/NLP/NLP-EfficientAttention/">NLP-EfficientAttention</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-14T10:21:29.000Z">2024-11-14</time></p><p class="title"><a href="/AI/NLP/NLP-MixtureModels/">NLP-MixtureModels</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-13T10:20:55.000Z">2024-11-13</time></p><p class="title"><a href="/AI/NLP/NLP-DatasetsBenchmarks/">NLP-DatasetsBenchmarks</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2024 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
