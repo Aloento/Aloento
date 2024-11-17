@@ -99,7 +99,7 @@ AI 与 I, Love, AI 的关系，得到一个权重。
 
 ## 交叉注意力
 
-也就是前面说的给 编码器 和解码器 之间建立联系的注意力。
+CrossAttention 也就是前面说的给 编码器 和解码器 之间建立联系的注意力。
 
 Query 是解码器当前状态，Key 和 Value 是编码器的隐藏状态。
 
@@ -492,15 +492,43 @@ Hierarchical NSW 在小世界中增加层次结构，减少搜索时间
 
 ## 增强 LMs 概述
 
+我们需要额外的工具来给 AI 提供知识，减少 hallucination。
+
+一种是直接将内容填到提示词中，另一种就是嵌入空间向量。
+
 ## 检索增强生成
+
+Retrieval-Augmented Generation
+
+- 将用户问题转为查询，关键词
+- 使用向量数据库或搜索引擎检索
+- 将收集到的信息聚合
+- 生成答案
 
 ## 假设文档嵌入
 
+AI 为问题生成一个假设答案，然后用这个假设答案去搜索
+
 ## RAG 微调模型
+
+Retrieval-Augmented Language Model
+
+使用 检索器（查文档），编码器（文档和输入一起编码），生成器（生成答案） 三个模块。
+关键是在训练时，同时优化三个模块。
+
+Retrieval-Enhanced Transformer
+
+增强的 Transformer，检索使用 BERT，然后用在编码器中用 交叉注意力 整合检索信息。
 
 ## 自我独白模型
 
+通过 Chain-of-Thought 来进行多次生成，完成复杂任务，如 AutoGPT。
+
+Think, Reason, Plan, Reflect, Act
+
 ## 工具微调的可能性
+
+引导模型调用外部工具，按成功率排序，将最好的结果纳入数据集。
 
 # B10 高效注意力机制
 
