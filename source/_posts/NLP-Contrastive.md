@@ -144,9 +144,11 @@ Noise Contrastive Estimation，如果我们从均匀分布中更频繁地采样�
 
 因此，二元分类损失是（使用负对数似然）对所有可能对的：
 
+<div>
 $$
 \begin{align*}\begin{split} \mathcal{L}*{bin\_NCE} = - \mathbb{E}*{p^+}[logp(C=1|q,k)] \\ - \mathbb{E}_{p^-}[log(1-p(C=1|q,k))] \end{split}\end{align*}
 $$
+</div>
 
 其中 $p^-(.|q)$ 是噪声（负样本）分布，$p^+(.,.)$ 是正分布。
 
@@ -154,9 +156,16 @@ $$
 
 我们可以构建一个包含多个负例和一个正例的集合 $K = \{k^+, k^-_1, k^-_2, ..., k^-_{M}\}$，而不是二元分类。然后修改后的任务是确定哪个元素是正例。这导致了一个类似 softmax 的度量，称为 InfoNCE：
 
-$\mathcal{L}_{InfoNCE} = -log\frac{exp(S(q, k^+))}{\sum_{i=0}^{M+1}exp(S(q, k[i]))}$
-
-$\mathcal{L}_{InfoNCE} = - S(q, k^+) + log\sum_{i=0}^{M+1}e^{S(q, k[i])}$
+<div>
+$$
+\mathcal{L}_{InfoNCE} = -log\frac{exp(S(q, k^+))}{\sum_{i=0}^{M+1}exp(S(q, k[i]))}
+$$
+</div>
+<div>
+$$
+\mathcal{L}_{InfoNCE} = - S(q, k^+) + log\sum_{i=0}^{M+1}e^{S(q, k[i])}
+$$
+</div>
 
 ## 为什么它有效？
 
@@ -180,11 +189,19 @@ $\mathcal{L}_{InfoNCE} = - S(q, k^+) + log\sum_{i=0}^{M+1}e^{S(q, k[i])}$
 
 通过结合标签信息（添加经典监督）也可以进行数据生成。在这种情况下，正常的 InfoNCE 方程将发生变化，因为存在多个正样本。这导致了 InfoNCE 项的总和。在对数内和对数外有两个变体。
 
-$\mathcal{L}^{sup}_{in} = \sum\limits_{q \in J}-log\left(\frac{1}{|P(q)|}\sum\limits_{k^p\in P(q)}\frac{exp(S(q, k^p))}{\sum\limits_{i\in I}exp(S(q, k[i]))}\right)$
+<div>
+$$
+\mathcal{L}^{sup}_{in} = \sum\limits_{q \in J}-log\left(\frac{1}{|P(q)|}\sum\limits_{k^p\in P(q)}\frac{exp(S(q, k^p))}{\sum\limits_{i\in I}exp(S(q, k[i]))}\right)
+$$
+</div>
 
 其中 $J$ 是批处理元素的集合，$q$ 是选定的查询元素，$I$ 是不包括 $q$ 的批处理元素集合，$P(q)$ 是与 $q$ 具有相同标签的元素集合。
 
-$\mathcal{L}^{sup}_{out} = \sum\limits_{q \in J}\frac{-1}{|P(q)|}log\sum\limits_{k^p\in P(q)}\frac{exp(S(q, k^p))}{\sum\limits_{i\in I}exp(S(q, k[i]))}$
+<div>
+$$
+\mathcal{L}^{sup}_{out} = \sum\limits_{q \in J}\frac{-1}{|P(q)|}log\sum\limits_{k^p\in P(q)}\frac{exp(S(q, k^p))}{\sum\limits_{i\in I}exp(S(q, k[i]))}
+$$
+</div>
 
 其中 $J$ 是批处理元素的集合，$q$ 是选定的查询元素，$I$ 是不包括 $q$ 的批处理元素集合，$P(q)$ 是与 $q$ 具有相同标签的元素集合。
 
@@ -265,7 +282,9 @@ $x_k = T(x_q) \rightarrow k = \acute{T}(q)$
 
 按列（文本）或按行（图像）的交叉熵损失 $CE_{col | row}$
 
+<div>
 $S_{scaled} = \frac{E_I \cdot W_I}{||E_I \cdot W_I||_{L2}} \cdot \left(\frac{E_T \cdot W_T}{||E_T \cdot W_T||_{L2}}\right)^T \cdot exp(t)$ $[n \times n]$
+</div>
 
 $loss = 0.5 CE_{col}(S_{scaled}, L) + 0.5 CE_{row}(S_{scaled}, L)$
 
