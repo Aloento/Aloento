@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>NLP-VisualModels - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="编码器-解码器式视觉语言模型"><meta property="og:type" content="blog"><meta property="og:title" content="NLP-VisualModels"><meta property="og:url" content="https://aloen.to/AI/NLP/NLP-VisualModels/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="编码器-解码器式视觉语言模型"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/image_captioner.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/vision_tokenizer.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/vae.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/detailed_vae.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/vae_nondiff.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/vae_trick.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/ae_vs_vae.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/vq-vae.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/pass-through.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/vit_arch.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/vit_cls.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/linear_interpol.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/swin.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/swin_shift_1.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/swin_shift_2.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/swin_bias.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/swin_arch_detail.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/trocr_encoder.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/trocr_decoder.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/llava.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/llava_context.png"><meta property="og:image" content="https://aloen.to/AI/NLP/NLP-VisualModels/llava_prompt.jpeg"><meta property="article:published_time" content="2024-12-10T07:59:25.000Z"><meta property="article:modified_time" content="2024-12-10T16:25:36.529Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="笔记"><meta property="article:tag" content="AI"><meta property="article:tag" content="NLP"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/AI/NLP/NLP-VisualModels/image_captioner.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/AI/NLP/NLP-VisualModels/"},"headline":"NLP-VisualModels","image":["https://aloen.to/AI/NLP/NLP-VisualModels/image_captioner.png","https://aloen.to/AI/NLP/NLP-VisualModels/vision_tokenizer.png","https://aloen.to/AI/NLP/NLP-VisualModels/vae.png","https://aloen.to/AI/NLP/NLP-VisualModels/detailed_vae.png","https://aloen.to/AI/NLP/NLP-VisualModels/vae_nondiff.png","https://aloen.to/AI/NLP/NLP-VisualModels/vae_trick.png","https://aloen.to/AI/NLP/NLP-VisualModels/ae_vs_vae.png","https://aloen.to/AI/NLP/NLP-VisualModels/vq-vae.png","https://aloen.to/AI/NLP/NLP-VisualModels/pass-through.png","https://aloen.to/AI/NLP/NLP-VisualModels/vit_arch.png","https://aloen.to/AI/NLP/NLP-VisualModels/vit_cls.png","https://aloen.to/AI/NLP/NLP-VisualModels/linear_interpol.png","https://aloen.to/AI/NLP/NLP-VisualModels/swin.png","https://aloen.to/AI/NLP/NLP-VisualModels/swin_shift_1.png","https://aloen.to/AI/NLP/NLP-VisualModels/swin_shift_2.png","https://aloen.to/AI/NLP/NLP-VisualModels/swin_bias.png","https://aloen.to/AI/NLP/NLP-VisualModels/swin_arch_detail.png","https://aloen.to/AI/NLP/NLP-VisualModels/trocr_encoder.png","https://aloen.to/AI/NLP/NLP-VisualModels/trocr_decoder.png","https://aloen.to/AI/NLP/NLP-VisualModels/llava.png","https://aloen.to/AI/NLP/NLP-VisualModels/llava_context.png"],"datePublished":"2024-12-10T07:59:25.000Z","dateModified":"2024-12-10T16:25:36.529Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/AI/NLP/NLP-VisualModels/"}},"description":"编码器-解码器式视觉语言模型"}</script><link rel="canonical" href="https://aloen.to/AI/NLP/NLP-VisualModels/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-12-10T07:59:25.000Z" title="12/10/2024, 7:59:25 AM">2024-12-10</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-12-10T16:25:36.529Z" title="12/10/2024, 4:25:36 PM">2024-12-11</time></span><span class="level-item"><a class="link-muted" href="/categories/AI/">AI</a><span> / </span><a class="link-muted" href="/categories/AI/NLP/">NLP</a></span><span class="level-item">43 minutes read (About 6386 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">NLP-VisualModels</h1><div class="content"><p>编码器-解码器式视觉语言模型</p>
+<span id="more"></span>
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h2 id="条件语言建模"><a href="#条件语言建模" class="headerlink" title="条件语言建模"></a>条件语言建模</h2><p>任务是对条件分布进行建模</p>
+<p>$$<br>P(\langle y_1,\dots,y_n\rangle|C)<br>$$</p>
+<p>其中 $C$ 表示生成的 $\langle y_1,\dots,y_n\rangle$ 文本的一些条件，例如：</p>
+<ul>
+<li>某种风格的文本</li>
+<li>某个主题的文本</li>
+<li>机器翻译</li>
+<li>问答</li>
+<li>从结构化数据生成自然语言（例如新闻）</li>
+<li>图像描述</li>
+</ul>
+<h2 id="视觉条件"><a href="#视觉条件" class="headerlink" title="视觉条件"></a>视觉条件</h2><p>图像描述并不是唯一的条件语言建模任务，其中条件至少部分是视觉的，其他任务包括：</p>
+<ul>
+<li>光学字符识别 (OCR)</li>
+<li>视觉问答 (VQA)：回答关于图像的问题</li>
+<li>自然语言视觉推理 (NLVR)：判断自然语言陈述在两张图像中是否为真</li>
+<li>多模态翻译：基于上下文图像从一种语言翻译到另一种语言</li>
+<li>多模态聊天：与混合图像和文本的用户输入进行聊天</li>
+</ul>
+<h2 id="编码器-解码器的解决方案"><a href="#编码器-解码器的解决方案" class="headerlink" title="编码器-解码器的解决方案"></a>编码器-解码器的解决方案</h2><p>使用 <strong>编码器-解码器</strong> 架构来解决这些建模任务是一种自然的方法，其中</p>
+<ul>
+<li>使用通常用于语言建模的 <strong>自回归文本解码器</strong> 生成文本（例如，LSTM 或 transformer 解码器）</li>
+<li>解码器的文本输出通过接收来自 <strong>编码器</strong> 的适当编码形式的（部分）视觉输入来进行条件化</li>
+</ul>
+<p>我们已经看到的一个经典示例是使用基于 CNN 的编码器和 LSTM 作为解码器的图像描述模型：</p>
+<p><img src="/AI/NLP/NLP-VisualModels/image_captioner.png" alt="https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/03-advanced/image_captioning"></p>
+<h2 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h2><p>在基于 transformer 的预训练 LLMs 的最新进展背景下，将这种编码器-解码器方法应用于视觉条件文本生成的主要挑战是</p>
+<ul>
+<li><strong>编码图像</strong>，尤其是高分辨率图像，转换为适合 transformer 文本解码器的输入。由于标准输入是符号序列，这需要某种形式的 <strong>“视觉标记化”</strong></li>
+<li><strong>扩展预训练的 LLM 解码器</strong> 以能够处理视觉输入：<ul>
+<li><strong>架构上</strong>：如何准确地连接编码器</li>
+<li><strong>训练方面</strong>：如何利用 <strong>预训练</strong> 的编码器和解码器组件？</li>
+</ul>
+</li>
+</ul>
+<h1 id="视觉标记化"><a href="#视觉标记化" class="headerlink" title="视觉标记化"></a>视觉标记化</h1><h2 id="符号表示"><a href="#符号表示" class="headerlink" title="符号表示"></a>符号表示</h2><p>Transformers 设计用于处理符号序列。在视觉数据的情况下，这提出了一系列问题：</p>
+<ul>
+<li>图像如何变成符号序列？</li>
+<li>如何为这些符号分配有意义的嵌入向量？</li>
+<li>需要什么样的位置编码？</li>
+<li>多尺度处理怎么办？</li>
+</ul>
+<h2 id="视觉标记器"><a href="#视觉标记器" class="headerlink" title="视觉标记器"></a>视觉标记器</h2><p>视觉标记化通常包含以下步骤：</p>
+<ul>
+<li>分块（将图像拆分成较小的部分）</li>
+<li>块嵌入（通过学习层、CNN 等）</li>
+<li>位置编码（学习的、固定的、1D、2D 等）</li>
+</ul>
+<p><img src="/AI/NLP/NLP-VisualModels/vision_tokenizer.png" alt="视觉标记器"></p>
+<p>最激进的视觉标记器不是使用 <strong>连续</strong> 变换将图像块嵌入到嵌入空间，而是将块映射到有限的 <strong>代码簿</strong> 中的嵌入，通常只包含几千个嵌入条目。</p>
+<p>结果是编码的图像表示几乎完全类似于现代语言模型中使用的文本表示：</p>
+<ul>
+<li>存在一个视觉 <strong>词汇表</strong></li>
+<li>在代码簿中有相关的 <strong>嵌入</strong></li>
+<li>图像表示为按顺序或网格排列的词汇元素（“视觉词”）</li>
+</ul>
+<p>生成这些离散表示的一种突出方法依赖于 <strong>离散变分自编码器</strong>。</p>
+<h1 id="变分自编码器"><a href="#变分自编码器" class="headerlink" title="变分自编码器"></a>变分自编码器</h1><h2 id="变分方法"><a href="#变分方法" class="headerlink" title="变分方法"></a>变分方法</h2><p>在概率建模中经常出现以下情况：</p>
+<ul>
+<li><p>我们对复杂的 $p^{*}$ 分布的性质感兴趣，</p>
+</li>
+<li><p>但只能计算未归一化的 $\tilde{p}$ 函数的值，其中</p>
+</li>
+</ul>
+<p>$$ p^*(\mathbf x) &#x3D; \frac{\tilde{p}(\mathbf x)}{Z} $$</p>
+<p>$Z$ 是常数归一化因子（对于连续的 $p^*$，$Z &#x3D; \int \tilde{p}(\mathbf x)d\mathbf x$），其计算是不可行的。</p>
+<p>解决该问题的变分方法是用一个更简单、可处理的 $q$ 分布来近似复杂的 $p^*$ 目标分布，该 $q$ 分布由一些可调参数 $\Theta$ 参数化。</p>
+<p>近似需要某种距离度量，KL 散度</p>
+<div>
+$$
+\mathbb{KL}(p^*\Vert q) = \mathbb E_{\mathbf x \sim p^*}\log\frac{p^*(\mathbf x)}{q(\mathbf x)}
+$$
+</div>
+
+<p>是一个自然的选择，但计算这个也是有问题的，因为它需要对 $p^*$ 进行期望计算。</p>
+<p>选择反向 KL 散度</p>
+<p>$$ \mathbb{KL}(q\Vert p^*) &#x3D; \mathbb E_{\mathbf x\sim q}\log\frac{q(\mathbf x)}{p^*(\mathbf x)} $$</p>
+<p>将对假设可处理的 $q$ 进行期望计算，但仍然需要逐点评估 $p^*$，因此变分目标是最小化 $q$ 和未归一化的 $\tilde p$ 之间的“准 KL 散度”：我们试图找到</p>
+<p>$$ \underset{\Theta}{\operatorname{argmin}} \left(\mathbb E_{\mathbf x \sim q_\Theta}\log\frac{q_\Theta(\mathbf x)}{\tilde p(\mathbf x)}\right) $$</p>
+<p>就我们的目标 $p^*$ 而言，目标可以写成</p>
+<p>$$ \mathbb E_ {\mathbf x \sim q_\Theta}\log\frac{q_\Theta(\mathbf x)}{p^*(\mathbf x)Z} &#x3D; \mathbb{KL}(q_\Theta\Vert p^*)-\log Z $$</p>
+<p>由于 Gibbs 不等式保证 $\mathbb{KL}(q_\Theta\Vert p^*)\geq 0$，所有值将是 $-\log Z$ 的上界，任务是找到最小的（所谓的变分）上界。</p>
+<p>等效的最大化任务目标：</p>
+<p>$$<br>\mathbb E_{\mathbf x\sim q_\Theta}\log\frac{p^*(\mathbf x)Z}{q_\Theta(\mathbf x)}d\mathbf x &#x3D; \log Z - \mathbb{KL}(q_\Theta\Vert p^*)<br>$$</p>
+<p>是找到 $\log Z$ 的最大（变分）下界。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ul>
+<li><p>近似以下形式的 <strong>基于能量函数的分布</strong></p>
+<p>  $$ p(\mathbf x) &#x3D; \frac{e^{-E(\mathbf x)}}{Z} $$</p>
+<p>  其中 $E(\cdot)$ 是能量函数，上界 $- \log Z$ 被称为 <strong>自由能</strong></p>
+</li>
+<li><p><strong>变分贝叶斯</strong>：近似</p>
+<p>  $$ p_\Theta(\mathbf z | \mathbf x) &#x3D;\frac{p_\Theta(\mathbf x | \mathbf z) p_\Theta(\mathbf z )}{p_\Theta(\mathbf x)}$$</p>
+<p>  生成模型的 $\mathbf z$ 潜变量的后验分布。在这种情况下，目标是找到 <strong>证据</strong> $\log p_\Theta(\mathbf x)$ (ELBO) 的变分下界</p>
+</li>
+</ul>
+<h2 id="变分自编码器-VAE"><a href="#变分自编码器-VAE" class="headerlink" title="变分自编码器 (VAE)"></a>变分自编码器 (VAE)</h2><p>起点是包含潜变量的模型</p>
+<ul>
+<li><p>潜变量 $\mathbf z$ 具有指数族分布，例如高斯分布</p>
+</li>
+<li><p>可观测变量 $\mathbf x | \mathbf z$ 具有分布 $p_\Theta(\mathbf x | \mathbf z ) &#x3D; \pi_d (\mathbf x | d_\Theta(\mathbf z))$，其中 $d_\Theta(\cdot)$ 是一个<em>解码器</em>，例如 ANN，$\pi_d$ 是一个简单的分布，例如以 $d_\Theta(\mathbf z)$ 为中心的高斯分布</p>
+</li>
+</ul>
+<p>由于存在复杂的解码器，计算 $p(\mathbf z | \mathbf x)$ 后验或 $p(\mathbf x)$ 是不可行的，因此引入了一个辅助<em>编码器</em>来变分近似后验：</p>
+<ul>
+<li>近似为 $q_\Phi(\mathbf z | \mathbf x)&#x3D; \pi_e(\mathbf z | e_\Phi(\mathbf x))$，其中 $\pi_e$ 也是一个简单的分布，通常是均值和方差由 $e_\Phi(\cdot)$ 编码器输出的高斯分布</li>
+</ul>
+<p>组合组件可以被认为是确定性自编码器的概率版本：</p>
+<p><img src="/AI/NLP/NLP-VisualModels/vae.png" alt="vae"></p>
+<p>对于具体的 $\mathbf x$，用 $q_\Phi(\mathbf z | \mathbf x)$ 近似真实后验的变分目标是最小化</p>
+<p>$$<br>\begin{align*}<br>\mathbb E_{\mathbf z \sim q_\Phi(\mathbf z | \mathbf x)}\log\frac{q_\Phi(\mathbf z | \mathbf x)}{p_\Theta(\mathbf x | \mathbf z)p(\mathbf z)} &amp;&#x3D; \<br>&#x3D; \mathbb{KL}(q_\Phi(\mathbf z | \mathbf x)&amp;\Vert p(\mathbf z))-\mathbb E_{\mathbf z \sim q_\Phi(\mathbf z | \mathbf x)}(\log p_\Theta(\mathbf x | \mathbf z))<br>\end{align*}<br>$$</p>
+<p>在第二种形式中，</p>
+<ul>
+<li>$\mathbb{KL}(q_\Phi(\mathbf z | \mathbf x) \Vert p(\mathbf z))$ <strong>相似性</strong> 可以以封闭形式计算</li>
+<li>$-\mathbb E_{\mathbf z \sim q_\Phi(\mathbf z | \mathbf x)}(\log p_\Theta(\mathbf x | \mathbf z))$ 可以解释为期望的 <strong>重构误差</strong></li>
+</ul>
+<h3 id="重构误差"><a href="#重构误差" class="headerlink" title="重构误差"></a>重构误差</h3><p>VAE 损失的</p>
+<p>$$-\mathbb E_{\mathbf z \sim q_\Phi(\mathbf z | \mathbf x)}\log p_\Theta(\mathbf x | \mathbf z)$$</p>
+<p>部分的重构误差解释需要将</p>
+<p>$$- \log p_\Theta(\mathbf x | \mathbf z) &#x3D; -\log \pi_d(\mathbf x | d_\Theta(\mathbf z))$$</p>
+<p>重写为 $\mathbf x$ 和 $p_\Theta(\mathbf x | \mathbf z)$ 分布模式之间的某种距离，但在大多数情况下，这可以很容易地完成。</p>
+<p>例如，如果 $\pi_d$ 是一个标准的球形 $m$ 维高斯分布，均值为 $d_\Theta(\mathbf z)$，则</p>
+<p>$$ p_\Theta(\mathbf x | \mathbf z)&#x3D; (2\pi)^{-m&#x2F;2}\exp(-\Vert d_\Theta(\mathbf z) - \mathbf x\Vert^2&#x2F;2) $$</p>
+<p>因此，$$ - \log p_\Theta(\mathbf x | \mathbf z)&#x3D; \Vert d_\Theta(\mathbf z) - \mathbf x\Vert^2&#x2F;2 - \log ((2\pi)^{-m&#x2F;2}), $$ 即负对数概率是 $\mathbf x$ 和分布均值 $d_e(\mathbf z)$ 之间平方欧几里得距离的移位和缩放版本，可以看作是“重构的 $\mathbf x$”，即 $\mathbf{\hat{x}}$。</p>
+<h2 id="VAE"><a href="#VAE" class="headerlink" title="VAE"></a>VAE</h2><p>因此，使用高斯分布的 $\pi_e$、$\pi_d$ 和 $p(\mathbf z)$ 我们有</p>
+<p><img src="/AI/NLP/NLP-VisualModels/detailed_vae.png" alt="detailed_vae"></p>
+<p>讨论的变分目标最小化与最大化训练集数据点的 $p_\Theta(\mathbf x)$ 的通常 MLE 目标有何关系？如我们所见，目标</p>
+<p>$$<br>\underset{\Theta, \Phi}{\operatorname{argmin}}\left(\mathbb E_{\mathbf z \sim q_\Phi(\mathbf z | \mathbf x)}\log\frac{q_\Phi(\mathbf z | \mathbf x)}{p_\Theta(\mathbf x | \mathbf z)p(\mathbf z)}\right)<br>$$</p>
+<p>也可以重写为</p>
+<p>$$<br>\underset{\Theta, \Phi}{\operatorname{argmax}}\left( \log p_\Theta(\mathbf x)- \mathbb{KL}(q_\Phi(\mathbf z | \mathbf x) \Vert p_\Theta(\mathbf z | \mathbf x))\right)<br>$$</p>
+<p>因此，找到最小化 $\Theta$ 和 $\Phi$ 实际上等同于找到对数似然的最大变分下界，即我们有一个 MLE 优化的变分近似。</p>
+<h2 id="重参数化技巧"><a href="#重参数化技巧" class="headerlink" title="重参数化技巧"></a>重参数化技巧</h2><p>VAE 通常使用梯度下降进行优化，但重构损失 $-\mathbb E_{\mathbf z \sim q_\Phi(\mathbf z | \mathbf x)}(\log p_\Theta(\mathbf x | \mathbf z))$ 涉及从 $q_\Phi(\mathbf z | \mathbf x)$ 采样，这使其不可微。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/vae_nondiff.png" alt="vae_nondiff"></p>
+<p>“重参数化技巧”通过将采样操作分解为从标准分布采样（与参数无关）和样本的依赖变换来解决这个问题。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/vae_trick.png" alt="vae_trick"></p>
+<p>通过从常量分布 $q_0$（例如标准正态分布）采样和基于编码器输出的 $t$ 变换进行重参数化，我们可以将梯度运算符推入期望值内部：</p>
+<p>$$<br>\nabla_{\Phi, \Theta}-\mathbb E_{\mathbf z \sim q_\Phi(\mathbf z | \mathbf x)}\log p_\Theta(\mathbf x | \mathbf z)<br>$$</p>
+<p>可以重写为</p>
+<p>$$<br>-\mathbb E_{\epsilon \sim q_0}\nabla_{\Phi, \Theta} \log p_\Theta(\mathbf x | t(e_\Phi(\mathbf x), \epsilon))<br>$$</p>
+<p>并使用蒙特卡罗方法近似为</p>
+<p>$$<br>-\frac{1}{n}\sum_{i&#x3D;1}^{n}\nabla_{\Phi, \Theta} \log p_\Theta(\mathbf x | t(e_\Phi(\mathbf x), \epsilon_i))<br>$$</p>
+<h2 id="确定性-vs-变分自编码器"><a href="#确定性-vs-变分自编码器" class="headerlink" title="确定性 vs 变分自编码器"></a>确定性 vs 变分自编码器</h2><p>与确定性自编码器相比，VAE 是具有明确定义分布的真正生成模型。一个结果是，它们可以通过对潜在先验进行采样并解码它来生成高质量的新样本：</p>
+<p><img src="/AI/NLP/NLP-VisualModels/ae_vs_vae.png" alt="确定性（第一行）与变分（第二行）自编码器生成的新图像"></p>
+<h2 id="beta-VAE"><a href="#beta-VAE" class="headerlink" title="$\beta$-VAE"></a>$\beta$-VAE</h2><p>图像 VAE 使用标准 VAE 损失容易产生模糊图像，因为损失激励优化的解码器输出 $\mathbf{\hat{x}}&#x3D;d_\Theta(\mathbf z)$ 重构，这是解码器映射到 $\mathbf z$ 的所有输入的<em>平均值</em>。</p>
+<p>减少此问题的一种简单方法是减少相似性损失的权重，使自动编码器更接近确定性编码器：</p>
+<p>$$\mathcal L_{\beta-VAE} &#x3D; \beta\mathbb{KL}(q_\Phi(\mathbf z | \mathbf x) \Vert p(\mathbf z))-\mathbb E_{\mathbf z \sim q_\Phi(\mathbf z | \mathbf x)}(\log p_\Theta(\mathbf x | \mathbf z))$$</p>
+<p>当 $\beta&lt; 1$ 时，重构损失的权重大于正常 VAE 损失，而 $\beta&#x3D;0$ 则导致完全确定性的自动编码器。</p>
+<h1 id="离散-VAE"><a href="#离散-VAE" class="headerlink" title="离散 VAE"></a>离散 VAE</h1><p>到目前为止，我们假设潜在变量 $p(\mathbf z)$ 是连续的，但该架构也可以与 <strong>离散潜在变量</strong> 一起使用。</p>
+<p>与连续情况相比，这需要</p>
+<ul>
+<li>编码器中的 <strong>离散化层</strong>，将输入映射到离散代码</li>
+<li>一种 <strong>训练方法</strong>，与 $p_\Theta(\mathbf z)$ 和 $q_\Phi(\mathbf z | \mathbf x)$ 为离散变量兼容</li>
+</ul>
+<h2 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h2><p>离散化编码器输出的策略包括</p>
+<ul>
+<li><p>简单地将输入坐标 <strong>逐个舍入</strong> 到最近的整数代码，例如，当潜在变量被假定为二进制向量时，舍入到 0 或 1</p>
+</li>
+<li><p>完整的 <strong>向量量化</strong>：如果潜在变量是具有 $K$ 个离散值的分类集合（例如向量或矩阵），则来自 $\mathbb R^D$ 的输入向量可以使用学习的 <strong>代码簿</strong> ${\mathbf e_k\in \mathbb R^D}_{k\in[1\dots K]}$ 映射到分类值。每个 $\mathbf e_i$ 输入嵌入被映射到最近代码簿条目的索引作为其潜在表示 $z_i$：<br>  $$<br>  z_i &#x3D; \underset{k}{\operatorname{argmin}}(\Vert \mathbf e_i - \mathbf e_k\Vert_2)<br>  $$</p>
+</li>
+</ul>
+<h2 id="VQ-VAE-离散化"><a href="#VQ-VAE-离散化" class="headerlink" title="VQ-VAE 离散化"></a>VQ-VAE 离散化</h2><p>在 VQ-VAE 方法中，$q(\mathbf z| \mathbf x)$ 潜在代码在第一个解码步骤中映射回相应的代码簿条目 $\mathbf e_{z_i}$：</p>
+<p><img src="/AI/NLP/NLP-VisualModels/vq-vae.png" alt="vq-vae"></p>
+<h2 id="VQ-VAE-分布和损失"><a href="#VQ-VAE-分布和损失" class="headerlink" title="VQ-VAE 分布和损失"></a>VQ-VAE 分布和损失</h2><p>由于 VQ-VAE 解码器是确定性的且先验是均匀的，因此 $\mathbb {KL}(q(\mathbf z| \mathbf x)\Vert p(\mathbf z))$ 相似性损失是常数，可以忽略。量化是不可微的，因此只能使用所谓的 <strong>直通估计器</strong>，其中梯度从解码器传递通过量化层，就像它是恒等函数一样：</p>
+<p><img src="/AI/NLP/NLP-VisualModels/pass-through.png" alt="pass-through"></p>
+<h2 id="使用直通学习代码簿"><a href="#使用直通学习代码簿" class="headerlink" title="使用直通学习代码簿"></a>使用直通学习代码簿</h2><p>基于直通方法的一个后果是代码簿没有梯度。学习代码簿的解决方案包括</p>
+<ul>
+<li><p>引入一个额外的 <strong>代码簿损失</strong> 项，测量编码器输出和最近代码簿条目之间的距离。总损失变为<br>  $$<br>  \mathcal L&#x3D;-\log p_\Theta (\mathbf x |  \mathbf z_q(\mathbf x)) + \Vert sg(\mathbf z_{\mathbf e}(\mathbf x)) - \mathbf e\Vert_2^2<br>  $$<br>  其中 $sg$ 是 <code>stop_gradient</code> 操作符</p>
+</li>
+<li><p>定期更新代码簿条目，使其更接近分配给它们的输入的 <strong>移动平均值</strong></p>
+</li>
+</ul>
+<h2 id="使用-Gumbel-softmax-的离散-VAE"><a href="#使用-Gumbel-softmax-的离散-VAE" class="headerlink" title="使用 Gumbel-softmax 的离散 VAE"></a>使用 Gumbel-softmax 的离散 VAE</h2><p>一种更有原则的方法来训练离散的、基于代码簿的、但真正概率的 VAE 使用一种适用于分类潜在变量的重参数化技巧版本。</p>
+<p>该方法基于这样一个事实，即类似于从任何高斯分布采样，从任何分类分布采样也可以分解为从常量分布采样，然后确定性地变换样本。</p>
+<p>所讨论的分布是具有密度函数的 <strong>标准 Gumbel 分布</strong></p>
+<p>$$<br>\mathcal G(x) &#x3D; e^{-(x+e^{-x})}<br>$$</p>
+<h2 id="使用-Gumbel-softmax-的离散-VAE-续"><a href="#使用-Gumbel-softmax-的离散-VAE-续" class="headerlink" title="使用 Gumbel-softmax 的离散 VAE 续"></a>使用 Gumbel-softmax 的离散 VAE 续</h2><p>$\mathcal G$ 标准 Gumbel 分布的一个重要性质是，如果分类分布由对数几率（logits）描述</p>
+<p>$$<br>a_1, \dots, a_n<br>$$</p>
+<p>那么可以通过从 $\mathcal G$ 中抽取 $n$ 个样本来对其进行采样：</p>
+<p>$$<br>g_1, \dots, g_n\sim\mathcal G<br>$$</p>
+<p>然后计算</p>
+<p>$$<br>\underset{i}{\operatorname{argmax}} (a_i + g_i)<br>$$</p>
+<p>样本变换中的 <em>argmax</em> 的存在使其不可微，但这可以通过以下方式解决</p>
+<ul>
+<li><p>用 <em>softmax</em> 操作符替换它</p>
+</li>
+<li><p>让 $\mathbf z$ 潜在变量具有描述分类分布的任何向量作为值，而不仅仅是 one-hots</p>
+</li>
+<li><p>并将代码簿条目的 $\mathbf z$ 加权和传递给解码器</p>
+</li>
+</ul>
+<p>例如，对于输出单个分类潜在变量的对数几率的 $e_\Phi$ 编码器，这种 <strong>Gumbel-softmax 重参数化</strong> 产生的重构损失为</p>
+<p>$$<br>\mathcal L_{rec}&#x3D; - \mathbb E_{g_1,\dots,g_n \sim \mathcal G}<br>\log p_\Theta(\mathbf x | softmax_\tau(e_\Phi(\mathbf x)+ \langle g_1,\dots,g_n\rangle))<br>$$</p>
+<p>并且可以通过通常的蒙特卡罗方法估计梯度。</p>
+<p>softmax 对 argmax 近似的紧密性取决于 $\tau$ 温度参数：</p>
+<p>$$<br>softmax_\tau(\langle x_1,\dots,x_n\rangle)&#x3D; \left\langle\frac{e^{ x_1&#x2F;\tau}}{\sum_{i&#x3D;1}^n e^{ x_i&#x2F; \tau}},\dots, \frac{e^{x_n&#x2F;\tau}}{\sum_{i&#x3D;1}^n e^{x_n  &#x2F; \tau}}\right\rangle<br>$$</p>
+<p>因此在训练期间逐渐降低 $\tau$，直到它接近 0。</p>
+<h2 id="DALL-E-视觉标记器"><a href="#DALL-E-视觉标记器" class="headerlink" title="DALL-E 视觉标记器"></a>DALL-E 视觉标记器</h2><p>基于离散 VAE 的视觉标记器的一个重要示例是 DALL-E 中使用的标记器：</p>
+<ul>
+<li>输入图像为 256x256</li>
+<li>编码器和解码器都是卷积的</li>
+<li>潜在变量 $\mathbf z$ 是一个 32x32 的分类变量网格，具有 8192 元素的“视觉词汇表”的均匀先验</li>
+<li>解码器使用一种特殊的“logit-Laplace”分布，而不是通常的高斯和拉普拉斯分布（分别对应于 $L_2$ 和 $L_1$ 重构误差度量）</li>
+<li>KL 相似性损失的权重为 $\beta&#x3D;6.6$，这导致了更好的代码簿使用，并在训练结束时导致更好的重构误差</li>
+<li>$\tau$ softmax 温度从 1 开始，在训练期间逐渐降低到 1&#x2F;16</li>
+</ul>
+<h1 id="视觉-Transformer-ViT"><a href="#视觉-Transformer-ViT" class="headerlink" title="视觉 Transformer (ViT)"></a>视觉 Transformer (ViT)</h1><h2 id="通用-ViT-架构"><a href="#通用-ViT-架构" class="headerlink" title="通用 ViT 架构"></a>通用 ViT 架构</h2><p><img src="/AI/NLP/NLP-VisualModels/vit_arch.png" alt="ViT 架构"></p>
+<h2 id="ViT-嵌入"><a href="#ViT-嵌入" class="headerlink" title="ViT 嵌入"></a>ViT 嵌入</h2><p>通过使用特定的补丁大小 $P$ 对图像进行分块来创建嵌入。也可以使用步幅，$1\times1$ 的补丁也适用于逐像素处理。</p>
+<p>每个补丁然后被输入到以下任一层：</p>
+<ul>
+<li>展平后的线性投影层（学习的）</li>
+<li>CNN 主干（通常是固定的）</li>
+</ul>
+<p>实验表明，对于普通的 ViT，1D 绝对位置编码效果最好。</p>
+<h2 id="ViT-分类标记"><a href="#ViT-分类标记" class="headerlink" title="ViT 分类标记"></a>ViT 分类标记</h2><p>虽然补丁嵌入适用于局部图像表示，但分类还需要全局表示。<br>这是通过一个特殊的标记称为分类标记的可学习池化过程来实现的。</p>
+<p>这个 CLS（或“类”）标记被预先添加到补丁嵌入中。该标记的初始值在训练期间被学习。</p>
+<p>对应于该标记的输出用于分类。在预训练期间，这被输入到一个 3 层 MLP，而在微调期间使用单个线性层。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/vit_cls.png" alt="ViT CLS 对其他区域的注意"></p>
+<h2 id="更高分辨率处理"><a href="#更高分辨率处理" class="headerlink" title="更高分辨率处理"></a>更高分辨率处理</h2><p>由于较大的图像将被分解为较长的补丁序列，因此我们应该检查模型是否能够处理这一点。</p>
+<p>MHA 和 FFN 仅包含逐点层，因此它们能够处理较长的序列。（由于 $W_Q, W_K, W_V$ 矩阵未针对这一点进行训练，可能会出现性能下降。）</p>
+<p>唯一的限制因素是学习的位置编码。为了扩展这一点，可以使用简单的线性方法插值较长序列的位置编码值，以保持信息完整。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/linear_interpol.png" alt="任意信号的线性插值"></p>
+<h1 id="多尺度处理"><a href="#多尺度处理" class="headerlink" title="多尺度处理"></a>多尺度处理</h1><h2 id="SWIN-分层-Transformer"><a href="#SWIN-分层-Transformer" class="headerlink" title="SWIN - 分层 Transformer"></a>SWIN - 分层 Transformer</h2><p>SWIN 是一种基于 Shifted Window 的 Transformer 架构，能够使用多种分辨率级别处理任意大小的图像。<br>这种方法基于局部注意力的思想，其中注意力仅限于输入的某个特定区域。这是通过非重叠注意力窗口的窗口机制实现的。</p>
+<p>在每个层次级别，标记通过可学习的投影进行合并（池化）（其他方法，如 T2T，将这些向量连接起来）。合并因子通常小于注意力窗口大小（例如：2x2 池化，4x4 注意力窗口）。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/swin.png" alt="SWIN 架构"></p>
+<h2 id="SWIN-基于窗口的-MHA"><a href="#SWIN-基于窗口的-MHA" class="headerlink" title="SWIN - 基于窗口的 MHA"></a>SWIN - 基于窗口的 MHA</h2><p>通过使用这种窗口化注意力机制，MHA 的计算复杂度从二次降低到线性，其中 $h$ 和 $w$ 是补丁中 $C$ 通道图像的高度和宽度。</p>
+<p>为了给出计算复杂度的下限，我们可以假设：</p>
+<p>$\Omega(MHA) &#x3D; 4\cdot hw \cdot C^2 + 2\cdot(hw)^2\cdot C$</p>
+<p>$\Omega(MHA_{Windowed}) &#x3D; 4\cdot hw \cdot C^2 + 2\cdot M^2 hwC$</p>
+<p>假设 $M$ 是注意力窗口大小。</p>
+<h2 id="SWIN-窗口移动"><a href="#SWIN-窗口移动" class="headerlink" title="SWIN - 窗口移动"></a>SWIN - 窗口移动</h2><p>这种简化禁用了远距离补丁之间的信息流。为了解决这个问题，引入了窗口移动机制。<br>这种移动机制确保在连续层中注意力窗口被移动，从而通过多层实现信息流动。</p>
+<p>通过移动窗口，其中一些将部分为空。尽管可以使用填充来填充这些窗口，但在这些移动操作期间循环滚动图像更为高效。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/swin_shift_1.png" alt="SWIN 重新分区"></p>
+<p><img src="/AI/NLP/NLP-VisualModels/swin_shift_2.png" alt="SWIN 循环窗口移动代替零填充"></p>
+<h2 id="SWIN-可学习的相对注意力偏差"><a href="#SWIN-可学习的相对注意力偏差" class="headerlink" title="SWIN - 可学习的相对注意力偏差"></a>SWIN - 可学习的相对注意力偏差</h2><p>作者发现，相对于绝对位置编码，一个简单的可学习偏差项更适合在注意力窗口中编码相对位置信息。</p>
+<p>由于每个窗口是一个 $M \times M$ 的正方形，每个轴的相对位置在 $[-M+1, M-1]$ 范围内。因此，偏差矩阵的大小为 $[(2M-1)^2\cdot heads]$。$B$ 是从这个学习的矩阵中组装的，并应用于注意力中：</p>
+<p>$$<br>O &#x3D; softmax(QK^T&#x2F; \sqrt{d_k} + B)V<br>$$</p>
+<p>在更高分辨率的输入情况下，使用双三次插值来上采样偏差矩阵。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/swin_bias.png" alt="升级后的 Swin Transformer v2 学习到的相对偏差项的可视化"></p>
+<h2 id="分层-ViT-的优势"><a href="#分层-ViT-的优势" class="headerlink" title="分层 ViT 的优势"></a>分层 ViT 的优势</h2><p><img src="/AI/NLP/NLP-VisualModels/swin_arch_detail.png" alt="详细的 Swin Transformer 架构"></p>
+<p>研究表明，这些分层 transformer 在性能和准确性方面比原始 ViT 提供了更高的组合。</p>
+<h2 id="学习通用表示"><a href="#学习通用表示" class="headerlink" title="学习通用表示"></a>学习通用表示</h2><p>通用模型已经存在了一段时间（ImageNet 挑战等），这些模型的大规模预训练通常包括单一的分类任务。</p>
+<p>然而，随着基础 transformer 表示模型的兴起，对更强预训练方法的需求也随之增加。通过额外的预训练任务，这些模型具有更好的泛化能力，甚至可能实现少样本学习。</p>
+<h1 id="迷你模型库"><a href="#迷你模型库" class="headerlink" title="迷你模型库"></a>迷你模型库</h1><h2 id="TrOCR"><a href="#TrOCR" class="headerlink" title="TrOCR"></a>TrOCR</h2><p>TrOCR 是一个简单的、基于 transformer 的编码器-解码器模型，执行 <strong>光学字符识别</strong>。</p>
+<p>它基于原始的、完整的编码器-解码器 transformer 架构，由以下部分组成：</p>
+<ul>
+<li>一个 <strong>视觉 transformer</strong> 作为编码器</li>
+<li>一个 <strong>文本 transformer</strong> 作为解码器</li>
+</ul>
+<p>编码器和解码器的权重均从预训练的单模态模型初始化，并在 OCR 特定的训练数据上进行预训练和微调。</p>
+<h2 id="TrOCR-编码器"><a href="#TrOCR-编码器" class="headerlink" title="TrOCR: 编码器"></a>TrOCR: 编码器</h2><p>编码器将输入调整为固定大小，将其分解为补丁，并将每个展平的补丁线性投影到嵌入中。补丁的绝对空间位置由可学习的 1D (!) 位置嵌入表示。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/trocr_encoder.png" alt="TrOCR 编码器"></p>
+<h2 id="TrOCR-解码器"><a href="#TrOCR-解码器" class="headerlink" title="TrOCR: 解码器"></a>TrOCR: 解码器</h2><p>解码器是一个标准的 transformer 解码器，交叉关注编码器的输出：</p>
+<p><img src="/AI/NLP/NLP-VisualModels/trocr_decoder.png" alt="TrOCR 解码器"></p>
+<h2 id="TrOCR-初始化和训练"><a href="#TrOCR-初始化和训练" class="headerlink" title="TrOCR: 初始化和训练"></a>TrOCR: 初始化和训练</h2><ul>
+<li>编码器权重使用预训练的视觉 transformer 权重（DeiT 或 BEiT）初始化</li>
+<li>解码器权重使用仅解码器的 LLM 权重（RoBERTa 或 MiniLM）初始化，因此结构差异（大小、缺少交叉注意力）通过手动设置映射和随机初始化来处理</li>
+<li>整个模型首先在一个非常大的合成数据集上进行 <strong>预训练</strong>，然后在较小的现实数据集上进行预训练</li>
+<li>在下游任务上的最终测试是通过任务特定的微调完成的</li>
+</ul>
+<h2 id="LLaVA"><a href="#LLaVA" class="headerlink" title="LLaVA"></a>LLaVA</h2><p>LLaVA [大型语言和视觉助手] 是一个大型视觉语言模型，通过扩展一个指令微调的 LLM 以处理混合视觉和语言输入的多模态指令，从而训练用于 <strong>视觉指令跟随</strong>。</p>
+<p>LLaVA 基于</p>
+<ul>
+<li><strong>Vicuna</strong>，一个指令微调的 LLaMA，它是一个基于 transformer 解码器的 LLM</li>
+<li>一个预训练的、基于 ViT 的 <strong>CLIP</strong> 图像编码器</li>
+<li>一个可训练的投影矩阵，将视觉 CLIP 嵌入映射到 LLaMA 模型的词嵌入输入空间</li>
+</ul>
+<p>在架构上，与 TrOCR 不同，LLaVA 并不是基于原始的完整 transformer 架构，因为解码器没有交叉关注编码的视觉输入，而是通过因果自注意力处理它。</p>
+<p><img src="/AI/NLP/NLP-VisualModels/llava.png" alt="LLaVA 架构"></p>
+<h2 id="LLaVA-数据集"><a href="#LLaVA-数据集" class="headerlink" title="LLaVA: 数据集"></a>LLaVA: 数据集</h2><p>视觉指令跟随数据集是使用仅语言的 GPT-4 作为强大的教师生成的：</p>
+<ul>
+<li>视觉上下文始终是单个图像</li>
+<li>图像的描述以两种形式提供：<ul>
+<li>作为描述上下文图像的标题列表</li>
+<li>作为边界框坐标列表及其各自的类型</li>
+</ul>
+</li>
+</ul>
+<p><img src="/AI/NLP/NLP-VisualModels/llava_context.png" alt="llava_context"></p>
+<p>使用来自 <a target="_blank" rel="noopener" href="https://cocodataset.org/">COCO 数据集</a> 的图像，GPT-4 被少样本提示生成</p>
+<ul>
+<li>助手和用户之间关于图像的 <strong>对话</strong></li>
+<li>图像的 <strong>详细描述</strong></li>
+<li>基于图像的 <strong>深入逐步推理</strong></li>
+</ul>
+<p><img src="/AI/NLP/NLP-VisualModels/llava_prompt.jpeg" alt="合成数据生成提示细节"></p>
+<h2 id="LLaVA-训练"><a href="#LLaVA-训练" class="headerlink" title="LLaVA: 训练"></a>LLaVA: 训练</h2><p>通常，仅为示例的助手回答部分生成交叉熵损失。训练包括两个阶段：</p>
+<ul>
+<li><strong>预训练</strong>：首先，模型在 595K 图像-标题对上进行预训练，冻结 CLIP 编码器和 Vicuna 解码器，使用简单的图像描述指令上下文。这可以解释为训练投影矩阵成为 Vicuna 的视觉标记器</li>
+<li><strong>端到端微调</strong>：解冻 Vicuna 权重，并在 GPT-4 生成的 158K 多模态指令跟随数据集上联合微调投影矩阵和 LLM 权重</li>
+</ul>
+<h2 id="LLaVA-1-5"><a href="#LLaVA-1-5" class="headerlink" title="LLaVA 1.5"></a>LLaVA 1.5</h2><p>最近（2023 年 10 月），发布了一个新的改进版本 1.5 的 LLaVA，它目前是公共 VL 基准测试中表现最好的 VLM。更改相对较小：</p>
+<ul>
+<li>使用 3 层感知器进行视觉语言映射，而不是线性投影</li>
+<li>使用更大的 LLaMA 模型（13B 参数而不是 7B）</li>
+<li>放大输入图像分辨率</li>
+<li>提炼提示</li>
+<li>在额外的学术 VQA 数据集上训练</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>NLP-VisualModels</p><p><a href="https://aloen.to/AI/NLP/NLP-VisualModels/">https://aloen.to/AI/NLP/NLP-VisualModels/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2024-12-10</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-12-11</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="link-muted mr-2" rel="tag" href="/tags/AI/">AI</a><a class="link-muted mr-2" rel="tag" href="/tags/NLP/">NLP</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/NLP/NLP-Contrastive/"><span class="level-item">NLP-Contrastive</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">47</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">34</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">25</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">25</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">25</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">25</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">36</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#介绍"><span class="level-left"><span class="level-item">1</span><span class="level-item">介绍</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#条件语言建模"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">条件语言建模</span></span></a></li><li><a class="level is-mobile" href="#视觉条件"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">视觉条件</span></span></a></li><li><a class="level is-mobile" href="#编码器-解码器的解决方案"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">编码器-解码器的解决方案</span></span></a></li><li><a class="level is-mobile" href="#挑战"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">挑战</span></span></a></li></ul></li><li><a class="level is-mobile" href="#视觉标记化"><span class="level-left"><span class="level-item">2</span><span class="level-item">视觉标记化</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#符号表示"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">符号表示</span></span></a></li><li><a class="level is-mobile" href="#视觉标记器"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">视觉标记器</span></span></a></li></ul></li><li><a class="level is-mobile" href="#变分自编码器"><span class="level-left"><span class="level-item">3</span><span class="level-item">变分自编码器</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#变分方法"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">变分方法</span></span></a></li><li><a class="level is-mobile" href="#应用"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">应用</span></span></a></li><li><a class="level is-mobile" href="#变分自编码器-VAE"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">变分自编码器 (VAE)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#重构误差"><span class="level-left"><span class="level-item">3.3.1</span><span class="level-item">重构误差</span></span></a></li></ul></li><li><a class="level is-mobile" href="#VAE"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">VAE</span></span></a></li><li><a class="level is-mobile" href="#重参数化技巧"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">重参数化技巧</span></span></a></li><li><a class="level is-mobile" href="#确定性-vs-变分自编码器"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">确定性 vs 变分自编码器</span></span></a></li><li><a class="level is-mobile" href="#beta-VAE"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">$\beta$-VAE</span></span></a></li></ul></li><li><a class="level is-mobile" href="#离散-VAE"><span class="level-left"><span class="level-item">4</span><span class="level-item">离散 VAE</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#离散化"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">离散化</span></span></a></li><li><a class="level is-mobile" href="#VQ-VAE-离散化"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">VQ-VAE 离散化</span></span></a></li><li><a class="level is-mobile" href="#VQ-VAE-分布和损失"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">VQ-VAE 分布和损失</span></span></a></li><li><a class="level is-mobile" href="#使用直通学习代码簿"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">使用直通学习代码簿</span></span></a></li><li><a class="level is-mobile" href="#使用-Gumbel-softmax-的离散-VAE"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">使用 Gumbel-softmax 的离散 VAE</span></span></a></li><li><a class="level is-mobile" href="#使用-Gumbel-softmax-的离散-VAE-续"><span class="level-left"><span class="level-item">4.6</span><span class="level-item">使用 Gumbel-softmax 的离散 VAE 续</span></span></a></li><li><a class="level is-mobile" href="#DALL-E-视觉标记器"><span class="level-left"><span class="level-item">4.7</span><span class="level-item">DALL-E 视觉标记器</span></span></a></li></ul></li><li><a class="level is-mobile" href="#视觉-Transformer-ViT"><span class="level-left"><span class="level-item">5</span><span class="level-item">视觉 Transformer (ViT)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#通用-ViT-架构"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">通用 ViT 架构</span></span></a></li><li><a class="level is-mobile" href="#ViT-嵌入"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">ViT 嵌入</span></span></a></li><li><a class="level is-mobile" href="#ViT-分类标记"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">ViT 分类标记</span></span></a></li><li><a class="level is-mobile" href="#更高分辨率处理"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">更高分辨率处理</span></span></a></li></ul></li><li><a class="level is-mobile" href="#多尺度处理"><span class="level-left"><span class="level-item">6</span><span class="level-item">多尺度处理</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#SWIN-分层-Transformer"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">SWIN - 分层 Transformer</span></span></a></li><li><a class="level is-mobile" href="#SWIN-基于窗口的-MHA"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">SWIN - 基于窗口的 MHA</span></span></a></li><li><a class="level is-mobile" href="#SWIN-窗口移动"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">SWIN - 窗口移动</span></span></a></li><li><a class="level is-mobile" href="#SWIN-可学习的相对注意力偏差"><span class="level-left"><span class="level-item">6.4</span><span class="level-item">SWIN - 可学习的相对注意力偏差</span></span></a></li><li><a class="level is-mobile" href="#分层-ViT-的优势"><span class="level-left"><span class="level-item">6.5</span><span class="level-item">分层 ViT 的优势</span></span></a></li><li><a class="level is-mobile" href="#学习通用表示"><span class="level-left"><span class="level-item">6.6</span><span class="level-item">学习通用表示</span></span></a></li></ul></li><li><a class="level is-mobile" href="#迷你模型库"><span class="level-left"><span class="level-item">7</span><span class="level-item">迷你模型库</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#TrOCR"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">TrOCR</span></span></a></li><li><a class="level is-mobile" href="#TrOCR-编码器"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">TrOCR: 编码器</span></span></a></li><li><a class="level is-mobile" href="#TrOCR-解码器"><span class="level-left"><span class="level-item">7.3</span><span class="level-item">TrOCR: 解码器</span></span></a></li><li><a class="level is-mobile" href="#TrOCR-初始化和训练"><span class="level-left"><span class="level-item">7.4</span><span class="level-item">TrOCR: 初始化和训练</span></span></a></li><li><a class="level is-mobile" href="#LLaVA"><span class="level-left"><span class="level-item">7.5</span><span class="level-item">LLaVA</span></span></a></li><li><a class="level is-mobile" href="#LLaVA-数据集"><span class="level-left"><span class="level-item">7.6</span><span class="level-item">LLaVA: 数据集</span></span></a></li><li><a class="level is-mobile" href="#LLaVA-训练"><span class="level-left"><span class="level-item">7.7</span><span class="level-item">LLaVA: 训练</span></span></a></li><li><a class="level is-mobile" href="#LLaVA-1-5"><span class="level-left"><span class="level-item">7.8</span><span class="level-item">LLaVA 1.5</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-12-10T07:59:25.000Z">2024-12-10</time></p><p class="title"><a href="/AI/NLP/NLP-VisualModels/">NLP-VisualModels</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-12-09T07:59:00.000Z">2024-12-09</time></p><p class="title"><a href="/AI/NLP/NLP-Contrastive/">NLP-Contrastive</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-16T10:22:06.000Z">2024-11-16</time></p><p class="title"><a href="/AI/NLP/NLP-PreExamB/">NLP-PreExamB</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-15T16:13:57.000Z">2024-11-16</time></p><p class="title"><a href="/AI/NLP/NLP-ReducedComplexity/">NLP-ReducedComplexity</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-11-15T10:21:49.000Z">2024-11-15</time></p><p class="title"><a href="/AI/NLP/NLP-EfficientAttention/">NLP-EfficientAttention</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/NLP/">NLP</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/12/"><span class="level-start"><span class="level-item">December 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2024 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
