@@ -45,7 +45,7 @@ $\mathcal{L} = \sum\limits_{Z}Q(Z|x,y)logP(x|y,Z)-D_{KL}(Q(Z|x,y)||P(Z|y))$
 
 这里$Q(Z|x,y)$是近似后验分布。$P(x|y,Z)$是给定文本描述和潜在向量的图像的似然。$P(Z|y)$是给定文本描述的潜在向量的先验分布。
 
-## AlignDRAW 神经分布建模
+### 神经分布建模
 
 $Q(Z_t|x,y,Z_{1:t-1})$ 和 $P(Z_t|Z_{1:t-1})$ 由高斯分布建模，分别基于推理和生成网络参数化。潜在变量以顺序方式相互依赖。
 
@@ -57,15 +57,13 @@ $\mu(h) = tanh(W_{\mu}h)$
 
 $\sigma(h) = exp\left(tanh(W_{\sigma}h)\right)$
 
-## AlignDRAW 读取和写入操作
+### 读取和写入操作
 
 读取和写入操作由不同大小、步幅和位置的固定高斯（模糊）滤波器组参数化。写入操作是滤波器组 ($F_x$, $F_y$) 和生成的 ($K$) 补丁的组合。
 
 $write(h_t^{gen}) = F_x(h_t^{gen})K(h_t^{gen})F_y(h_t^{gen})^T$
 
 而读取操作是该操作的逆操作。
-
-## 读取和写入操作
 
 ![输入图像、补丁、结果和读取操作的高斯滤波器示例](aligndraw_read.png)
 
@@ -81,7 +79,11 @@ GAN是一种生成模型，由两个网络组成：生成器和判别器。生�
 
 对抗游戏的目标如下：
 
-$ min_G max_D V(D,G) = \mathbb{E}_{x\sim p_{data}(x)}\left[log(D(x))\right] + \mathbb{E}_{z\sim p(z)}\left[log(1-D(G(z)))\right] $
+<div>
+$
+min_G max_D V(D,G) = \mathbb{E}_{x\sim p_{data}(x)}\left[log(D(x))\right] + \mathbb{E}_{z\sim p(z)}\left[log(1-D(G(z)))\right]
+$
+</div>
 
 因此，生成器尝试最大化 $log(D(G(z)))$，而判别器尝试最大化 $log(D(x)) + log(1-D(G(z)))$。
 这里 $z$ 是从随机先验分布 $p(z)$ 中采样的，$x$ 是从真实数据分布 $p_{data}(x)$ 中采样的。
@@ -103,7 +105,11 @@ $ min_G max_D V(D,G) = \mathbb{E}_{x\sim p_{data}(x)}\left[log(D(x))\right] + \m
 
 后者通过在每个训练批次中提供一组不匹配的示例来实现。
 
-$\mathcal{L}_{CLS} = log(D(I_{real}, T_{real})) + 0.5 log(1-D(I_{real}, T_{fake})) + 0.5 log(1-D(I_{fake}, T_{real}))$
+<div>
+$
+\mathcal{L}_{CLS} = log(D(I_{real}, T_{real})) + 0.5 log(1-D(I_{real}, T_{fake})) + 0.5 log(1-D(I_{fake}, T_{real}))
+$
+</div>
 
 ## 文本嵌入插值
 
@@ -144,11 +150,11 @@ ControlGAN 提供了一种细粒度的多阶段生成过程，并通过额外的
 - 无条件和条件损失、感知损失、词/图像特征级别的相关损失、文本到图像的余弦损失
 - 定制的类似注意力机制
 
-## ControlGAN架构
+### 架构
 
 ![ControlGAN架构](controlgan_arch.png)
 
-## ControlGAN局部性
+### 局部性
 
 ![注意力引导的局部特征生成](controlgan_locality.png)
 
@@ -217,7 +223,9 @@ BPE 标记化的文本与特殊的填充标记（如果需要）和特定的 [ST
 
 ![扩散过程，来源：[github](https://lilianweng.github.io/)](diffprocess.png)
 
-## DDPM: 去噪扩散概率模型
+## DDPM
+
+### 去噪扩散概率模型
 
 ![DDPM 处理链](ddpm_chain.png)
 
@@ -226,8 +234,6 @@ BPE 标记化的文本与特殊的填充标记（如果需要）和特定的 [ST
 $x_0$ 是起始图像，而 $x_T$ 是扩散过程的最终步骤 $t\in[0,..., T]$。
 
 每一步 $q(x_t|x_{t-1})=\mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1}, \beta_tI)$ 马尔可夫转移分布添加由固定 $\beta_t$ 调节的噪声。
-
-![DDPM 处理链](ddpm_chain.png)
 
 **反向过程**
 
@@ -243,18 +249,37 @@ $p_\theta(x_{0:T})=p(x_T)\prod\limits_{t=1}^Tp_\theta(x_{t-1}|x_t)$
 
 给定 $\alpha_t = 1-\beta_t$ 和 $\bar\alpha_t=\prod\limits_{s=1}^t\alpha_s$，可以直接计算 $q(x_t|x_0)=\mathcal{N}(x_t;\sqrt{\bar\alpha_t}x_0,(1-\bar\alpha_t)I)$。这加速了训练，因为不需要递归。
 
-## DDPM: 学习反向过程
+### 学习反向过程
 
 我们必须再次优化（作者取负并最小化）变分下界 $L = \sum\limits_{t=0}^TL_t$（直接应用计算的项）：
 
-$L_T = \mathbb{E}_q(D_{KL}(q(x_T|x_0)||p_\theta(x_T)))$ 这确保了第一个反向步骤接近最后一个前向步骤。
+<div>
+$
+L_T = \mathbb{E}_q(D_{KL}(q(x_T|x_0)||p_\theta(x_T)))
+$
+</div>
 
-$L_{1 \ldots t-1} = \mathbb{E}_q(D_{KL}(q(x_{t-1}|x_t,x_0)||p_\theta(x_{t-1}|x_t)))$
-这里 $q(x_{t-1}|x_t,x_0)$ 是后验（贝叶斯后）分布，这是每一步的最优反向分布。
+这确保了第一个反向步骤接近最后一个前向步骤。
+
+<div>
+$
+L_{1 \ldots t-1} = \mathbb{E}_q(D_{KL}(q(x_{t-1}|x_t,x_0)||p_\theta(x_{t-1}|x_t)))
+$
+</div>
+
+这里
+
+<div>
+$
+q(x_{t-1}|x_t,x_0)
+$
+</div>
+
+是后验（贝叶斯后）分布，这是每一步的最优反向分布。
 
 $L_0 = \mathbb{E}_q(-logp_\theta(x_0|x_1))$ 数据对潜在链末端的对数似然。
 
-## DDPM: 简化一切
+### 简化一切
 
 有关训练目标推导的更多详细信息，请参见附录A。
 
@@ -274,18 +299,25 @@ $x_t = \sqrt{\bar\alpha_t}x_0 + \sqrt{1-\bar\alpha_t}\epsilon$ 其中 $\epsilon\
 
 替换 $x_0$ 我们得到：$\tilde\mu(x_t,\epsilon)=\frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar\alpha_t}}\epsilon\right)$
 
-## DDPM: 噪声预测
+### 噪声预测
 
 最后我们得出结论，为了最小化 KL 散度（通过近似 $\tilde\mu(x_t,x_0)$ 和 $\mu_\theta(x_t,t)$ 来最小化），我们必须预测 $\tilde\mu(x_t,x_0)$ 的未知部分，即 $\epsilon$，因为 $x_t$，$\alpha$ 和 $\beta$ 是已知的。为此，我们创建了一个 $\epsilon$ 的近似器，即 $\epsilon_\theta(x_t, t)$，因此 $\mu_\theta(x_t, \epsilon_\theta(x_t, t))=\frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar\alpha_t}}\epsilon_\theta\right)$。这可以在推理过程中使用。
 
 如果我们忽略 $C$，$L_0$ 和 $L_T$，我们得到以下优化函数：
-$L_{simp}(\theta) = \mathbb{E}_{t, x_0, \epsilon} ||\epsilon - \epsilon_\theta(x_t, t) ||^2 = \mathbb{E}_{t, x_0, \epsilon} ||\epsilon - \epsilon_\theta\left(\sqrt{\bar\alpha_t}x_0 + \sqrt{1-\bar\alpha_t}\epsilon, t\right) ||^2$，在训练过程中我们使用第二种形式，因为 $x_0$ 和 $t$ 是输入。
 
-## DDPM 训练和推理
+<div>
+$
+L_{simp}(\theta) = \mathbb{E}_{t, x_0, \epsilon} ||\epsilon - \epsilon_\theta(x_t, t) ||^2 = \mathbb{E}_{t, x_0, \epsilon} ||\epsilon - \epsilon_\theta\left(\sqrt{\bar\alpha_t}x_0 + \sqrt{1-\bar\alpha_t}\epsilon, t\right) ||^2
+$
+</div>
+
+，在训练过程中我们使用第二种形式，因为 $x_0$ 和 $t$ 是输入。
+
+### 训练和推理
 
 ![DDPM 训练和推理。梯度基于图像和时间步长计算。推理通过预测的噪声项和独立采样的噪声项计算。](ddpm_train.png)
 
-## DDPM 总结
+### 总结
 
 1. 前向过程是一个马尔可夫过程，向图像添加噪声
 2. 我们可以直接计算前向过程的任意深度 $q(x_t|x_0)$
@@ -296,19 +328,21 @@ $L_{simp}(\theta) = \mathbb{E}_{t, x_0, \epsilon} ||\epsilon - \epsilon_\theta(x
 7. 使用重参数化技巧，我们可以将不确定性分解为标准高斯噪声项 $\epsilon$，在 $x_0 \rightarrow x_t$ 转换过程中使用
 8. 这样 $\mu_\theta$ 的唯一非确定性部分是我们必须预测的 $\epsilon_\theta$。因此训练目标变为 $||\epsilon - \epsilon_\theta(x_t, t) ||^2$。其中 $\epsilon$ 是在前向过程中添加到图像的噪声项（训练期间可用）
 
-## DDPM 特性
+### 特性
 
 DDPM 使用小步长，累积约 500-1000 步生成。$\beta$ 的时间调度是线性的。作者使用相对较小的 $256\times256$ 尺寸的 U-Net 架构进行 $\epsilon_\theta$ 预测。
 
 ![无条件生成](ddpm_uncond.png)
 
-## DDPM 潜在插值
+### 潜在插值
 
 ![潜在插值。潜在插值是图像流形中的有效点，而不是像素空间插值。](ddpm_interpol.png)
 
 ![结果取决于图像插值的步骤。“更深”的混合导致高保真度，但原始信息丢失。](ddpm_interpol_result.png)
 
-## DDIM: 去噪扩散隐式模型
+## DDIM
+
+### 去噪扩散隐式模型
 
 DDPM 报告说，采样一批 $128$ 张 $256\times256$ 尺寸的图像大约需要 $300$ 秒。这是由于大量的小去噪步骤。
 
@@ -316,13 +350,17 @@ DDIM 通过放松马尔可夫约束并在前向和反向过程中制定隐式步
 
 ![DDIM 处理链](ddim_chain.png)
 
-## DDIM: 重新定义为非马尔可夫过程
+### 重新定义为非马尔可夫过程
 
 在 DDPM 中，我们可以直接计算每一步的前向分布 $q(x_t|x_0)$。利用这一特性，我们可以在任何给定步骤 $t$ 直接计算 $L$，因为 DDPM 损失仅依赖于预测误差 $\epsilon_\theta(x_0, t)$。
 
 DDIM 通过使用一个正系数向量 $\gamma$ 来权衡每一步的损失（由于 $t$ 仅影响添加的噪声 $\epsilon$，我们用 $\epsilon^t$ 表示 $t$ 依赖性）：
 
-$L_{\gamma}(\epsilon_\theta) = \mathbb{E}_{x_0, \epsilon^t, t} \sum\limits_{t=1}^T\gamma_t||\epsilon^t - \epsilon_\theta^t(x_0, \epsilon^t)||^2$
+<div>
+$
+L_{\gamma}(\epsilon_\theta) = \mathbb{E}_{x_0, \epsilon^t, t} \sum\limits_{t=1}^T\gamma_t||\epsilon^t - \epsilon_\theta^t(x_0, \epsilon^t)||^2
+$
+</div>
 
 通过将所有步骤的 $\gamma$ 固定为 1，我们得到原始的 DDPM 损失。
 
@@ -342,16 +380,28 @@ $q_\sigma(x_{1:T}|x_0) = q_\sigma(x_T|x_0)\prod\limits_{t=2}^Tq_\sigma(x_{t-1}|x
 
 优化目标可以表述为 ELBO，其中 $\simeq$ 用于描述等于一个不依赖于 $\theta$ 的常数，对于 $t>1$：
 
-$\mathbb{E}_{x_{0:T}}(\sum\limits_{t=2}^TD_{KL}(q_\sigma(x_{t-1}|x_{t},x_0)||p_\theta(x_{t-1}|x_t)) - logp_\theta(x_1|x_0))$
+<div>
+$
+\mathbb{E}_{x_{0:T}}(\sum\limits_{t=2}^TD_{KL}(q_\sigma(x_{t-1}|x_{t},x_0)||p_\theta(x_{t-1}|x_t)) - logp_\theta(x_1|x_0))
+$
+</div>
 
-$\simeq \mathbb{E}_{x_0, x_t}(\sum\limits_{t=2}^TD_{KL}(q_\sigma(x_{t-1}|x_{t},x_0)||q_\sigma(x_{t-1}|x_{t},f_\theta(x_t))))$
+<div>
+$
+\simeq \mathbb{E}_{x_0, x_t}(\sum\limits_{t=2}^TD_{KL}(q_\sigma(x_{t-1}|x_{t},x_0)||q_\sigma(x_{t-1}|x_{t},f_\theta(x_t))))
+$
+</div>
 
-$\simeq \mathbb{E}_{x_0, x_t}(\sum\limits_{t=2}^T||x_0 - f_\theta(x_t)||^2) \simeq \mathbb{E}_{x_0, \epsilon, x_t}(\sum\limits_{t=2}^T||\epsilon - \epsilon_\theta^t(x_0, \epsilon)||^2)$
-$=L_{\gamma}(\epsilon_\theta)+C$
+<div>
+$
+\simeq \mathbb{E}_{x_0, x_t}(\sum\limits_{t=2}^T||x_0 - f_\theta(x_t)||^2) \simeq \mathbb{E}_{x_0, \epsilon, x_t}(\sum\limits_{t=2}^T||\epsilon - \epsilon_\theta^t(x_0, \epsilon)||^2)$
+$=L_{\gamma}(\epsilon_\theta)+C
+$
+</div>
 
 鉴于此，如果我们选择正确的 $\gamma$ 和 $C$ 项，我们将得到原始的 DDPM 损失。
 
-## DDIM 反向过程
+### 反向过程
 
 如果我们定义 $p_\theta(x_{t-1}|x_t) = q_\sigma(x_{t-1}|x_t, f_\theta(x_t))$ 并对其使用重参数化技巧（不包含详细信息），我们得到以下内容：
 
@@ -367,7 +417,7 @@ $x_{t-1} = \sqrt{\alpha_{t-1}}f_\theta(x_t)+\sqrt{1-\bar\alpha_{t-1}-\sigma_t^2}
 
 $\sigma_t = \eta \sqrt{(1-\bar\alpha_{t-1})/(1-\bar\alpha_t)}\sqrt{1-\bar\alpha_t/\bar\alpha_{t-1}}$
 
-## DDIM 加速生成
+### 加速生成
 
 ![DDIM 加速生成](ddim_accel.png)
 
@@ -379,17 +429,17 @@ $\sigma_t = \eta \sqrt{(1-\bar\alpha_{t-1})/(1-\bar\alpha_t)}\sqrt{1-\bar\alpha_
 
 这样，采样不再与训练（前向）步骤数绑定，可以实现大约 $10-50$ 倍的加速生成，从而促进在接近实时应用中使用更大的模型。
 
-## DDIM 结果
+### 结果
 
 ![DDIM 结果。模型在 T=1000 前向步骤上训练。DDIM 也略微受益于更长的采样（估计误差添加的噪声更少，因为估计的分布更接近我们用高斯近似的分布）。$\hat\sigma$ 代表为 1000 步设计的原始 DDPM 参数。](ddim_results.png)
 
-## 超越 DDIM
+### 超越 DDIM
 
 通过将 DDIM 重新表述为 ODE 求解器（常微分方程），得出它等效于 ODE 求解的欧拉方法。还可以使用其他扩展的 ODE 求解器，例如 DPM++。到 2023 年底，这些是最流行的扩散采样器。在更高阶 ODE 求解器领域也有一些研究，但尚未观察到广泛使用。
 
 还提出了超越 DDPM 和 DDIM 使用的线性 $\beta$ 的新噪声调度方法。
 
-## DDIM 总结
+### DDIM 总结
 
 1. DDIM 使用非马尔可夫过程进行扩散，使用跳到 $T$ 的想法，然后逐渐反转到 $t$。$q_\sigma(x_{1:T}|x_0) = q_\sigma(x_T|x_0)\prod\limits_{t=2}^Tq_\sigma(x_{t-1}|x_{t},x_0)$
 2. 然后反向过程可以直接使用 $q_\sigma(x_{t-1}|x_t,x_0)$。这里 $x_0$ 仅在训练期间已知，因此在推理过程中我们必须使用预测器来近似它，而不是像在 DDPM 中那样近似完整的后验
@@ -399,23 +449,25 @@ $\sigma_t = \eta \sqrt{(1-\bar\alpha_{t-1})/(1-\bar\alpha_t)}\sqrt{1-\bar\alpha_
 6. 然而，$f_\theta(x_t)$ 预测并不完美，因此反向过程也应该采取多个步骤的细化以确保一致的质量
 7. 现代实现将时间步长处理为连续变量，因此它们使用 ODE 求解器来指导反向过程
 
-## 引导扩散 - 分类器
+## 引导扩散
+
+### 分类器
 
 扩散引导也可以类似于文本依赖的GAN和VAE。在这种情况下，我们的扩散模型的估计器应该受到引导信号（例如文本嵌入）的扰动。
 
-在反向过程中，给定噪声估计器$\epsilon_\theta$，我们将条件偏移加到噪声项的估计中。
+在反向过程中，给定噪声估计器 $\epsilon_\theta$，我们将条件偏移加到噪声项的估计中。
 
 $\hat\epsilon_\theta(x_t,y) = \epsilon_\theta(x_t,y) + s\sigma_t \nabla_{x_t}logp_\phi(y|x_t)$
 
-其中$s$是引导尺度，$p_\phi(y|x_t)$是一个分类器，使用关于我们想生成的类别的对数似然的导数来引导扩散过程。
+其中$s$是引导尺度，$p_\phi(y|x_t)$ 是一个分类器，使用关于我们想生成的类别的对数似然的导数来引导扩散过程。
 
-## 引导扩散 - 无分类器
+### 无分类器
 
-这需要扩散模型与分类器一起训练，并且在生成过程中也需要分类器梯度。为了避免这种情况，无分类器网络在无条件估计器$\epsilon_\theta(x_t)$和条件估计器$\epsilon_\theta(x_t,y)$上操作，通过与无条件预测的差异来实现$\hat\epsilon_\theta(x_t,y) = \epsilon_\theta(x_t,y) + s(\epsilon_\theta(x_t,y)-\epsilon_\theta(x_t))$
+这需要扩散模型与分类器一起训练，并且在生成过程中也需要分类器梯度。为了避免这种情况，无分类器网络在无条件估计器 $\epsilon_\theta(x_t)$ 和条件估计器 $\epsilon_\theta(x_t,y)$ 上操作，通过与无条件预测的差异来实现 $\hat\epsilon_\theta(x_t,y) = \epsilon_\theta(x_t,y) + s(\epsilon_\theta(x_t,y)-\epsilon_\theta(x_t))$
 
-这本质上是通过在训练期间向分类器添加$0$标签来完成的，因此无分类器估计器只是$\epsilon_\theta(x_t,0)$。
+这本质上是通过在训练期间向分类器添加$0$标签来完成的，因此无分类器估计器只是 $\epsilon_\theta(x_t,0)$。
 
-## CLIP引导扩散: GLIDE
+### CLIP引导扩散: GLIDE
 
 引入了一种方法，用CLIP点积相似度度量替换分类器。
 
@@ -425,7 +477,7 @@ $\hat\epsilon_\theta(x_t,y) = \epsilon_\theta(x_t,y) + s\sigma_t \nabla_{x_t}(f(
 
 还得出结论，无分类器引导在小众任务上似乎比CLIP引导更有效。这里文本由类似GPT的模型编码，利用最后的嵌入向量。
 
-## GLIDE结果
+### GLIDE结果
 
 ![GLIDE结果](glide_results.png)
 
@@ -439,24 +491,26 @@ $\hat\epsilon_\theta(x_t,y) = \epsilon_\theta(x_t,y) + s\sigma_t \nabla_{x_t}(f(
 
 ![DALL-E 2架构](dalle2_arch.png)
 
-## DALL-E 2 解码器
+### 解码器
 
 DALL-E 2 包含一个由 CLIP 文本编码器构建的 VAE 和一个用作图像解码器的扩散模型（因此 OpenAI 也将 DALL-E 2 背后的模型命名为“unCLIP”）。该解码器以 CLIP 图像嵌入为条件，也可以选择以字幕文本嵌入为条件。它使用 GLIDE 的架构，并通过在解码器训练期间偶尔丢弃 CLIP 嵌入和字幕嵌入来包括一些无分类器的改进。
 训练使用锐度感知最小化。
 
 解码器在 DDIM 过程中使用 $\eta>0$ 以允许生成图像的变化。
 
-## DALL-E 2 先验
+### 先验
 
 他们比较的 VAE 先验是 DALL-E（1）风格的自回归先验和扩散先验，后者被证明更优越。扩散过程也使用 Transformer 解码器来预测下一个潜在标记版本。损失不是基于 $\epsilon$ 的，而是预测和真实潜在表示之间的 L2 损失。这被解释为扩散过程中由 $f_\theta(x_t, t, y)$ 参数化的预测 $x_0$ 的损失。
 
 在生成过程中，先验生成两次，选择与文本嵌入点积较高的那个。
 
-## Stable Diffusion - 架构
+## Stable Diffusion
+
+### SD 架构
 
 ![Stable Diffusion 架构](stable_arch.png)
 
-## Stable Diffusion - VQ-GAN
+### VQ-GAN
 
 在 Stable Diffusion 中，为了将图像投影到潜在空间，使用 VQ-GAN 对图像进行编码。VQ-GAN 由 VQ-VAE 生成器和对抗性和感知损失的判别器组成。在 Stable Diffusion 的情况下，VQ-VAE 得到轻微的 KL 散度正则化，以生成更接近高斯分布的潜在表示。
 
@@ -464,7 +518,7 @@ DALL-E 2 包含一个由 CLIP 文本编码器构建的 VAE 和一个用作图像
 
 ![VQ-GAN](stable_vqgan.png)
 
-## Stable Diffusion - 先验
+### SD 先验
 
 先验本身是一个卷积 U-Net 架构，每一层都有交叉注意力块。这些交叉注意力关注于编码的条件模态。这个 U-Net 执行反向扩散过程（预测 $\epsilon_\theta$）。
 
@@ -472,19 +526,19 @@ DALL-E 2 包含一个由 CLIP 文本编码器构建的 VAE 和一个用作图像
 
 这是一个潜在扩散，这意味着名称 LDM（潜在扩散模型），它是 Stable Diffusion 中使用的模型的泛化。
 
-## Stable Diffusion - 零样本
+### 零样本
 
 ![Stable Diffusion 零样本生成](ldm_zero_shot_result.png)
 
-## Stable Diffusion - 放大
+### 放大
 
 ![Stable Diffusion 放大](ldm_bsr_results.png)
 
-## Stable Diffusion - 分割掩码合成
+### 分割掩码合成
 
 ![Stable Diffusion 分割掩码合成](ldm_synthesis_result.png)
 
-## Stable Diffusion - 布局合成
+### 布局合成
 
 ![Stable Diffusion 布局合成](ldm_layout_result.png)
 
@@ -496,14 +550,14 @@ DALL-E 2 包含一个由 CLIP 文本编码器构建的 VAE 和一个用作图像
 
 作者观察到，与卷积 UNet 相比，该模型具有更好的扩展性。
 
-## DiT 条件
+### 条件
 
 还探索了注入条件的最佳方式。他们发现自适应层归一化是最佳解决方案，具有零缩放初始化（因此在开始时只有残差是活跃的）。
 这意味着条件信号通过 MLP 映射到潜在大小，MLP 发出输入缩放、输出缩放和我们应用于变压器数据流的移位值。
 
 作者还指出，这优于上下文内条件、交叉注意力，甚至是具有非零缩放初始化的自适应层归一化。
 
-## DiT 架构
+### DiT 架构
 
 ![DiT 架构](dit.png)
 
@@ -560,17 +614,21 @@ $W = argmin_W \sum\limits_{i=1}^n ||(W_0 + \Delta W_i) X_i - W X_i||_F^2$
 
 引入了 LDMs 的另一个加速方法，即潜在一致性模型。与在反向过程中预测 $\epsilon_\theta$ 不同，LCMs 直接训练 $f_\theta$ 估计器来预测 $x_0$。作为一种自蒸馏任务，我们可以运行长生成序列的反向过程，然后使用较低阶时间步长的 $x_0$ 预测作为目标。
 
-$\mathcal{L}_{LCM} = \mathbb{E}_{x, y, w, i} [d(f_\theta(x_{\tau_{i+1}}, w, y, \tau_{i+1}), f_{\theta'}(x^{\psi,w}_{\tau_{i}}, w, y, \tau_{i}))]$
+<div>
+$
+\mathcal{L}_{LCM} = \mathbb{E}_{x, y, w, i} [d(f_\theta(x_{\tau_{i+1}}, w, y, \tau_{i+1}), f_{\theta'}(x^{\psi,w}_{\tau_{i}}, w, y, \tau_{i}))]
+$
+</div>
 
 其中 $\theta'$ 是一组扩展参数，$\psi$ 是一个求解器，如 DDIM，$w$ 是引导权重，$d$ 是距离函数，$\tau$ 是一组解码时间步长。
 
 DALL-E 3 使用这种方法实现 $2-4$ 步生成。
 
-## 潜在一致性结果
+### 潜在一致性结果
 
 ![潜在一致性结果](lcm_results.png)
 
-## 潜在一致性 LoRA
+### 潜在一致性 LoRA
 
 上述训练目标也适用于 LoRA 训练。此 LoRA 模型可用作多个 LDM 的加速器，原始 LDM 的适配器也可与此 LCM-LoRA 一起使用。
 
