@@ -90,9 +90,16 @@ $$
 
 更正式的对比 [来自 @shridhar2020alfred，$\hat a_i$ 是预测动作，$x_{1:L}$ 是指令，$v_i$ 和 $h_i$ 是视觉观察和历史表示]：
 
-$$\hat{a}_t, h_t = \mathrm{RNN}(x_{1:L}, v_t, \hat{a}_{t-1}, h_{t-1})$$
-
-$$\hat{a}_t = \mathrm{Transformer}(x_{1:L}, v_{1:t}, \hat{a}_{1:t-1})$$
+<div>
+$$
+\hat{a}_t, h_t = \mathrm{RNN}(x_{1:L}, v_t, \hat{a}_{t-1}, h_{t-1})
+$$
+</div>
+<div>
+$$
+\hat{a}_t = \mathrm{Transformer}(x_{1:L}, v_{1:t}, \hat{a}_{1:t-1})
+$$
+</div>
 
 ## 架构
 
@@ -211,13 +218,11 @@ RT-1 数据集包含 130K 个示例，涉及 13 个**人类远程操作**机器�
 
 例如，形式为
 
-$\langle$ terminate $\Delta pos_x$,  $\Delta pos_y$, $\Delta pos_z$, $\Delta rot_x$, $\Delta rot_y$, $\Delta rot_z$, gripper_extension$\rangle$
+$\langle$ terminate $\Delta pos_x$,  $\Delta pos_y$, $\Delta pos_z$, $\Delta rot_x$, $\Delta rot_y$, $\Delta rot_z$, gripper_extension $\rangle$
 
 的动作向量可以使用 PaLI-X 编码映射到字符串
 
-\begin{center}
 "1 128 91 241 5 101 127"
-\end{center}
 
 关键发现：与其在机器人数据上天真地微调模型，不如在原始 VL 数据**和**机器人数据上**共同微调**，因为这会导致更具普遍性的策略，因为模型同时暴露于抽象的视觉概念和低级别的机器人动作。
 
