@@ -30,7 +30,7 @@ date: 2024-12-13 16:00:44
 - 所谓的 **隆巴德效应**：不能简单地通过添加噪音来扩充数据集，因为人们在嘈杂环境中会改变说话方式（不仅仅是说得更大声...）
 - 与典型的书面语言相比，语音可能包含不合语法的结构、不完整的句子或单词、纠正、单词/音节重复和中断
 - **说话者适应**：不同性别、年龄、文化背景等的人在发音上有很大差异
-- 人类的语音理解在很大程度上依赖于上下文背景信息来进行可接受的解释——我们使用上下文线索主动“感知”/“听到”语音。一个戏剧性的例子来自 @hiphi2019，可以在[这里](http://drive.google.com/uc?export=view&id=1ICNa4Hj-lU_4POjdSCk_-Zyly93SUTNK)听到
+- 人类的语音理解在很大程度上依赖于上下文背景信息来进行可接受的解释——我们使用上下文线索主动“感知”/“听到”语音。一个戏剧性的例子可以在[这里](http://drive.google.com/uc?export=view&id=1ICNa4Hj-lU_4POjdSCk_-Zyly93SUTNK)听到
 
 ## 任务变体
 
@@ -106,7 +106,7 @@ $$
 
 窗口通常包含接近窗口端逐渐衰减的**加权**值。一种流行的加权方案基于余弦函数：对于具有原始信号值 $s_0,\dots,s_{N-1}$ 的窗口，加权值为
 
-$$w(n) = a - (1 - a)\cos\left(\frac{2\pi n}{N}\right).$$
+$$w(n) = a - (1 - a)\cos\left(\frac{2\pi n}{N}\right)$$
 
 选择 $a = 0.54$ 会导致常用的 **Hamming** 窗口。
 
@@ -217,6 +217,6 @@ $$
 
 由于传统的 N 元语言模型也基于马尔可夫假设，基于 HMM 的声学模型可以很容易地与它们结合，形成一个**联合声学 + 语言 HMM $\mathcal A + \mathcal L$**，可以用来在给定声学输入的情况下找到最可能的单词序列。
 
-$$ \underset{\mathbf w}{\operatorname{argmax}}~P_{\mathcal A + \mathcal L}(\mathbf w \vert \mathbf s). $$
+$$ \underset{\mathbf w}{\operatorname{argmax}}~P_{\mathcal A + \mathcal L}(\mathbf w \vert \mathbf s) $$
 
 理论上，可以使用完整的维特比算法，但其在状态数量方面的二次时间复杂度使得这在连续的大词汇量语音识别中不可行，因为组合的 HMM 非常大。
