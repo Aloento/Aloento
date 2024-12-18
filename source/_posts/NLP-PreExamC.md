@@ -208,13 +208,49 @@ TrOCR 使用 vision transformer 作为编码器，text transformer 作为解码�
 
 ## T2I GANs
 
+Text-to-Image Generative Adversarial Networks
+
+生成器试图生成逼真的图像，而判别器试图区分这些图像是真实的还是生成的。
+
+它还会检查生成的图像是否与输入的文本描述一致。
+
 ## T2I VAEs
+
+DALL-E 是基于 transformer 的自回归模型
+
+首先使用 ResNet 风格的 dVAE， ELBO 训练。然后用 transformer 解码器生成图像。
 
 ## 扩散的目标
 
+Diffusion 通过逐步添加和去除噪声来生成图像
+
 ## DDPM（图模型、ELBO、简化损失、不足、插值）
 
+Denoising Diffusion Probabilistic Models
+
+正向扩散 从噪声开始，逐渐生成图像
+
+反向扩散 从图像开始，逐渐生成噪声
+
+ELBO（evidence lower bound ），旨在最大化数据的对数似然
+
+简化的损失函数，直接衡量每一步去噪的误差
+
+由于需要逐步去噪，生成图像的过程计算成本较高
+
+插值是指在两个图像之间生成过渡图像，实现平滑的图像变换
+
 ## DDIM（图模型、与 DDPM 的关系、x0 预测的作用、简化损失、加速生成）
+
+Denoising Diffusion Implicit Models
+
+DDIM 和 DDPM 都基于扩散过程和去噪过程来生成图像。
+
+DDIM 使用 non-Markovian chain 的方式，每一步的去噪过程不再依赖于前一步的结果
+
+DDIM 采用确定性采样方法，而不是随机采样。这使得生成过程更加稳定和可控
+
+在每一步去噪过程中，通过直接预测原始图像 x0 来指导每一步的去噪操作
 
 # C6 潜在扩散模型的应用与扩展
 
