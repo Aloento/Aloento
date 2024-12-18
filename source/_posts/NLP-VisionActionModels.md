@@ -103,7 +103,7 @@ $$
 
 ## 架构
 
-![Figure](et_overall_arch.png)
+![et_overall_arch](et_overall_arch.png)
 
 三个历史组件的独立初始编码器：
 

@@ -215,7 +215,7 @@ $$
 
 ## 添加语言模型
 
-由于传统的 N 元语言模型也基于马尔可夫假设，基于 HMM 的声学模型可以很容易地与它们结合，形成一个**联合声学 + 语言 HMM $\mathcal A + \mathcal L$**，可以用来在给定声学输入的情况下找到最可能的单词序列。
+由于传统的 N 元语言模型也基于马尔可夫假设，基于 HMM 的声学模型可以很容易地与它们结合，形成一个 联合声学 + 语言 HMM $\mathcal A + \mathcal L$，可以用来在给定声学输入的情况下找到最可能的单词序列。
 
 $$ \underset{\mathbf w}{\operatorname{argmax}}~P_{\mathcal A + \mathcal L}(\mathbf w \vert \mathbf s) $$
 
