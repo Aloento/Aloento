@@ -11,6 +11,8 @@ date: 2025-02-19 11:14:01
 
 <!-- more -->
 
+# 算法实例
+
 ```ts
 function validateInput(
   boysPreferences: string[][],
