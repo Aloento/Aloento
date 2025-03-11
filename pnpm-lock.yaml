@@ -35,6 +35,9 @@ importers:
       hexo-log:
         specifier: ^4.1.0
         version: 4.1.0
+      hexo-mermaid-lastest:
+        specifier: ^1.1.1
+        version: 1.1.1
       hexo-pagination:
         specifier: ^3.0.0
         version: 3.0.0
@@ -1077,6 +1080,9 @@ packages:
   hexo-log@4.1.0:
     resolution: {integrity: sha512-i2Sgxk8Cgx5viSjq5qW5N/rBFfwoCKQcH8qnnW1fawCapcdEAhIsq+Y3vbrs9bssyDlyU6Vqm4oQmosREaNI7Q==}
     engines: {node: '>=14'}
+
+  hexo-mermaid-lastest@1.1.1:
+    resolution: {integrity: sha512-ep/DUPSuJr/w8z/DE1j8IYRxqbchd9IicDT3XkDnMBruR3BaxfvUBUO3uwU8f2L7gzZuL7vG3g/8KTKT/53JkQ==}
 
   hexo-pagination@3.0.0:
     resolution: {integrity: sha512-8oo1iozloZo7TojPVYg4IxL3SJKCBdSJ908fTlIxIK7TWJIKdYnQlW31+12DBJ0NhVZA/lZisPObGF08wT8fKw==}
@@ -2964,6 +2970,8 @@ snapshots:
   hexo-log@4.1.0:
     dependencies:
       picocolors: 1.1.1
+
+  hexo-mermaid-lastest@1.1.1: {}
 
   hexo-pagination@3.0.0: {}
 
