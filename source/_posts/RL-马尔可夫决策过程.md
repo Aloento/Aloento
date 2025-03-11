@@ -34,9 +34,11 @@ Markov Decision Processes
 
 （Transition Probability）来描述这个过程：
 
+<div>
 $$
 p(s', r | s, a) \doteq Pr\{S_t = s', R_t = r | S_{t-1} = s, A_{t-1} = a\}
 $$
+</div>
 
 其中：
 
@@ -54,9 +56,11 @@ $$
 
 ## 状态转移概率
 
+<div>
 $$
 p(s' | s, a) \doteq Pr\{S_t = s' | S_{t-1} = s, A_{t-1} = a\} = \sum_r p(s', r | s, a)
 $$
+</div>
 
 它表示在状态 $s$ 下，选择动作 $a$，进入状态 $s'$ 的概率。由于状态转移可能伴随不同奖励，所以需要对所有可能的奖励求和。
 
@@ -93,8 +97,8 @@ $$
 | 0, B | 0, C  | 0, D |
 | x    | 0, E  | x    |
 
-- State Space: $S = \{A, B, C, D, E\}$
-- Action Space: $A = \{Up, Down, Left, Right\}$
+- State Space: $S = [A, B, C, D, E]$
+- Action Space: $A = [Up, Down, Left, Right]$
 
 ### 确定性转移
 
@@ -189,3 +193,42 @@ flowchart LR
 ```
 
 在 Week 时治疗，有 0.6 概率成功，随后有 0.5 的概率再被攻击，所以是 0.3 的概率回到 Strong。
+
+# 目标与奖励
+
+代理的目标是最大化累积奖励的期望值。
+
+$$
+G_t \doteq R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots + \gamma^{T-t-1} R_T = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}
+$$
+
+其中：
+
+- $G_t$ 是从 $t$ 时刻开始的累积奖励
+- $R_t$ 是 $t$ 时刻的奖励
+
+任务类型
+
+- Episodic Task：上面的 t 是有限的，任务有明确的终止状态，如游戏
+- Continuing Task：t 是无限的，任务没有明确的终止状态，如生存，股票
+
+折扣回报（Discounted Return）：
+
+由于在持续任务中，回报可能是无限的，难以计算，且在现实世界中，未来的奖励通常不如当前奖励重要，因此要给未来奖励打折，所以引入折扣因子 $0 \leq \gamma \leq 1$，来减少未来奖励的影响。
+
+- $\gamma \rightarrow 0$：关注短期的奖励
+- $\gamma \rightarrow 1$：关注长期的奖励
+
+由于折扣回报涉及多个时间步，所以可以使用递归形式：
+
+$$
+G_t \doteq R_{t+1} + \gamma G_{t+1}
+$$
+
+表明当前的回报由 当前奖励 和 未来回报 组成。
+
+当 $R_t = 1$ 且 $\gamma < 1$ 时，有：
+
+$$
+G_t = \frac{1}{1 - \gamma}
+$$
