@@ -379,16 +379,12 @@ $k = 0, V_0(s) = 0$
 
 所以
 
-<div>
-$$
-v_{\pi}(1) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 1, a) [r + \gamma v_{\pi}(s')] = \\
-0.25 \times 1 \times [-1 + 1 \times 0] + \\
-0.25 \times 1 \times [-1 + 1 \times 0] + \\
-0.25 \times 1 \times [-1 + 1 \times 0] + \\
-0.25 \times 1 \times [-1 + 1 \times 0] = \\
-4 \times 0.25 \times -1 = -1
-$$
-</div>
+$v_{\pi}(1) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 1, a) [r + \gamma v_{\pi}(s')] =$  
+$0.25 \times 1 \times [-1 + 1 \times 0] +$  
+$0.25 \times 1 \times [-1 + 1 \times 0] +$  
+$0.25 \times 1 \times [-1 + 1 \times 0] +$  
+$0.25 \times 1 \times [-1 + 1 \times 0] =$  
+$4 \times 0.25 \times -1 = -1$
 
 其他点也是同样的情况，有
 
@@ -402,29 +398,21 @@ $$
 
 用 $s = 1$ 为例：
 
-<div>
-$$
-v_{\pi}(1) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 1, a) [r + \gamma v_{\pi}(s')] = \\
-0.25 \times 1 \times [-1 + 1 \times 0] + \\
-0.25 \times 1 \times [-1 + 1 \times -1] + \\
-0.25 \times 1 \times [-1 + 1 \times -1] + \\
-0.25 \times 1 \times [-1 + 1 \times -1] = \\
-3 \times 0.25 \times -2 + 1 \times 0.25 \times -1 = -1.75
-$$
-</div>
+$v_{\pi}(1) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 1, a) [r + \gamma v_{\pi}(s')] =$  
+$0.25 \times 1 \times [-1 + 1 \times 0] +$  
+$0.25 \times 1 \times [-1 + 1 \times -1] +$  
+$0.25 \times 1 \times [-1 + 1 \times -1] +$  
+$0.25 \times 1 \times [-1 + 1 \times -1] =$  
+$3 \times 0.25 \times -2 + 1 \times 0.25 \times -1 = -1.75$
 
 其他点也是同样的算法：
 
-<div>
-$$
-v_{\pi}(6) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 6, a) [r + \gamma v_{\pi}(s')] = \\
-0.25 \times 1 \times [-1 + 1 \times -1] + \\
-0.25 \times 1 \times [-1 + 1 \times -1] + \\
-0.25 \times 1 \times [-1 + 1 \times -1] + \\
-0.25 \times 1 \times [-1 + 1 \times -1] = \\
-4 \times 0.25 \times -2 = -2
-$$
-</div>
+$v_{\pi}(6) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 6, a) [r + \gamma v_{\pi}(s')] =$  
+$0.25 \times 1 \times [-1 + 1 \times -1] +$  
+$0.25 \times 1 \times [-1 + 1 \times -1] +$  
+$0.25 \times 1 \times [-1 + 1 \times -1] +$  
+$0.25 \times 1 \times [-1 + 1 \times -1] =$  
+$4 \times 0.25 \times -2 = -2$
 
 得到
 
