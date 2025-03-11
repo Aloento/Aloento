@@ -379,6 +379,7 @@ $k = 0, V_0(s) = 0$
 
 所以
 
+<div>
 $$
 v_{\pi}(1) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 1, a) [r + \gamma v_{\pi}(s')] = \\
 0.25 \times 1 \times [-1 + 1 \times 0] + \\
@@ -387,6 +388,7 @@ v_{\pi}(1) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 1, a) [r + \gamma v_{\pi}(s')]
 0.25 \times 1 \times [-1 + 1 \times 0] = \\
 4 \times 0.25 \times -1 = -1
 $$
+</div>
 
 其他点也是同样的情况，有
 
@@ -400,6 +402,7 @@ $$
 
 用 $s = 1$ 为例：
 
+<div>
 $$
 v_{\pi}(1) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 1, a) [r + \gamma v_{\pi}(s')] = \\
 0.25 \times 1 \times [-1 + 1 \times 0] + \\
@@ -408,9 +411,11 @@ v_{\pi}(1) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 1, a) [r + \gamma v_{\pi}(s')]
 0.25 \times 1 \times [-1 + 1 \times -1] = \\
 3 \times 0.25 \times -2 + 1 \times 0.25 \times -1 = -1.75
 $$
+</div>
 
 其他点也是同样的算法：
 
+<div>
 $$
 v_{\pi}(6) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 6, a) [r + \gamma v_{\pi}(s')] = \\
 0.25 \times 1 \times [-1 + 1 \times -1] + \\
@@ -419,6 +424,7 @@ v_{\pi}(6) = \sum_{4} 0.25 \sum_{s', r} p(s', r | 6, a) [r + \gamma v_{\pi}(s')]
 0.25 \times 1 \times [-1 + 1 \times -1] = \\
 4 \times 0.25 \times -2 = -2
 $$
+</div>
 
 得到
 
@@ -429,3 +435,88 @@ $$
 | -2    | -2    | -1.75 | 0     |
 
 然后可以无限向后迭代，直到达到某个收敛值。
+
+## 最优策略
+
+最优策略是能够最大化长期期望回报的策略。在 MDP 中，至少存在一个最优策略。使用 $v_*(s)$ 和 $q_*(s, a)$ 表示最优状态价值函数和最优动作价值函数（其实也就是那俩方程求 max）。
+
+但这基本上是理论上可行，实践困难。在低维度，状态少的时候可以用动态规划或者值迭代，但一旦高维数据会导致计算量爆炸。Curse of Dimensionality 维度灾难就是说明状态空间维度高时，数据稀疏，计算困难的，这时候我们就需要 Function Approximation 函数逼近，如神经网络等。
+
+# 备份图
+
+Backup Diagram 用于可视化值更新过程，每个空心圆代表一个状态，而实心圆代表一个 State-Action Pair。
+
+考虑如下 MDP：
+
+- State Space: 只有一个决策状态
+- Action Space: Left, Right
+- Reward: $R_{Left} = 1, R_{Right} = 2$
+- $\gamma = 0 / 0.9 / 0.5$
+
+```mermaid
+flowchart TD
+    n1["Small Circle"] -- left --> n2["Filled Circle"]
+    n1 -- right --> n3["Filled Circle"]
+    n3 -- 0 --> n4["Small Circle"]
+    n2 -- +1 --> n5["Small Circle"]
+    n5 --> n6["Filled Circle"]
+    n4 --> n7["Filled Circle"]
+    n6 -- 0 --> n1
+    n7 -- +2 --> n1
+
+    n1@{ shape: sm-circ}
+    n2@{ shape: f-circ}
+    n3@{ shape: f-circ}
+    n4@{ shape: sm-circ}
+    n5@{ shape: sm-circ}
+    n6@{ shape: f-circ}
+    n7@{ shape: f-circ}
+```
+
+求不同 $\gamma$ 下的最优策略。
+
+解：
+
+首先拿出函数：
+
+$$
+v_{\pi}(s) = E_{\pi}[R_{t+1} + \gamma G_{t+1} | S_t = s]
+$$
+
+$\gamma = 0$ 时，只考虑当前奖励，所以
+
+$$
+v_{\pi = Left}(s) = E_{\pi}[1 + 0 \times G_{t+1}] = 1
+$$
+
+$$
+v_{\pi = Right}(s) = E_{\pi}[0 + 0 \times G_{t+1}] = 0
+$$
+
+完全不考虑未来回报，选择 left 直接获得 1，所以最优策略是 left。
+
+$\gamma = 0.5$ 时，考虑部分未来回报，所以
+
+$$
+v_{\pi = Left}(s) = E_{\pi}[1 + 0.5 \times 0] = 1
+$$
+
+$$
+v_{\pi = Right}(s) = E_{\pi}[0 + 0.5 \times 2] = 1
+$$
+
+选择 left 仍然是 1，后续奖励为 0 所以折扣对其无影响。而选择 right 则后续奖励以 0.5 折扣。结果相同，此时策略无偏好。
+
+$\gamma = 0.9$ 时，考虑更多未来回报，所以
+
+$$
+v_{\pi = Left}(s) = E_{\pi}[1 + 0.9 \times 0] = 1
+$$
+
+$$
+v_{\pi = Right}(s) = E_{\pi}[0 + 0.9 \times 2] = 1.8
+$$
+
+选择 left 仍然是 1，选择 right 后续奖励以 0.9 折扣。right 为最优策略。
+
+> 由于右侧状态在下一步后无额外奖励，所以第一轮计算就已经能决定最终值函数。而计算未来回报 $G_{t+1}$ 时，需要递归 $v_{\pi}(s)$，但由于终止状态的奖励为 0，未来回报不影响计算，所以第一轮计算就已经足够。
