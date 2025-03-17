@@ -86,4 +86,76 @@ $$
 
 当 $p = 1$ 时，是曼哈顿距离；当 $p = 2$ 时，是欧几里得距离，$p \to \infty$ 时，是切比雪夫距离
 
+Curse of Dimensionality （维度诅咒），随着维度的增加，数据点之间的距离变得越来越远，这会导致距离度量失效。因此在高维数据中，需要谨慎选择距离度量。
+
+## 汉明距离
+
+Hamming 距离用于计算两个二进制字符串之间的差异：
+
+```txt
+x = 1011101
+y = 1001001
+-----------
+差异位数 = 2 = Hamming Distance
+```
+
+### 在字符串中的应用
+
+Hamming 距离适用于 **等长** 的二进制数据或字符串，例如：
+
+```txt
+x = "karolin"
+y = "kathrin"
+-----------
+差异位数 = 3 = Hamming Distance
+```
+
+### 在集合中的应用
+
+假设有两个集合
+
+1. 有 1000 个项目，其中 995 个相同
+2. 有 5 个项目，均不相同
+
+这两个集合的汉明距离都是 10，这表明汉明距离不适用于衡量集合的相似性。
+
+> 10 的原因是因为不同的物品在两个集合中需要独立表示
+
+## Jaccard 相似度
+
+Jaccard Similarity 用于计算两个集合之间的相似性：
+
+$$
+s(x, y) = \frac{|x \cap y|}{|x \cup y|}
+$$
+
+其中：
+
+- $|x \cap y|$ 是两个集合的交集（共同元素）
+- $|x \cup y|$ 是两个集合的并集（所有元素）
+
+1. 995 个相同的集合：$s = \frac{995}{1000} = 0.995$
+2. 5 个不同的集合：$s = \frac{0}{5} = 0$
+
+## 编辑距离
+
+将一个字符串转换为另一个字符串所需的最小操作数：
+
+1. 插入（Insertion）
+2. 删除（Deletion）
+3. 替换（Substitution）
+
+Levenshtein 距离
+
+```txt
+x = "kitten"
+y = "sitting"
+```
+
+1. kitten -> sitten (substitute k for s)
+2. sitten -> sittin (substitute e for i)
+3. sittin -> sitting (insert g at the end)
+
+编辑距离是 3。
+
 # 聚类分析
