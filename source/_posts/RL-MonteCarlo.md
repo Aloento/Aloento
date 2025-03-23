@@ -59,7 +59,7 @@ $$
 就体现了 DP 中的自举，它利用了下一个状态的估值来更新当前状态的估值。而 MC 方法不使用自举，它通过对实际经历的样本回报进行平均来估计状态的价值。这种特性使得 MC 方法对环境的依赖程度更低，它不需要知道状态之间的转移关系和其他估值。公式
 
 $$
-V\left(S_{t}\right) \leftarrow V\left(S_{t}\right)+\alpha\left(G_{t}-V\left(S_{t}\right)\right)
+V(S_{t}) \leftarrow V(S_{t}) + \alpha (G_{t} - V(S_{t}))
 $$
 
 - $\alpha$：学习率，越大对新样本越重视
