@@ -236,6 +236,14 @@ $T(n) = 7T(n/2) + n^2$
 
 $T(n) = 2T(n/4) + \sqrt{n}$
 
+<details>
+
+1. 递归主导：$n^{\log_b a}$
+2. 平衡：$n^{\log_b a} \log n$
+3. 分治主导：$f(n)$ when $af(\frac{n}{b}) \leq cf(n)$ where $c < 1, n \rightarrow \infty$
+
+</details>
+
 # Divide and Conquer
 
 [题解](https://aloen.to/Algorithm/DAA-Midterm-Exam/#Significant-Inversion)
