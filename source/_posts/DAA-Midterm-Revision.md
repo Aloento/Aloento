@@ -3,7 +3,7 @@ title: DAA Midterm Revision
 toc: true
 categories:
   - [Algorithm]
-tags: [算法, 笔记]
+tags: [算法, 考试]
 date: 2025-03-19 11:14:01
 ---
 
