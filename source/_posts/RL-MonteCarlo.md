@@ -92,8 +92,80 @@ MC 方法在 21 点游戏中，First 与 Every 的效果一致，因为不会回
 通过采样回合来估计状态价值，但是有一个重要问题：许多 状态-动作 对可能永远不被访问，如果策略是确定性的，即始终选择当前最优策略，则某些 Q 值无法估计。所以我们提供了两种解决方案：
 
 1. Exploring Starts：让每个回合都从随机的状态和动作开始，但在实际环境中我们可能无法随意选择回合的起点。
-2. Stochastic Policy：使策略变得随机，以高概率选择当前最优动作，有概率选择其他动作，可以使用 $\epsilon$-greedy 策略，soft policy（任何状态下每个动作都有概率被选中）。
+2. Stochastic Policy：使策略变得随机，以高概率选择当前最优动作，有概率选择其他动作，可以使用 soft policy（任何状态下每个动作都有概率被选中，如 $\epsilon$-greedy）。
 
 MC 只能近似最优策略，它使用广义策略迭代进行收敛，但它理论上要求无限多的回合来保证最终收敛，但现实中不可能，我们可以使用 Funciton Approximation 来近似价值函数。在实际应用中，我们通常不会等待策略评估完全收敛再进行策略改进（Incomplete Policy Evaluation），而是在有误差的情况下就开始改进策略，比如只迭代了一次评估，就开始改进策略，会导致优化过程不稳定。
 
 # On / Off-Policy
+
+强化学习的核心 Dilemma 就是很难平衡 Exploration 和 Exploitation，我们有两种解决方案：
+
+在线策略，只有一个策略，evaluating 和 improving 都是对同一个函数进行的，它可能不能充分探索环境中的所有情况，而且收敛较慢。
+
+而离线策略引入了两个不同的策略，分为 Behavior Policy 和 Target Policy，它们不相同。行为策略通常是一个探索性策略（如 $\epsilon$-greedy），而目标策略是我们希望收敛到最优的贪心策略。这样，行为策略可以利用不同来源的数据，而目标策略可以更快收敛到最优解。但很明显，这个方法计算量大。有一段很长的证明过程，证明了新策略的性能不会低于原策略。
+
+$\epsilon$-soft 是一个泛化概念，只要满足所有动作都有非零的选择概率，就是 $\epsilon$-soft 策略。$\epsilon$-greedy 是 $\epsilon$-soft 的特例，它以 1 - $\epsilon$ 的概率选择最优，以 $\epsilon$ 的概率随机选择任意动作。
+
+## 重要性采样
+
+为了解决目标策略 $\pi$ 和行为策略 $b$ 不一致的问题，我们引入了 Importance Sampling，它是一种加权采样方法，调整行为策略的采样数据，使其符合目标策略的分布。公式：
+
+$$
+\rho = \frac{\pi(A|S)}{b(A|S)}
+$$
+
+这就是对于 **单步** 的重要性采样比率，我们同时计算同一个动作在两个策略下的概率，然后取比值。
+
+这个比率衡量了目标策略选择动作 A 的概率，与行为策略选择动作 A 的概率之比。假设我们要计算如下期望：
+
+$$
+E_{\pi} [f(s, a)] = \sum_{a} \pi(a|s) f(s, a)
+$$
+
+由于我们的数据是从 $b$ 采样的，所以我们直接将 $\rho$ 乘到期望公式上即可：
+
+$$
+E_{\pi} [f(s, a)] = \sum_{a} b(a|s) f(s, a) \rho
+$$
+
+在 Off-Policy 的 MC 中，假设我们有一个 episode：
+
+$$
+S_0, A_0, R_1, \cdots, S_T
+$$
+
+我们希望计算此 episode 在 $\pi$ 的回报：
+
+$$
+G_t^{\pi} = R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{T-t-1} R_T
+$$
+
+但是我们只有从 $b$ 采样的数据，所以我们需要使用重要性采样：
+
+$$
+G_t^{\pi} = G_t \cdot \rho_t
+$$
+
+其中：
+
+$$
+\rho_t = \prod_{k=t}^{T} \frac{\pi(A_k|S_k)}{b(A_k|S_k)}
+$$
+
+使用此累计比率就可以调整整个 episode 的回报。
+
+### 采样方式
+
+在实际应用中，我们有两种采样方式：
+
+- Ordinary Importance Sampling：直接计算比率，Unbiased，但方差较大，适用于数据量大的情况
+
+$$
+V_{\pi}(s) = \frac{1}{N} \sum_{i=1}^{N} \rho_i G_i
+$$
+
+- Weighted Importance Sampling：归一化比率，确保所有 Episode 的比率总和为 1，Biased，但方差较小，稳定性好，适用于稳定性要求高或者数据量小的情况
+
+$$
+V_{\pi}(s) = \frac{\sum_{i=1}^{N} \rho_i G_i}{\sum_{i=1}^{N} \rho_i}
+$$
