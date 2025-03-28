@@ -7,7 +7,7 @@ tags: [数据科学, 笔记]
 date: 2025-03-18 11:55:21
 ---
 
-Hierarchical，Similarity，DBSCAN
+Hierarchical，Similarity，DBSCAN，Validation
 
 <!-- more -->
 
@@ -103,10 +103,16 @@ Density-Based Spatial Clustering of Applications with Noise 是一种基于密�
 
 我们有以下衡量方法：
 
-1. 外部指标：如真实分类标签，Entropy（聚类的不确定性），Purity（簇内数据一致性）
+1. 外部指标：如真实分类标签
+   - Entropy（聚类的不确定性，聚类结果与真实类别标签的一致性）
+   - Purity（簇内数据一致性，每个簇中占比最高的类别）
 2. 内部指标：
    - 误差平方和 SSE（簇内数据点到簇中性距离，越小数据越紧密）
    - 簇凝聚力（Cohesion，簇内数据点之间的相似度，或者距离）
    - 簇分离度（Separation，不同簇之间的距离）
-   - 轮廓系数（Silhouette Coefficient，结合了凝聚力和分离度，值越大越好）
-3. 相对指标：Rand Index（两个聚类结果的一致性）和 Adjusted Rand Index（ARI，调整后的 Rand Index，消除了随机聚类的影响）
+   - 轮廓系数（Silhouette Coefficient）
+3. 相对指标：Rand Index
+
+轮廓系数评估每个数据点在其所属簇中的合理性，它同时考虑 Cohesion 和 Separation。它最初计算单个数据点，然后可以扩展到簇和整个聚类结果，当用于簇时，计算的是平均系数，衡量该簇的质量，聚类同理。它的值在 [-1, 1] 之间，值越大，表示聚类效果越好，约等于 0 说明数据点在边界，负数说明可能被错误的分配到簇中。
+
+Rand Index 比较数据点在真实类别和聚类的分配情况，来计算正确性。显而易见的，两个对象在同一簇中说明它们应该属于同一类。它的取值范围是 [0, 1]，值越大，说明聚类效果越好，接近 0.5 说明聚类接近于随机划分，而 0 是很差。如果某个类别的数据点较多，可能会使 Rand Index 偏高，使用 Adjusted Rand Index 来修正磁偏差。
