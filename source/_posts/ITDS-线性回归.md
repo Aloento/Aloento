@@ -26,7 +26,7 @@ $$
 - Classification: 将数据分类到预定义的类别或标签中（离散类别）
 
 $$
-y = f(x) = \argmax P(y = c | x)
+y = f(x) = argmax P(y = c | x)
 $$
 
 在给定输入 x 的情况下，输出 y 属于 c 的概率。

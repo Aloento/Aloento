@@ -4,7 +4,7 @@ toc: true
 categories:
   - [Data Science]
 tags: [考试, 数据科学]
-date: 2025-05-30 22:01:16
+date: 2025-03-30 00:00:00
 ---
 
 学不动了
@@ -80,7 +80,7 @@ Provide explanations and calculations to support each part of the proof.
 3. Identity：仅当两个点相同的时候，距离为 0。两个字符串相同则没有不同的位数。
 4. Triangle Inequality：$d(x, y) + d(y, z) \geq d(x, z)$。  
    比如 A = 110010，B = 101011，C = 100111  
-   $d(A, B) + d(B, C) = 3 + 2 = 5 \geq d(A, C) = 3$  
+   $d(A, B) + d(B, C) = 3 + 2 = 5 \geq d(A, C) = 3$
 
 因此，汉明距离满足所有度量性质。
 
@@ -170,12 +170,324 @@ Particularly in mitigating overfitting and controlling model complexity?
 
 # 2024-04-19
 
-# 2024-05-07
+## Learning
+
+What are the key distinctions between supervised and unsupervised learning in ML?
+
+<details>
+
+</details>
+
+## Quartet
+
+What are the similarities and differences between Anscombe’s Quartet and the Unstructured Quartet in statistical analysis?
+
+<details>
+
+</details>
+
+## EDA
+
+What are the fundamental steps in an exploratory data analysis (EDA) workflow, and how does each step contribute to gaining insights into the data’s characteristics?
+
+<details>
+
+</details>
+
+## L1 Norm
+
+Consider two vectors: A = (3, -2, 5) and B = (1, 4, -1)
+
+Provide the formal definition of the L1 norm and calculate the L1 norm between A and B
+
+<details>
+
+</details>
+
+Under which conditions is a distance measure considered a metric? Verify that the L1 norm is a metric (provide proofs to support each condition).
+
+<details>
+
+</details>
+
+## DBSCAN
+
+What are the hyper-parameters of DBSCAN and how do we set them up?
+
+<details>
+
+</details>
+
+## Linkage
+
+How do the complete and single linkage methods differ in agglomerative clustering, and how does this difference affect the formation and structure of clusters in the resulting dendrogram?
+
+<details>
+
+</details>
+
+## Centroids
+
+How does the selection of initial centroids affect the convergence and final clustering results in K-means, and what techniques can be used to minimize this influence?
+
+<details>
+
+</details>
+
+## Linear
+
+Describe the objective function of a simple linear regression and explain how the parameters are chosen to optimize its objective function.
+
+<details>
+
+</details>
+
+## LSE
+
+Explain the concept of least squares estimation and its significance in linear regression modeling.
+
+<details>
+
+</details>
+
+## Polynomial
+
+Describe polynomial regression and discuss its advantages and limitations compared to linear regression models.
+
+<details>
+
+</details>
 
 # 2024-05-16
 
+## Jaccard
+
+You are given the following categorical dataset with features f0, f1, and f2:
+
+| f0  | f1  | f2  |
+| --- | --- | --- |
+| c   | b   | x   |
+| a   | a   | z   |
+| c   | c   | y   |
+| a   | a   | y   |
+
+Provide the formal definition of Jaccard similarity.
+
+<details>
+
+</details>
+
+What dataset do you obtain by applying 1-hot encoding to all of its features? Specify the column names in the form “attribute value”.
+
+<details>
+
+</details>
+
+Compute J(x1, x2) and J(x3, x4) after one-hot encoding.
+
+<details>
+
+</details>
+
+## Metric
+
+Define the Jaccard distance and prove that it can be used as a metric.
+
+<details>
+
+</details>
+
+## Initialization
+
+What are the initialization methods commonly used in K-means? Discuss their pros and cons.
+
+<details>
+
+</details>
+
+## Convergence
+
+Explain how K-means determines convergence and identifies when the algorithm has finished.
+
+<details>
+
+</details>
+
+## Regression
+
+You are provided with a dataset containing information about the number of hours spent studying (X) and the corresponding scores achieved (Y) by a group of students in a particular exam. Your task is to perform a simple linear regression analysis on this dataset.
+
+| Hours Studied (X) | Exam Score (Y) |
+| ----------------- | -------------- |
+| 2.5               | 85             |
+| 3.0               | 88             |
+| 3.5               | 90             |
+| 4.0               | 92             |
+| 4.5               | 94             |
+
+Calculate the mean, variance, and standard deviation of both X and Y. Reflect on the significance of these statistical measures in understanding the distribution of the data.
+
+<details>
+
+</details>
+
+Plot a scatter plot of the data to visualize the relationship between hours studied and exam scores.
+
+<details>
+
+</details>
+
+Fit a simple linear regression model to the dataset to predict exam scores based on the number of hours studied. Use the least squares method to estimate the regression coefficients β0 and β1.
+
+<details>
+
+</details>
+
+Reflect on the interpretation of the regression coefficients β0 and β1. What do they represent in the context of this problem?
+
+<details>
+
+</details>
+
+Use the fitted regression model to predict the exam score for a student who studies for 5 hours.
+
+<details>
+
+</details>
+
 # 2024-10-15
+
+## Edit
+
+Consider two objects represented by strings: Object A = ”kitten” and Object B = ”sitting”.
+
+Define and calculate the Edit distance between A and B. Can we use the Edit distance if A and B had different lengths and why?
+
+<details>
+
+</details>
+
+## Metric
+
+Demonstrate that Edit distance is a metric
+
+<details>
+
+</details>
+
+## Hierarchical
+
+In hierarchical agglomerative clustering, how would you determine the optimal number of clusters?
+
+<details>
+
+</details>
 
 # 2024-11-05
 
+You are working with a large dataset of 10 million patient records containing medical histories, test results, and diagnoses (as described in the Table below). Only 1% of these patients have been diagnosed with a rare, chronic condition. Your task is to analyze and cluster the data to identify groups with similar health patterns, which could support early detection of the rare condition.
+
+| Feature     | Data Type   | Example Values                |
+| ----------- | ----------- | ----------------------------- |
+| Patient ID  | Categorical | 00123, 00124                  |
+| Age         | Numerical   | 45, 62, 29                    |
+| Gender      | Categorical | Male, Female                  |
+| BP          | Numerical   | 120/80, 135/90                |
+| Cholesterol | Numerical   | 180, 220                      |
+| BMI         | Numerical   | 23.5, 27.1                    |
+| Smoking     | Categorical | Smoker, Non-smoker            |
+| Diabetes    | Categorical | Normal, Prediabetic, Diabetic |
+
+<details>
+
+</details>
+
+## Volume
+
+Explain the benefits and limitations of using the entire 10 million patient records versus a smaller subset, given the 1% prevalence of the rare condition. Discuss how data volume could impact model performance in detecting these rare cases.
+
+<details>
+
+</details>
+
+## Visualizations
+
+Identify at least two visualizations types that would be most effective for finding patterns or anomalies in this medical data.
+
+<details>
+
+</details>
+
+## Clustering
+
+Describe which distance or similarity measure you would select for clustering patient records containing both numerical and categorical features. Justify your choice, considering the imbalanced nature of the data
+
+<details>
+
+</details>
+
+## Hierarchical
+
+Explain how you would use hierarchical clustering to identify health patterns related to the rare condition in this dataset. Discuss how you would evaluate the quality of the resulting clusters and specify which linkage criteria you might choose and why.
+
+<details>
+
+</details>
+
+## Imbalance
+
+Describe a strategy that you could use to address the 1% imbalance of the rare condition within your clustering approach and explain how it helps improve the identification of rare cases?
+
+<details>
+
+</details>
+
 # 2024-12-10
+
+## Quality
+
+What are the common data quality problems that can affect the performance of machine learning models, how can you identify and address these issues in a dataset?
+
+<details>
+
+</details>
+
+## Metric
+
+Consider the following function d(x,y) defined for x,y ∈ R:
+
+$$
+d(x, y) = \sqrt{|x - y|} +
+\begin{cases}
+0 & \text{if } x = y, \\
+1 & \text{if } x \neq y.
+\end{cases}
+$$
+
+Verify whether d(x,y) satisfies the metric properties.
+
+<details>
+
+</details>
+
+## Contrast
+
+How can you formally define contrast in high-dimensional data, and how does it relate to the concentration of pairwise distances?
+
+<details>
+
+</details>
+
+## Quality
+
+<details>
+
+</details>
+
+## Linkage
+
+ How does the choice of linkage method (e.g., single-linkage, complete-linkage, average-linkage) impact the structure and quality of clusters formed by hierarchical clustering?
+
+<details>
+
+</details>
