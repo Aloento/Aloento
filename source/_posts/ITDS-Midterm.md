@@ -668,6 +668,14 @@ What are the common data quality problems that can affect the performance of mac
 
 <details>
 
+常见的数据质量问题有哪些？它们如何影响机器学习模型的性能？如何在数据集中识别和解决这些问题？
+
+- Missing Values：使用均值、中位数或众数填充
+- Outliers：使用 Z-score 检测，删除或替换
+- Unbalanced：使用 Over/Under sampling 处理
+- Duplicates：UID 去重
+- Inconsistent：人工审核，逻辑检查，数据验证
+
 </details>
 
 ## Metric
@@ -686,6 +694,13 @@ Verify whether d(x,y) satisfies the metric properties.
 
 <details>
 
+1. 非负：平方根非负
+2. 对称：绝对值导致顺序无关
+3. 等价：x = y 时 + 0
+4. 三角：
+   如 x = 6, y = 2, z = 3
+   $d(x, y) + d(y, z) = 3 + 2 = 5 \geq d(x, z) = \sqrt{3} + 1$
+
 </details>
 
 ## Contrast
@@ -694,11 +709,22 @@ How can you formally define contrast in high-dimensional data, and how does it r
 
 <details>
 
+你如何在高维数据中正式定义对比？它与成对距离集中度有什么关系？
+
+Contrast 是 relative dispersion of pairwise distances。  
+高维数据中，成对距离趋于相似，导致对比度降低。
+
 </details>
 
 ## Quality
 
+How can you validate the quality of clustering with k-means algorithm?
+
 <details>
+
+如何验证 K-means 算法的聚类质量？
+
+使用 Silhouette Score，或者 Within-Cluster Sum of Squares，可视化也是一种方法。
 
 </details>
 
@@ -707,5 +733,11 @@ How can you formally define contrast in high-dimensional data, and how does it r
 How does the choice of linkage method (e.g., single-linkage, complete-linkage, average-linkage) impact the structure and quality of clusters formed by hierarchical clustering?
 
 <details>
+
+如何选择链接方法（例如，单链接、完全链接、平均链接）影响层次聚类形成的簇的结构和质量？
+
+- Single: 链式结构，对噪声敏感，希望找到相连模式
+- Complete: 紧密球结构，抗噪声能力强，需要清晰分离的簇
+- Average: 平均距离，适用于大多数情况
 
 </details>
