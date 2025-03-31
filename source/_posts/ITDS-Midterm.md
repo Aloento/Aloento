@@ -339,17 +339,47 @@ Provide the formal definition of Jaccard similarity.
 
 <details>
 
+有一个分类数据集，包含特征 f0、f1 和 f2
+请提供 Jaccard 相似度的正式定义。
+
+$s(A, B) = \frac{|A \cap B|}{|A \cup B|}$，其中 $A$ 和 $B$ 是两个集合。
+
 </details>
 
 What dataset do you obtain by applying 1-hot encoding to all of its features? Specify the column names in the form “attribute value”.
 
 <details>
 
+对所有特征应用 1-hot 编码后，您会获得什么数据集？以“属性值”的形式指定列名。
+
+| f0_c | f0_a | f0_b | f1_a | f1_b | f1_c | f2_x | f2_z | f2_y |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 1    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 1    |
+| 0    | 1    | 0    | 1    | 0    | 0    | 0    | 1    | 0    |
+| 1    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 1    |
+| 0    | 1    | 0    | 1    | 0    | 0    | 0    | 0    | 1    |
+
 </details>
 
 Compute J(x1, x2) and J(x3, x4) after one-hot encoding.
 
 <details>
+
+计算 1-hot 编码后 J(x1, x2) 和 J(x3, x4)。
+
+$x_1 = (1, 0, 0, 0, 1, 0, 0, 0, 1)$  
+$x_2 = (0, 1, 0, 1, 0, 0, 0, 1, 0)$
+
+$x_1 \cap x_2 = (0, 0, 0, 0, 0, 0, 0, 1, 0) = 1$  
+$x_1 \cup x_2 = (1, 1, 0, 1, 1, 0, 0, 1, 1) = 6$  
+$J(x_1, x_2) = \frac{1}{6}$
+
+$x_3 = (1, 0, 0, 0, 0, 1, 0, 0, 1)$  
+$x_4 = (0, 1, 0, 1, 0, 0, 0, 0, 1)$
+
+$x_3 \cap x_4 = (0, 0, 0, 0, 0, 0, 0, 0, 1) = 1$  
+$x_3 \cup x_4 = (1, 1, 0, 1, 0, 1, 0, 0, 1) = 5$  
+$J(x_3, x_4) = \frac{1}{5}$
 
 </details>
 
@@ -359,6 +389,17 @@ Define the Jaccard distance and prove that it can be used as a metric.
 
 <details>
 
+定义 Jaccard 距离并证明它可以用作度量。
+
+$d_J = 1 - Jaccard$$
+
+1. 非负：绝对值非负，且 Jaccard 最大为 1
+2. 对称：集合顺序不影响计算
+3. 等价：只有两个集合相同距离才为 0
+4. 三角：
+   A = {1, 2, 3}，B = {2, 3, 4}，C = {3, 4, 5}  
+   $d(A, B) + d(B, C) = 1 - \frac{2}{4} + 1 - \frac{2}{4} = 1 \geq d(A, C) = 1 - \frac{1}{5} = 0.8$
+
 </details>
 
 ## Initialization
@@ -367,6 +408,12 @@ What are the initialization methods commonly used in K-means? Discuss their pros
 
 <details>
 
+常用的 K-means 初始化方法有哪些？讨论它们的优缺点。
+
+- 随机：快，简单，可能局部最优，不稳定
+- K-means++：避免局部最优，提高收敛速度，稍慢
+- 层次聚类：稳定性高，复杂
+
 </details>
 
 ## Convergence
@@ -374,6 +421,10 @@ What are the initialization methods commonly used in K-means? Discuss their pros
 Explain how K-means determines convergence and identifies when the algorithm has finished.
 
 <details>
+
+解释 K-means 如何确定收敛并识别算法何时完成。
+
+当 Centroids 不变或者变化很小，或者达到最大迭代次数。
 
 </details>
 
@@ -393,11 +444,24 @@ Calculate the mean, variance, and standard deviation of both X and Y. Reflect on
 
 <details>
 
+计算 X 和 Y 的均值、方差和标准差。反思这些统计量在理解数据分布中的重要性。
+
+均值是平均数：$\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ Central Tendency  
+方差：$\sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2$ Dispersion  
+标准差：$\sigma = \sqrt{\sigma^2}$ Fluctuation
+
+X: 3.5, 0.5, 0.7,  
+Y: 89.8, 9.76, 3.12
+
 </details>
 
 Plot a scatter plot of the data to visualize the relationship between hours studied and exam scores.
 
 <details>
+
+画出数据的散点图，以可视化学习时间和考试成绩之间的关系。
+
+![plot](plot.png)
 
 </details>
 
@@ -405,17 +469,54 @@ Fit a simple linear regression model to the dataset to predict exam scores based
 
 <details>
 
+拟合一个简单的线性回归模型，以根据学习时间预测考试成绩。使用最小二乘法估计回归系数 β0 和 β1。
+
+$\bar{Y}= \beta_0 + \beta_1 X$ 其中
+
+$$\beta_0 = \bar{Y} - \beta_1 \bar{X}$$
+
+$$
+\beta_1 = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2}
+$$
+
+| $X_i - \bar{X}$  | $Y_i - \bar{Y}$  | $(X_i - \bar{X})(Y_i - \bar{Y})$ | $(X_i - \bar{X})^2$ |
+| ---------------- | ---------------- | -------------------------------- | ------------------- |
+| 2.5 - 3.5 = -1   | 85 - 89.8 = -4.8 | 4.8                              | 1                   |
+| 3.0 - 3.5 = -0.5 | 88 - 89.8 = -1.8 | 0.9                              | 0.25                |
+| 3.5 - 3.5 = 0    | 90 - 89.8 = 0.2  | 0                                | 0                   |
+| 4.0 - 3.5 = 0.5  | 92 - 89.8 = 2.2  | 1.1                              | 0.25                |
+| 4.5 - 3.5 = 1    | 94 - 89.8 = 4.2  | 4.2                              | 1                   |
+
+$\sum (X_i - \bar{X})(Y_i - \bar{Y}) = 11$
+
+$\sum (X_i - \bar{X})^2 = 2.5$
+
+$\beta_1 = \frac{11}{2.5} = 4.4$
+
+$\beta_0 = 89.8 - 4.4 \cdot 3.5 = 74.4$
+
+$\hat{Y} = 74.4 + 4.4X$
+
 </details>
 
 Reflect on the interpretation of the regression coefficients β0 and β1. What do they represent in the context of this problem?
 
 <details>
 
+思考对回归系数 β0 和 β1 的解释。它们在本问题中代表什么？
+
+$\beta_0$ 是当学习时间为 0 时的预测分数，但不太有意义。  
+$\beta_1$ 是每增加 1 小时学习时间，分数增加 4.4 分，是时间与成绩的线性关系。
+
 </details>
 
 Use the fitted regression model to predict the exam score for a student who studies for 5 hours.
 
 <details>
+
+使用拟合的回归模型预测学习 5 小时的学生的考试成绩。
+
+$\hat{Y} = 74.4 + 4.4 \cdot 5 = 74.4 + 22 = 96.4$
 
 </details>
 
@@ -550,7 +651,7 @@ How can you formally define contrast in high-dimensional data, and how does it r
 
 ## Linkage
 
- How does the choice of linkage method (e.g., single-linkage, complete-linkage, average-linkage) impact the structure and quality of clusters formed by hierarchical clustering?
+How does the choice of linkage method (e.g., single-linkage, complete-linkage, average-linkage) impact the structure and quality of clusters formed by hierarchical clustering?
 
 <details>
 
