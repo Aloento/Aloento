@@ -176,6 +176,11 @@ What are the key distinctions between supervised and unsupervised learning in ML
 
 <details>
 
+监督学习和无监督学习在机器学习中的关键区别是什么？
+
+监督学习使用带标签的数据进行训练，目标是学习属于到输出的映射关系。
+无监督学习使用无标签的数据，目标是发现数据的模式或结构。
+
 </details>
 
 ## Quartet
@@ -184,6 +189,13 @@ What are the similarities and differences between Anscombe’s Quartet and the U
 
 <details>
 
+安斯科姆四重奏和非结构化四重奏在统计分析中有什么相似之处和不同之处？
+
+~~PPT 里面有这个知识点吗？~~
+
+两者都展示了数据可视化的重要性。
+Anscombe 具有相同的统计指标但不同分布。Unstructured 进一步扩展，展示了数据模式的多样性。
+
 </details>
 
 ## EDA
@@ -191,6 +203,13 @@ What are the similarities and differences between Anscombe’s Quartet and the U
 What are the fundamental steps in an exploratory data analysis (EDA) workflow, and how does each step contribute to gaining insights into the data’s characteristics?
 
 <details>
+
+EDA 工作流的基本步骤是什么？每个步骤如何有助于深入了解数据的特征？
+
+1. Data Collection：收集数据，确保格式正确
+2. Data Cleaning：清理数据，处理缺失值和异常值，提高质量
+3. Explore Globally：探索全局属性，使用各种图表发现模式和分布
+4. Explore Grouped：探索比较不同子集的特征
 
 </details>
 
@@ -202,11 +221,25 @@ Provide the formal definition of the L1 norm and calculate the L1 norm between A
 
 <details>
 
+有两个向量：A = (3, -2, 5) 和 B = (1, 4, -1)
+提供 L1 范数的正式定义，并计算 A 和 B 之间的 L1 范数
+
+$$L_1(A, B) = \sum_{i=1}^n |A_i - B_i| = |3-1| + |-2-4| + |5-(-1)| = 2 + 6 + 6 = 14$$
+
 </details>
 
 Under which conditions is a distance measure considered a metric? Verify that the L1 norm is a metric (provide proofs to support each condition).
 
 <details>
+
+在什么条件下，距离测量被认为是度量？验证 L1 范数是一个度量（提供证明以支持每个条件）。
+
+1. 非负：L1 是绝对值相加
+2. 对称：向量的顺序不影响 L1 计算
+3. 等价：只有两个向量相同 L1 才为 0
+4. 三角：  
+   例如 A = (3, -2, 5)，B = (1, 4, -1)，C = (0, 0, 0)  
+   $d(A, B) + d(B, C) = 14 + 6 = 20 \geq d(A, C) = 14$
 
 </details>
 
@@ -216,6 +249,13 @@ What are the hyper-parameters of DBSCAN and how do we set them up?
 
 <details>
 
+DBSCAN 的超参数有哪些，我们应该如何设置它们？
+
+1. $\epsilon$：radius of neighborhood
+2. MinPts：邻域内最少点数
+
+使用 k-distance graph 来选择，横坐标 Eps，纵坐标 MinPts
+
 </details>
 
 ## Linkage
@@ -223,6 +263,11 @@ What are the hyper-parameters of DBSCAN and how do we set them up?
 How do the complete and single linkage methods differ in agglomerative clustering, and how does this difference affect the formation and structure of clusters in the resulting dendrogram?
 
 <details>
+
+在聚合聚类中，完全链接和单链接方法有什么不同？这种差异如何影响结果树状图中簇的形成和结构？
+
+- single：两簇之间最小距离，形成 chain 结构，容易受到噪声影响
+- complete：两簇之间最大距离，形成 tight sphere 结构，抗噪声能力强
 
 </details>
 
@@ -232,6 +277,11 @@ How does the selection of initial centroids affect the convergence and final clu
 
 <details>
 
+初始质心的选择如何影响 K-means 的收敛和最终聚类结果？可以使用哪些技术来最小化这种影响？
+
+选择不当可能导致收敛慢、局部最优或不稳定的聚类结果。
+我们可以使用 K-means++ 来优化初始选择。
+
 </details>
 
 ## Linear
@@ -239,6 +289,10 @@ How does the selection of initial centroids affect the convergence and final clu
 Describe the objective function of a simple linear regression and explain how the parameters are chosen to optimize its objective function.
 
 <details>
+
+线性回归的目标函数是什么？解释如何选择参数以优化其目标函数。
+
+$MSE = \frac{1}{n} \sum (y_i - \hat{y}_i)^2$，使用梯度下降优化
 
 </details>
 
@@ -248,6 +302,12 @@ Explain the concept of least squares estimation and its significance in linear r
 
 <details>
 
+解释最小二乘估计的概念及其在线性回归建模中的重要性。
+
+通过最小化 Sum of Squared Errors (SSE) 找到最佳拟合线的参数。
+
+它常用，确保模型误差最小，可以用梯度下降求解。
+
 </details>
 
 ## Polynomial
@@ -255,6 +315,10 @@ Explain the concept of least squares estimation and its significance in linear r
 Describe polynomial regression and discuss its advantages and limitations compared to linear regression models.
 
 <details>
+
+描述多项式回归，并讨论与线性回归模型相比的优缺点。
+
+能够拟合非线性关系，$y = \sum_{i=0}^n \beta_i x^i$，容易过拟合，复杂。
 
 </details>
 
