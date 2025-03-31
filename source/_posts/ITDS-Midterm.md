@@ -530,6 +530,15 @@ Define and calculate the Edit distance between A and B. Can we use the Edit dist
 
 <details>
 
+考虑由字符串表示的两个对象：对象 A = "kitten" 和对象 B = "sitting"。
+定义并计算 A 和 B 之间的编辑距离。如果 A 和 B 长度不同，我们可以使用编辑距离吗？为什么？
+
+将一个字符串转换为另一个字符串所需的最少操作数（插入、删除、替换）。
+
+A 到 B 的距离是 3（k -> s，e -> i，add g）。
+
+可以，使用插入和删除。
+
 </details>
 
 ## Metric
@@ -538,6 +547,13 @@ Demonstrate that Edit distance is a metric
 
 <details>
 
+1. 非负：操作计数从零递增
+2. 对称：字符串操作顺序不影响结果
+3. 等价：两个字符串相同则不需要操作
+4. 三角：
+   A = "kitten"，B = "sitting"，C = "sittin"  
+   $d(A, B) + d(B, C) = 3 + 1 = 4 \geq d(A, C) = 3$
+
 </details>
 
 ## Hierarchical
@@ -545,6 +561,10 @@ Demonstrate that Edit distance is a metric
 In hierarchical agglomerative clustering, how would you determine the optimal number of clusters?
 
 <details>
+
+在层次聚类中，如何确定最优的聚类数量？
+
+用 Dendrogram 来确定最有意义的分割点。Silhouette Score / Elbow Method 都能用。
 
 </details>
 
@@ -565,6 +585,8 @@ You are working with a large dataset of 10 million patient records containing me
 
 <details>
 
+你正在处理一个包含 1000 万个患者记录的大型数据集，其中包含病史、测试结果和诊断（如下表所示）。只有 1% 的患者被诊断为罕见的慢性病。你的任务是分析和聚类数据，以识别具有相似健康模式的组，这可能有助于早期发现这种罕见疾病。
+
 </details>
 
 ## Volume
@@ -572,6 +594,16 @@ You are working with a large dataset of 10 million patient records containing me
 Explain the benefits and limitations of using the entire 10 million patient records versus a smaller subset, given the 1% prevalence of the rare condition. Discuss how data volume could impact model performance in detecting these rare cases.
 
 <details>
+
+鉴于罕见疾病的 1% 流行率，使用全部 1000 万个患者记录与较小子集的优缺点是什么？讨论数据量如何影响模型在检测这些罕见病例时的性能。
+
+- 使用全部数据：
+  - 优点：更多样本，更多信息，模型更准确
+  - 缺点：计算成本高，处理时间长，存储需求大
+
+- 使用子集：
+  - 优点：计算成本低，消耗小，更容易处理
+  - 缺点：样本不足，可能遗漏重要信息，模型准确性降低
 
 </details>
 
@@ -581,6 +613,11 @@ Identify at least two visualizations types that would be most effective for find
 
 <details>
 
+确定至少两种可视化类型，这些类型对于在医疗数据中查找模式或异常最有效。
+
+- Heatmap：显示变量之间的相关性，识别特征群
+- Boxplot：检测异常值
+
 </details>
 
 ## Clustering
@@ -588,6 +625,11 @@ Identify at least two visualizations types that would be most effective for find
 Describe which distance or similarity measure you would select for clustering patient records containing both numerical and categorical features. Justify your choice, considering the imbalanced nature of the data
 
 <details>
+
+说明您将选择哪种距离或相似性度量来聚类包含数值和分类特征的患者记录。考虑到数据的不平衡性质，请说明您的选择。
+
+可以使用 Euclidean 处理数值特征，使用 Jaccard 处理分类特征。  
+可以标准化数据和特征缩放来处理不平衡。
 
 </details>
 
@@ -597,6 +639,11 @@ Explain how you would use hierarchical clustering to identify health patterns re
 
 <details>
 
+解释如何使用层次聚类来识别与数据集中罕见疾病相关的健康模式。讨论如何评估结果簇的质量，并指定您可能选择的链接标准以及原因。
+
+生成 Dendrogram 来可视化聚类结果，选择最有意义的分割点来划分簇。  
+选择 complete-linkage 来确保簇的 density 和 separation，避免噪声影响。
+
 </details>
 
 ## Imbalance
@@ -604,6 +651,12 @@ Explain how you would use hierarchical clustering to identify health patterns re
 Describe a strategy that you could use to address the 1% imbalance of the rare condition within your clustering approach and explain how it helps improve the identification of rare cases?
 
 <details>
+
+请描述可以用来解决聚类方法中 1% 罕见疾病不平衡的策略，并解释它如何有助于改善对罕见病例的识别？
+
+1. Oversampling：增加少数类样本数量
+2. Undersampling：减少多数类样本数量
+3. Weighting：为少数类样本分配更高的权重
 
 </details>
 
