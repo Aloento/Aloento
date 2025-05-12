@@ -151,6 +151,22 @@ Suppose that you are given a $n \times n$ checkerboard and a checker. You must m
 
 Each time you move from square $x$ to square $y$, you receive $f(x, y)$ dollars. You are given $f(x, y)$ for all pairs $(x, y)$ for which a move from x to y is legal. Give an $O(n^2)$ dynamic programming algorithm that figures out the set of moves that will move the checker from somewhere along the bottom edge to somewhere along the top edge while gathering as many dollars as possible. Your algorithm is free to pick any square along the top edge as a destination in order to maximize the number of dollars gathered along the way.
 
+<details>
+
+带权格子路径题，允许往正上，左上，右上三个方向走，每个格子都有一个价值，目标是从底到顶最大化价值。
+这一类题其实挺简单的，本质上是遍历然后比较。
+
+1. 画一个 n x n 的表格，最下面一行是 0 行
+2. 0 行的每个格子都初始化为 0
+3. 由下到上逐行遍历：
+   1. 找出当前格子可能的来向
+   2. 计算每个来向的价值
+   3. 记录最大值的来向
+4. 填到顶行后找最大值
+5. 从最大值反向推导路径
+
+</details>
+
 # 最优括号化
 
 Give the dynamic programming solution to the optimal parameterization problem for them matrix product $A_1, A_2, A_3, A_4, A_5$ where the dimensions of $A_3$ are $4 \times 2$, the dimensions of $A_4$ are $2 \times 5$, and the dimensions of $A_5$ are $5 \times 3$. Show all calculations.
