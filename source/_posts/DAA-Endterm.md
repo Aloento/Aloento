@@ -171,6 +171,58 @@ Each time you move from square $x$ to square $y$, you receive $f(x, y)$ dollars.
 
 Give the dynamic programming solution to the optimal parameterization problem for them matrix product $A_1, A_2, A_3, A_4, A_5$ where the dimensions of $A_3$ are $4 \times 2$, the dimensions of $A_4$ are $2 \times 5$, and the dimensions of $A_5$ are $5 \times 3$. Show all calculations.
 
+<details>
+
+本题没有给出完整的矩阵维度，要让矩阵能够相乘，我们假设 A₁ 和 A₂ 的维度分别为 $a \times b$ 和 $b \times 4$，则
+
+$$
+p_i = (a, b, 4, 2, 5, 3)
+$$
+
+我们有二区间：
+
+| m    | value                       |
+| ---- | --------------------------- |
+| i,i  | 0                           |
+| 1, 2 | $a \times b \times 4 = ab4$ |
+| 2, 3 | $b \times 4 \times 2 = b8$  |
+| 3, 4 | $4 \times 2 \times 5 = 40$  |
+| 4, 5 | $2 \times 5 \times 3 = 30$  |
+
+三区间：
+
+| m    | k     | value                                |
+| ---- | ----- | ------------------------------------ |
+| 1, 3 | 1     | $0 + b8 + ab2 = ab2 + 8b$            |
+|      | 2     | $ab4 + 0 + 4b2 = ab4 + 8b$           |
+| 2, 4 | 2     | $0 + 40 + 4b5 = 40 + 4b5$            |
+|      | **3** | $b8 + 0 + 2b5 = 18b$                 |
+| 3, 5 | **3** | $0 + 30 + 4 \times 2 \times 3 = 54$  |
+|      | 4     | $40 + 0 + 4 \times 5 \times 3 = 100$ |
+
+四区间：
+
+| m    | k                 | value                             |
+| ---- | ----------------- | --------------------------------- |
+| 1, 4 | 1                 | $0 + 18b + ab5 = ab5 + 18b$       |
+|      | 2                 | $ab4 + 40 + 4a5 = ab4 + 20a + 40$ |
+|      | 3 if $k_{prev}=1$ | $ab2 + 8b + 2a5$                  |
+|      | 3 if $k_{prev}=2$ | $ab4 + 8b + 2a5$                  |
+| 2, 5 | 2                 | $0 + 54 + 4b3 = 54 + 12b$         |
+|      | 3                 | $b8 + 30 + 2b3 = 14b + 30$        |
+|      | 4                 | $18b + 0 + 5b3 = 33b              |
+
+五区间：
+
+| m    | k   | value                |
+| ---- | --- | -------------------- |
+| 1, 5 | 1   | $m[2, 5] + ab3$      |
+|      | 2   | $ab4 + 54 + 4a3$     |
+|      | 3   | $m[1, 3] + 30 + 2a3$ |
+|      | 4   | $m[1, 4] + 5a3$      |
+
+</details>
+
 # 子序列
 
 Run the dynamic programming algorithm to the longest common subsequence problem of sequences $(a, b, b, d, c, d, b, a)$ and $(a, b, d, c, a, b, c, d, a)$.
