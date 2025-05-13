@@ -141,31 +141,15 @@ $$
 
 </details>
 
-# 网格最大成本寻路
+## 练习
 
-Suppose that you are given a $n \times n$ checkerboard and a checker. You must move the checker from the bottom edge of the board to the top edge of the board according to the following rules. At each step you may move the checker to one of three squares:
+给出一个动态规划解法，用于求解矩阵乘法 $A_1 A_2 A_3 A_4 A_5$ 的最优加括号问题，其中各矩阵的维度为：
 
-1. the square immediately above the current square.
-2. the square that is one up and one to the left. (but only if the checker is not already in the leftmost column)
-3. the square that is one up and one to the right. (but only if the checker is not already in the rightmost column)
-
-Each time you move from square $x$ to square $y$, you receive $f(x, y)$ dollars. You are given $f(x, y)$ for all pairs $(x, y)$ for which a move from x to y is legal. Give an $O(n^2)$ dynamic programming algorithm that figures out the set of moves that will move the checker from somewhere along the bottom edge to somewhere along the top edge while gathering as many dollars as possible. Your algorithm is free to pick any square along the top edge as a destination in order to maximize the number of dollars gathered along the way.
-
-<details>
-
-带权格子路径题，允许往正上，左上，右上三个方向走，每个格子都有一个价值，目标是从底到顶最大化价值。
-这一类题其实挺简单的，本质上是遍历然后比较。
-
-1. 画一个 n x n 的表格，最下面一行是 0 行
-2. 0 行的每个格子都初始化为 0
-3. 由下到上逐行遍历：
-   1. 找出当前格子可能的来向
-   2. 计算每个来向的价值
-   3. 记录最大值的来向
-4. 填到顶行后找最大值
-5. 从最大值反向推导路径
-
-</details>
+- $A_1$: $10 \times 5$
+- $A_2$: $5 \times 15$
+- $A_3$: $15 \times 5$
+- $A_4$: $5 \times 20$
+- $A_5$: $20 \times 10$
 
 # 最优括号化
 
@@ -231,12 +215,40 @@ $$
 
 断在 $k=2$（即 $A_2$ 与 $A_3$ 之间）。
 
+<div>
 $$
 m[1,5]_2
       = \underbrace{m[1,2]}_{\text{左子链}}
       + \underbrace{m[3,5]}_{\text{右子链}}
-      + \underbrace{p_{0}\,p_{2}\,p_{5}}_{\text{“外壳”一次乘}}
+      + \underbrace{p_{0},p_{2},p_{5}}_{\text{“外壳”一次乘}}
 $$
+</div>
+
+</details>
+
+# 网格最大成本寻路
+
+Suppose that you are given a $n \times n$ checkerboard and a checker. You must move the checker from the bottom edge of the board to the top edge of the board according to the following rules. At each step you may move the checker to one of three squares:
+
+1. the square immediately above the current square.
+2. the square that is one up and one to the left. (but only if the checker is not already in the leftmost column)
+3. the square that is one up and one to the right. (but only if the checker is not already in the rightmost column)
+
+Each time you move from square $x$ to square $y$, you receive $f(x, y)$ dollars. You are given $f(x, y)$ for all pairs $(x, y)$ for which a move from x to y is legal. Give an $O(n^2)$ dynamic programming algorithm that figures out the set of moves that will move the checker from somewhere along the bottom edge to somewhere along the top edge while gathering as many dollars as possible. Your algorithm is free to pick any square along the top edge as a destination in order to maximize the number of dollars gathered along the way.
+
+<details>
+
+带权格子路径题，允许往正上，左上，右上三个方向走，每个格子都有一个价值，目标是从底到顶最大化价值。
+这一类题其实挺简单的，本质上是遍历然后比较。
+
+1. 画一个 n x n 的表格，最下面一行是 0 行
+2. 0 行的每个格子都初始化为 0
+3. 由下到上逐行遍历：
+   1. 找出当前格子可能的来向
+   2. 计算每个来向的价值
+   3. 记录最大值的来向
+4. 填到顶行后找最大值
+5. 从最大值反向推导路径
 
 </details>
 
@@ -339,6 +351,20 @@ $$
 
 </details>
 
+## 练习 1
+
+X = (A, B, C, B, C, D, A, B)
+Y = (D, A, A, B, C, B, A, A, B)
+
+答案是 ABCBAB，做吧。
+
+## 练习 2
+
+给出一个动态规划解法，用于解决最长公共子序列问题，两个序列如下：
+
+- X：$(a, b, c, b, a, b, c, b)$
+- Y：$(b, a, c, b, b, a, c, c, b)$
+
 # 背包问题
 
 Run the dynamic programming algorithm to the knapsack problem for items:
@@ -350,8 +376,43 @@ Run the dynamic programming algorithm to the knapsack problem for items:
 
 and knapsack capacity 11.
 
+<details>
+</details>
+
+## 练习
+
+| i     | 1   | 2   | 3   | 4   | 5   | 6   | 7   |
+| ----- | --- | --- | --- | --- | --- | --- | --- |
+| $w_i$ | 3   | 4   | 1   | 3   | 2   | 1   | 1   |
+| $v_i$ | 60  | 10  | 50  | 20  | 40  | 50  | 40  |
+
+and knapsack capacity 11.
+
 # 最大收益
 
 Suppose you are managing a consulting team of expert computer hackers, and each week you have to choose a job for them to undertake. Now, as you can well imagine, the set of possible jobs is divided into those that are low-stress, and those that are high-stress. The basic question, each week, is whether to take on a low-stress job or a high-stress job. If you select a low-stress job for your team in week $i$, then you get a revenue of $l_i > 0$ dollars. If you select a high-stress job, you get a revenue of $h_i > 0$ dollars. The catch, however, is that in order for the team to take on a high-stress job in week $i$, it's required that they do no job in week $i - 1$. On the other hand, it's OK for the team to take a low-stress job in week $i$ even if they have done a job in week $i - 1$.
 
 So, given a sequence of $n$ weeks, a plan is specified by a choice of low, high, none for each of the $n$ weeks, which the property that if high is chosen for week $i > 1$, the none has to be chose for week $i - 1$. (1st week can be high) The value of the plan is determined in the natural way: for each $i$ you add $(h/l/n)_i$ to the value of you chose high in week $i$. Give an efficient dynamic programming algorithm that take values for $l_1, l_2 \cdots l_n$ and $h_1, h_2 \cdots h_n$ and returns a plan of maximum value. Also give the running time of your algorithm.
+
+<details>
+</details>
+
+# 回文
+
+A **palindrome** is a nonempty string over some alphabet that reads the same forward and backward.
+Examples of palindromes are **CIVIC**, **NOON**, and **AIBOHPHOBIA** (fear of palindromes).
+
+Give an $O(n^2)$ **dynamic programming algorithm** that determines the **shortest string** which:
+
+- is a **palindrome**, and
+- contains a given string $s$ of length $n$ as a **subsequence**.
+
+For example, given the string
+$s = \text{TWENTYONE}$,
+your algorithm might return the palindrome **TWENTOYOTNEWT**, because:
+
+- it contains $s$ as a subsequence, and
+- there is no shorter palindrome that satisfies this condition.
+
+<details>
+</details>
