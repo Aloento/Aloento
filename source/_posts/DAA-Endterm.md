@@ -489,5 +489,99 @@ your algorithm might return the palindrome **TWENTOYOTNEWT**, because:
 - there is no shorter palindrome that satisfies this condition.
 
 <details>
-</details>
+
+这种带左右两边状态的题，照样给出 $dp[i][j]$ 表，表示从第 i 个字符到第 j 个字符的最短回文，所有的对角线是自己。
+
+每个格子：
+
+- 如果 $s[i] = s[j]$，那么 $dp[i][j] = s[i] + dp[i+1][j-1] + s[j]$
+
+左右相同，直接将其作为回文的两侧，继续处理中间部分
+
+- 如果 $s[i] \neq s[j]$，那么
+
+```python
+dp[i][j] = min(s[i] + dp[i+1][j] + s[i],
+               s[j] + dp[i][j-1] + s[j],
+               key=len)
 ```
+
+左右不同，有两种插法：在左边插一个右边的字母，或者在右边插一个左边的字母。我们取最短的结果。
+
+| i\j | T   | W   | E   | N   | T   | Y   | O   | N   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| T   | T   |     |     |     |     |     |     |     |
+| W   |     | W   |     |     |     |     |     |     |
+| E   |     |     | E   |     |     |     |     |     |
+| N   |     |     |     | N   |     |     |     |     |
+| T   |     |     |     |     | T   |     |     |     |
+| Y   |     |     |     |     |     | Y   |     |     |
+| O   |     |     |     |     |     |     | O   |     |
+| N   |     |     |     |     |     |     |     | N   |
+
+看到 T 和 W 不同，则任选 TWT 或 WTW 填入 $d[0][1]$，以此类推
+
+| i\j | T   | W   | E   | N   | T   | Y   | O   | N   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| T   | T   | TWT |     |     |     |     |     |     |
+| W   |     | W   | WEW |     |     |     |     |     |
+| E   |     |     | E   | ENE |     |     |     |     |
+| N   |     |     |     | N   | NTN |     |     |     |
+| T   |     |     |     |     | T   | TYT |     |     |
+| Y   |     |     |     |     |     | Y   | YOY |     |
+| O   |     |     |     |     |     |     | O   | ONO |
+| N   |     |     |     |     |     |     |     | N   |
+
+接下来看到 $dp[0][2]$，对应子串 $s[0..2]$，即 TWE，T 和 E 不同
+
+```python
+dp[0][2] = min(
+    s[0] + dp[1][2] + s[0],
+    s[2] + dp[0][1] + s[2],
+    key=len
+) = min(
+    "T" + "WEW" + "T",
+    "E" + "TWT" + "E",
+    key=len
+)
+```
+
+| i\j | T   | W   | E     | N     | T     | Y     | O     | N     |
+| --- | --- | --- | ----- | ----- | ----- | ----- | ----- | ----- |
+| T   | T   | TWT | TWEWT |       |       |       |       |       |
+| W   |     | W   | WEW   | WENEW |       |       |       |       |
+| E   |     |     | E     | ENE   | ENTNE |       |       |       |
+| N   |     |     |       | N     | NTN   | NTYTN |       |       |
+| T   |     |     |       |       | T     | TYT   | TYOYT |       |
+| Y   |     |     |       |       |       | Y     | YOY   | YONOY |
+| O   |     |     |       |       |       |       | O     | ONO   |
+| N   |     |     |       |       |       |       |       | N     |
+
+简而言之，i 配 下面的，j 配 左边的，然后看哪个更短，都一样就随便选。
+
+| i\j | T   | W   | E     | N       | T       | Y       | O       | N       |
+| --- | --- | --- | ----- | ------- | ------- | ------- | ------- | ------- |
+| T   | T   | TWT | TWEWT | TWENEWT |         |         |         |         |
+| W   |     | W   | WEW   | WENEW   | WENTNEW |         |         |         |
+| E   |     |     | E     | ENE     | ENTNE   | ENTYTNE |         |         |
+| N   |     |     |       | N       | NTN     | NTYTN   | NTYOYTN |         |
+| T   |     |     |       |         | T       | TYT     | TYOYT   | TYONOYT |
+| Y   |     |     |       |         |         | Y       | YOY     | YONOY   |
+| O   |     |     |       |         |         |         | O       | ONO     |
+| N   |     |     |       |         |         |         |         | N       |
+
+最终得到
+
+| i\j | T   | W   | E     | N       | T       | Y         | O           | N             | E             |
+| --- | --- | --- | ----- | ------- | ------- | --------- | ----------- | ------------- | ------------- |
+| T   | T   | TWT | TWEWT | TWENEWT | TWENEWT | YTWENEWTY | OYTWENEWTYO | TWENTYOYTNEWT | TWENTYOYTNEWT |
+| W   |     | W   | WEW   | WENEW   | WENTNEW | WENTYTNEW | WENTYOYTNEW | WENTYOYTNEW   | WENTYOYTNEW   |
+| E   |     |     | E     | ENE     | ENTNE   | ENTYTNE   | ENTYOYTNE   | ENTYOYTNE     | ENTYOYTNE     |
+| N   |     |     |       | N       | NTN     | NTYTN     | NTYOYTN     | NTYOYTN       | ENTYOYTNE     |
+| T   |     |     |       |         | T       | TYT       | TYOYT       | TYONOYT       | TYONENOYT     |
+| Y   |     |     |       |         |         | Y         | YOY         | YONOY         | YONENOY       |
+| O   |     |     |       |         |         |           | O           | ONO           | ONENO         |
+| N   |     |     |       |         |         |           |             | N             | NEN           |
+| E   |     |     |       |         |         |           |             |               | E             |
+
+</details>
