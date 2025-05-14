@@ -508,29 +508,25 @@ dp[i][j] = min(s[i] + dp[i+1][j] + s[i],
 
 左右不同，有两种插法：在左边插一个右边的字母，或者在右边插一个左边的字母。我们取最短的结果。
 
-| i\j | T   | W   | E   | N   | T   | Y   | O   | N   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| T   | T   |     |     |     |     |     |     |     |
-| W   |     | W   |     |     |     |     |     |     |
-| E   |     |     | E   |     |     |     |     |     |
-| N   |     |     |     | N   |     |     |     |     |
-| T   |     |     |     |     | T   |     |     |     |
-| Y   |     |     |     |     |     | Y   |     |     |
-| O   |     |     |     |     |     |     | O   |     |
-| N   |     |     |     |     |     |     |     | N   |
+| i\j | T   | W   | E   | N   | T   | Y   | O   |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| T   | T   |     |     |     |     |     |     |
+| W   |     | W   |     |     |     |     |     |
+| E   |     |     | E   |     |     |     |     |
+| N   |     |     |     | N   |     |     |     |
+| T   |     |     |     |     | T   |     |     |
+| Y   |     |     |     |     |     | Y   |     |
 
 看到 T 和 W 不同，则任选 TWT 或 WTW 填入 $d[0][1]$，以此类推
 
-| i\j | T   | W   | E   | N   | T   | Y   | O   | N   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| T   | T   | TWT |     |     |     |     |     |     |
-| W   |     | W   | WEW |     |     |     |     |     |
-| E   |     |     | E   | ENE |     |     |     |     |
-| N   |     |     |     | N   | NTN |     |     |     |
-| T   |     |     |     |     | T   | TYT |     |     |
-| Y   |     |     |     |     |     | Y   | YOY |     |
-| O   |     |     |     |     |     |     | O   | ONO |
-| N   |     |     |     |     |     |     |     | N   |
+| i\j | T   | W   | E   | N   | T   | Y   | O   |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| T   | T   | TWT |     |     |     |     |     |
+| W   |     | W   | WEW |     |     |     |     |
+| E   |     |     | E   | ENE |     |     |     |
+| N   |     |     |     | N   | NTN |     |     |
+| T   |     |     |     |     | T   | TYT |     |
+| Y   |     |     |     |     |     | Y   | YOY |
 
 接下来看到 $dp[0][2]$，对应子串 $s[0..2]$，即 TWE，T 和 E 不同
 
@@ -546,42 +542,36 @@ dp[0][2] = min(
 )
 ```
 
-| i\j | T   | W   | E     | N     | T     | Y     | O     | N     |
-| --- | --- | --- | ----- | ----- | ----- | ----- | ----- | ----- |
-| T   | T   | TWT | TWEWT |       |       |       |       |       |
-| W   |     | W   | WEW   | WENEW |       |       |       |       |
-| E   |     |     | E     | ENE   | ENTNE |       |       |       |
-| N   |     |     |       | N     | NTN   | NTYTN |       |       |
-| T   |     |     |       |       | T     | TYT   | TYOYT |       |
-| Y   |     |     |       |       |       | Y     | YOY   | YONOY |
-| O   |     |     |       |       |       |       | O     | ONO   |
-| N   |     |     |       |       |       |       |       | N     |
+| i\j | T   | W   | E     | N     | T     | Y     | O     |
+| --- | --- | --- | ----- | ----- | ----- | ----- | ----- |
+| T   | T   | TWT | TWEWT |       |       |       |       |
+| W   |     | W   | WEW   | WENEW |       |       |       |
+| E   |     |     | E     | ENE   | ENTNE |       |       |
+| N   |     |     |       | N     | NTN   | NTYTN |       |
+| T   |     |     |       |       | T     | TYT   | TYOYT |
+| Y   |     |     |       |       |       | Y     | YOY   |
 
 简而言之，i 配 下面的，j 配 左边的，然后看哪个更短，都一样就随便选。
 
-| i\j | T   | W   | E     | N       | T       | Y       | O       | N       |
-| --- | --- | --- | ----- | ------- | ------- | ------- | ------- | ------- |
-| T   | T   | TWT | TWEWT | TWENEWT |         |         |         |         |
-| W   |     | W   | WEW   | WENEW   | WENTNEW |         |         |         |
-| E   |     |     | E     | ENE     | ENTNE   | ENTYTNE |         |         |
-| N   |     |     |       | N       | NTN     | NTYTN   | NTYOYTN |         |
-| T   |     |     |       |         | T       | TYT     | TYOYT   | TYONOYT |
-| Y   |     |     |       |         |         | Y       | YOY     | YONOY   |
-| O   |     |     |       |         |         |         | O       | ONO     |
-| N   |     |     |       |         |         |         |         | N       |
+| i\j | T   | W   | E     | N       | T       | Y       | O       |
+| --- | --- | --- | ----- | ------- | ------- | ------- | ------- |
+| T   | T   | TWT | TWEWT | TWENEWT |         |         |         |
+| W   |     | W   | WEW   | WENEW   | WENTNEW |         |         |
+| E   |     |     | E     | ENE     | ENTNE   | ENTYTNE |         |
+| N   |     |     |       | N       | NTN     | NTYTN   | NTYOYTN |
+| T   |     |     |       |         | T       | TYT     | TYOYT   |
+| Y   |     |     |       |         |         | Y       | YOY     |
 
 最终得到
 
 | i\j | T   | W   | E     | N       | T       | Y         | O           | N             | E             |
 | --- | --- | --- | ----- | ------- | ------- | --------- | ----------- | ------------- | ------------- |
-| T   | T   | TWT | TWEWT | TWENEWT | TWENEWT | YTWENEWTY | OYTWENEWTYO | TWENTYOYTNEWT | TWENTYOYTNEWT |
-| W   |     | W   | WEW   | WENEW   | WENTNEW | WENTYTNEW | WENTYOYTNEW | WENTYOYTNEW   | WENTYOYTNEW   |
-| E   |     |     | E     | ENE     | ENTNE   | ENTYTNE   | ENTYOYTNE   | ENTYOYTNE     | ENTYOYTNE     |
-| N   |     |     |       | N       | NTN     | NTYTN     | NTYOYTN     | NTYOYTN       | ENTYOYTNE     |
-| T   |     |     |       |         | T       | TYT       | TYOYT       | TYONOYT       | TYONENOYT     |
-| Y   |     |     |       |         |         | Y         | YOY         | YONOY         | YONENOY       |
-| O   |     |     |       |         |         |           | O           | ONO           | ONENO         |
-| N   |     |     |       |         |         |           |             | N             | NEN           |
-| E   |     |     |       |         |         |           |             |               | E             |
+| T   | T   | TWT | ETWTE | NETWTEN | TNEWENT | YTNEWENTY | OYTNEWENTYO | NOYTNEWENTYON | TWENOTYTONEWT |
+| W   |     | W   | EWE   | NEWEN   | TNEWENT | WENTYTNEW | OWENTYTNEWO | WENOTYTONEW   | WENOTYTONEW   |
+| E   |     |     | E     | ENE     | ENTNE   | ENTYTNE   | ENOTYTONE   | ENOTYTONE     | ENOTYTONE     |
+| N   |     |     |       | N       | NTN     | NTYTN     | NOTYTON     | NOTYTON       | ENOTYTONE     |
+| T   |     |     |       |         | T       | TYT       | OTYTO       | NOTYTON       | ENOTYTONE     |
+
+正确答案不止一个
 
 </details>
