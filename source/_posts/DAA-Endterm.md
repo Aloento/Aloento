@@ -436,6 +436,39 @@ Suppose you are managing a consulting team of expert computer hackers, and each 
 So, given a sequence of $n$ weeks, a plan is specified by a choice of low, high, none for each of the $n$ weeks, which the property that if high is chosen for week $i > 1$, the none has to be chose for week $i - 1$. (1st week can be high) The value of the plan is determined in the natural way: for each $i$ you add $(h/l/n)_i$ to the value of you chose high in week $i$. Give an efficient dynamic programming algorithm that take values for $l_1, l_2 \cdots l_n$ and $h_1, h_2 \cdots h_n$ and returns a plan of maximum value. Also give the running time of your algorithm.
 
 <details>
+
+还是一样列出 $dp[i]$ 表，表示到第 i 周的最大收益。我们有三种选择：
+
+1. 选择低压力工作，收益 $l_i$，那么 $dp[i] = dp[i-1] + l_i$（上周收入加这周）
+2. 选择高压力工作，收益 $h_i$，那么 $dp[i] = dp[i-2] + h_i$（上周不能工作）
+3. 不选择工作，收益 0，$dp[i] = dp[i-1]$
+
+假设 l 是 [1..5]，h 是 [6..10]，n = 5。填表的时候每次都找出最大值：
+
+```python
+dp[0] = 0
+dp[1] = max(0 + l[1], h[1]) = max(1, 6) = 6
+
+dp[2] = max(
+    dp[1],               # 不做
+    dp[1] + l[2],        # 做低压
+    dp[0] + h[2]         # 做高压（前一周不能做）
+) = max(6, 6+2, 0+7) = max(6, 8, 7) = 8
+```
+
+以此类推，得到
+
+| i   | l[i] | h[i] | dp[i] | 选择 |
+| --- | ---- | ---- | ----- | ---- |
+| 0   | -    | -    | 0     | 无   |
+| 1   | 1    | 6    | 6     | high |
+| 2   | 2    | 7    | 8     | low  |
+| 3   | 3    | 8    | 14    | high |
+| 4   | 4    | 9    | 18    | low  |
+| 5   | 5    | 10   | 24    | high |
+
+反推从最后一行看选择，$dp[5] = dp[3] + h[5]$，所以第五周高，第四周休息，然后从第三周继续推。24 就是最大收益。算法是线性复杂度 O(n)。
+
 </details>
 
 # 回文
@@ -457,3 +490,4 @@ your algorithm might return the palindrome **TWENTOYOTNEWT**, because:
 
 <details>
 </details>
+```
