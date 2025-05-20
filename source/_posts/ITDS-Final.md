@@ -15,7 +15,7 @@ date: 2025-05-05 14:13:32
 
 ## Missing Values
 
-Explain how would you pre-process the data if you would like to use linear classification/regression methods and the data would contain only categorical/nominal attributes. What could we do with missing values in this case?  
+Explain how would you pre-process the data if you would like to use linear classification/regression methods and the data would contain only categorical/nominal attributes. What could we do with missing values in this case?
 
 <details>
 解释如果您希望使用线性分类/回归方法，并且数据仅包含分类/名义属性，您将如何预处理数据。在这种情况下，我们可以如何处理缺失值？
@@ -23,7 +23,7 @@ Explain how would you pre-process the data if you would like to use linear class
 
 ## Evaluation
 
-Explain how internal and external evaluation of clusters work.  
+Explain how internal and external evaluation of clusters work.
 
 <details>
 解释聚类的内部评估和外部评估是如何工作的。
@@ -31,7 +31,7 @@ Explain how internal and external evaluation of clusters work.
 
 ## Regularized LR
 
-Write down the objective function for regularized linear regression. Explain, under which values (high or small) of the regularization hyper-parameter, the resulting model will overfit or underfit.  
+Write down the objective function for regularized linear regression. Explain, under which values (high or small) of the regularization hyper-parameter, the resulting model will overfit or underfit.
 
 <details>
 写出正则化线性回归的目标函数。解释在正则化超参数的高值或低值下，模型会过拟合还是欠拟合。
@@ -39,7 +39,7 @@ Write down the objective function for regularized linear regression. Explain, un
 
 ## Error
 
-What is the relation between the prediction error on the test set and the model complexity?  
+What is the relation between the prediction error on the test set and the model complexity?
 
 <details>
 测试集上的预测误差与模型复杂度之间有什么关系？
@@ -47,7 +47,7 @@ What is the relation between the prediction error on the test set and the model 
 
 ## Binary
 
-What is a possible way to classify color images of animals to three different classes using binary classification methods? How would you represent the data? How would you do cross-validation in this case (i.e. how would you select the folds)?  
+What is a possible way to classify color images of animals to three different classes using binary classification methods? How would you represent the data? How would you do cross-validation in this case (i.e. how would you select the folds)?
 
 <details>
 使用二元分类方法将动物的彩色图像分类为三个不同类别的一种可能方法是什么？您将如何表示数据？在这种情况下，您将如何进行交叉验证（即，您将如何选择折叠）？
@@ -57,7 +57,7 @@ What is a possible way to classify color images of animals to three different cl
 
 ## Metric
 
-Verify if $\mathbf{d(x,y)} = \max(|x - y|, 1)$ a distance measure for two binary strings $x$ and $y$ of equal length satisfies the properties of a metric.  
+Verify if $\mathbf{d(x,y)} = \max(|x - y|, 1)$ a distance measure for two binary strings $x$ and $y$ of equal length satisfies the properties of a metric.
 
 <details>
 
@@ -67,7 +67,7 @@ Verify if $\mathbf{d(x,y)} = \max(|x - y|, 1)$ a distance measure for two binary
 
 ## Linkage
 
-Provide a scenario or a dataset where complete linkage clustering would be less effective and justify your reasoning.  
+Provide a scenario or a dataset where complete linkage clustering would be less effective and justify your reasoning.
 
 <details>
 提供一个完整链接聚类效果较差的场景或数据集，并说明您的理由。
@@ -75,17 +75,17 @@ Provide a scenario or a dataset where complete linkage clustering would be less 
 
 ## Equation
 
-Given the following equation: $\sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p}\beta_j^2$, what do the components of this equation represent? Discuss the impact of using very small and very large values of $\lambda$.  
+Given the following equation: $\sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p}\beta_j^2$, what do the components of this equation represent? Discuss the impact of using very small and very large values of $\lambda$.
 
 <details>
 
-给定以下方程：$ \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p}\beta_j^2 $，该方程的各部分代表什么？讨论使用非常小和非常大的 $\lambda$ 值的影响。
+给定以下方程：$ \sum*{i=1}^{n}(y_i - \hat{y}\_i)^2 + \lambda \sum*{j=1}^{p}\beta_j^2 $，该方程的各部分代表什么？讨论使用非常小和非常大的 $\lambda$ 值的影响。
 
 </details>
 
 ## Multi-Class
 
-How can logistic regression be modified to perform multi-class classification?  
+How can logistic regression be modified to perform multi-class classification?
 
 <details>
 如何修改逻辑回归以执行多类分类？
@@ -93,8 +93,149 @@ How can logistic regression be modified to perform multi-class classification?
 
 ## k-Fold
 
-Explain the concept of k-fold cross-validation and describe the steps involved in performing it.  
+Explain the concept of k-fold cross-validation and describe the steps involved in performing it.
 
 <details>
 解释 k 折交叉验证的概念，并描述执行它所涉及的步骤。
 </details>
+
+# 2025-5-13
+
+1. In supervised learning, what is assumed about the relationship between input and output?
+
+   - There is no relationship.
+   - Output is random and unrelated to input.
+   - The input is a function of the output.
+   - There is a true functional relationship $f : \mathcal{X} \rightarrow \mathcal{Y}$.
+
+2. What is a primary risk of setting $K = 1$ in KNN?
+
+   - Underfitting.
+   - Slow inference.
+   - High bias.
+   - High variance.
+
+3. In KNN, how the proximity in continuous feature spaces is computed?
+
+   - $L_1$ norm.
+   - Hamming distance.
+   - $L_2$ norm.
+   - Cosine distance.
+
+4. How does increasing the value of K in KNN typically affect model behavior?
+
+   - It reduces both bias and variance.
+   - It increases variance and decreases bias.
+   - It decreases variance and increases bias.
+   - It has no effect on model generalization.
+
+5. Which of the following characterizes the fundamental distinction between classification and regression?
+
+   - Classification models learn a mapping to a probability distribution over discrete categories, whereas regression models learn a mapping to a continuous-valued function.
+   - Both tasks model continuous outputs but differ in their feature extraction techniques.
+   - Classification involves fitting continuous target variables with discrete output models, while regression discretizes continuous inputs.
+   - Regression aims to partition the input space into finite regions, while classification fits a continuous response surface.
+
+6. $p(y = C \mid x) = \frac{1}{1 + \sum_{c=1}^{C-1} \exp(\beta_c^T x)}$
+   The equation represents:
+
+   - The probability of class C in a softmax function used for multi-class classification.
+   - The probability of class C in a one-vs-rest logistic regression model.
+   - The probability of class C in a multinomial logistic regression model with class C as the reference class.
+   - The posterior probability of the most likely class in a Naive Bayes classifier.
+
+7. In logistic regression, the log-odds are modeled as:
+
+   - $p = x / \beta$
+   - $y = \beta_0 + \beta_1 x$
+   - $\log(\text{odds}) = \beta_0 + \beta_1 x$
+   - odds = $x^2$
+
+8. In Weighted KNN, how are the votes from neighbors typically weighted?
+
+   - Neighbors closer to the query point contribute more weight.
+   - Each neighbor contributes equally, regardless of distance.
+   - Weights are assigned randomly to each neighbor.
+   - Only the single closest neighbor contributes to the prediction.
+
+9. What type of model is KNN considered?
+
+   - Semi-parametric.
+   - Parametric.
+   - Non-parametric.
+   - Deterministic.
+
+10. Which of the following is a benefit of standardizing features in KNN?
+
+    - Ensures distance metrics are meaningful.
+    - Reduces variance.
+    - Reduces overfitting.
+    - Improves interpretability.
+
+11. What does the sigmoid function return values between?
+
+    - $[0, 1]$
+    - $[-1, 1]$
+    - $[0, \infty)$
+    - $(-\infty, \infty)$
+
+12. The output of logistic regression is interpreted as:
+
+    - Distance from hyperplane.
+    - Number of features.
+    - Probability of belonging to class 1.
+    - Logarithm of class frequencies.
+
+13. What is a potential drawback of LOOCV (Leave-One-Out Cross-Validation)?
+
+    - High variance.
+    - Overfitting.
+    - High computation cost.
+    - Uses too little data.
+
+14. In k-fold cross-validation, what happens in each iteration?
+
+    - Train on $k-1$ folds, validate on 1 fold.
+    - Train on one fold, test on the rest.
+    - Train on all data, test on one fold.
+    - Train on $k$ folds, validate on separate test data.
+
+15. What is the Bayes Error Rate?
+
+    - Maximum possible error.
+    - Theoretical minimum error.
+    - Error of the Bayes classifier on training data.
+    - Error when using nearest neighbors.
+
+16. What does the ROC AUC score measure in a classification model?
+
+    - The proportion of correctly predicted labels for each class.
+    - The trade-off between true positive rate and false positive rate across all thresholds.
+    - The accuracy of the model at a specific threshold.
+
+17. What is the main goal of cross-validation?
+
+    - Reduce training time.
+    - Reduce the number of parameters.
+    - Estimate model performance on unseen data.
+    - Maximize feature usage.
+
+18. Which task is best framed as a classification problem?
+
+    - Forecasting daily closing prices of a stock.
+    - Mapping images of digits to numerical labels.
+    - Predicting average monthly rainfall in mm.
+    - Estimating a car’s resale value based on mileage.
+
+19. Which of the following characterizes the fundamental distinction between classification and regression?
+
+    - Classification models learn a mapping to a probability distribution over discrete categories, whereas regression models learn a mapping to a continuous-valued function.
+    - Classification involves fitting continuous target variables with discrete output models, while regression discretizes continuous inputs.
+    - Regression aims to partition the input space into finite regions, while classification fits a continuous response surface.
+    - Both tasks model continuous outputs but differ in their feature extraction techniques.
+
+20. Why might the F1-score be misleading on an imbalanced dataset?
+    - It only considers the majority class.
+    - It is undefined when recall is 1.
+    - It assumes equal importance of precision and recall.
+    - It does not account for true negatives.
