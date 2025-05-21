@@ -47,7 +47,13 @@ Write down the objective function for regularized linear regression. Explain, un
 
 写出正则化线性回归的目标函数。解释在正则化超参数的高值或低值下，模型会过拟合还是欠拟合。
 
-Ridge: $\sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p}\beta_j^2$
+Ridge:
+
+<div>
+$$
+\sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p}\beta_j^2
+$$
+</div>
 
 $\lambda$ 大：简单，欠拟合
 $\lambda$ 小：复杂，过拟合
@@ -113,11 +119,19 @@ Provide a scenario or a dataset where complete linkage clustering would be less 
 
 ## Equation
 
-Given the following equation: $\sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p}\beta_j^2$, what do the components of this equation represent? Discuss the impact of using very small and very large values of $\lambda$.
+Given the following equation:
+
+<div>
+$$
+\sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p}\beta_j^2
+$$
+</div>
+
+, what do the components of this equation represent? Discuss the impact of using very small and very large values of $\lambda$.
 
 <details>
 
-给定以下方程：$ \sum*{i=1}^{n}(y_i - \hat{y}\_i)^2 + \lambda \sum*{j=1}^{p}\beta_j^2 $，该方程的各部分代表什么？讨论使用非常小和非常大的 $\lambda$ 值的影响。
+该方程的各部分代表什么？讨论使用非常小和非常大的 $\lambda$ 值的影响。
 
 1. 第一项：训练误差，在训练集上的拟合程度
 2. L2 正则化项，控制模型复杂度
