@@ -142,9 +142,11 @@ $$
 
 - 每一步的更新公式
 
+<div>
 $$
 \mathbf{z}_t = \gamma \lambda \mathbf{z}_{t-1} + \nabla \hat{v}(S_t, \mathbf{w}_t)
 $$
+</div>
 
 - 资格迹 = 上一时刻的资格迹 × 衰减系数（γλ） + 当前的梯度
 
@@ -266,9 +268,11 @@ $$
    - 从 episode 开始到现在，把之前所有时间点的 λ-return 重新计算一遍
    - 因为现在有更多信息了，所以之前的更新也可以做得更准确
 
+<div>
 $$
 \mathbf{w}_{t+1} = \mathbf{w}_t + \alpha \left[ G_{t:h}^\lambda - \hat{v}(S_t, \mathbf{w}_t) \right] \nabla \hat{v}(S_t, \mathbf{w}_t)
 $$
+</div>
 
 当前的权重向量 $\mathbf{w}_t$ 用 λ-return（截断版）和当前估计的差值（TD 误差）乘以梯度进行更新。
 
@@ -303,9 +307,11 @@ $$
 
 2. 权重更新公式：
 
+   <div>
    $$
    \mathbf{w}_{t+1} = \mathbf{w}_t + \alpha \delta_t \mathbf{z}_t + \alpha \left( \mathbf{w}   _t^\top \mathbf{x}_t - \mathbf{w}_{t-1}^\top \mathbf{x}_t \right) \left( \mathbf{z}_t -   \mathbf{x}_t \right)
    $$
+   </div>
 
    - `δₜ` 是 TD 误差：
 
@@ -318,8 +324,10 @@ $$
 
 3. 资格迹更新公式（Dutch trace）
 
+   <div>
    $$
    \mathbf{z}_t = \gamma \lambda \mathbf{z}_{t-1} + \left(1 - \alpha \gamma \lambda \mathbf{z}_    {t-1}^\top \mathbf{x}_t \right) \mathbf{x}_t
    $$
+   </div>
 
    加入了一个修正系数，Dutch trace，它能更好地保持数值稳定性和理论等价性，是 True Online TD(λ) 独有的更 新方式。
