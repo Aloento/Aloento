@@ -110,6 +110,69 @@ Canonical 标准控制回路包含：
 
 ### Signal（信号）
 
+> Signal can be anything. Physical state changes during time.
+
+信号就是“随时间变化的物理量”。
+
+> 例子：电压、温度、声音、光强等。
+
+Signal = Information + Noise
+
+> Information: useful part  
+> Noise: unwanted disturbance
+
+信号里有有用信息，也不可避免包含噪声。
+“为什么需要滤波？” → 因为要去掉噪声。
+
+---
+
+信号在通信系统中从哪里来？
+
+> Transmitter → Channel → Receiver（噪声混入在 Channel）
+
+信号从发送端传输到接收端，在通道里受到噪声干扰。
+
+---
+
+信号的类型：
+
+按数学可预测性分类
+
+- **Deterministic（确定性）**：能精确用数学表达
+- **Stochastic（随机/非确定性）**：有不确定性
+
+按统计性质分类
+
+- Ergodic：时间平均 = 集合平均
+- Not ergodic：不能预测
+
+> 平稳、统计规律可掌握的叫“遍历”；过于随机的叫“非遍历”。
+
+按表示方式
+
+- **Analog（模拟）**：连续变化
+- **Digital（数字）**：离散值
+
+> 模拟信号连续且无限取值；数字信号离散，有具体的数值。
+
+按时间特性
+
+- Periodic（周期）
+- General periodic
+- Quasiperiodic（准周期）
+- Transient（瞬态）
+- Not periodic（非周期）
+
+> 周期信号会重复；非周期信号不重复；瞬态信号只在短时间出现。
+
+按时间/幅度离散性分类
+
+- Discrete in time （采样信号）
+- Discrete in amplitude （量化信号）
+- Discrete in time and amplitude（数字信号）
+
+> 数字信号是“时间和幅度都离散”。
+
 #### Types of Signals Based on the Time/Value Quantization（基于时间/数值量化的信号类型）
 
 #### Signal Preprocessing Methods（信号预处理方法）
