@@ -175,6 +175,33 @@ Signal = Information + Noise
 
 #### Types of Signals Based on the Time/Value Quantization（基于时间/数值量化的信号类型）
 
+Discrete in Time
+
+- 只在特定时间点取样
+- 每个样本仍然可以是**连续的模拟值**
+
+> 每 1 ms 采集一次传感器值（但值可任意连续）
+
+---
+
+Discrete in Amplitude
+
+- 时间可以连续
+- 但信号的数值只能取几个离散等级
+  （例如量化后的电压只能取 0.1、0.2、0.3 ……）
+
+> 幅度离散信号：数值被量化成有限等级，但时间是连续的。
+
+---
+
+Discrete in Time and Amplitude
+
+- 既不连续采样
+- 数值也只能是离散等级
+- 典型例子：所有计算机数字信号（0/1、ADC 输出）
+
+> 数字信号：时间与幅度都离散的信号，是计算机处理的主要形式。
+
 #### Signal Preprocessing Methods（信号预处理方法）
 
 #### Filter Types（滤波器类型）
