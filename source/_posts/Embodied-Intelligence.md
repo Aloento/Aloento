@@ -204,6 +204,49 @@ Discrete in Time and Amplitude
 
 #### Signal Preprocessing Methods（信号预处理方法）
 
+> “Signal conditioning: the manipulation of an analog signal in such a way that it meets the requirements of the next stage for further processing. amplification, filtering, converting, range matching, isolation.”  
+> “信号调理：对模拟信号进行处理，使其满足后续处理阶段的要求。包括放大、滤波、转换、量程匹配和隔离等操作。”
+
+Amplification（放大）
+
+- 原始传感器信号通常很弱
+- 必须放大才能让 A/D 转换器或控制器能准确读到
+
+---
+
+Filtering（滤波）
+
+- 去除噪声
+- 强调有用成分
+
+---
+
+Converting（转换）
+
+可能包括：
+
+- 模拟量 → 模拟量（如电压转电流）
+- 传感器输出格式转换
+- 信号单位转换
+
+---
+
+Range Matching（量程匹配）
+
+- 不同设备对信号幅度有不同要求  
+  例如：  
+  A/D 输入范围 0–3.3V  
+  但传感器输出可能是 0–10V 或 0–0.1V  
+  所以必须调整量程。
+
+---
+
+Isolation（隔离）
+
+- 防止高压、高噪声损坏微控制器
+- 通常通过光耦合、隔离放大器实现
+- 在工业系统中很常见
+
 #### Filter Types（滤波器类型）
 
 ### Microprocessor as the Computational Unit of the Embedded Systems（微处理器作为嵌入式系统的计算单元）
