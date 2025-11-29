@@ -121,7 +121,7 @@ Signal = Information + Noise
 > Information: useful part  
 > Noise: unwanted disturbance
 
-信号里有有用信息，也不可避免包含噪声。
+信号里有有用信息，也不可避免包含噪声。  
 “为什么需要滤波？” → 因为要去掉噪声。
 
 ---
@@ -248,6 +248,60 @@ Isolation（隔离）
 - 在工业系统中很常见
 
 #### Filter Types（滤波器类型）
+
+四种基础滤波器：
+**Low-pass, High-pass, Band-pass, Band-stop（或 Band-reject）**
+
+---
+
+Low-pass Filter（低通滤波器）
+
+> “Low-pass filter: low frequencies are passed, high frequencies are attenuated.”  
+> 低频能通过，高频被削弱（常用于去噪、去抖动）。
+
+---
+
+High-pass Filter（高通滤波器）
+
+> “High-pass filter: high frequencies are passed, low frequencies are attenuated.”  
+> 高频能通过，低频被削弱（用于检测快速变化、边缘检测）。
+
+---
+
+Band-pass Filter（带通滤波器）
+
+> “Band-pass filter: only frequencies in a frequency band are passed.”  
+> 只允许某一段频率范围通过，其它全部削弱（常用于信号分离）。
+
+---
+
+Band-stop Filter / Band-reject Filter（带阻 / 陷波滤波器）
+
+> “Band-stop filter: only frequencies in a frequency band are attenuated.”  
+> 阻止一段特定频率通过（比如去掉 50Hz 电源噪声）。
+
+---
+
+> “Ripples: fluctuations in the pass band or stop band.”
+
+Ripples（波纹）是通带或阻带中的幅度起伏。
+
+> “Transition region: region between passband and stopband.”
+
+Transition Region（过渡带）是从允许通过到需要衰减的中间区域。
+
+---
+
+Famous filter types
+
+- **Butterworth**：no ripple in pass and stop band, slow cutoff
+  无波纹，但截止最慢。
+- **Chebyshev I**：no ripple in stop band, moderate cutoff
+  通带有波纹，阻带无波纹，截止中等。
+- **Chebyshev II**：no ripple in pass band, moderate cutoff
+  通带无波纹，阻带有波纹，截止中等。
+- **Elliptic**：ripple in pass and stop band, fast cutoff
+  通带和阻带都有波纹，但截止最快（最陡峭）。
 
 ### Microprocessor as the Computational Unit of the Embedded Systems（微处理器作为嵌入式系统的计算单元）
 
