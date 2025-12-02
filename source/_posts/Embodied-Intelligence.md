@@ -294,18 +294,102 @@ Transition Region（过渡带）是从允许通过到需要衰减的中间区域
 
 Famous filter types
 
-- **Butterworth**：no ripple in pass and stop band, slow cutoff
+- **Butterworth**：no ripple in pass and stop band, slow cutoff  
   无波纹，但截止最慢。
-- **Chebyshev I**：no ripple in stop band, moderate cutoff
+- **Chebyshev I**：no ripple in stop band, moderate cutoff  
   通带有波纹，阻带无波纹，截止中等。
-- **Chebyshev II**：no ripple in pass band, moderate cutoff
+- **Chebyshev II**：no ripple in pass band, moderate cutoff  
   通带无波纹，阻带有波纹，截止中等。
-- **Elliptic**：ripple in pass and stop band, fast cutoff
+- **Elliptic**：ripple in pass and stop band, fast cutoff  
   通带和阻带都有波纹，但截止最快（最陡峭）。
 
 ### Microprocessor as the Computational Unit of the Embedded Systems（微处理器作为嵌入式系统的计算单元）
 
+- 微处理器是系统的**主计算单元**
+- 在这里完成 **信号处理（signal processing）**
+- **决策（decision making）**
+- 生成控制信号（intervening signal generation）
+- 以及 **通信（communication）**
+- 在系统中，它的角色相当于 **“大脑（Human brain）”**
+
+微处理器是夹在感知与动作中间、负责“理解 → 计算 → 命令”的核心部分。
+
+---
+
+微处理器做的四类任务：
+
+1. Signal Processing （信号处理）
+2. Decision Making （决策）
+3. Intervening Signal Generation （生成控制信号）
+4. Communication （通信）
+
 #### Most Used Peripherals（最常用的外围设备）
+
+> “Most widely used protocols in embedded systems:  
+> UART, SPI, I2C, CAN bus, ModBus, FLEXRAY”
+
+- **Timers（定时器）**（用于 PWM、时序控制）
+- **PWM 单元**（Pulse Width Modulation）
+- **ADC（模数转换器）**
+- **DAC（数模转换器）**
+- **Communication modules（通信模块）**
+
+---
+
+UART（通用异步收发器）
+
+- 最简单的串行通信方式
+- 常用于电脑 → 微控制器通信
+- 一次传一位，成本低
+
+---
+
+SPI（串行外设接口）
+
+- 高速
+- 主从结构
+- 常用于传感器、显示屏、存储芯片
+
+---
+
+I2C（双线通信）
+
+- 两根线（SDA + SCL）
+- 同一总线上可挂很多设备
+- 速率比 SPI 低但更简洁
+
+---
+
+CAN bus（控制器局域网）
+
+- 汽车行业最重要的通信总线
+- 稳定、抗干扰、可多节点
+
+---
+
+ModBus
+
+- 工业领域最经典协议
+- PLC、传感器都在用
+
+---
+
+FlexRay
+
+- 新一代车载高速通信
+- 用于自动驾驶与安全系统
+
+---
+
+ADC DAC
+
+Timers（定时器）
+
+> 定时器用于计时、产生 PWM、测量信号时序。
+
+PWM Unit（脉宽调制单元）
+
+> PWM 是用来模拟模拟量、控制电机和灯光的常用外设。
 
 #### I/O – Purpose and Usage（输入/输出 - 目的和用法）
 
