@@ -393,7 +393,79 @@ PWM Unit（脉宽调制单元）
 
 #### I/O – Purpose and Usage（输入/输出 - 目的和用法）
 
+> I/O 的目的就是让微处理器和外部世界沟通：读输入、发输出。
+
+---
+
+I/O 用途一：数字输入 / 数字输出（Digital I/O pins）
+
+> 数字 I/O 用于读高低电平信号（例如按钮、时钟、传感器输出），或输出高低电平控制外设。
+
+---
+
+I/O 用途二：模拟输入（Analog Input / ADC）
+
+> 模拟输入 I/O（ADC）用于读取连续变化的物理量。
+
+---
+
+I/O 用途三：模拟输出（Analog Output / DAC 或 PWM）
+
+> 输出 I/O 用于通过 DAC 或 PWM 生成执行器所需的信号。
+
+---
+
+I/O 用途四：通信 I/O
+
+> 通信 I/O 用于和传感器模块、显示屏、存储器、其他控制器交换数据。
+
 #### Timer – Purpose and Usage（定时器 - 目的和用法）
+
+> “Pulse Width Modulation
+> Used for imitation of analog signals with alternating ON-OFF cycles
+> Parameters: Frequency [Hz], Duty cycle [%]”
+
+---
+
+产生周期性时间（Frequency generation）
+
+PWM 的频率来自内部定时器
+
+这意味着 Timer 的目的之一是：
+
+> **提供精确、稳定的时间基准用于周期性事件。**
+
+---
+
+用于 PWM（控制电机/灯光）
+
+> **“Usage of PWM signal instead of analog signal for motor control.”**
+
+PWM 的本质是：
+
+- Timer 负责按照设定频率开关输出引脚
+- 根据占空比调节输出平均电压
+- 用来驱动电机、灯光等执行器
+
+所以 Timer 的第二个用途：
+
+> **通过 PWM 控制执行器。**
+
+---
+
+提供系统内部时序与同步（Synchronization）
+
+Timer 的第三个目的：
+
+> **生成同步信号，让系统中的外设保持正确时序。**
+
+---
+
+为软件提供周期性触发（周期性任务）
+
+- 每隔 1 ms 采样
+- 每隔 100 ms 执行一次控制算法
+- 产生定时中断
 
 #### AD/DA Converters – Purpose and Usage（模数/数模转换器 - 目的和用法）
 
