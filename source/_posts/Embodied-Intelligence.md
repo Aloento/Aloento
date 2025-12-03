@@ -603,7 +603,116 @@ FlexRay
 
 ### Sensors（传感器）
 
+> “In its broader definition, the purpose of a sensor is to detect a certain event, process or change in the environment and produce a corresponding output signal.”
+
+传感器的目的就是检测环境中的事件或变化，并产生对应的输出信号。
+
+Sensor 是 Transducer 的子类别
+
+- Transducer（换能器）是更大的类别：任何能把一种物理量转换成另一种的人
+- Sensor 是专门将物理量转换为 **信号（通常是电信号）** 的换能器
+
+- 传感器是机器人/嵌入式系统与环境之间的信息入口
+- 没有传感器，系统无法“看到”“听到”外部世界
+
+---
+
+Sensor 的 MUST 条件
+
+> “Unambiguous and reproducible signal  
+> Output only influenced by the input  
+> Linear relationship (weak requirement)  
+> Do not affect the measured system  
+> Immunity to external disturbances  
+> Output can be normalized.”
+
+- 信号必须明确且可重复（Unambiguous & reproducible）  
+  同样的输入应该产生同样的输出。
+
+- 输出只能由输入决定  
+  不能受到外界干扰。
+
+- 线性关系（理想但弱要求）  
+  输出随输入比例变化更易处理。
+
+- 不应影响被测系统  
+  例如温度传感器不能自己加热系统
+
+- 抗干扰能力强
+
+- 输出可归一化
+
+---
+
+Sensor 的分类
+
+机械类传感器（Mechanical）
+
+- 位置、速度、加速度
+- 力、扭矩
+- 压力
+
+热类传感器（Thermal）
+
+- 温度
+- 热流
+
+电类/磁类传感器（Electrical/Magnetic）
+
+- 电压、电流、电荷
+- 磁通、磁感应强度
+
+光学传感器（Optical）
+
+- 光强
+- 波长
+
+---
+
+传感器需要 Signal Conditioning（信号调理）  
+传感器输出通常很弱、不稳定，需要：
+
+- 放大（amplification）
+- 滤波（filtering）
+- 隔离（isolation）
+- 线性化（linearization）
+
 #### Mostly Measured Physical Quantities（主要测量的物理量）
+
+Mechanical Quantities（机械量）
+
+- Position（位置）
+- Velocity（速度）
+- Acceleration（加速度）
+- Angular position / velocity / acceleration（角位置、角速度、角加速度）
+- Force（力）
+- Torque（扭矩）
+- Pressure（压力）
+
+---
+
+Thermal Quantities（热量）
+
+- Temperature（温度）
+- Heat flux（热通量）
+- Radiation（辐射）
+
+---
+
+Electrical / Magnetic Quantities（电量 / 磁量）
+
+- Charge（电荷）
+- Voltage（电压）
+- Current（电流）
+- Magnetic induction（磁感应强度）
+- Magnetic flux（磁通）
+
+---
+
+Optical Quantities（光学量）
+
+- Light intensity（光强）
+- Wavelength（波长）
 
 #### Measurement in Mechanics（机械测量）
 
