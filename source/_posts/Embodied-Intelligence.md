@@ -520,7 +520,86 @@ PWM 的生成离不开比较器：
 
 #### Communication Protocols（通信协议）
 
+> “Most widely used protocols in embedded systems:
+> UART, SPI, I2C, CAN bus, ModBus, FLEXRAY”
+
+---
+
+通信协议就是**微处理器与外部设备交换数据的方法**。
+在嵌入式系统中，不同协议用于连接：
+
+- 传感器
+- 执行器
+- 存储器
+- 多个控制器
+- 外部总线（如汽车 CAN）
+
+控制器必须通过 I/O 与外部通信，因此通信协议是 CPU 的重要外设。
+
+---
+
+UART（Universal Asynchronous Receiver/Transmitter）
+
+- 异步串行通信
+- 只需要 TX、RX 两根线
+- 简单、常用于电脑与微控制器通信
+
+---
+
+SPI（Serial Peripheral Interface）
+
+- 高速
+- 主从结构（Master–Slave）
+- 常用于传感器、屏幕、存储器
+
+---
+
+I2C（Inter-Integrated Circuit）
+
+- 只有两根线：SCL + SDA
+- 可挂很多设备
+- 速度比 SPI 慢，但接线最简单
+
+---
+
+CAN bus（Controller Area Network）
+
+- 汽车行业最重要的通信协议
+- 抗干扰强
+- 多节点通信
+
+---
+
+ModBus
+
+- 工业自动化最经典协议
+- 常用于 PLC、工业传感器
+
+---
+
+FlexRay
+
+- 比 CAN 更高速
+- 用于自动驾驶、高安全需求系统
+
 #### Real-timeness（实时性）
+
+> “Real-time: The response of the system MUST follow deadlines.”
+
+**实时系统的关键是：系统必须在截止时间（deadline）之前给出响应。**
+
+> “The correctness of a real-time system depends not only on the logical results of the computations, but also on the time at which the results are produced.”
+
+**实时系统不仅要求结果正确，还要求结果在正确的时间产生。**
+
+实时系统不一定快，但必须准时。
+
+- 1 秒内必须响应的系统，0.2 秒和 0.9 秒都算正确
+- 但如果 1.1 秒才响应，即使非常快，也是不合格
+
+> 汽车刹车系统必须在规定时间内作出反应，否则会造成危险。
+
+实时系统的响应时间必须是可预测的，并且能被保证。
 
 ### Sensors（传感器）
 
