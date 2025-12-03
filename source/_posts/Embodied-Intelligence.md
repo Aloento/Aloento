@@ -716,9 +716,105 @@ Optical Quantities（光学量）
 
 #### Measurement in Mechanics（机械测量）
 
+Position（位置）
+
+- 包括线位移与角位移（angular position）
+- 用于测量物体在哪里、转动到什么角度
+
+典型传感器：
+
+- 位移传感器
+- 编码器（optical encoder）
+
+Velocity（速度）
+
+- 包括线速度与角速度（angular velocity）
+
+Acceleration（加速度）
+
+- 包括线加速度与角加速度
+- 加速度计（在 IMU 中使用）
+
+Force（力）
+
+- 衡量推、拉、压等外力
+
+Torque（扭矩）
+
+- 旋转方向的力（转动力）
+
+Pressure（压力）
+
+- 面积上的垂直力（机械测量也涵盖压力）
+
 #### Indirect Measurement Idea（间接测量思想）
 
+重量是如何通过一系列中间物理量间接得到的
+
+> Weight → Force → Mechanical stress → Deformation → Change in wire length → Change in wire resistance → Change in measured voltage
+
+重量无法直接测量 → 通过电压变化间接得到。重量 → 力 → 应力 → 变形 → 电阻 → 电压
+
+当我们不能直接测量一个物理量时，我们通过测量与它相关的其他物理量，并一步一步推导出最终要测的值，这就叫间接测量。
+
+传感器很少直接测量我们想要的物理量，而是通过一系列中间物理量转换后得到信号。
+
 #### Principle of the Optical Encoders（光学编码器的原理）
+
+光学编码器是一种利用光源与光接收器，通过检测遮光盘的透光/遮光模式，来测量转动位置或速度的传感器。
+
+光学编码器的工作原理：
+
+1. 安装一个带孔的转盘（disk with holes）  
+   这个转盘与被测设备（例如电机轴）连接。
+
+2. 光源照射，接收器测量光线通过/被遮挡
+
+   当转盘旋转时：
+
+   - 孔对准光源 → 光通过
+   - 没孔对准 → 光被挡住
+
+   这就形成了一个 **光的“开/关”信号**（digital pulses）。
+
+3. 通过“脉冲数量”测量运动  
+   转盘每旋转一小段，就会产生一个光脉冲。  
+   **脉冲数量 = 移动量（位置或角度）**。
+
+---
+
+如何测量方向？
+
+- 使用 **两个错位的接收器（A 和 B 通道）**
+- 当盘转动时，A、B 接收的光脉冲会有**相位差（phase shift）**
+
+如果：
+
+- A 先亮后 B → 向前
+- B 先亮后 A → 向后
+
+这就是 **Quadrature Encoding（正交编码）**。
+
+---
+
+光学编码器能测
+
+- Position（位置）
+  通过累计脉冲数。
+
+- Velocity（速度）
+  通过单位时间内脉冲数变化。
+
+- Direction（方向）
+  通过 A/B 两通道的相位差。
+
+---
+
+光学编码器精准
+
+- 光的开关非常快
+- 脉冲计数精确
+- 转盘孔的数量决定分辨率（resolution）
 
 ### Actuators（执行器）
 
