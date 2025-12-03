@@ -469,7 +469,54 @@ Timer 的第三个目的：
 
 #### AD/DA Converters – Purpose and Usage（模数/数模转换器 - 目的和用法）
 
+- 传感器输出一般是 **模拟信号（连续的电压）**
+- 微处理器只能处理 **数字信号（离散的数值）**  
+  → 必须使用 ADC 把模拟值转换成数字值。
+
+- 微处理器的运算和输出是 **数字值**
+- 很多执行器（如马达、音频、电压驱动装置）需要 **模拟电压或电流**  
+  → 必须用 DAC 将数字数值转换成模拟信号。
+
+- 没有 DAC 时，系统可以用 PWM“模拟”模拟电压
+
 #### Comparators（比较器）
+
+> “Comparison of the PWM controlling and analog controlling”  
+> “Usage of PWM signal instead of analog signal for motor control.”
+
+- 比较两个输入信号（通常是测量值 vs. 阈值）
+- 若输入大于参考值 → 输出高电平
+- 若输入小于参考值 → 输出低电平
+
+---
+
+阈值检测（Threshold detection）
+
+当传感器信号超过某个阈值时触发事件。
+
+---
+
+作为 PWM 的比较核心
+
+PWM 是由一个定时器的“锯齿波”与一个“参考电压”进行比较形成的。
+PPT 中强调：
+
+> **PWM is used instead of analog signal for motor control**
+
+PWM 的生成离不开比较器：
+
+- 当锯齿波 > 参考电压 → 输出低
+- 当锯齿波 < 参考电压 → 输出高
+
+---
+
+过流/过压保护（安全控制）
+
+作为模拟前端的一部分（Signal conditioning）
+
+> **Signal conditioning：amplification, filtering, converting…**
+
+比较器也是模拟信号调理中的常见模块，用于快速检测电平状态。
 
 #### Communication Protocols（通信协议）
 
