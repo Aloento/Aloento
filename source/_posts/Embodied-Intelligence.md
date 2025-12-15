@@ -881,3 +881,29 @@ Pressure（压力）
 ### Neurooscillator-based Locomotion Generation（基于神经振荡器的运动生成）
 
 ### Evolving a Sensory-Motor Interconnection Structure（进化感觉-运动互连结构）
+
+## Exam
+
+1.  Write a short essay [max 10-15 sentence] about the Braitenberg vehicles. Sketch at least 2 different vehicles and analyze their behavior. Make a summary conclusion about the topic.
+
+    写一篇关于布拉伊滕贝格小车的短文 [最多 10-15 句话]。请绘制至少 2 种不同的车辆草图并分析它们的行为。对该主题做一个总结性结论。
+
+2.  Choose one vehicle from Task1. Your task is to make a project proposal to the realization of the hardware.
+
+    从任务 1 中选择一种车辆。你的任务是为硬件实现制定一份项目提案。
+
+    a. Choose an actuator type option from the learnt ones and argue Your choice. [Compare the benefits and drawback with the other types.]
+
+        从学过的执行器类型中选择一种，并论证你的选择。[与其他类型比较优缺点。]
+
+    b. Make a simplified structural plan for the peripherals needed for the project [similar graph that we saw on lectures] and explain how You would use them in the project.
+
+        为项目所需的外设制定一个简化的结构规划图 [类似于我们在讲座中看到的图表]，并解释你将如何在项目中使用它们。
+
+3.  What are the main signal types?
+
+    主要的信号类型有哪些？
+
+4.  Draw a block diagram about the generalized control loop. What are the main components of it?
+
+    画出通用控制回路的框图。它的主要组成部分是什么？
