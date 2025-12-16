@@ -1,0 +1,3029 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>3D Computer Vision - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="我不中了"><meta property="og:type" content="blog"><meta property="og:title" content="3D Computer Vision"><meta property="og:url" content="https://aloen.to/AI/3D/3D-Computer-Vision/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="我不中了"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/img/og_image.png"><meta property="article:published_time" content="2025-12-16T10:19:27.000Z"><meta property="article:modified_time" content="2025-12-16T21:38:20.332Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="3D视觉"><meta property="article:tag" content="考试"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/AI/3D/3D-Computer-Vision/"},"headline":"3D Computer Vision","image":["https://aloen.to/img/og_image.png"],"datePublished":"2025-12-16T10:19:27.000Z","dateModified":"2025-12-16T21:38:20.332Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/AI/3D/3D-Computer-Vision/"}},"description":"我不中了"}</script><link rel="canonical" href="https://aloen.to/AI/3D/3D-Computer-Vision/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2025-12-16T10:19:27.000Z" title="12/16/2025, 10:19:27 AM">2025-12-16</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-12-16T21:38:20.332Z" title="12/16/2025, 9:38:20 PM">2025-12-17</time></span><span class="level-item"><a class="link-muted" href="/categories/AI/">AI</a><span> / </span><a class="link-muted" href="/categories/AI/3D/">3D</a></span><span class="level-item">an hour read (About 12463 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">3D Computer Vision</h1><div class="content"><p>我不中了</p>
+<span id="more"></span>
+
+<h2 id="Basic-Estimation-Theory"><a href="#Basic-Estimation-Theory" class="headerlink" title="Basic Estimation Theory"></a>Basic Estimation Theory</h2><p>估计 &#x3D; 给定很多不完美的观测，用数学找“最合理”的未知参数。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>齐次</th>
+<th>非齐次</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>方程</td>
+<td>Ax &#x3D; 0</td>
+<td>Ax &#x3D; b</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>最小 ‖Ax‖</td>
+<td>最小 ‖Ax − b‖</td>
+</tr>
+<tr>
+<td>约束</td>
+<td>‖x‖ &#x3D; 1</td>
+<td>无</td>
+</tr>
+<tr>
+<td>解法</td>
+<td>最小特征值 &#x2F; SVD</td>
+<td>正规方程</td>
+</tr>
+<tr>
+<td>典型任务</td>
+<td>Homography, F, Plane normal</td>
+<td>Line fitting, Calibration</td>
+</tr>
+</tbody></table>
+<h3 id="Solution-for-homogeneous-linear-system-of-equations"><a href="#Solution-for-homogeneous-linear-system-of-equations" class="headerlink" title="Solution for homogeneous linear system of equations"></a>Solution for homogeneous linear system of equations</h3><p>齐次线性方程组的解</p>
+<p>数学形式 $ A x &#x3D; 0 $</p>
+<p>想象你有很多“约束”，但<strong>它们都指向同一个方向</strong>。</p>
+<p>比如：</p>
+<ul>
+<li>多个点大致在一条直线上</li>
+<li>每个点都说一句话：“直线法向量应该满足这个关系”</li>
+</ul>
+<p>这些约束合起来就是：</p>
+<blockquote>
+<p><strong>“找到一个非零向量 x，让 Ax 尽量接近 0”</strong></p>
+</blockquote>
+<p>x &#x3D; 0 永远是解，但没意义</p>
+<p>所以我们强制一个约束：</p>
+<blockquote>
+<p><strong>‖x‖ &#x3D; 1（单位长度）</strong></p>
+</blockquote>
+<p>解：x 是 A 的<strong>最小奇异值（Singular value）对应的奇异向量</strong>。</p>
+<hr>
+<p>典型例子</p>
+<p>平面拟合 &#x2F; 直线拟合</p>
+<p>很多 3D 点 ≈ 在一个平面上：$ax + by + cz + d &#x3D; 0$</p>
+<p>→ 对每个点是一条齐次线性方程<br>→ 堆起来就是 (Ax &#x3D; 0)<br>→ 用 <strong>最小特征值（Eigenvalue）解</strong></p>
+<h3 id="Solution-for-inhomogeneous-linear-system-of-equations"><a href="#Solution-for-inhomogeneous-linear-system-of-equations" class="headerlink" title="Solution for inhomogeneous linear system of equations"></a>Solution for inhomogeneous linear system of equations</h3><p>非齐次线性方程组的解</p>
+<p>现在不是“全指向 0”，而是：</p>
+<blockquote>
+<p>每个观测点说：“结果应该是 b，但我有噪声”</p>
+</blockquote>
+<ul>
+<li>你问 100 个人体重</li>
+<li>每个人都给你一个“差不多”的数</li>
+<li>不可能完全一致</li>
+</ul>
+<hr>
+<p>核心思想：<strong>最小二乘</strong></p>
+<blockquote>
+<p>找一个 x，使 <strong>误差平方和最小</strong></p>
+</blockquote>
+<p>$\min_x |Ax - b|^2$</p>
+<hr>
+<p>解满足 <strong>正规方程（Normal Equation）</strong>：</p>
+<p>$A^T A x &#x3D; A^T b$</p>
+<p>→ 解为：</p>
+<p>$x &#x3D; (A^T A)^{-1} A^T b$</p>
+<hr>
+<p>几何解释</p>
+<blockquote>
+<p>Ax 是所有可能结果的一个子空间<br>b 被“投影”到这个子空间上<br>投影点就是最优解</p>
+</blockquote>
+<h2 id="Robust-Fitting-Methods"><a href="#Robust-Fitting-Methods" class="headerlink" title="Robust Fitting Methods"></a>Robust Fitting Methods</h2><p>最小二乘一遇到离群点（outliers）就会崩。</p>
+<ul>
+<li>你要用很多点拟合一条直线</li>
+<li>80% 的点在直线附近</li>
+<li>20% 是错误匹配（完全乱飞）</li>
+</ul>
+<p><strong>普通最小二乘</strong>会被这 20% “拉歪”<br><strong>RANSAC 的思想</strong>：</p>
+<blockquote>
+<p><strong>与其相信所有点，不如只相信“彼此一致”的点</strong></p>
+</blockquote>
+<p>RANSAC 的核心思想</p>
+<blockquote>
+<p><strong>随机抽最少点 → 建模型 → 看谁支持它 → 重复 → 选支持最多的模型</strong></p>
+</blockquote>
+<h3 id="The-RANSAC-method"><a href="#The-RANSAC-method" class="headerlink" title="The RANSAC method"></a>The RANSAC method</h3><p>Step 1：随机采样（Random Sampling）</p>
+<ul>
+<li>随机选 <strong>最小样本数</strong> 的点</li>
+<li>这个数量 &#x3D; <strong>模型所需的最小点数</strong></li>
+</ul>
+<p>例子：</p>
+<ul>
+<li>直线：2 点</li>
+<li>Homography：4 点</li>
+<li>Fundamental matrix：7 或 8 点</li>
+</ul>
+<p>这一步的假设是：</p>
+<blockquote>
+<p>“<strong>这一次，抽到的点全是 inliers</strong>”</p>
+</blockquote>
+<hr>
+<p>Step 2：模型估计（Model Estimation）</p>
+<ul>
+<li>用这几个点</li>
+<li>直接算一个模型（通常是<strong>线性解</strong>）</li>
+</ul>
+<p>例子：</p>
+<ul>
+<li>2 点 → 一条直线</li>
+<li>4 对点 → 一个 Homography</li>
+</ul>
+<hr>
+<p>Step 3：一致性检测（Consensus &#x2F; Inlier Test）</p>
+<ul>
+<li>用这个模型</li>
+<li><strong>测试所有数据点</strong></li>
+<li>计算误差（distance &#x2F; reprojection error）</li>
+</ul>
+<p>判断规则：</p>
+<blockquote>
+<p>“误差 &lt; 阈值 → inlier<br>误差 ≥ 阈值 → outlier”</p>
+</blockquote>
+<hr>
+<p>Step 4：记录支持度（Support）</p>
+<ul>
+<li><p>统计：</p>
+<blockquote>
+<p><strong>有多少 inliers 支持这个模型</strong></p>
+</blockquote>
+</li>
+<li><p>支持度 &#x3D; inlier 数量</p>
+</li>
+</ul>
+<hr>
+<p>Step 5：重复 + 选择最优</p>
+<ul>
+<li>重复以上步骤 N 次</li>
+<li>选择 <strong>inlier 数最多</strong> 的模型</li>
+</ul>
+<p>最后一步：</p>
+<blockquote>
+<p><strong>用所有 inliers 再做一次最小二乘精估</strong></p>
+</blockquote>
+<p>这是为什么 RANSAC 的结果不“粗糙”。</p>
+<hr>
+<p>RANSAC 是“在参数空间里做投票”</p>
+<ul>
+<li>每一次随机采样 → 提出一个假设</li>
+<li>每个数据点 → 给“支持 &#x2F; 不支持”投票</li>
+<li>得票最多的模型 → 胜出</li>
+</ul>
+<hr>
+<p>最小样本数</p>
+<ul>
+<li>由模型决定</li>
+<li>决定了 RANSAC 的“基本成本”</li>
+</ul>
+<p>阈值（Threshold）</p>
+<ul>
+<li>决定 inlier &#x2F; outlier</li>
+<li>太小 → 好点被误删</li>
+<li>太大 → 坏点混进来</li>
+</ul>
+<p>要跑多少次才够？</p>
+<blockquote>
+<p>“希望至少有一次，抽到的点全部是 inliers”</p>
+</blockquote>
+<hr>
+<p>优点</p>
+<ul>
+<li>对 outliers <strong>极其鲁棒</strong></li>
+<li>简单、通用</li>
+<li>和任何模型都能搭配</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>随机 → <strong>结果不完全确定</strong></li>
+<li>参数（阈值、次数）需要经验</li>
+<li>只能找到 <strong>一个模型</strong></li>
+</ul>
+<p>但真实数据里可能有多个模型</p>
+<h2 id="Multi-model-Fitting"><a href="#Multi-model-Fitting" class="headerlink" title="Multi-model Fitting"></a>Multi-model Fitting</h2><p>“RANSAC 只能找一个模型，那如果有多个模型怎么办？”</p>
+<p>真实世界里，数据往往不只来自一个模型。</p>
+<p>典型例子</p>
+<ul>
+<li>激光雷达点云：<strong>地面 + 墙 + 桌面</strong></li>
+<li>图像直线检测：<strong>多条直线</strong></li>
+<li>特征匹配：<strong>多个平面</strong></li>
+</ul>
+<p><strong>普通 RANSAC：</strong></p>
+<ul>
+<li>只能找到 <strong>inliers 最多的那一个模型</strong></li>
+<li>其他结构会被当成 outliers 丢掉</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Sequential RANSAC</th>
+<th>MultiRANSAC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>找一个，删一个</td>
+<td>多个一起找</td>
+</tr>
+<tr>
+<td>贪心</td>
+<td>全局视角</td>
+</tr>
+<tr>
+<td>简单</td>
+<td>更复杂</td>
+</tr>
+<tr>
+<td>易错</td>
+<td>更稳健</td>
+</tr>
+</tbody></table>
+<h3 id="Sequential-RANSAC"><a href="#Sequential-RANSAC" class="headerlink" title="Sequential RANSAC"></a>Sequential RANSAC</h3><p>一次只找一个模型，找到后把它删掉，再找下一个</p>
+<hr>
+<p>Step 1：在全部数据上跑 RANSAC</p>
+<ul>
+<li>得到 <strong>模型 M₁</strong></li>
+<li>得到它的 <strong>inliers 集合 I₁</strong></li>
+</ul>
+<hr>
+<p>Step 2：移除 inliers</p>
+<ul>
+<li>从数据集中删除 I₁</li>
+<li>剩下的点 ≈ 其他模型 + 噪声</li>
+</ul>
+<hr>
+<p>Step 3：在剩余数据上再跑 RANSAC</p>
+<ul>
+<li>得到 <strong>模型 M₂</strong></li>
+<li>得到 <strong>inliers I₂</strong></li>
+</ul>
+<hr>
+<p>Step 4：重复</p>
+<ul>
+<li><p>直到：</p>
+<ul>
+<li>剩余点太少</li>
+<li>或者 RANSAC 再也找不到“足够支持”的模型</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>形象比喻</p>
+<blockquote>
+<p>像剥洋葱<br>一层一层剥<br>每一层都是一个模型</p>
+</blockquote>
+<p>典型应用</p>
+<ul>
+<li>多条直线检测</li>
+<li>多个平面（尤其是 LiDAR &#x2F; depth 数据）</li>
+</ul>
+<hr>
+<p>优点</p>
+<ul>
+<li>非常简单</li>
+<li>基于标准 RANSAC</li>
+<li>容易实现、调试</li>
+</ul>
+<hr>
+<p>致命缺点</p>
+<blockquote>
+<p><strong>贪心（greedy）算法</strong></p>
+</blockquote>
+<p>具体问题：</p>
+<ul>
+<li>第一个模型如果估计得不好</li>
+<li>错误的 inliers 被删掉<br>→ 后面的模型<strong>永远找不到</strong></li>
+</ul>
+<h3 id="MultiRANSAC"><a href="#MultiRANSAC" class="headerlink" title="MultiRANSAC"></a>MultiRANSAC</h3><p>同时寻找多个模型，而不是一个一个删。</p>
+<blockquote>
+<p>RANSAC 不再只维护一个“最佳模型”，<br>而是维护 <strong>多个候选模型</strong>，<br>数据点可以在模型之间“竞争归属”。</p>
+</blockquote>
+<ol>
+<li><p><strong>大量随机采样</strong></p>
+</li>
+<li><p>生成许多模型假设</p>
+</li>
+<li><p>每个点计算：</p>
+<ul>
+<li>它对每个模型的误差</li>
+</ul>
+</li>
+<li><p>点被分配给：</p>
+<ul>
+<li>误差最小的模型</li>
+</ul>
+</li>
+<li><p>对每个模型：</p>
+<ul>
+<li>用自己的 inliers 重新估计</li>
+</ul>
+</li>
+<li><p>迭代直到稳定</p>
+</li>
+</ol>
+<p>本质类似：clustering + RANSAC</p>
+<hr>
+<p>优点</p>
+<ul>
+<li>不容易被早期错误带偏</li>
+<li>能处理 <strong>模型重叠</strong></li>
+<li>适合复杂场景</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>算法复杂</li>
+<li>参数多</li>
+<li>计算量大</li>
+<li>实现难度高</li>
+</ul>
+<hr>
+<p>什么时候用 Sequential RANSAC？<br>当模型之间分离得比较清楚</p>
+<p>什么时候用 MultiRANSAC？<br>模型数量未知<br>或多个模型规模接近<br>或模型有重叠</p>
+<h2 id="Camera-Models"><a href="#Camera-Models" class="headerlink" title="Camera Models"></a>Camera Models</h2><p>相机模型描述的是：3D 点如何变成 2D 像素。</p>
+<p>核心变量只有三个：</p>
+<ul>
+<li><strong>投影方式</strong></li>
+<li><strong>是否考虑深度变化</strong></li>
+<li><strong>自由度多少</strong></li>
+</ul>
+<h3 id="Perspective-camera"><a href="#Perspective-camera" class="headerlink" title="Perspective camera"></a>Perspective camera</h3><p>透视 &#x2F; 针孔相机</p>
+<blockquote>
+<p><strong>离相机近的物体看起来大，远的看起来小。</strong></p>
+</blockquote>
+<p>几何直觉</p>
+<ul>
+<li>所有光线经过一个点（焦点）</li>
+<li>3D 点 → 沿射线投影到成像平面</li>
+</ul>
+<hr>
+<p>$u \sim K ,[R \mid t], X$</p>
+<p>含义：</p>
+<ul>
+<li>$X$：世界坐标里的 3D 点</li>
+<li>$R,t$：相机姿态</li>
+<li>$K$：内参（焦距、主点等）</li>
+</ul>
+<p>齐次坐标，只有比例意义</p>
+<p>核心特性</p>
+<ul>
+<li><strong>有尺度歧义（scale ambiguity）</strong></li>
+<li>深度 $Z$ 决定成像大小：<br>$u \propto \frac{1}{Z}$</li>
+</ul>
+<hr>
+<p>优点</p>
+<ul>
+<li>最真实</li>
+<li>精确描述真实相机</li>
+<li>所有 3D 几何理论的基础</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>参数多（内参 + 外参）</li>
+<li>非线性</li>
+<li>数学处理复杂</li>
+</ul>
+<p>什么时候用？</p>
+<blockquote>
+<p><strong>近距离 &#x2F; 大景深变化 &#x2F; 精确 3D 重建</strong></p>
+</blockquote>
+<h3 id="Orthogonal-projection"><a href="#Orthogonal-projection" class="headerlink" title="Orthogonal projection"></a>Orthogonal projection</h3><p>正交投影</p>
+<p>所有点“垂直”投影到图像平面，不考虑深度。</p>
+<blockquote>
+<p>像工程制图<br>或影子在正午阳光下</p>
+</blockquote>
+<hr>
+<p>数学直觉</p>
+<p>$u &#x3D; R_{1:2} X + t$</p>
+<ul>
+<li>只保留 X、Y</li>
+<li>Z <strong>完全被忽略</strong></li>
+</ul>
+<p>核心特性</p>
+<ul>
+<li><strong>没有透视效应</strong></li>
+<li>远近大小完全一样</li>
+<li>模型最简单</li>
+</ul>
+<hr>
+<p>自由度</p>
+<ul>
+<li><p><strong>5 DoF</strong></p>
+<ul>
+<li>3（旋转）</li>
+<li>2（平移）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>什么时候用？</p>
+<blockquote>
+<p><strong>物体非常远、深度变化极小</strong></p>
+</blockquote>
+<p>例如：</p>
+<ul>
+<li>卫星影像</li>
+<li>极远距离拍摄</li>
+</ul>
+<h3 id="Weak-perspective-camera"><a href="#Weak-perspective-camera" class="headerlink" title="Weak-perspective camera"></a>Weak-perspective camera</h3><p>弱透视相机</p>
+<blockquote>
+<p><strong>真实透视太复杂，正交又太粗糙。</strong></p>
+</blockquote>
+<p>折中方案：<strong>Weak-Perspective</strong></p>
+<hr>
+<p>核心假设</p>
+<blockquote>
+<p><strong>物体深度变化 ≪ 相机到物体的平均距离</strong></p>
+</blockquote>
+<p>换句话说：</p>
+<ul>
+<li>所有点的 Z <strong>几乎一样</strong></li>
+</ul>
+<hr>
+<p>投影思想</p>
+<ol>
+<li>先 <strong>正交投影</strong></li>
+<li>再整体 <strong>缩放</strong></li>
+</ol>
+<hr>
+<p>数学直觉</p>
+<p>$u &#x3D; s \cdot R_{1:2}(X - t)$</p>
+<ul>
+<li>(s)：统一尺度因子</li>
+<li>不再随每个点的 Z 变化</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>透视</th>
+<th>弱透视</th>
+<th>正交</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>透视缩放</td>
+<td>✔</td>
+<td>✔（统一）</td>
+<td>✘</td>
+</tr>
+<tr>
+<td>深度变化</td>
+<td>✔</td>
+<td>✘</td>
+<td>✘</td>
+</tr>
+<tr>
+<td>非线性</td>
+<td>✔</td>
+<td>✘</td>
+<td>✘</td>
+</tr>
+<tr>
+<td>DoF</td>
+<td>多</td>
+<td><strong>6</strong></td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>弱透视 &#x3D; 缩放正交投影</p>
+<hr>
+<p>优点</p>
+<ul>
+<li>线性</li>
+<li>无尺度歧义</li>
+<li>易估计</li>
+<li>闭式解多</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>近距离或深度变化大时不准</li>
+</ul>
+<hr>
+<p>什么时候用？</p>
+<blockquote>
+<p><strong>人脸、人体、刚体</strong> &gt; <strong>中远距离、相对平坦结构</strong></p>
+</blockquote>
+<p>Tomasi–Kanade 因式分解就是用它</p>
+<hr>
+<p>为什么 Tomasi–Kanade 不能用透视？</p>
+<blockquote>
+<p>因为透视投影是非线性的，<br>而因式分解需要线性模型。</p>
+</blockquote>
+<p>什么时候弱透视会失败？</p>
+<blockquote>
+<p>当物体离相机很近，<br>或深度变化很大时。</p>
+</blockquote>
+<h2 id="Calibration-of-Perspective-Camera-Using-a-Spatial-Calibration-Object"><a href="#Calibration-of-Perspective-Camera-Using-a-Spatial-Calibration-Object" class="headerlink" title="Calibration of Perspective Camera Using a Spatial Calibration Object"></a>Calibration of Perspective Camera Using a Spatial Calibration Object</h2><p>给我一些已知 3D 点及其在图像中的位置，我可以估计整个相机。</p>
+<p>什么是 Spatial Calibration Object？</p>
+<ul>
+<li>一个 <strong>几何结构已知的 3D 物体</strong></li>
+<li>上面有 <strong>容易检测的特征点</strong></li>
+</ul>
+<p>典型例子</p>
+<ul>
+<li>标定立方体</li>
+<li>标定板（3D 坐标已知）</li>
+<li>标定框架</li>
+</ul>
+<p>与棋盘的区别：</p>
+<ul>
+<li><strong>这是 3D 物体</strong></li>
+<li>棋盘是 <strong>平面（2D）</strong></li>
+</ul>
+<h3 id="Estimation-of-projection-matrix"><a href="#Estimation-of-projection-matrix" class="headerlink" title="Estimation of projection matrix"></a>Estimation of projection matrix</h3><p>投影矩阵 P 的估计</p>
+<p>透视相机模型：</p>
+<p>$u \sim P X$</p>
+<p>其中：</p>
+<ul>
+<li>$X &#x3D; [X, Y, Z, 1]^T$（3D 点）</li>
+<li>$u &#x3D; [u, v, 1]^T$（像素）</li>
+<li>$P$：<strong>3×4 投影矩阵</strong></li>
+</ul>
+<hr>
+<p>P 里有什么？</p>
+<p>$P &#x3D; K , R , [I \mid -t]$</p>
+<p>所以：</p>
+<ul>
+<li><strong>K</strong>：相机内参</li>
+<li><strong>R, t</strong>：相机外参</li>
+</ul>
+<p>估计 P &#x3D; 一步到位估计 <strong>整个相机</strong></p>
+<hr>
+<p>核心思想</p>
+<blockquote>
+<p><strong>投影矩阵估计是一个“齐次线性问题”</strong></p>
+</blockquote>
+<hr>
+<p>从一个 3D–2D 点对能得到什么？</p>
+<p>对一个点：</p>
+<p>$u \sim PX$</p>
+<p>展开后可以得到：</p>
+<ul>
+<li><strong>2 条独立线性方程</strong></li>
+<li>未知量是 P 的 12 个元素（但有尺度歧义）</li>
+</ul>
+<hr>
+<p>最少需要多少点？</p>
+<ul>
+<li>P 有 <strong>11 个自由度</strong>（12 个数 − scale）</li>
+<li>每个点给 2 个方程</li>
+</ul>
+<p>至少需要 6 个 3D–2D 点对</p>
+<hr>
+<p>线性估计流程</p>
+<p>Step 1：建立线性方程</p>
+<ul>
+<li>对每个点写出 2 条方程</li>
+<li>堆叠成：<br>$A p &#x3D; 0$</li>
+</ul>
+<p>其中：</p>
+<ul>
+<li>$p$：P 的 12 个元素组成的向量</li>
+</ul>
+<hr>
+<p>Step 2：解齐次线性系统</p>
+<ul>
+<li>排除平凡解 $p&#x3D;0$</li>
+<li>加约束：$|p| &#x3D; 1$</li>
+</ul>
+<p>解法：</p>
+<blockquote>
+<p><strong>SVD，取最小奇异值对应的向量</strong></p>
+</blockquote>
+<hr>
+<p>Step 3：得到投影矩阵 P</p>
+<ul>
+<li>只在比例意义下成立</li>
+<li>已经能把 3D 点投影到图像上</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>这是代数误差最小化，不是几何误差</strong></p>
+</blockquote>
+<p>所以：</p>
+<ul>
+<li>通常作为 <strong>初值</strong></li>
+<li>后面可用 <strong>非线性优化（Bundle Adjustment）精化</strong></li>
+</ul>
+<h3 id="Decomposition-of-projection-matrix"><a href="#Decomposition-of-projection-matrix" class="headerlink" title="Decomposition of projection matrix"></a>Decomposition of projection matrix</h3><p>投影矩阵的分解</p>
+<p>为什么要分解？</p>
+<blockquote>
+<p><strong>P 本身不好解释，我想要真正的相机参数。</strong></p>
+</blockquote>
+<p>也就是：</p>
+<ul>
+<li>焦距是多少？</li>
+<li>主点在哪？</li>
+<li>相机姿态是什么？</li>
+</ul>
+<hr>
+<p>P 的结构再强调一次</p>
+<p>$P &#x3D; K [R \mid t]$</p>
+<p>其中：</p>
+<ul>
+<li>左边 3×3 是 $KR$</li>
+<li>最后一列与 $t$ 有关</li>
+</ul>
+<hr>
+<p>分解的目标</p>
+<p>从已知的 P，求：</p>
+<ul>
+<li><strong>K（内参）</strong></li>
+<li><strong>R（旋转）</strong></li>
+<li><strong>t（平移）</strong></li>
+</ul>
+<hr>
+<p>核心技术：RQ 分解</p>
+<p>为什么不是 QR？</p>
+<ul>
+<li>QR：正交 × 上三角</li>
+<li>我们需要：<strong>上三角 × 正交</strong></li>
+</ul>
+<p>所以用 <strong>RQ decomposition</strong></p>
+<hr>
+<p>分解步骤</p>
+<p>Step 1：取 P 的左 3×3 子矩阵</p>
+<p>$M &#x3D; P_{3\times3} &#x3D; K R$</p>
+<hr>
+<p>Step 2：对 M 做 RQ 分解</p>
+<p>$M &#x3D; K R$</p>
+<ul>
+<li>K：上三角矩阵（内参）</li>
+<li>R：正交矩阵（旋转）</li>
+</ul>
+<p>需要处理符号，使：</p>
+<ul>
+<li>焦距为正</li>
+<li>det(R) &#x3D; 1</li>
+</ul>
+<hr>
+<p>Step 3：计算平移向量 t</p>
+<p>利用：</p>
+<p>$p_4 &#x3D; -K R t$</p>
+<p>解得：</p>
+<p>$t &#x3D; - R^T K^{-1} p_4$</p>
+<hr>
+<p>得到的结果</p>
+<ul>
+<li><p><strong>K</strong>：</p>
+<ul>
+<li>焦距</li>
+<li>主点</li>
+<li>像素比例</li>
+</ul>
+</li>
+<li><p><strong>R, t</strong>：</p>
+<ul>
+<li>相机在世界坐标中的姿态</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>为什么投影矩阵只能估计到比例？</p>
+<blockquote>
+<p>因为使用的是齐次坐标，<br>缩放 P 不改变投影结果。</p>
+</blockquote>
+<p>为什么需要很多点？</p>
+<blockquote>
+<p>为了抵抗噪声，<br>实际是一个过定约束问题。</p>
+</blockquote>
+<p>这和棋盘标定有什么区别？</p>
+<blockquote>
+<p>空间标定物是 3D，<br>棋盘是平面（2D），<br>棋盘通过多视角间接恢复 3D 信息。</p>
+</blockquote>
+<h2 id="Chessboard-based-Calibration-of-Perspective-Cameras"><a href="#Chessboard-based-Calibration-of-Perspective-Cameras" class="headerlink" title="Chessboard-based Calibration of Perspective Cameras"></a>Chessboard-based Calibration of Perspective Cameras</h2><p>不用 3D 标定物，只用一块平面棋盘，通过多张不同姿态的图片来标定相机。<br>为什么棋盘能标定相机？</p>
+<p>关键原因</p>
+<ul>
+<li>棋盘是 <strong>平面</strong></li>
+<li>平面 ↔ 图像之间存在 <strong>Homography</strong></li>
+<li>多个不同姿态 ⇒ 多个 Homography</li>
+<li>这些 Homography <strong>共享同一个相机内参 K</strong><br>Chessboard-based Calibration 的整体流程（口语标准版）</li>
+</ul>
+<hr>
+<p>Step 1：拍摄多张棋盘图像</p>
+<ul>
+<li>同一块棋盘</li>
+<li><strong>不同位置 + 不同倾斜角度</strong></li>
+<li>至少 <strong>3 张</strong>，实际更多更稳</li>
+</ul>
+<hr>
+<p>Step 2：检测棋盘角点</p>
+<ul>
+<li>棋盘角点位置精确、结构规则</li>
+<li>可做到 <strong>亚像素精度</strong></li>
+</ul>
+<hr>
+<p>Step 3：对每一张图像估计 Homography</p>
+<ul>
+<li>棋盘在世界坐标中是一个平面</li>
+<li>每张图像：<br>$u \sim H X_{\text{plane}}$</li>
+</ul>
+<hr>
+<p>Step 4：由多个 Homography 解相机内参 K</p>
+<ul>
+<li><p>利用：</p>
+<ul>
+<li>旋转矩阵列向量正交</li>
+<li>单位长度约束</li>
+</ul>
+</li>
+<li><p>得到 K（焦距、主点等）</p>
+</li>
+</ul>
+<hr>
+<p>Step 5：<strong>加入畸变模型并非线性优化</strong></p>
+<ul>
+<li><p>同时优化：</p>
+<ul>
+<li>K</li>
+<li>外参</li>
+<li>畸变参数</li>
+</ul>
+</li>
+<li><p>最小化 <strong>重投影误差</strong></p>
+</li>
+</ul>
+<hr>
+<p>为什么要考虑畸变？</p>
+<blockquote>
+<p><strong>真实镜头不是理想针孔模型。</strong></p>
+</blockquote>
+<p>理想情况：</p>
+<ul>
+<li>直线 → 图像中仍是直线</li>
+</ul>
+<p>现实情况：</p>
+<ul>
+<li>直线 → 弯曲</li>
+</ul>
+<p>这会<strong>严重影响 3D 重建精度</strong></p>
+<h3 id="Radial-distortion"><a href="#Radial-distortion" class="headerlink" title="Radial distortion"></a>Radial distortion</h3><p>径向畸变</p>
+<p>离图像中心越远，偏移越严重。</p>
+<p>常见两种类型</p>
+<p>Barrel distortion（桶形）</p>
+<ul>
+<li>直线向外鼓</li>
+<li><strong>最常见</strong></li>
+<li>广角镜头</li>
+</ul>
+<p>Pincushion distortion（枕形）</p>
+<ul>
+<li>直线向内凹</li>
+<li>长焦镜头</li>
+</ul>
+<hr>
+<p>数学模型</p>
+<ul>
+<li><p>以主点为中心</p>
+</li>
+<li><p>位移大小是：</p>
+<ul>
+<li>距离 r 的函数</li>
+</ul>
+</li>
+<li><p>用多项式近似：</p>
+<ul>
+<li>(k_1, k_2, k_3)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>“用 r²、r⁴、r⁶ 的多项式修正”</p>
+</blockquote>
+<hr>
+<p>重要细节</p>
+<ul>
+<li><p>通常假设：</p>
+<ul>
+<li>畸变中心 ≈ 主点</li>
+</ul>
+</li>
+<li><p>参数很小</p>
+</li>
+<li><p>在 <strong>非线性优化阶段一起估计</strong></p>
+</li>
+</ul>
+<h3 id="Tangential-distortion"><a href="#Tangential-distortion" class="headerlink" title="Tangential distortion"></a>Tangential distortion</h3><p>产生原因</p>
+<blockquote>
+<p><strong>镜头与成像平面没有完全对齐。</strong></p>
+</blockquote>
+<p>也就是：</p>
+<ul>
+<li>透镜装歪了</li>
+<li>光轴不完全垂直传感器</li>
+</ul>
+<hr>
+<p>直观表现</p>
+<ul>
+<li>点被“拉向一侧”</li>
+<li>不再是纯粹的径向对称</li>
+</ul>
+<hr>
+<p>数学特性</p>
+<ul>
+<li><p>与：</p>
+<ul>
+<li>x·y</li>
+<li>x²、y²<br>相关</li>
+</ul>
+</li>
+<li><p>参数通常是：</p>
+<ul>
+<li>$p_1, p_2$</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>与径向畸变的关系</p>
+<blockquote>
+<p><strong>切向畸变不是径向畸变的替代，而是补充。</strong></p>
+</blockquote>
+<ul>
+<li>Radial：对称</li>
+<li>Tangential：非对称</li>
+</ul>
+<hr>
+<p>两种畸变的对比</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Radial</th>
+<th>Tangential</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原因</td>
+<td>镜头曲率</td>
+<td>镜头未对齐</td>
+</tr>
+<tr>
+<td>对称性</td>
+<td>中心对称</td>
+<td>非对称</td>
+</tr>
+<tr>
+<td>常见程度</td>
+<td>非常常见</td>
+<td>较少</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>k₁,k₂,k₃</td>
+<td>p₁,p₂</td>
+</tr>
+</tbody></table>
+<hr>
+<p>为什么畸变参数要用非线性优化？</p>
+<blockquote>
+<p><strong>畸变模型是非线性的，线性方法解不了。</strong></p>
+</blockquote>
+<p>所以流程是：</p>
+<ol>
+<li><p>先忽略畸变，线性估计 K</p>
+</li>
+<li><p>再：</p>
+<ul>
+<li>加入畸变</li>
+<li>用 Levenberg–Marquardt</li>
+<li>最小化重投影误差</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>为什么要拍不同姿态？</p>
+<blockquote>
+<p>否则约束不足，<br>内参解不唯一。</p>
+</blockquote>
+<p>畸变在什么时候最明显？</p>
+<blockquote>
+<p>图像边缘。</p>
+</blockquote>
+<p>棋盘标定 &#x3D; 多张平面 Homography → 解内参 → 加畸变 → 非线性精化</p>
+<h2 id="Plane-plane-Homography"><a href="#Plane-plane-Homography" class="headerlink" title="Plane-plane Homography"></a>Plane-plane Homography</h2><p>平面—平面单应变换</p>
+<p>如果所有点都在同一个平面上，那么两张图之间只需要一个 3×3 矩阵就能互相变换。</p>
+<p>一般情况：</p>
+<ul>
+<li>3D 点 → 两张图</li>
+<li>需要 <strong>深度 Z</strong></li>
+<li>问题复杂</li>
+</ul>
+<p>但如果：</p>
+<blockquote>
+<p><strong>所有点都在同一个平面上</strong></p>
+</blockquote>
+<p>那么：</p>
+<ul>
+<li>深度被“消掉”</li>
+<li>投影关系变成 <strong>2D ↔ 2D</strong></li>
+</ul>
+<p>所以可以用 Homography</p>
+<hr>
+<p>数学形式</p>
+<p>$u’ \sim H u$</p>
+<ul>
+<li>$u, u’$：两张图里的像素点（齐次坐标）</li>
+<li>$H$：3×3 非奇异矩阵</li>
+<li>“$(\sim)$”：比例意义</li>
+</ul>
+<hr>
+<p>Homography 的自由度</p>
+<ul>
+<li>9 个元素</li>
+<li>1 个尺度不重要</li>
+</ul>
+<p>8 个自由度</p>
+<hr>
+<p>Homography 从哪来？</p>
+<p>场景 1：平面物体 + 两个相机</p>
+<ul>
+<li>相机 1：$P_1$</li>
+<li>相机 2：$P_2$</li>
+<li>物体在同一平面上</li>
+</ul>
+<p>消去 3D 坐标得到：</p>
+<blockquote>
+<p><strong>图像 1 ↔ 图像 2 的 Homography</strong></p>
+</blockquote>
+<hr>
+<p>场景 2：同一个相机，旋转但不平移</p>
+<ul>
+<li>相机光心不变</li>
+<li>只旋转</li>
+</ul>
+<p>整个场景都满足 Homography</p>
+<p>这是全景拼接的核心前提</p>
+<hr>
+<p>几何性质</p>
+<ul>
+<li>直线 → 直线</li>
+<li>平行线 <strong>不一定</strong>保持平行</li>
+<li>角度、长度 <strong>不保持</strong></li>
+</ul>
+<p>Homography 是 <strong>投影变换</strong></p>
+<h3 id="Panoramic-images-by-homographies"><a href="#Panoramic-images-by-homographies" class="headerlink" title="Panoramic images by homographies"></a>Panoramic images by homographies</h3><p>用单应性生成全景图</p>
+<hr>
+<p>全景图的核心假设</p>
+<blockquote>
+<p><strong>相机只旋转，不平移。</strong></p>
+</blockquote>
+<p>为什么？</p>
+<ul>
+<li>平移 → 不同深度点产生视差</li>
+<li>视差 → 一个 Homography 对不上</li>
+</ul>
+<hr>
+<p>全景拼接的几何原理</p>
+<h3 id="关键公式"><a href="#关键公式" class="headerlink" title="关键公式"></a>关键公式</h3><p>$u’ \sim K R_2 R_1^T K^{-1} u$</p>
+<p>意思：</p>
+<ul>
+<li>同一相机</li>
+<li>不同朝向</li>
+<li>只靠旋转矩阵关系</li>
+</ul>
+<p>这就是 Homography</p>
+<hr>
+<p>全景拼接的标准流程</p>
+<p>Step 1：特征点检测</p>
+<ul>
+<li>SIFT &#x2F; ORB &#x2F; SURF</li>
+</ul>
+<hr>
+<p>Step 2：特征匹配</p>
+<ul>
+<li>最近邻匹配</li>
+<li>有大量错误匹配</li>
+</ul>
+<hr>
+<p>Step 3：RANSAC 估计 Homography</p>
+<ul>
+<li>剔除错误匹配</li>
+<li>得到稳定的 H</li>
+</ul>
+<hr>
+<p>Step 4：图像 Warp</p>
+<ul>
+<li>用 H 把一张图“扭”到另一张图坐标系</li>
+</ul>
+<hr>
+<p>Step 5：图像融合</p>
+<ul>
+<li><p>重叠区域：</p>
+<ul>
+<li>平均</li>
+<li>加权</li>
+<li>多带融合</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>为什么全景拼接要用 RANSAC？</p>
+<blockquote>
+<p><strong>因为特征匹配里一定有大量 outliers。</strong></p>
+</blockquote>
+<p>什么时候 Homography 不适合？</p>
+<p>重要反例</p>
+<ul>
+<li>相机有明显平移</li>
+<li>场景是 <strong>强 3D</strong></li>
+<li>近处物体明显</li>
+</ul>
+<p>会出现：</p>
+<ul>
+<li>重影</li>
+<li>拉伸</li>
+<li>错位</li>
+</ul>
+<hr>
+<p>Homography 的两个经典应用</p>
+<p>图像拼接（Panorama）</p>
+<ul>
+<li>手机全景</li>
+<li>建筑内部</li>
+</ul>
+<p>平面校正（IPM）</p>
+<ul>
+<li>路面矫正</li>
+<li>俯视图</li>
+<li>车道线检测</li>
+</ul>
+<hr>
+<p>Homography 和 Fundamental Matrix 的区别？</p>
+<blockquote>
+<p>Homography 假设 <strong>点在同一平面</strong><br>Fundamental Matrix 适用于 <strong>一般 3D 场景</strong></p>
+</blockquote>
+<p>全景拼接失败的原因？</p>
+<blockquote>
+<p>相机发生平移<br>或场景不是单一深度</p>
+</blockquote>
+<hr>
+<p>一句话总结</p>
+<blockquote>
+<p><strong>Homography 是平面之间的投影关系，<br>在相机纯旋转时可用于整幅图像的对齐。</strong></p>
+</blockquote>
+<h2 id="Estimation-of-Homography"><a href="#Estimation-of-Homography" class="headerlink" title="Estimation of Homography"></a>Estimation of Homography</h2><p>单应矩阵的估计</p>
+<blockquote>
+<p><strong>给定两张图像中的点对应关系，估计 Homography 矩阵 H。</strong></p>
+</blockquote>
+<hr>
+<p>已知：</p>
+<ul>
+<li>点对应：<br>$u_i \leftrightarrow u’_i$</li>
+</ul>
+<p>假设：</p>
+<ul>
+<li>所有点 <strong>在同一个平面上</strong></li>
+<li>或相机 <strong>纯旋转</strong></li>
+</ul>
+<p>目标：</p>
+<p>$u’_i \sim H u_i$</p>
+<hr>
+<p>Homography 的未知量</p>
+<ul>
+<li>H 是 <strong>3×3 矩阵</strong></li>
+<li>有 <strong>8 个自由度</strong>（尺度无关）</li>
+</ul>
+<p>所以：</p>
+<blockquote>
+<p><strong>至少需要 4 对点</strong></p>
+</blockquote>
+<p>（4 × 2 &#x3D; 8 个独立约束）</p>
+<hr>
+<p>从“一对点”能得到什么？</p>
+<p>设：<br>$u &#x3D; [x, y, 1]^T,\quad u’ &#x3D; [x’, y’, 1]^T$</p>
+<p>由：<br>$u’ \sim H u$</p>
+<p>展开后可以得到：</p>
+<ul>
+<li><strong>2 条独立线性方程</strong></li>
+<li>对 H 的元素是线性的</li>
+</ul>
+<hr>
+<p>线性方程组的形式</p>
+<p>对每个点对：</p>
+<ul>
+<li>写成：<br>$A_i h &#x3D; 0$</li>
+</ul>
+<p>其中：</p>
+<ul>
+<li>$h$：H 的 9 个元素组成的向量</li>
+</ul>
+<p>所有点堆起来：</p>
+<p>$A h &#x3D; 0$</p>
+<p>这是一个齐次线性系统</p>
+<hr>
+<p>如何解这个齐次系统？</p>
+<ul>
+<li>平凡解 $h&#x3D;0$ 没意义</li>
+<li>加约束：<br>$|h| &#x3D; 1$</li>
+</ul>
+<p>转化为：</p>
+<blockquote>
+<p><strong>最小化 (|Ah|)，同时 (|h|&#x3D;1)</strong></p>
+</blockquote>
+<hr>
+<p>解法</p>
+<blockquote>
+<p><strong>对矩阵 A 做 SVD，取最小奇异值对应的向量。</strong></p>
+</blockquote>
+<p>原因：</p>
+<ul>
+<li>这是 <strong>代数误差最小化</strong></li>
+<li>数值稳定</li>
+<li>和前面学的 estimation theory 完全一致</li>
+</ul>
+<hr>
+<p>你已经用 SVD 解了，为什么还不行？</p>
+<blockquote>
+<p><strong>数值不稳定。</strong></p>
+</blockquote>
+<p>原因：</p>
+<ul>
+<li>像素坐标数值大（几百上千）</li>
+<li>A 中不同列的量级差很多</li>
+<li>SVD 对尺度非常敏感</li>
+</ul>
+<h3 id="Data-Normalization"><a href="#Data-Normalization" class="headerlink" title="Data Normalization"></a>Data Normalization</h3><blockquote>
+<p><strong>在解 Homography 之前，先把点坐标“变得好看”。</strong></p>
+</blockquote>
+<hr>
+<p>对 <strong>每一张图像的点集，分别做归一化</strong>：</p>
+<p>Step 1：平移（Translation）</p>
+<ul>
+<li>把点集的 <strong>质心</strong> 移到原点</li>
+</ul>
+<hr>
+<p>Step 2：缩放（Scaling）</p>
+<ul>
+<li><p>缩放，使：</p>
+<ul>
+<li>点到原点的 <strong>平均距离 &#x3D; √2</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>Step 3：得到归一化变换矩阵 T</p>
+<p>$u’ &#x3D; T u$</p>
+<hr>
+<p>用归一化点来估计 Homography</p>
+<ul>
+<li>用归一化后的点：<br>$\tilde{u}’ \sim \tilde{H} \tilde{u}$</li>
+<li>解：<br>$\tilde{A} \tilde{h} &#x3D; 0$</li>
+</ul>
+<p>得到的是 <strong>归一化坐标系下的 Homography</strong></p>
+<hr>
+<p>反归一化</p>
+<p>最终结果不是 $\tilde{H}$，而是：</p>
+<p>$H &#x3D; T_2^{-1} \tilde{H} T_1$</p>
+<p>其中：</p>
+<ul>
+<li>$T_1$：第一张图的归一化矩阵</li>
+<li>$T_2$：第二张图的归一化矩阵</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>没有归一化的 8-point &#x2F; 4-point 方法在实践中几乎不可用。</strong></p>
+</blockquote>
+<ul>
+<li><p>Hartley 证明过：</p>
+<ul>
+<li>Normalization 是“<strong>必须的，不是可选的</strong>”</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>优点</p>
+<ul>
+<li>快</li>
+<li>有闭式解</li>
+<li>适合作为初值</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>只最小化 <strong>代数误差</strong></li>
+<li>不是真正的几何距离</li>
+<li>对 outliers 极度敏感</li>
+</ul>
+<p>所以：</p>
+<ul>
+<li><strong>RANSAC + 非线性优化</strong> 通常一起用</li>
+</ul>
+<hr>
+<p>为什么平均距离是 √2？</p>
+<blockquote>
+<p>为了让坐标尺度在 1 的量级，<br>提高数值稳定性。</p>
+</blockquote>
+<p>归一化对结果有影响吗？</p>
+<blockquote>
+<p>不改变几何关系，<br>但显著提升数值精度。</p>
+</blockquote>
+<p>如果点很多怎么办？</p>
+<blockquote>
+<p>问题变成过定约束，<br>SVD 自动给出最小二乘意义下的解。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Homography 估计 &#x3D; 线性齐次系统 + SVD + 数据归一化 + 反归一化</strong></p>
+</blockquote>
+<h2 id="Basics-of-Epipolar-Geometry"><a href="#Basics-of-Epipolar-Geometry" class="headerlink" title="Basics of Epipolar Geometry"></a>Basics of Epipolar Geometry</h2><p>极几何基础</p>
+<blockquote>
+<p><strong>极几何描述的是：一个 3D 点在两张图像中的对应关系。</strong></p>
+</blockquote>
+<hr>
+<p>为什么需要 Epipolar Geometry？</p>
+<ul>
+<li>两张图像</li>
+<li>一个 3D 点 X</li>
+<li>在两张图里各有一个像素位置</li>
+</ul>
+<p>问题：</p>
+<blockquote>
+<p><strong>第二张图里，对应点到底在哪？</strong></p>
+</blockquote>
+<hr>
+<p>Epipolar Geometry 的核心直觉</p>
+<p>三个关键元素</p>
+<ol>
+<li><p><strong>Baseline</strong></p>
+<ul>
+<li>连接两个相机光心的直线</li>
+</ul>
+</li>
+<li><p><strong>Epipolar plane（极平面）</strong></p>
+<ul>
+<li><p>由：</p>
+<ul>
+<li>3D 点 X</li>
+<li>两个相机光心<br>共同确定的平面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Epipolar lines（极线）</strong></p>
+<ul>
+<li>极平面与图像平面的交线</li>
+</ul>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>一个点在第一张图像中确定后，<br>它在第二张图像中一定落在一条极线上。</strong></p>
+</blockquote>
+<p>搜索问题：</p>
+<ul>
+<li>从 <strong>2D 区域搜索</strong></li>
+<li>降到 <strong>1D 直线搜索</strong></li>
+</ul>
+<hr>
+<p>Epipolar Constraint（极约束）</p>
+<blockquote>
+<p><strong>对应点必须满足极约束，否则不可能来自同一个 3D 点。</strong></p>
+</blockquote>
+<p>$u_2^T F u_1 &#x3D; 0$</p>
+<h3 id="Essential-matrix"><a href="#Essential-matrix" class="headerlink" title="Essential matrix"></a>Essential matrix</h3><p>本质矩阵</p>
+<hr>
+<p>Essential Matrix 什么时候用？</p>
+<blockquote>
+<p><strong>当相机是“已标定”的。</strong></p>
+</blockquote>
+<p>也就是说：</p>
+<ul>
+<li>内参 (K_1, K_2) 已知</li>
+<li>像素点已转换成 <strong>归一化相机坐标</strong></li>
+</ul>
+<hr>
+<p>Essential Matrix 的定义</p>
+<p>$u_2^T E u_1 &#x3D; 0$</p>
+<p>其中：<br>$E &#x3D; [t]_\times R$</p>
+<p>含义：</p>
+<ul>
+<li>$R$：相机之间的旋转</li>
+<li>$t$：相机之间的平移方向（<strong>只有方向，没有尺度</strong>）</li>
+</ul>
+<hr>
+<p>Essential Matrix 的关键性质</p>
+<ol>
+<li><p><strong>5 个自由度</strong></p>
+<ul>
+<li>3（旋转）</li>
+<li>2（平移方向，尺度未知）</li>
+</ul>
+</li>
+<li><p><strong>秩为 2</strong></p>
+</li>
+<li><p><strong>两个非零奇异值相等</strong></p>
+</li>
+<li><p><strong>可以通过 SVD 分解得到 R 和 t</strong></p>
+<ul>
+<li>有 <strong>4 种解</strong></li>
+<li>只有一个是物理正确的</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>Essential Matrix 在做什么？</p>
+<blockquote>
+<p><strong>它把“几何关系”编码成一个矩阵。</strong></p>
+</blockquote>
+<ul>
+<li>不关心像素单位</li>
+<li>只关心空间结构</li>
+</ul>
+<h3 id="Fundamental-matrix"><a href="#Fundamental-matrix" class="headerlink" title="Fundamental matrix"></a>Fundamental matrix</h3><p>基础矩阵</p>
+<hr>
+<p>Fundamental Matrix 什么时候用？</p>
+<blockquote>
+<p><strong>当相机“未标定”时。</strong></p>
+</blockquote>
+<p>也就是：</p>
+<ul>
+<li>焦距未知</li>
+<li>主点未知</li>
+<li>像素坐标是原始的</li>
+</ul>
+<hr>
+<p>Fundamental Matrix 的定义</p>
+<p>$u_2^T F u_1 &#x3D; 0$</p>
+<p>和 E 形式一样，但：</p>
+<p>$F &#x3D; K_2^{-T} E K_1^{-1}$</p>
+<p>F &#x3D; E + 相机内参的影响</p>
+<hr>
+<p>Fundamental Matrix 的性质</p>
+<ol>
+<li><strong>7 个自由度</strong></li>
+<li><strong>秩为 2</strong></li>
+<li><strong>定义在像素坐标系</strong></li>
+<li><strong>完全描述两幅图之间的极几何</strong></li>
+</ol>
+<hr>
+<p>E vs F 的核心区别（一定要会对比）</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Essential (E)</th>
+<th>Fundamental (F)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否需要标定</td>
+<td>✔</td>
+<td>✘</td>
+</tr>
+<tr>
+<td>坐标</td>
+<td>归一化相机坐标</td>
+<td>像素坐标</td>
+</tr>
+<tr>
+<td>自由度</td>
+<td>5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>是否可分解</td>
+<td>✔（R,t）</td>
+<td>✘（直接）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>E 是“纯几何”，F 是“几何 + 相机内参”。</strong></p>
+</blockquote>
+<hr>
+<h3 id="Rectification"><a href="#Rectification" class="headerlink" title="Rectification"></a>Rectification</h3><p>立体校正</p>
+<p>为什么要 Rectification？</p>
+<blockquote>
+<p><strong>为了让立体匹配更简单。</strong></p>
+</blockquote>
+<p>原始情况：</p>
+<ul>
+<li>极线是任意方向</li>
+<li>搜索对应点很麻烦</li>
+</ul>
+<hr>
+<p>Rectification 的目标（必说）</p>
+<blockquote>
+<p><strong>把两张图像变换，使对应点落在同一行。</strong></p>
+</blockquote>
+<p>也就是说：</p>
+<ul>
+<li>极线 → 水平线</li>
+<li>epipoles → 无穷远</li>
+</ul>
+<hr>
+<p>Rectification 在几何上做了什么？</p>
+<ul>
+<li>对两张图像分别应用 <strong>Homography</strong></li>
+<li>Homography 是由 <strong>极几何（F 或 E）</strong> 决定的</li>
+</ul>
+<p>不需要知道 3D 结构<br>只需要知道 F</p>
+<hr>
+<p>Rectification 的好处</p>
+<ul>
+<li>2D 搜索 → 1D 搜索</li>
+<li>立体匹配更快</li>
+<li>深度计算更稳定</li>
+</ul>
+<p>Rectification 的代价</p>
+<blockquote>
+<p><strong>图像会被扭曲。</strong></p>
+</blockquote>
+<p>特别是：</p>
+<ul>
+<li>Wide-baseline stereo</li>
+<li>大视角差</li>
+</ul>
+<p>所以：</p>
+<ul>
+<li>有时 <strong>不做 rectification</strong></li>
+<li>而是直接沿极线搜索</li>
+</ul>
+<hr>
+<p>Rectification 是否必须？</p>
+<blockquote>
+<p>不必须，但通常有利于匹配。</p>
+</blockquote>
+<p>Rectification 和 Homography 有什么关系？</p>
+<blockquote>
+<p>Rectification 本质上是<br>用 Homography 把极线对齐。</p>
+</blockquote>
+<p>如果相机已标定，用 E 还是 F？</p>
+<blockquote>
+<p>用 E 更好，但 F 也可以。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>极几何把点匹配从 2D 搜索变成 1D 搜索，<br>E 和 F 分别描述标定和未标定情况下的这种约束。</p>
+</blockquote>
+<h2 id="Estimation-of-Essential-and-Fundamental-Matrices"><a href="#Estimation-of-Essential-and-Fundamental-Matrices" class="headerlink" title="Estimation of Essential and Fundamental Matrices"></a>Estimation of Essential and Fundamental Matrices</h2><p>本质矩阵 E 与基础矩阵 F 的估计</p>
+<blockquote>
+<p><strong>从两张图像的点对应关系中，估计描述它们极几何关系的矩阵。</strong></p>
+</blockquote>
+<hr>
+<p>已知：</p>
+<ul>
+<li>点对应：<br>$u_{1i} \leftrightarrow u_{2i}$</li>
+</ul>
+<p>目标：</p>
+<ul>
+<li>未标定相机 → <strong>Fundamental matrix F</strong></li>
+<li>已标定相机 → <strong>Essential matrix E</strong></li>
+</ul>
+<p>共同约束（极约束）：</p>
+<p>$u_2^T F u_1 &#x3D; 0 \quad \text{或} \quad u_2^T E u_1 &#x3D; 0$</p>
+<hr>
+<p>从“一对点”能得到什么？</p>
+<p>对每一对对应点：</p>
+<ul>
+<li>可以写出 <strong>1 条线性方程</strong></li>
+<li>对矩阵元素是线性的</li>
+</ul>
+<p>把 N 对点堆起来：</p>
+<p>$A f &#x3D; 0 \quad \text{或} \quad A e &#x3D; 0$</p>
+<p>这是一个齐次线性系统</p>
+<hr>
+<p>最少需要多少点？</p>
+<p>Fundamental matrix F</p>
+<ul>
+<li>自由度：<strong>7</strong></li>
+<li>实践中：</li>
+</ul>
+<blockquote>
+<p><strong>8-point method（≥8 点）</strong></p>
+</blockquote>
+<hr>
+<p>Essential matrix E</p>
+<ul>
+<li>自由度：<strong>5</strong></li>
+<li>理论最少：5 点</li>
+<li>实践中常用：</li>
+</ul>
+<blockquote>
+<p><strong>8 点法 + 约束</strong></p>
+</blockquote>
+<hr>
+<p>线性估计的标准步骤</p>
+<p>Step 1：建立线性系统</p>
+<ul>
+<li>对每对点写：<br>$u_2^T F u_1 &#x3D; 0$</li>
+<li>得到：<br>$A f &#x3D; 0$</li>
+</ul>
+<hr>
+<p>Step 2：SVD 解齐次系统</p>
+<ul>
+<li>排除平凡解</li>
+<li>加约束：<br>$|f| &#x3D; 1$</li>
+</ul>
+<p>解法：</p>
+<blockquote>
+<p><strong>SVD，取最小奇异值对应向量</strong></p>
+</blockquote>
+<hr>
+<p>Step 3：强制秩约束</p>
+<ul>
+<li><p>理论要求：</p>
+<ul>
+<li><strong>rank(F) &#x3D; 2</strong></li>
+<li><strong>rank(E) &#x3D; 2</strong></li>
+</ul>
+</li>
+</ul>
+<p>做法：</p>
+<ol>
+<li>对估计矩阵做 SVD</li>
+<li>把最小奇异值设为 0</li>
+<li>重构矩阵</li>
+</ol>
+<hr>
+<p>直接用 8-point method 行不行？</p>
+<blockquote>
+<p><strong>数值不稳定，必须归一化。</strong></p>
+</blockquote>
+<h3 id="Data-normalization"><a href="#Data-normalization" class="headerlink" title="Data normalization"></a>Data normalization</h3><p>为什么要 Data Normalization？</p>
+<blockquote>
+<p><strong>像素坐标量级太大，导致线性系统病态。</strong></p>
+</blockquote>
+<p>影响：</p>
+<ul>
+<li>SVD 不稳定</li>
+<li>结果对噪声极度敏感</li>
+</ul>
+<hr>
+<p>归一化做了什么？（和 Homography 一样）</p>
+<p>对 <strong>两张图的点，分别独立归一化</strong>：</p>
+<p>Step 1：平移</p>
+<ul>
+<li>点集质心 → 原点</li>
+</ul>
+<p>Step 2：缩放</p>
+<ul>
+<li>平均距离 → √2</li>
+</ul>
+<p>Step 3：得到归一化矩阵</p>
+<p>$\tilde{u} &#x3D; T u$</p>
+<hr>
+<p>完整流程</p>
+<ol>
+<li>原始点 → 归一化点</li>
+<li>用归一化点估计 $\tilde{F}$ 或 $\tilde{E}$</li>
+<li>强制秩约束</li>
+<li><strong>反归一化</strong>：<br>$F &#x3D; T_2^{-T} \tilde{F} T_1^{-1}$</li>
+</ol>
+<p>对 E 也是同理</p>
+<hr>
+<p>为什么归一化是“必须的”？</p>
+<blockquote>
+<p><strong>没有归一化的 8-point 方法在实践中几乎不可用。</strong></p>
+</blockquote>
+<p>这是 Hartley 的经典结论。</p>
+<h3 id="Decomposition-of-essential-matrix"><a href="#Decomposition-of-essential-matrix" class="headerlink" title="Decomposition of essential matrix"></a>Decomposition of essential matrix</h3><p>本质矩阵的分解</p>
+<p>为什么要分解 E</p>
+<blockquote>
+<p><strong>E 只是约束，我真正想要的是相机的 R 和 t。</strong></p>
+</blockquote>
+<hr>
+<p>Essential Matrix 的结构回顾</p>
+<p>$E &#x3D; [t]_\times R$</p>
+<p>性质：</p>
+<ul>
+<li>rank &#x3D; 2</li>
+<li>两个非零奇异值相等</li>
+</ul>
+<hr>
+<p>分解方法</p>
+<p>Step 1：对 E 做 SVD</p>
+<p>$E &#x3D; U , \text{diag}(\sigma, \sigma, 0) , V^T$</p>
+<hr>
+<p>Step 2：构造候选解</p>
+<p>利用固定矩阵 (W) 和 (Z)，得到：</p>
+<ul>
+<li><strong>2 个旋转</strong></li>
+<li><strong>2 个平移方向</strong></li>
+</ul>
+<p>总共 <strong>4 种 (R, t) 组合</strong></p>
+<hr>
+<p>为什么有 4 种解？</p>
+<ul>
+<li>平移方向有正负</li>
+<li>旋转有对称解</li>
+</ul>
+<hr>
+<p>如何选正确解？</p>
+<blockquote>
+<p><strong>正深度约束（cheirality condition）</strong></p>
+</blockquote>
+<p>也就是：</p>
+<ul>
+<li>3D 点必须在 <strong>两个相机前方</strong></li>
+</ul>
+<p>只有 <strong>1 种解满足</strong></p>
+<hr>
+<p>分解后的结果意味着什么？</p>
+<ul>
+<li><p>得到：</p>
+<ul>
+<li>R（准确）</li>
+<li>t（<strong>只有方向，没有尺度</strong>）</li>
+</ul>
+</li>
+</ul>
+<p>这是为什么：</p>
+<ul>
+<li>单目 &#x2F; 双目视觉 <strong>无法恢复绝对尺度</strong></li>
+</ul>
+<hr>
+<p>为什么 E 不能直接用最小二乘？</p>
+<blockquote>
+<p>因为 E 有额外的结构约束，<br>必须强制秩和奇异值条件。</p>
+</blockquote>
+<p>E 和 F 的估计流程有何不同？</p>
+<blockquote>
+<p>流程几乎一样，<br>区别在于：</p>
+<ul>
+<li>E 用归一化相机坐标</li>
+<li>F 用像素坐标</li>
+</ul>
+</blockquote>
+<p>为什么实际中常用 RANSAC？</p>
+<blockquote>
+<p>因为点对应中一定有 outliers，<br>线性方法对 outliers 非常敏感。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>E&#x2F;F 的估计 &#x3D; 归一化 + 线性 SVD + 秩约束，<br>E 还能进一步分解出相机的相对位姿。</p>
+</blockquote>
+<h2 id="Triangulation"><a href="#Triangulation" class="headerlink" title="Triangulation"></a>Triangulation</h2><p>从两张图像恢复 3D 点</p>
+<blockquote>
+<p><strong>三角化就是：用两台相机看到同一个点的位置，反推出这个点在 3D 空间中的位置。</strong></p>
+</blockquote>
+<hr>
+<p>Triangulation 在整个流程中的位置</p>
+<blockquote>
+<p>特征匹配 →<br>RANSAC 估计 E&#x2F;F →<br>分解得到 R, t →<br><strong>Triangulation 得到 3D 点</strong></p>
+</blockquote>
+<hr>
+<p>Triangulation 的几何直觉</p>
+<blockquote>
+<p><strong>图像中的一个像素，对应空间中的一条射线。</strong></p>
+</blockquote>
+<ul>
+<li><p>相机光心 + 像素 → 一条 3D 射线</p>
+</li>
+<li><p>两台相机 → 两条射线</p>
+</li>
+<li><p>理想情况：</p>
+<ul>
+<li>两条射线相交于一个点</li>
+</ul>
+</li>
+<li><p>实际情况（有噪声）：</p>
+<ul>
+<li>两条射线 <strong>不严格相交</strong></li>
+</ul>
+</li>
+</ul>
+<p>所以问题变成：</p>
+<blockquote>
+<p><strong>找一个点，使它到两条射线的距离最小</strong></p>
+</blockquote>
+<h3 id="Standard-stereo-vision"><a href="#Standard-stereo-vision" class="headerlink" title="Standard stereo vision"></a>Standard stereo vision</h3><p>标准立体视觉</p>
+<hr>
+<p>什么是 Standard Stereo？</p>
+<blockquote>
+<p><strong>相机已经标定，并且经过了 Rectification。</strong></p>
+</blockquote>
+<p>也就是说：</p>
+<ul>
+<li><p>两个相机：</p>
+<ul>
+<li>光轴平行</li>
+<li>图像行对齐</li>
+</ul>
+</li>
+<li><p>极线是 <strong>水平线</strong></p>
+</li>
+</ul>
+<hr>
+<p>Standard Stereo 的最大简化</p>
+<blockquote>
+<p><strong>对应点只在同一行上。</strong></p>
+</blockquote>
+<p>因此：</p>
+<ul>
+<li>不用 2D 搜索</li>
+<li>只用 1D 搜索（沿行）</li>
+</ul>
+<hr>
+<p>Disparity（视差）核心概念</p>
+<p>$d &#x3D; x_L - x_R$</p>
+<ul>
+<li>左右图中同一行的横向差</li>
+</ul>
+<hr>
+<p>关键关系</p>
+<blockquote>
+<p>视差越大，点越近；<br>视差越小，点越远。</p>
+</blockquote>
+<hr>
+<p>深度公式</p>
+<p>$Z &#x3D; \frac{f \cdot B}{d}$</p>
+<ul>
+<li>$f$：焦距</li>
+<li>$B$：基线长度</li>
+<li>$d$：视差</li>
+</ul>
+<p>这是 <strong>标准立体</strong> 最重要的结果</p>
+<hr>
+<p>Standard Stereo 的优缺点</p>
+<p>优点</p>
+<ul>
+<li>非常快</li>
+<li>实现简单</li>
+<li>工程上极其常用</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>需要精确标定</li>
+<li>需要 rectification</li>
+<li>只适合规则双目系统</li>
+</ul>
+<h3 id="General-stereo-vision"><a href="#General-stereo-vision" class="headerlink" title="General stereo vision"></a>General stereo vision</h3><p>一般立体视觉</p>
+<hr>
+<p>为什么需要 General Stereo？</p>
+<blockquote>
+<p><strong>现实中，相机不一定是规则摆放的。</strong></p>
+</blockquote>
+<p>例如：</p>
+<ul>
+<li>相机姿态任意</li>
+<li>非平行光轴</li>
+<li>多视角重建</li>
+</ul>
+<hr>
+<p>General Stereo 的输入</p>
+<p>已知：</p>
+<ul>
+<li>相机投影矩阵：<br>$P_1, P_2$</li>
+<li>对应点：<br>$u_1 \leftrightarrow u_2$</li>
+</ul>
+<p>目标：</p>
+<ul>
+<li>恢复 3D 点 (X)</li>
+</ul>
+<hr>
+<p>General Triangulation 的本质</p>
+<blockquote>
+<p>每个像素定义一条射线，<br>我们找一个 3D 点，使它到所有射线的重投影误差最小。</p>
+</blockquote>
+<hr>
+<p>常见解法</p>
+<p>方法 1：线性三角化</p>
+<ul>
+<li>用：<br>$u \times (PX) &#x3D; 0$</li>
+<li>得到：<br>$A X &#x3D; 0$</li>
+<li>用 <strong>SVD</strong> 解齐次系统</li>
+</ul>
+<p>快，但不是最优</p>
+<hr>
+<p>方法 2：最小化重投影误差</p>
+<p>目标函数：</p>
+<p>$\min_X \sum_i |u_i - \pi(P_i X)|^2$</p>
+<ul>
+<li><p>非线性</p>
+</li>
+<li><p>通常用：</p>
+<ul>
+<li>Gauss–Newton</li>
+<li>Levenberg–Marquardt</li>
+</ul>
+</li>
+</ul>
+<p>Bundle Adjustment 的基本单元</p>
+<hr>
+<p>Standard vs General Stereo</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Standard Stereo</th>
+<th>General Stereo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>相机结构</td>
+<td>平行、已校正</td>
+<td>任意</td>
+</tr>
+<tr>
+<td>搜索维度</td>
+<td>1D（行）</td>
+<td>2D &#x2F; 极线</td>
+</tr>
+<tr>
+<td>计算复杂度</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>精度</td>
+<td>中</td>
+<td>高</td>
+</tr>
+<tr>
+<td>应用</td>
+<td>工程实时系统</td>
+<td>SfM &#x2F; 多视角</td>
+</tr>
+</tbody></table>
+<hr>
+<p>为什么两条射线通常不相交？</p>
+<blockquote>
+<p>因为像素噪声和标定误差。</p>
+</blockquote>
+<p>为什么要最小化重投影误差？</p>
+<blockquote>
+<p>因为这是几何上最有意义的误差。</p>
+</blockquote>
+<p>Triangulation 能恢复绝对尺度吗？</p>
+<blockquote>
+<p>不能，<br>除非基线尺度已知。</p>
+</blockquote>
+<hr>
+<p>一句话总结</p>
+<blockquote>
+<p>Triangulation 是通过多视角射线的几何关系，<br>恢复 3D 点的位置；<br>标准立体是其简化版本。</p>
+</blockquote>
+<h2 id="Stereo-Vision-for-Planar-Motion"><a href="#Stereo-Vision-for-Planar-Motion" class="headerlink" title="Stereo Vision for Planar Motion"></a>Stereo Vision for Planar Motion</h2><p>平面运动约束下的立体视觉</p>
+<hr>
+<p>什么是 Planar Motion？</p>
+<blockquote>
+<p><strong>相机运动被限制在一个平面内，通常是假设车辆在平坦地面上运动。</strong></p>
+</blockquote>
+<p>典型场景：</p>
+<ul>
+<li>自动驾驶</li>
+<li>车载双目相机</li>
+<li>机器人在地面行走</li>
+</ul>
+<hr>
+<p>Planar Motion 的几何约束</p>
+<p>在最常见的“道路场景”假设下：</p>
+<ul>
+<li><p>地面是一个平面</p>
+</li>
+<li><p>相机高度固定</p>
+</li>
+<li><p>相机：</p>
+<ul>
+<li><strong>只允许在平面内平移</strong></li>
+<li><strong>只允许绕垂直轴旋转（yaw）</strong></li>
+</ul>
+</li>
+</ul>
+<p>这会<strong>极大减少自由度</strong></p>
+<hr>
+<p>一般立体 vs 平面运动立体</p>
+<p>一般情况（General Stereo）</p>
+<ul>
+<li>旋转：3 DoF</li>
+<li>平移：3 DoF<br>共 <strong>6 DoF</strong></li>
+</ul>
+<p>平面运动（Planar Motion）</p>
+<ul>
+<li><p>平移：</p>
+<ul>
+<li>x（前后）</li>
+<li>y（左右）</li>
+</ul>
+</li>
+<li><p>旋转：</p>
+<ul>
+<li>1 个角度（yaw）</li>
+</ul>
+</li>
+</ul>
+<p>只剩 3 DoF</p>
+<hr>
+<p>为什么 Planar Motion 很重要？</p>
+<blockquote>
+<p><strong>自由度越低，估计越稳定。</strong></p>
+</blockquote>
+<p>具体好处：</p>
+<ul>
+<li>更少的参数</li>
+<li>对噪声更鲁棒</li>
+<li>可以用更少的点</li>
+</ul>
+<hr>
+<p>Planar Motion 下的几何关系</p>
+<p>核心思想</p>
+<blockquote>
+<p><strong>由于运动受限，极几何不再是完全一般的形式。</strong></p>
+</blockquote>
+<p>结果：</p>
+<ul>
+<li>Essential matrix &#x2F; Fundamental matrix<br>→ <strong>结构被简化</strong></li>
+<li>参数更少</li>
+<li>估计问题更容易</li>
+</ul>
+<hr>
+<p>与 Homography 的关系</p>
+<p>Planar Motion 和 Homography 是一回事吗？</p>
+<blockquote>
+<p><strong>不是。</strong></p>
+</blockquote>
+<p>解释：</p>
+<ul>
+<li><p>Homography：</p>
+<ul>
+<li>假设 <strong>场景是平面</strong></li>
+</ul>
+</li>
+<li><p>Planar Motion：</p>
+<ul>
+<li>假设 <strong>相机运动在平面内</strong></li>
+<li>场景仍然是 3D</li>
+</ul>
+</li>
+</ul>
+<p>两个“平面”含义不同</p>
+<hr>
+<p>在 Planar Motion 下：</p>
+<ul>
+<li><p>相机位姿可以用：</p>
+<ul>
+<li>一个旋转角</li>
+<li>一个平移方向（或两个分量）<br>来表示</li>
+</ul>
+</li>
+</ul>
+<p>因此：</p>
+<ul>
+<li><p>Essential matrix 中：</p>
+<ul>
+<li>很多元素不再独立</li>
+</ul>
+</li>
+<li><p>可以用 <strong>更少参数</strong> 表示</p>
+</li>
+</ul>
+<hr>
+<p>实际应用中的好处</p>
+<p>在车载立体视觉中</p>
+<ul>
+<li>深度估计更稳定</li>
+<li>位姿估计更可靠</li>
+<li>对错误匹配不那么敏感</li>
+</ul>
+<hr>
+<p>为什么在自动驾驶中常用 Planar Motion 假设？</p>
+<blockquote>
+<p>因为道路近似平坦，<br>可以显著降低问题复杂度。</p>
+</blockquote>
+<p>Planar Motion 下还能恢复尺度吗？</p>
+<blockquote>
+<p>不能，仅靠视觉仍然有尺度歧义，<br>除非引入额外信息（轮速、IMU）。</p>
+</blockquote>
+<p>Planar Motion 适合哪些场景？</p>
+<blockquote>
+<p>地面移动平台，<br>不适合无人机等 6DoF 场景。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>平面运动立体视觉利用运动约束，<br>用更少自由度描述相机关系，<br>从而提高估计稳定性。</p>
+</blockquote>
+<h2 id="Tomasi-Kanade-Factorization"><a href="#Tomasi-Kanade-Factorization" class="headerlink" title="Tomasi-Kanade Factorization"></a>Tomasi-Kanade Factorization</h2><p>因式分解法的多视角重建</p>
+<blockquote>
+<p><strong>在正交或弱透视相机模型下，多视角 3D 重建可以被转化为一个低秩矩阵分解问题。</strong></p>
+</blockquote>
+<hr>
+<p>Tomasi–Kanade 想解决什么问题？</p>
+<p>已知：</p>
+<ul>
+<li>同一组 3D 点</li>
+<li>在 <strong>多帧图像中被持续跟踪</strong></li>
+<li>得到大量 2D 观测</li>
+</ul>
+<p>目标：</p>
+<blockquote>
+<p><strong>同时恢复相机运动 + 3D 结构</strong></p>
+</blockquote>
+<p>而且：</p>
+<ul>
+<li><strong>不做两两 stereo</strong></li>
+<li><strong>一次性用所有视角</strong></li>
+</ul>
+<hr>
+<p>核心假设</p>
+<p>Tomasi–Kanade <strong>只能在以下相机模型下成立</strong>：</p>
+<ol>
+<li><strong>Orthogonal projection（正交投影）</strong></li>
+<li><strong>Weak-perspective projection（弱透视）</strong></li>
+</ol>
+<p>不适用于真实透视相机</p>
+<blockquote>
+<p>因为透视投影是非线性的，无法直接形成低秩线性结构。</p>
+</blockquote>
+<hr>
+<p>Measurement Matrix W（核心构造）</p>
+<ul>
+<li><p>假设：</p>
+<ul>
+<li>F 帧</li>
+<li>P 个点</li>
+</ul>
+</li>
+<li><p>每帧提供：</p>
+<ul>
+<li>x、y 两个坐标</li>
+</ul>
+</li>
+</ul>
+<p>把所有观测堆起来：</p>
+<div>
+$$
+W =
+\begin{bmatrix}
+u_{11} & u_{12} & \cdots & u_{1P} \\
+v_{11} & v_{12} & \cdots & v_{1P} \\
+u_{21} & u_{22} & \cdots & u_{2P} \\
+v_{21} & v_{22} & \cdots & v_{2P} \\
+\vdots & \vdots & & \vdots \\
+u_{F1} & u_{F2} & \cdots & u_{FP} \\
+v_{F1} & v_{F2} & \cdots & v_{FP}
+\end{bmatrix}
+$$
+</div>
+
+<p>尺寸：<strong>(2F) × P</strong></p>
+<hr>
+<p>最关键的结论</p>
+<blockquote>
+<p><strong>在无噪声情况下，W 的秩 ≤ 3</strong></p>
+</blockquote>
+<p>为什么？</p>
+<ul>
+<li>每个 3D 点只有 3 个自由度</li>
+<li>正交 &#x2F; 弱透视投影是线性的</li>
+</ul>
+<hr>
+<p>因式分解的基本形式</p>
+<p>$W &#x3D; M S$</p>
+<ul>
+<li><p><strong>M（Motion matrix）</strong>：(2F × 3)</p>
+<ul>
+<li>描述每一帧的相机姿态</li>
+</ul>
+</li>
+<li><p><strong>S（Structure matrix）</strong>：(3 × P)</p>
+<ul>
+<li>描述 3D 点坐标</li>
+</ul>
+</li>
+</ul>
+<p>这一步是 <strong>代数上的分解</strong></p>
+<h3 id="Multi-view-reconstruction-by-orthogonal-camera-model"><a href="#Multi-view-reconstruction-by-orthogonal-camera-model" class="headerlink" title="Multi-view reconstruction by orthogonal camera model"></a>Multi-view reconstruction by orthogonal camera model</h3><p>正交相机下的因式分解</p>
+<hr>
+<p>正交投影下的前处理</p>
+<p>去中心化（centering）</p>
+<blockquote>
+<p><strong>把每一帧的点云质心移到原点</strong></p>
+</blockquote>
+<p>原因：</p>
+<ul>
+<li><p>正交投影模型假设：</p>
+<ul>
+<li>相机原点在点集中心</li>
+</ul>
+</li>
+</ul>
+<p>操作：</p>
+<ul>
+<li>每一行减去均值</li>
+<li>得到中心化矩阵 $\tilde{W}$</li>
+</ul>
+<hr>
+<p>SVD 分解</p>
+<p>对 $\tilde{W}$ 做 SVD：</p>
+<p>$\tilde{W} &#x3D; U \Sigma V^T$</p>
+<ul>
+<li>只保留 <strong>最大的 3 个奇异值</strong></li>
+<li>得到：<br>$\tilde{W} \approx U_3 \Sigma_3 V_3^T$</li>
+</ul>
+<hr>
+<p>初始因式分解</p>
+<p>定义：</p>
+<ul>
+<li>$M_{\text{aff}} &#x3D; U_3 \Sigma_3^{1&#x2F;2}$</li>
+<li>$S_{\text{aff}} &#x3D; \Sigma_3^{1&#x2F;2} V_3^T$</li>
+</ul>
+<p>这是一个 <strong>仿射解（affine reconstruction）</strong></p>
+<hr>
+<p>仿射歧义</p>
+<p>关键问题：</p>
+<blockquote>
+<p>这个分解 <strong>不是唯一的</strong></p>
+</blockquote>
+<p>因为：<br>$W &#x3D; M S &#x3D; (M Q^{-1})(Q S)$</p>
+<p>其中：</p>
+<ul>
+<li>(Q)：任意 3×3 可逆矩阵</li>
+</ul>
+<p>这叫 <strong>Affine ambiguity</strong></p>
+<hr>
+<p>如何消除歧义？（正交模型）</p>
+<p>关键约束</p>
+<p>在正交投影下：</p>
+<ul>
+<li><p>相机旋转向量：</p>
+<ul>
+<li><strong>单位长度</strong></li>
+<li><strong>相互正交</strong></li>
+</ul>
+</li>
+</ul>
+<p>这些约束 →<br>对 (Q Q^T) 形成 <strong>线性方程组</strong></p>
+<hr>
+<p>解 Q 的方法</p>
+<ol>
+<li>写出正交约束</li>
+<li>得到一个 <strong>过定的线性系统</strong></li>
+<li>用 <strong>最小二乘 &#x2F; SVD</strong> 解</li>
+<li>从 (Q Q^T) 恢复 (Q)</li>
+</ol>
+<p>得到真正的：</p>
+<ul>
+<li><strong>运动 M</strong></li>
+<li><strong>结构 S</strong></li>
+</ul>
+<h3 id="Multi-view-reconstruction-by-weak-perspective-camera-model"><a href="#Multi-view-reconstruction-by-weak-perspective-camera-model" class="headerlink" title="Multi-view reconstruction by weak-perspective camera model"></a>Multi-view reconstruction by weak-perspective camera model</h3><p>弱透视模型</p>
+<p>为什么要弱透视？</p>
+<blockquote>
+<p><strong>正交投影太理想化，弱透视更接近真实相机。</strong></p>
+</blockquote>
+<hr>
+<p>弱透视 vs 正交的区别</p>
+<ul>
+<li><p>正交：</p>
+<ul>
+<li>单位长度约束</li>
+</ul>
+</li>
+<li><p>弱透视：</p>
+<ul>
+<li><strong>两行长度相等</strong></li>
+<li>但不一定等于 1</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>对因式分解的影响</p>
+<ul>
+<li><p>分解步骤 <strong>完全一样</strong></p>
+</li>
+<li><p>区别只在：</p>
+<ul>
+<li><strong>消除仿射歧义时的约束不同</strong></li>
+</ul>
+</li>
+</ul>
+<p>弱透视约束：</p>
+<ul>
+<li><p>两个方向向量：</p>
+<ul>
+<li>正交</li>
+<li><strong>长度相等</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Orthogonal</th>
+<th>Weak-perspective</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>投影假设</td>
+<td>理想</td>
+<td>更真实</td>
+</tr>
+<tr>
+<td>线性</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>可分解</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td>远景</td>
+<td>中远景</td>
+</tr>
+</tbody></table>
+<hr>
+<p>优点</p>
+<ul>
+<li>一次性利用多视角</li>
+<li>全局一致</li>
+<li>数学结构清晰</li>
+<li>速度快（SVD）</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>必须跟踪点</li>
+<li>不适合透视投影</li>
+<li>对 missing data 敏感（后面有扩展）</li>
+</ul>
+<hr>
+<p>为什么秩是 3？</p>
+<blockquote>
+<p>因为 3D 点只有 3 个自由度，<br>投影是线性的。</p>
+</blockquote>
+<p>Tomasi–Kanade 能直接用于真实相机吗？</p>
+<blockquote>
+<p>不能，需要正交或弱透视假设。</p>
+</blockquote>
+<p>结果是唯一的吗？</p>
+<blockquote>
+<p>否，有仿射歧义，需要额外约束消除。</p>
+</blockquote>
+<hr>
+<p>一句话总结</p>
+<blockquote>
+<p>Tomasi–Kanade 把多视角重建转化为低秩矩阵分解问题，<br>在简化相机模型下可高效恢复结构和运动。</p>
+</blockquote>
+<h2 id="Reconstruction-by-Merging-Stereo-Reconstructions"><a href="#Reconstruction-by-Merging-Stereo-Reconstructions" class="headerlink" title="Reconstruction by Merging Stereo Reconstructions"></a>Reconstruction by Merging Stereo Reconstructions</h2><p>通过合并多次立体重建实现整体重建</p>
+<blockquote>
+<p><strong>每一对相机可以做一次 stereo 得到局部 3D 点云，但它们在不同坐标系下，需要对齐并合并。</strong></p>
+</blockquote>
+<hr>
+<p>为什么需要 Merging？</p>
+<ul>
+<li><p>多个 stereo 对：</p>
+<ul>
+<li>(Image 1, Image 2)</li>
+<li>(Image 2, Image 3)</li>
+<li>(Image 3, Image 4)</li>
+</ul>
+</li>
+<li><p>每一对都能 triangulation → 3D 点云</p>
+</li>
+</ul>
+<p>但问题是：</p>
+<blockquote>
+<p><strong>每个点云都有自己的坐标系</strong></p>
+</blockquote>
+<hr>
+<p>合并的本质问题</p>
+<blockquote>
+<p><strong>这是一个点集配准（point set registration）问题。</strong></p>
+</blockquote>
+<p>也就是说：</p>
+<ul>
+<li><p>已知：</p>
+<ul>
+<li>点集 ${p_i}$</li>
+<li>点集 ${q_i}$</li>
+</ul>
+</li>
+<li><p>它们表示 <strong>同一组物理点</strong></p>
+</li>
+<li><p>但：</p>
+<ul>
+<li>坐标系不同</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>为什么是 Similarity Transformation？</p>
+<p>单个 stereo 重建的特点：</p>
+<ul>
+<li>旋转：确定</li>
+<li>平移方向：确定</li>
+<li><strong>尺度：不确定</strong></li>
+</ul>
+<p>所以只能用：</p>
+<p>$q_i &#x3D; s R p_i + t$</p>
+<p>其中：</p>
+<ul>
+<li>$R$：旋转</li>
+<li>$t$：平移</li>
+<li>$s$：尺度</li>
+</ul>
+<p>这就是 <strong>Similarity transformation</strong></p>
+<hr>
+<p>Similarity Transformation 的自由度</p>
+<ul>
+<li>旋转：3</li>
+<li>平移：3</li>
+<li>尺度：1</li>
+</ul>
+<p>共 7 DoF</p>
+<h3 id="Registration-of-two-point-sets-by-a-similarity-transformation"><a href="#Registration-of-two-point-sets-by-a-similarity-transformation" class="headerlink" title="Registration of two point sets by a similarity transformation"></a>Registration of two point sets by a similarity transformation</h3><p>给定：</p>
+<ul>
+<li><p>两组点：</p>
+<ul>
+<li>${p_i}$</li>
+<li>${q_i}$</li>
+</ul>
+</li>
+<li><p>已知一一对应关系</p>
+</li>
+</ul>
+<p>目标：</p>
+<p>$\min_{s,R,t} \sum_i |q_i - (sRp_i + t)|^2$</p>
+<p>最小二乘意义下的最优对齐</p>
+<p>解法的核心思想</p>
+<blockquote>
+<p><strong>先对齐质心，再对齐方向，最后调整尺度。</strong></p>
+</blockquote>
+<hr>
+<p>Step 1：去中心化（消除平移）</p>
+<p>计算质心：</p>
+<p>$\bar{p},; \bar{q}$</p>
+<p>定义：</p>
+<p>$p’_i &#x3D; p_i - \bar{p},\quad q’_i &#x3D; q_i - \bar{q}$</p>
+<p>此时平移已经被“拿掉”</p>
+<hr>
+<p>Step 2：估计旋转 R（最关键）</p>
+<p>构造协方差矩阵：</p>
+<p>$H &#x3D; \sum_i q’_i p’^T_i$</p>
+<p>对 H 做 SVD：</p>
+<p>$H &#x3D; U \Sigma V^T$</p>
+<p>得到：</p>
+<p>$R &#x3D; V U^T$</p>
+<p>如果 det(R) &lt; 0，需要修正符号</p>
+<hr>
+<p>Step 3：估计尺度 s</p>
+<p>$s &#x3D; \frac{\sum_i q’^T_i R p’_i}{\sum_i p’^T_i p’_i}$</p>
+<p>直觉：</p>
+<blockquote>
+<p><strong>匹配点间的平均长度比例</strong></p>
+</blockquote>
+<p>Step 4：估计平移 t</p>
+<p>$t &#x3D; \bar{q} - s R \bar{p}$</p>
+<hr>
+<p>这是一个“闭式解”的原因</p>
+<ul>
+<li>不需要迭代</li>
+<li>不需要初始化</li>
+<li>全局最优（在最小二乘意义下）</li>
+</ul>
+<hr>
+<p>在多视角重建中的使用方式</p>
+<blockquote>
+<p>先做多次 stereo →<br>得到多个局部点云 →<br>用 similarity registration 把它们拼接 →<br>得到整体 3D 结构 →<br>再用 Bundle Adjustment 精化</p>
+</blockquote>
+<hr>
+<p>为什么不用刚体变换？</p>
+<blockquote>
+<p>因为单次 stereo 重建没有绝对尺度。</p>
+</blockquote>
+<p>至少需要几个点？</p>
+<blockquote>
+<p>至少 <strong>3 个非共线点</strong>。</p>
+</blockquote>
+<p>如果对应关系有错误怎么办？</p>
+<blockquote>
+<p>实际中会用 RANSAC + registration。</p>
+</blockquote>
+<hr>
+<p>一句话总结</p>
+<blockquote>
+<p>合并立体重建的核心是：<br>在存在尺度不确定性的情况下，<br>用相似变换对齐多个 3D 点云。</p>
+</blockquote>
+<h2 id="Numerical-Optimization"><a href="#Numerical-Optimization" class="headerlink" title="Numerical Optimization"></a>Numerical Optimization</h2><blockquote>
+<p><strong>数值优化就是：用迭代的方法，最小化一个误差函数。</strong></p>
+</blockquote>
+<p>在 3D 视觉里，这个误差通常是：</p>
+<blockquote>
+<p><strong>重投影误差（reprojection error）</strong></p>
+</blockquote>
+<hr>
+<p>为什么需要 Numerical Optimization？</p>
+<p>前面的方法有什么问题？</p>
+<ul>
+<li><p>Homography &#x2F; F &#x2F; E &#x2F; Triangulation<br><strong>大多是线性、闭式解</strong></p>
+</li>
+<li><p>它们：</p>
+<ul>
+<li>忽略真实几何误差</li>
+<li>对噪声近似处理</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>线性解给的是“初值”，不是最优解。</strong></p>
+</blockquote>
+<hr>
+<p>视觉中的典型优化问题</p>
+<p>通用形式</p>
+<p>$\min_\theta \sum_i | r_i(\theta) |^2$</p>
+<ul>
+<li><p>$\theta$：未知参数</p>
+<ul>
+<li>相机参数</li>
+<li>3D 点坐标</li>
+</ul>
+</li>
+<li><p>$r_i$：残差（误差）</p>
+</li>
+</ul>
+<p>这是一个 <strong>非线性最小二乘问题</strong></p>
+<hr>
+<p>什么是 Residual（残差）？</p>
+<blockquote>
+<p><strong>残差 &#x3D; 观测到的像素位置 − 当前模型预测的位置</strong></p>
+</blockquote>
+<p>例如：</p>
+<ul>
+<li>已知 3D 点 X</li>
+<li>已知相机参数</li>
+<li>投影得到 $\hat{u}$</li>
+<li>实际观测是 $(u)$</li>
+</ul>
+<p>残差：</p>
+<p>$r &#x3D; u - \hat{u}$</p>
+<hr>
+<p>为什么是“非线性”？</p>
+<blockquote>
+<p><strong>透视投影里有除以 Z。</strong></p>
+</blockquote>
+<p>所以：</p>
+<ul>
+<li>误差函数对参数是非线性的</li>
+<li>不能一次解出来</li>
+<li>只能迭代逼近</li>
+</ul>
+<hr>
+<p>优化的基本思想</p>
+<blockquote>
+<p>从一个初始值出发，<br>沿着“误差下降最快”的方向走，<br>直到收敛。</p>
+</blockquote>
+<hr>
+<p>梯度、Jacobian、Hessian</p>
+<p>Gradient（梯度）</p>
+<ul>
+<li>指向误差增长最快的方向</li>
+<li>反方向 &#x3D; 下降最快</li>
+</ul>
+<p>Jacobian（雅可比矩阵）</p>
+<ul>
+<li><p>残差对参数的一阶导数</p>
+</li>
+<li><p>描述：</p>
+<blockquote>
+<p>“参数改一点，误差变多少”</p>
+</blockquote>
+</li>
+</ul>
+<p>Hessian（海森矩阵）</p>
+<ul>
+<li>二阶信息</li>
+<li>描述误差曲率</li>
+</ul>
+<p>在实践中：</p>
+<ul>
+<li>Hessian <strong>太贵</strong></li>
+<li>通常用近似</li>
+</ul>
+<hr>
+<p>最常见的三种优化方法</p>
+<p>Gradient Descent（梯度下降）</p>
+<blockquote>
+<p><strong>最简单，但收敛慢。</strong></p>
+</blockquote>
+<p>特点：</p>
+<ul>
+<li>只用一阶信息</li>
+<li>对步长敏感</li>
+<li>很少单独用于 BA</li>
+</ul>
+<hr>
+<p>Gauss–Newton（高斯–牛顿）</p>
+<blockquote>
+<p><strong>专门为最小二乘设计的方法。</strong></p>
+</blockquote>
+<p>核心思想：</p>
+<ul>
+<li><p>忽略 Hessian 中的二阶残差项</p>
+</li>
+<li><p>用：</p>
+<p>$H \approx J^T J$</p>
+</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>比梯度下降快</li>
+<li>在误差较小时非常有效</li>
+</ul>
+<hr>
+<p>Levenberg–Marquardt（LM）</p>
+<blockquote>
+<p><strong>Gauss–Newton + Gradient Descent 的折中。</strong></p>
+</blockquote>
+<p>更新公式：</p>
+<p>$(J^T J + \lambda I)\Delta &#x3D; J^T r$</p>
+<p>直觉解释：</p>
+<ul>
+<li>$\lambda$ 大 → 像梯度下降（稳）</li>
+<li>$\lambda$ 小 → 像 Gauss–Newton（快）</li>
+</ul>
+<p>Bundle Adjustment 的标准算法</p>
+<hr>
+<p>为什么需要“初始值”？</p>
+<blockquote>
+<p><strong>非线性优化只能保证“局部最优”。</strong></p>
+</blockquote>
+<p>所以：</p>
+<ul>
+<li><p>初始值来自：</p>
+<ul>
+<li>线性估计</li>
+<li>Triangulation</li>
+<li>Tomasi–Kanade</li>
+<li>Stereo reconstruction</li>
+</ul>
+</li>
+</ul>
+<p>优化什么时候会失败？</p>
+<ul>
+<li>初始值太差</li>
+<li>噪声太大</li>
+<li>outliers 没去掉</li>
+<li>模型不正确</li>
+</ul>
+<blockquote>
+<p><strong>RANSAC 通常在优化之前</strong></p>
+</blockquote>
+<p>为什么视觉里几乎都是最小二乘？</p>
+<blockquote>
+<p>因为噪声通常假设为高斯分布。</p>
+</blockquote>
+<p>Gauss–Newton 做了什么近似？</p>
+<blockquote>
+<p>忽略了残差的二阶导数项。</p>
+</blockquote>
+<p>LM 的 λ 是干什么的？</p>
+<blockquote>
+<p>控制稳定性和收敛速度的权衡。</p>
+</blockquote>
+<hr>
+<p>一句话总结</p>
+<blockquote>
+<p>数值优化是用迭代方法最小化重投影误差，<br>LM 是多视角重建中最核心的优化工具。</p>
+</blockquote>
+<h2 id="Numerical-Multi-view-Reconstruction"><a href="#Numerical-Multi-view-Reconstruction" class="headerlink" title="Numerical Multi-view Reconstruction"></a>Numerical Multi-view Reconstruction</h2><h3 id="Bundle-adjustment"><a href="#Bundle-adjustment" class="headerlink" title="Bundle adjustment"></a>Bundle adjustment</h3><p>束调整</p>
+<blockquote>
+<p><strong>Bundle Adjustment 是同时优化所有相机参数和所有 3D 点，使总重投影误差最小。</strong></p>
+</blockquote>
+<p>更口语一点：</p>
+<blockquote>
+<p><strong>让所有相机看到的所有点，在图像中“对得最齐”。</strong></p>
+</blockquote>
+<hr>
+<p>为什么叫 “Bundle”？</p>
+<blockquote>
+<p>每一个 3D 点 + 相机中心<br>形成一束投影光线（bundle of rays）</p>
+</blockquote>
+<p>Bundle Adjustment：</p>
+<blockquote>
+<p><strong>同时调整这些“光线束”的交点位置。</strong></p>
+</blockquote>
+<hr>
+<p>BA 在整个流程中的位置</p>
+<blockquote>
+<p>特征匹配 →<br>RANSAC 估计 F &#x2F; E →<br>分解得到相机位姿 →<br>Triangulation 得到 3D 点 →<br><strong>Bundle Adjustment 全局优化</strong></p>
+</blockquote>
+<p>BA 不是起点，是“精修”</p>
+<hr>
+<p>BA 优化的是什么？</p>
+<p>优化变量（θ）</p>
+<ul>
+<li><p>所有相机参数：</p>
+<ul>
+<li>旋转 R</li>
+<li>平移 t</li>
+<li>（可能还有内参）</li>
+</ul>
+</li>
+<li><p>所有 3D 点坐标：</p>
+<ul>
+<li>$X_j$</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>优化目标函数</p>
+
+
+$$
+\min_{{R_i,t_i,X_j}} \sum_{i,j} |u_{ij} - \pi(R_i,t_i,X_j)|^2
+$$
+
+
+
+<p>解释：</p>
+<ul>
+<li>$u_{ij}$：第 i 个相机观测到第 j 个点的像素</li>
+<li>$\pi$：投影函数</li>
+<li>误差 &#x3D; <strong>重投影误差</strong></li>
+</ul>
+<hr>
+<p>为什么 BA 是“非线性 + 大规模”的？</p>
+<p>非线性</p>
+<ul>
+<li>透视投影里有除法</li>
+<li>旋转参数本身是非线性的</li>
+</ul>
+<p>大规模</p>
+<blockquote>
+<p>20 个相机，1000 个点<br>参数数 ≈ 20×11 + 1000×3 ≈ <strong>3000+</strong></p>
+</blockquote>
+<p>Hessian 是 <strong>3000×3000</strong></p>
+<p>直接求逆几乎不可行</p>
+<hr>
+<p>BA 用什么算法？</p>
+<blockquote>
+<p><strong>Levenberg–Marquardt（LM）</strong></p>
+</blockquote>
+<p>原因：</p>
+<ul>
+<li>专为非线性最小二乘设计</li>
+<li>比 Gauss–Newton 更稳定</li>
+</ul>
+<hr>
+<p>BA 的关键计算结构</p>
+<p>Jacobian 矩阵的特点</p>
+<blockquote>
+<p><strong>极其稀疏（sparse）</strong></p>
+</blockquote>
+<p>原因：</p>
+<ul>
+<li><p>每个残差：</p>
+<ul>
+<li>只和 <strong>一个相机</strong></li>
+<li>和 <strong>一个 3D 点</strong><br>有关</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>利用稀疏结构做什么？</p>
+<p>Schur Complement</p>
+<blockquote>
+<p><strong>先消掉 3D 点变量，<br>只在相机参数空间里求解，<br>再反推出 3D 点更新。</strong></p>
+</blockquote>
+<p>结果：</p>
+<ul>
+<li>大矩阵 → 小矩阵</li>
+<li>计算量大幅降低</li>
+<li>数值更稳定</li>
+</ul>
+<p>这是 BA 能跑起来的关键</p>
+<hr>
+<p>输入</p>
+<ul>
+<li>初始相机参数</li>
+<li>初始 3D 点</li>
+<li>特征匹配关系</li>
+</ul>
+<p>输出</p>
+<ul>
+<li>优化后的相机位姿</li>
+<li>优化后的 3D 结构</li>
+</ul>
+<p>整体最优（局部意义下）</p>
+<hr>
+<p>优点</p>
+<ul>
+<li>精度最高</li>
+<li>全局一致</li>
+<li>理论严谨</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>计算量大</li>
+<li>需要好初值</li>
+<li>对 outliers 敏感（通常已用 RANSAC 处理）</li>
+</ul>
+<hr>
+<p>为什么 BA 不能从零开始？</p>
+<blockquote>
+<p>因为是非线性优化，<br>容易陷入错误的局部最优。</p>
+</blockquote>
+<p>BA 会改变相机内参吗？</p>
+<blockquote>
+<p>可以，<br>取决于是否把内参作为变量。</p>
+</blockquote>
+<p>BA 和 Triangulation 的关系？</p>
+<blockquote>
+<p>Triangulation 是局部解，<br>BA 是全局优化。</p>
+</blockquote>
+<hr>
+<p>一句话总结</p>
+<blockquote>
+<p>Bundle Adjustment 是多视角重建中<br>最终、最精确的全局优化步骤，<br>通过最小化重投影误差联合优化相机和结构。</p>
+</blockquote>
+<h2 id="Reconstruction-by-Special-Devices"><a href="#Reconstruction-by-Special-Devices" class="headerlink" title="Reconstruction by Special Devices"></a>Reconstruction by Special Devices</h2><p>利用特殊传感器进行三维重建</p>
+<blockquote>
+<p><strong>特殊设备不是“看”，而是“直接量距离”。</strong></p>
+</blockquote>
+<p>与普通相机的本质区别：</p>
+<ul>
+<li>相机：<strong>间接恢复深度（靠几何）</strong></li>
+<li>特殊设备：<strong>直接测深度</strong></li>
+</ul>
+<h3 id="Laser-scanning"><a href="#Laser-scanning" class="headerlink" title="Laser scanning"></a>Laser scanning</h3><p>激光扫描</p>
+<blockquote>
+<p><strong>发射一束激光，等它反射回来，用时间或相位差算距离。</strong></p>
+</blockquote>
+<hr>
+<p>基本原理</p>
+<ol>
+<li><p>发射激光</p>
+</li>
+<li><p>激光击中物体</p>
+</li>
+<li><p>反射回传感器</p>
+</li>
+<li><p>测量：</p>
+<ul>
+<li><strong>Time-of-Flight（飞行时间）</strong></li>
+<li>或 <strong>相位差</strong></li>
+</ul>
+</li>
+</ol>
+<p>距离：</p>
+<p>$d &#x3D; \frac{c \cdot \Delta t}{2}$</p>
+<hr>
+<p>得到的结果</p>
+<ul>
+<li><p>每一次测量：</p>
+<ul>
+<li>一个方向</li>
+<li>一个距离</li>
+</ul>
+</li>
+<li><p>多次扫描 → <strong>3D 点云</strong></p>
+</li>
+</ul>
+<hr>
+<p>优点：</p>
+<ul>
+<li>精度高</li>
+<li>与光照无关</li>
+<li>几何直接</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>扫描慢（机械结构）</li>
+<li>成本高</li>
+<li>动态场景困难</li>
+</ul>
+<hr>
+<p>典型应用</p>
+<ul>
+<li>建筑扫描</li>
+<li>文物数字化</li>
+<li>工业测量</li>
+</ul>
+<h3 id="Depth-camera"><a href="#Depth-camera" class="headerlink" title="Depth camera"></a>Depth camera</h3><p>深度相机</p>
+<blockquote>
+<p><strong>能同时输出 RGB 图像 + 每个像素的深度。</strong></p>
+</blockquote>
+<hr>
+<p>常见实现方式</p>
+<p>Structured Light（结构光）</p>
+<ul>
+<li>投射已知光栅</li>
+<li>看变形</li>
+<li>根据变形计算深度</li>
+</ul>
+<p>早期 Kinect</p>
+<p>Time-of-Flight（ToF）</p>
+<ul>
+<li>发射红外光</li>
+<li>测飞行时间或相位差</li>
+<li>每个像素一个距离</li>
+</ul>
+<p>新一代 Kinect、手机 3D 相机</p>
+<hr>
+<p>Depth Camera 的输出</p>
+<ul>
+<li>深度图（Depth map）</li>
+<li>每个像素都有 Z</li>
+</ul>
+<p>直接可转为点云</p>
+<hr>
+<p>优点：</p>
+<ul>
+<li>实时</li>
+<li>使用简单</li>
+<li>直接得到深度</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>室外容易受干扰</li>
+<li>测距范围有限</li>
+<li>深度噪声较大</li>
+</ul>
+<hr>
+<p>典型应用</p>
+<ul>
+<li>手势识别</li>
+<li>人体重建</li>
+<li>室内 SLAM</li>
+</ul>
+<h3 id="LiDAR"><a href="#LiDAR" class="headerlink" title="LiDAR"></a>LiDAR</h3><p>激光雷达</p>
+<blockquote>
+<p><strong>高速、远距离、360° 的激光扫描系统。</strong></p>
+</blockquote>
+<hr>
+<p>工作方式</p>
+<ul>
+<li>连续发射激光脉冲</li>
+<li>旋转扫描</li>
+<li>对每个方向测距</li>
+</ul>
+<p>得到：</p>
+<ul>
+<li>稠密或半稠密 <strong>3D 点云</strong></li>
+</ul>
+<p>与普通 Laser Scanner 的区别</p>
+<table>
+<thead>
+<tr>
+<th>Laser Scanner</th>
+<th>LiDAR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>慢</td>
+<td>快</td>
+</tr>
+<tr>
+<td>局部</td>
+<td>大范围</td>
+</tr>
+<tr>
+<td>静态</td>
+<td>动态也可</td>
+</tr>
+<tr>
+<td>工业</td>
+<td>自动驾驶</td>
+</tr>
+</tbody></table>
+<hr>
+<p>优点：</p>
+<ul>
+<li>远距离</li>
+<li>高精度</li>
+<li>不依赖纹理</li>
+<li>室外稳定</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>昂贵</li>
+<li>数据量大</li>
+<li>物体表面稀疏</li>
+</ul>
+<hr>
+<p>典型应用</p>
+<ul>
+<li>自动驾驶</li>
+<li>无人机测绘</li>
+<li>城市建模</li>
+</ul>
+<hr>
+<p>特殊设备 vs 普通视觉</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>普通相机</th>
+<th>特殊设备</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>深度获取</td>
+<td>间接</td>
+<td>直接</td>
+</tr>
+<tr>
+<td>是否需要匹配</td>
+<td>✔</td>
+<td>✘</td>
+</tr>
+<tr>
+<td>是否有尺度</td>
+<td>✘</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>依赖光照</td>
+<td>✔</td>
+<td>✘</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>低</td>
+<td>高</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>特殊设备解决的是“深度获取难”的问题，<br>但代价是成本和复杂度。</p>
+</blockquote>
+<hr>
+<p>为什么还要学多视角视觉？</p>
+<blockquote>
+<p>因为相机便宜、通用、信息丰富，<br>特殊设备只是补充，不是替代。</p>
+</blockquote>
+<p>LiDAR 和 stereo 谁更准？</p>
+<blockquote>
+<p>LiDAR 深度更准，<br>stereo 空间分辨率更高。</p>
+</blockquote>
+<p>Depth camera 能完全替代 stereo 吗？</p>
+<blockquote>
+<p>不能，<br>室外和远距离表现较差。</p>
+</blockquote>
+<p>这些设备还需要 BA 吗？</p>
+<blockquote>
+<p>可以，<br>尤其在多帧对齐和 SLAM 中。</p>
+</blockquote>
+<hr>
+<p>一句话总结</p>
+<blockquote>
+<p>特殊设备通过主动测距直接获得深度，<br>与基于几何推断的视觉方法形成互补。</p>
+</blockquote>
+</div><div class="article-licensing box"><div class="licensing-title"><p>3D Computer Vision</p><p><a href="https://aloen.to/AI/3D/3D-Computer-Vision/">https://aloen.to/AI/3D/3D-Computer-Vision/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2025-12-16</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2025-12-17</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/3D%E8%A7%86%E8%A7%89/">3D视觉</a><a class="link-muted mr-2" rel="tag" href="/tags/%E8%80%83%E8%AF%95/">考试</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/EI/Embodied-Intelligence/"><span class="level-item">Embodied Intelligence</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">73</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">23</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">42</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/3D/"><span class="level-start"><span class="level-item">3D</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/CogSci/"><span class="level-start"><span class="level-item">CogSci</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/EI/"><span class="level-start"><span class="level-item">EI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">30</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/RL/"><span class="level-start"><span class="level-item">RL</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">9</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Database/MSSQL/"><span class="level-start"><span class="level-item">MSSQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/3D%E8%A7%86%E8%A7%89/"><span class="tag">3D视觉</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">39</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">30</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/RL/"><span class="tag">RL</span><span class="tag">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/"><span class="tag">具身智能</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/"><span class="tag">加密货币</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">54</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">13</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A4%E7%9F%A5%E7%A7%91%E5%AD%A6/"><span class="tag">认知科学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Basic-Estimation-Theory"><span class="level-left"><span class="level-item">1</span><span class="level-item">Basic Estimation Theory</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Solution-for-homogeneous-linear-system-of-equations"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">Solution for homogeneous linear system of equations</span></span></a></li><li><a class="level is-mobile" href="#Solution-for-inhomogeneous-linear-system-of-equations"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Solution for inhomogeneous linear system of equations</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Robust-Fitting-Methods"><span class="level-left"><span class="level-item">2</span><span class="level-item">Robust Fitting Methods</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#The-RANSAC-method"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">The RANSAC method</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Multi-model-Fitting"><span class="level-left"><span class="level-item">3</span><span class="level-item">Multi-model Fitting</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Sequential-RANSAC"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">Sequential RANSAC</span></span></a></li><li><a class="level is-mobile" href="#MultiRANSAC"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">MultiRANSAC</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Camera-Models"><span class="level-left"><span class="level-item">4</span><span class="level-item">Camera Models</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Perspective-camera"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">Perspective camera</span></span></a></li><li><a class="level is-mobile" href="#Orthogonal-projection"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">Orthogonal projection</span></span></a></li><li><a class="level is-mobile" href="#Weak-perspective-camera"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">Weak-perspective camera</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Calibration-of-Perspective-Camera-Using-a-Spatial-Calibration-Object"><span class="level-left"><span class="level-item">5</span><span class="level-item">Calibration of Perspective Camera Using a Spatial Calibration Object</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Estimation-of-projection-matrix"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">Estimation of projection matrix</span></span></a></li><li><a class="level is-mobile" href="#Decomposition-of-projection-matrix"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">Decomposition of projection matrix</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Chessboard-based-Calibration-of-Perspective-Cameras"><span class="level-left"><span class="level-item">6</span><span class="level-item">Chessboard-based Calibration of Perspective Cameras</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Radial-distortion"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">Radial distortion</span></span></a></li><li><a class="level is-mobile" href="#Tangential-distortion"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">Tangential distortion</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Plane-plane-Homography"><span class="level-left"><span class="level-item">7</span><span class="level-item">Plane-plane Homography</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Panoramic-images-by-homographies"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">Panoramic images by homographies</span></span></a></li><li><a class="level is-mobile" href="#关键公式"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">关键公式</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Estimation-of-Homography"><span class="level-left"><span class="level-item">8</span><span class="level-item">Estimation of Homography</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Data-Normalization"><span class="level-left"><span class="level-item">8.1</span><span class="level-item">Data Normalization</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Basics-of-Epipolar-Geometry"><span class="level-left"><span class="level-item">9</span><span class="level-item">Basics of Epipolar Geometry</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Essential-matrix"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">Essential matrix</span></span></a></li><li><a class="level is-mobile" href="#Fundamental-matrix"><span class="level-left"><span class="level-item">9.2</span><span class="level-item">Fundamental matrix</span></span></a></li><li><a class="level is-mobile" href="#Rectification"><span class="level-left"><span class="level-item">9.3</span><span class="level-item">Rectification</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Estimation-of-Essential-and-Fundamental-Matrices"><span class="level-left"><span class="level-item">10</span><span class="level-item">Estimation of Essential and Fundamental Matrices</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Data-normalization"><span class="level-left"><span class="level-item">10.1</span><span class="level-item">Data normalization</span></span></a></li><li><a class="level is-mobile" href="#Decomposition-of-essential-matrix"><span class="level-left"><span class="level-item">10.2</span><span class="level-item">Decomposition of essential matrix</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Triangulation"><span class="level-left"><span class="level-item">11</span><span class="level-item">Triangulation</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Standard-stereo-vision"><span class="level-left"><span class="level-item">11.1</span><span class="level-item">Standard stereo vision</span></span></a></li><li><a class="level is-mobile" href="#General-stereo-vision"><span class="level-left"><span class="level-item">11.2</span><span class="level-item">General stereo vision</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Stereo-Vision-for-Planar-Motion"><span class="level-left"><span class="level-item">12</span><span class="level-item">Stereo Vision for Planar Motion</span></span></a></li><li><a class="level is-mobile" href="#Tomasi-Kanade-Factorization"><span class="level-left"><span class="level-item">13</span><span class="level-item">Tomasi-Kanade Factorization</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Multi-view-reconstruction-by-orthogonal-camera-model"><span class="level-left"><span class="level-item">13.1</span><span class="level-item">Multi-view reconstruction by orthogonal camera model</span></span></a></li><li><a class="level is-mobile" href="#Multi-view-reconstruction-by-weak-perspective-camera-model"><span class="level-left"><span class="level-item">13.2</span><span class="level-item">Multi-view reconstruction by weak-perspective camera model</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Reconstruction-by-Merging-Stereo-Reconstructions"><span class="level-left"><span class="level-item">14</span><span class="level-item">Reconstruction by Merging Stereo Reconstructions</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Registration-of-two-point-sets-by-a-similarity-transformation"><span class="level-left"><span class="level-item">14.1</span><span class="level-item">Registration of two point sets by a similarity transformation</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Numerical-Optimization"><span class="level-left"><span class="level-item">15</span><span class="level-item">Numerical Optimization</span></span></a></li><li><a class="level is-mobile" href="#Numerical-Multi-view-Reconstruction"><span class="level-left"><span class="level-item">16</span><span class="level-item">Numerical Multi-view Reconstruction</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Bundle-adjustment"><span class="level-left"><span class="level-item">16.1</span><span class="level-item">Bundle adjustment</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Reconstruction-by-Special-Devices"><span class="level-left"><span class="level-item">17</span><span class="level-item">Reconstruction by Special Devices</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Laser-scanning"><span class="level-left"><span class="level-item">17.1</span><span class="level-item">Laser scanning</span></span></a></li><li><a class="level is-mobile" href="#Depth-camera"><span class="level-left"><span class="level-item">17.2</span><span class="level-item">Depth camera</span></span></a></li><li><a class="level is-mobile" href="#LiDAR"><span class="level-left"><span class="level-item">17.3</span><span class="level-item">LiDAR</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-12-16T10:19:27.000Z">2025-12-16</time></p><p class="title"><a href="/AI/3D/3D-Computer-Vision/">3D Computer Vision</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/3D/">3D</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-11-24T06:43:20.000Z">2025-11-24</time></p><p class="title"><a href="/AI/EI/Embodied-Intelligence/">Embodied Intelligence</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/EI/">EI</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-06-03T07:57:14.000Z">2025-06-03</time></p><p class="title"><a href="/Memo/K%E7%BA%BF%E5%BD%A2%E6%80%81/">K线形态</a></p><p class="categories"><a href="/categories/Memo/">Memo</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-06-01T09:58:41.000Z">2025-06-01</time></p><p class="title"><a href="/Memo/%E9%87%8F%E5%8C%96%E6%97%A5%E8%AE%B0/">量化日记</a></p><p class="categories"><a href="/categories/Memo/">Memo</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-05-24T08:50:53.000Z">2025-05-24</time></p><p class="title"><a href="/AI/RL/RL-Endterm/">RL-Endterm</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/RL/">RL</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2025/12/"><span class="level-start"><span class="level-item">December 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/11/"><span class="level-start"><span class="level-item">November 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/06/"><span class="level-start"><span class="level-item">June 2025</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/05/"><span class="level-start"><span class="level-item">May 2025</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/04/"><span class="level-start"><span class="level-item">April 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/03/"><span class="level-start"><span class="level-item">March 2025</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/02/"><span class="level-start"><span class="level-item">February 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/12/"><span class="level-start"><span class="level-item">December 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2025 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
