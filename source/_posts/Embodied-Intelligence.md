@@ -2941,26 +2941,81 @@ Locomotion Generation
 
 ## Exam
 
-1.  Write a short essay [max 10-15 sentence] about the Braitenberg vehicles. Sketch at least 2 different vehicles and analyze their behavior. Make a summary conclusion about the topic.
+1. Write a short essay [max 10-15 sentence] about the Braitenberg vehicles. Sketch at least 2 different vehicles and analyze their behavior. Make a summary conclusion about the topic.
 
-    写一篇关于布拉伊滕贝格小车的短文 [最多 10-15 句话]。请绘制至少 2 种不同的车辆草图并分析它们的行为。对该主题做一个总结性结论。
+   写一篇关于布拉伊滕贝格小车的短文 [最多 10-15 句话]。请绘制至少 2 种不同的车辆草图并分析它们的行为。对该主题做一个总结性结论。
 
-2.  Choose one vehicle from Task1. Your task is to make a project proposal to the realization of the hardware.
+   布拉伊滕贝格小车是一类极简机器人模型，用于说明复杂行为可以由简单结构产生。  
+   每个小车只包含传感器、电机，以及它们之间的直接连接，没有规划和推理。  
+   行为的关键在于传感器与电机的连接方式。  
+   兴奋连接会加速电机，抑制连接会减速电机。
 
-    从任务 1 中选择一种车辆。你的任务是为硬件实现制定一份项目提案。
+   2a 型（恐惧）使用兴奋连接，当一侧光更强时，小车会转向远离光源。  
+   3a 型（爱）使用抑制连接，靠近刺激时逐渐减速并停在源附近。
 
-    a. Choose an actuator type option from the learnt ones and argue Your choice. [Compare the benefits and drawback with the other types.]
+   结论是：复杂行为 ≠ 复杂智能，简单结构就足够。
 
-        从学过的执行器类型中选择一种，并论证你的选择。[与其他类型比较优缺点。]
+2. Choose one vehicle from Task1. Your task is to make a project proposal to the realization of the hardware.
 
-    b. Make a simplified structural plan for the peripherals needed for the project [similar graph that we saw on lectures] and explain how You would use them in the project.
+   从任务 1 中选择一种车辆。你的任务是为硬件实现制定一份项目提案。
 
-        为项目所需的外设制定一个简化的结构规划图 [类似于我们在讲座中看到的图表]，并解释你将如何在项目中使用它们。
+   a. Choose an actuator type option from the learnt ones and argue Your choice. [Compare the benefits and drawback with the other types.]
 
-3.  What are the main signal types?
+   从学过的执行器类型中选择一种，并论证你的选择。[与其他类型比较优缺点。]
 
-    主要的信号类型有哪些？
+   我选择 直流电机（DC motor）。  
+   优点：结构简单、成本低、PWM 易控制。  
+   相比步进电机：控制更简单。  
+   相比舵机：更便宜，适合连续运动。  
+   缺点是定位精度低，但本项目不需要精确位置控制。
 
-4.  Draw a block diagram about the generalized control loop. What are the main components of it?
+   b. Make a simplified structural plan for the peripherals needed for the project [similar graph that we saw on lectures] and explain how You would use them in the project.
 
-    画出通用控制回路的框图。它的主要组成部分是什么？
+   为项目所需的外设制定一个简化的结构规划图 [类似于我们在讲座中看到的图表]，并解释你将如何在项目使用它们。
+
+   传感器采集光强 → 信号调理 → 控制器计算 → 电机驱动 → 小车运动。
+
+3. What are the main signal types?
+
+   主要的信号类型有哪些？
+
+   Analog signals（模拟信号）  
+   Continuous values, e.g. light intensity
+
+   Digital signals（数字信号）  
+   Discrete values, 0 or 1
+
+   PWM signals（脉宽调制信号）  
+   Digital signal used to control motor speed
+
+   Communication signals（通信信号）  
+   I²C, SPI, UART
+
+4. Draw a block diagram about the generalized control loop. What are the main components of it?
+
+   画出通用控制回路的框图。它的主要组成部分是什么？
+
+   ```txt
+   [Reference]
+        ↓
+   [Controller]
+        ↓
+   [Actuator]
+        ↓
+   [Plant / Robot]
+        ↓
+   [Sensor]
+        └────── Feedback
+   ```
+
+   Reference（参考输入） – desired behavior
+
+   Controller（控制器） – computes control action
+
+   Actuator（执行器） – produces motion
+
+   Plant / System（被控对象） – robot
+
+   Sensor（传感器） – measures output
+
+   Feedback（反馈） – closes the loop
