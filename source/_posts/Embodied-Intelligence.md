@@ -1334,17 +1334,456 @@ Motor driver（H-bridge）
 
 ## Ethorobotics（伦理机器人学）
 
+引入 Ethorobotics 的核心背景是：
+
+- 机器人 **不再只是工业机器**
+- 机器人开始 **进入人类社会**
+- 与人 **互动、交流、共存**
+
+一旦机器人进入社会，就不只是“技术问题”，而是：
+
+- 行为是否合适
+- 是否安全
+- 是否被人接受
+
+---
+
+Ethorobotics = **Ethology（动物行为学） + Robotics（机器人学）**
+
+- 借鉴 **动物和人的行为模式**
+- 研究 **机器人如何表现得“合适”**
+
+Ethorobotics **不关心底层控制算法**，而关心：
+
+- 行为（behavior）
+- 互动（interaction）
+- 感知方式（how humans perceive robots）
+- 情感与社会影响
+
+核心不是“机器人能不能动”，而是“动得对不对”
+
+---
+
+| 传统机器人 | Ethorobotics |
+| ---------- | ------------ |
+| 工业任务   | 社会互动     |
+| 精度、速度 | 行为、接受度 |
+| 功能正确   | 行为合适     |
+| 不与人交流 | 与人交流     |
+
 ### Social Robots（社交机器人）
+
+- 社交机器人**不是只干活**
+- 它们的核心目标是：**与人互动**
+
+- 能 **感知人**
+- 能 **回应人**
+- 行为 **符合社会规范**
+
+包括但不限于：
+
+- 语言交流
+- 手势
+- 表情
+- 距离（不要靠太近）
+- 轮流说话
+
+---
+
+社交机器人“必须具备”的三类能力
+
+(1) Perception（感知）
+
+- 识别人
+- 感知声音、表情、动作
+
+(2) Interaction（互动）
+
+- 说话、回应
+- 使用多种沟通方式（后面会讲 Communication Modalities）
+
+(3) Behavior（行为）
+
+- 动作要“像样”
+- 不吓人
+- 不冒犯
 
 ### Industrial Robots（工业机器人）
 
+| 工业机器人 | 社交机器人 |
+| ---------- | ---------- |
+| 面向机器   | 面向人     |
+| 目标：效率 | 目标：互动 |
+| 不关心感受 | 必须被接受 |
+| 隔离运行   | 与人共处   |
+
+- 工业机器人是为**工业生产**而设计
+- 目标是：**完成任务**
+
+工业机器人**关心：**
+
+- 精度（accuracy）
+- 重复性（repeatability）
+- 速度（speed）
+- 可靠性（reliability）
+- 效率（efficiency）
+
+工业机器人**不关心：**
+
+- 情感
+- 社交
+- 被“喜欢”
+- 行为是否像人
+
+---
+
+工业机器人通常：
+
+- 与人 **物理隔离**
+- 在 **受控环境** 中运行
+- 通过：
+
+  - 安全围栏
+  - 安全光幕
+  - 紧急停止系统
+
+---
+
+典型应用
+
+- 焊接（welding）
+- 喷涂（painting）
+- 装配（assembly）
+- 搬运（pick and place）
+- 加工（machining）
+
 ### Uncanny Valley（恐怖谷）
+
+> **The uncanny valley describes a phenomenon where a robot that looks almost human, but not perfectly human, causes discomfort or eeriness in people.**
+
+恐怖谷指的是：机器人越像人，但又不像到位时，人类反而会感到不适或恐惧。
+
+一条**心理曲线**来解释：
+
+- 横轴：**Human likeness（像人的程度）**
+- 纵轴：**Affinity / Familiarity（亲近感）**
+
+变化过程是：
+
+1. 完全不像人 → 没问题
+2. 有点像人 → 更亲近
+3. **非常像但不完美 → 亲近感急剧下降（恐怖谷）**
+4. 几乎完全像人 → 亲近感再次上升
+
+中间那一段“掉下去”的区域，就是 **Uncanny Valley**。
+
+---
+
+- 外观很像人
+- 但：
+
+  - 动作不自然
+  - 表情僵硬
+  - 眼神不对
+  - 反应不像人
+
+大脑无法正确分类：是“人”还是“机器”？
+
+Uncanny Valley 与 Social Robots 的关系
+
+- 机器人如果**太像人但行为不自然**
+  → 会 **降低信任**
+  → 会 **引起排斥**
+
+因此：
+
+> **Designers must avoid the uncanny valley when creating social robots.**
 
 ### Main Fields of Application of Social Robotics（社交机器人的主要应用领域）
 
+(1) **Healthcare / Caregiving（医疗与照护）**
+
+**核心用途：**
+
+- 陪伴老人
+- 提醒吃药
+- 简单交流、情感支持
+
+**为什么适合社交机器人：**
+
+- 需要互动
+- 需要被接受
+- 需要情感表达
+
+> Social robots are used in healthcare for assistance, companionship and monitoring.
+
+---
+
+(2) **Education（教育）**
+
+**核心用途：**
+
+- 辅助教学
+- 语言学习
+- 儿童陪学
+
+**为什么适合：**
+
+- 互动可以提高学习动机
+- 机器人可以反复、耐心教学
+
+> Social robots are used in education to support learning through interaction.
+
+---
+
+(3) **Entertainment（娱乐）**
+
+**核心用途：**
+
+- 娱乐机器人
+- 玩具
+- 表演、互动展示
+
+**为什么适合：**
+
+- 娱乐本身就是社交行为
+- 情感和互动是核心
+
+> Social robots are used for entertainment and interactive experiences.
+
+---
+
+(4) **Customer Service / Public Spaces（服务与公共场所）**
+
+**核心用途：**
+
+- 接待
+- 引导
+- 信息提供（机场、商场、博物馆）
+
+**为什么适合：**
+
+- 需要与陌生人交流
+- 需要友好、自然的行为
+
+> Social robots can be used as service robots in public spaces to interact with people.
+
+---
+
+(5) **Therapy and Special Needs（治疗与特殊人群）**
+
+**核心用途：**
+
+- 自闭症儿童辅助
+- 情绪训练
+- 社会行为训练
+
+**为什么适合：**
+
+- 机器人行为可控
+- 不带社会压力
+
+> Social robots are used in therapy, especially for children with special needs.
+
 ### Communication Modalities in Interactions（交互中的通信模式）
 
+> **A communication modality is a channel through which interaction between humans and robots takes place.**
+
+通信模式就是人和机器人交流所使用的方式或通道。
+
+- 人类交流是 **多模态（multimodal）**
+- 只靠一种方式（例如只说话）是不自然的
+- **社交机器人必须组合多种通信模式**
+
+---
+
+(1) **Verbal Communication（语言 / 语音）**
+
+**内容：**
+
+- 说话
+- 听懂人说话
+
+**作用：**
+
+- 信息交换
+- 指令
+- 对话
+
+> Verbal communication enables spoken interaction between humans and robots.
+
+---
+
+(2) **Non-verbal Communication（非语言）**
+
+包括：
+
+- 手势（gestures）
+- 姿态（posture）
+- 身体朝向（orientation）
+- 距离（proxemics）
+
+**作用：**
+
+- 表达意图
+- 增强自然感
+- 辅助语言
+
+> Non-verbal communication conveys intentions without spoken language.
+
+---
+
+(3) **Facial Expressions（面部表情）**
+
+**内容：**
+
+- 眼睛
+- 眉毛
+- 嘴部动作
+- 表情变化
+
+**作用：**
+
+- 情绪表达
+- 增加信任感
+- 提高可接受度
+
+> Facial expressions are important for emotional communication in social robots.
+
+---
+
+(4) **Gaze and Eye Contact（注视与眼神）**
+
+**作用：**
+
+- 表示注意力
+- 表示轮到谁说话
+- 增强“被关注”的感觉
+
+> Eye gaze helps regulate interaction and attention.
+
+---
+
+(5) **Touch / Haptics（触觉）**
+
+**内容：**
+
+- 触摸
+- 拥抱
+- 物理反馈
+
+**注意：**
+
+- 强烈的伦理与安全问题
+- 必须非常谨慎
+
+> Touch can enhance interaction but raises ethical and safety concerns.
+
+---
+
+单模态 vs 多模态
+
+| 单一通信模式 | 多模态通信   |
+| ------------ | ------------ |
+| 不自然       | 更自然       |
+| 信息有限     | 信息丰富     |
+| 易误解       | 更清晰       |
+| 不像人       | 更像人类交流 |
+
+> Multimodal communication leads to more natural human–robot interaction.
+
+---
+
+Communication Modalities 与 Uncanny Valley 的关系
+
+- 外观像人
+- 但通信模式单一或不自然
+  → **更容易掉进恐怖谷**
+
+> A mismatch between appearance and communication modalities can cause the uncanny valley effect.
+
 ### Attachment and the Ainsworth Strange Situation Test（依恋与艾因斯沃斯陌生情境测试）
+
+> **Attachment is an emotional bond between an individual and a caregiver or social partner.**
+
+依恋是个体与照料者或社会对象之间形成的情感联系。
+
+- 社交机器人会：
+
+  - 陪伴人
+  - 长期互动
+  - 表现出“社会行为”
+
+- 人类**可能会对机器人产生情感反应**
+
+因此必须研究：
+
+> **Humans can form attachment-like relationships with robots.**
+
+---
+
+Ainsworth Strange Situation Test 是什么？
+
+这是一个**心理学经典实验**，由 **Mary Ainsworth** 提出，用来研究**儿童依恋类型**。
+
+> **The Strange Situation Test is a structured experiment designed to observe attachment behavior under stress.**
+
+Strange Situation Test 的基本流程
+
+- 把个体（通常是儿童）
+- 放入 **陌生环境**
+- 让 **照料者离开并返回**
+- 观察个体的反应
+
+**重点不是“发生了什么”，而是“如何反应”**。
+
+---
+
+测试中观察什么？
+
+测试关注的是 **分离（separation）和重聚（reunion）时的行为**。
+
+例如：
+
+- 是否焦虑
+- 是否探索环境
+- 是否在重聚时寻求接触
+- 是否容易被安抚
+
+依恋类型
+
+> **The test classifies different attachment styles based on behavior.**
+
+依恋类型根据个体在测试中的行为反应进行分类。
+
+---
+
+Strange Situation Test 与 Social Robotics 的关系
+
+在 Ethorobotics 中：
+
+- 研究人员**借用该测试的思想**
+- 来观察：
+
+  - 人是否对机器人表现出依恋行为
+  - 分离时是否不安
+  - 重聚时是否寻求互动
+
+> The Strange Situation Test is adapted to study attachment between humans and social robots.
+
+---
+
+为什么这涉及伦理（Ethics）？
+
+因为一旦人对机器人产生依恋：
+
+- 会影响情绪
+- 会影响决策
+- 会产生心理依赖
+
+因此：
+
+> **Attachment to robots raises ethical concerns.**
 
 ## Cognitive Robotics（认知机器人学）
 
