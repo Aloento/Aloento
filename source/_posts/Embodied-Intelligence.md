@@ -2296,13 +2296,330 @@ Phonoid 的行为会根据内部状态发生变化，而不只是简单反射。
 
 ## Evolutionary Robotics（进化机器人学）
 
+- 机器人设计 **非常复杂**
+- 手工设计控制器 / 结构 **成本高、效果有限**
+- 很多行为 **难以直接建模**
+
+> **Why not let robots evolve their behavior automatically?**
+
+进化机器人学通过“进化”而不是“人工设计”来获得机器人行为。
+
+> **Evolutionary robotics is a field of robotics where evolutionary algorithms are used to automatically design robot controllers, behaviors or even morphologies.**
+
+进化机器人学使用进化算法自动生成机器人的控制和行为。
+
+- evolutionary algorithms
+- automatic design
+- behavior / controller
+
+这里的进化是**达尔文式进化思想**，不是生物学本身。
+
+核心要素只有三点：
+
+1. **Population（种群）**
+2. **Variation（变异）**
+3. **Selection（选择）**
+
+> Better-performing robots are selected and modified over generations.
+
+| 传统机器人设计 | 进化机器人学 |
+| -------------- | ------------ |
+| 人工设计规则   | 自动进化     |
+| 人定义行为     | 行为涌现     |
+| 可解释         | 常不可解释   |
+| 受限于设计者   | 可发现新策略 |
+
+---
+
+可以进化的对象包括：
+
+- **Robot controllers（控制器）**
+- **Parameters（参数）**
+- **Behaviors（行为）**
+- 有时甚至是：
+
+  - **Robot morphology（结构）**
+
+---
+
+核心优势
+
+- 不需要精确模型
+- 适合复杂、未知环境
+- 能产生意想不到但有效的策略
+
+局限
+
+- 计算成本高
+- 进化结果不一定可解释
+- 现实机器人上直接进化有风险
+
 ### Robot Path Planning（机器人路径规划）
+
+> **Robot path planning is the problem of finding a feasible path from a start position to a goal position while avoiding obstacles.**
+
+机器人路径规划是让机器人从起点到终点，同时避开障碍物的问题。
+
+路径规划一定包含这四点：
+
+1. **Start position（起点）**
+2. **Goal position（终点）**
+3. **Environment（环境）**
+4. **Obstacles（障碍物）**
+
+为什么路径规划是“难问题”？
+
+- 环境复杂
+- 障碍物多
+- 状态空间大
+- 手工设计路径或规则困难
+
+---
+
+Path Planning vs Evolutionary Path Planning
+
+传统方法
+
+- 基于规则
+- 基于模型
+- 人工设计
+
+进化方法
+
+- 不直接设计路径
+- **进化控制策略或行为**
+- 路径是行为的结果
+
+---
+
+进化机器人中“规划”的真正含义
+
+- 没有明确的“路线图”
+- 只有：
+
+  - 传感器输入
+  - 行为输出
+
+- 好的行为自然走到目标
+
+---
+
+Fitness（适应度）在路径规划中的作用
+
+- 路径是否到达目标
+- 是否避开障碍
+- 是否高效（距离、时间）
+
+这些都会体现在：Fitness function
+
+---
+
+Robot Path Planning 在 Evolutionary Robotics 中的意义
+
+- 是一个经典问题
+- 非常适合展示进化方法的优势
+- 能产生非直观但有效的路径
 
 ### Workspace Optimization（工作空间优化）
 
+> **The workspace is the set of all positions and orientations that a robot can reach.**
+
+工作空间是机器人能够到达的所有位置（和姿态）的集合。
+
+什么是 Workspace Optimization
+
+让机器人
+
+- **覆盖更多区域**
+- **更容易到达目标**
+- **更高效地完成任务**
+
+> 工作空间优化就是让机器人“更好地利用它能到达的空间”。
+
+---
+
+为什么 Workspace Optimization 很重要？
+
+- 机器人结构和参数一旦固定
+- 工作空间就会受到限制
+- 如果设计不好：
+
+  - 有些位置到不了
+  - 有些动作效率很低
+
+因此：
+
+> **Optimizing the workspace improves task performance.**
+
+---
+
+在进化机器人学中，**不手工计算最优结构**，而是：
+
+- 进化：
+
+  - 控制参数
+  - 关节配置
+  - 有时甚至是机械结构
+
+- 通过适应度函数评估：
+
+  - 覆盖范围
+  - 可达性
+  - 操作效率
+
+> Workspace optimization is achieved by evolving robot parameters and evaluating their performance.
+
+---
+
+可以优化哪些方面？
+
+- **Robot morphology（结构）**
+- **Joint limits（关节范围）**
+- **Control strategies（控制策略）**
+
+Workspace Optimization 与任务的关系
+
+- 不同任务 → 不同最优工作空间
+- 优化是 **任务相关的（task-dependent）**
+
+为什么进化方法适合 Workspace Optimization？
+
+- 搜索空间大
+- 人工设计困难
+- 进化可以发现非直观解
+
 ### Estimation of Kinematic Chain（运动链估计）
 
+> **A kinematic chain is a sequence of links and joints that describes how motion is transmitted from the base to the end-effector.**
+
+运动链是由连杆和关节组成的结构，描述运动如何从底座传到末端。
+
+什么是 Estimation of Kinematic Chain
+
+- 不事先完全知道：
+
+  - 关节参数
+  - 连杆长度
+  - 关节关系
+
+- **通过运动和感知来估计**
+
+> 运动链估计就是通过观测来推断机器人的运动学模型。
+
+---
+
+为什么需要“估计”？
+
+- 机器人可能：
+
+  - 自我重构
+  - 被进化改变结构
+  - 参数随时间变化
+
+- 人工标定不现实
+
+因此：
+
+> **The robot must estimate its own kinematic structure.**
+
+---
+
+在 Evolutionary Robotics 中如何用到运动链估计？
+
+- 进化可能改变：
+
+  - 控制策略
+  - 结构参数
+
+- 机器人需要：
+
+  - **重新理解“我怎么动”**
+
+所以：
+
+> **Kinematic chain estimation supports adaptive and evolutionary systems.**
+
+---
+
+估计是基于什么信息？
+
+- 传感器数据
+- 关节运动
+- 末端执行器位置变化
+
+> Estimation is based on observed motion and sensor feedback.
+
+---
+
+运动链估计解决什么问题？
+
+- 正确预测运动结果
+- 改善控制精度
+- 在结构变化后继续工作
+
+> Estimating the kinematic chain allows the robot to control its motion correctly.
+
+---
+
+与 Workspace Optimization 的关系
+
+- 工作空间依赖于运动链
+- 如果运动链变化 → 工作空间也变化
+- 因此需要估计 → 再优化
+
+> Kinematic chain estimation is necessary for workspace optimization.
+
 ### Welding Robot（焊接机器人）
+
+焊接机器人是用于自动完成焊接任务的工业机器人。
+
+焊接任务为什么“难”？是因为它同时具有：
+
+- **复杂几何路径**
+- **严格的时间与速度要求**
+- **高精度位置控制**
+- **对环境变化敏感**
+
+---
+
+核心问：
+
+(1) **Path Planning（路径）**
+
+- 焊枪必须沿焊缝移动
+- 路径必须连续、平滑
+
+(2) **Timing & Speed（时间与速度）**
+
+- 速度过快或过慢都会影响焊接质量
+
+(3) **Positioning Accuracy（定位精度）**
+
+- 焊枪位置误差会导致焊接失败
+
+(4) **Adaptation（适应性）**
+
+- 工件可能存在偏差
+- 焊缝不完全一致
+
+---
+
+因此可以使用进化方法来：
+
+- 自动优化：
+
+  - 运动参数
+  - 路径跟随行为
+  - 控制策略
+
+在焊接场景中，进化的目标通常是：
+
+- 焊缝质量
+- 稳定性
+- 效率
+- 错误容忍度
+
+这些都会体现在 **fitness evaluation** 中。
 
 ## Biologically-inspired Robot Locomotion（生物启发的机器人运动）
 
