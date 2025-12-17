@@ -2941,81 +2941,389 @@ Locomotion Generation
 
 ## Exam
 
-1. Write a short essay [max 10-15 sentence] about the Braitenberg vehicles. Sketch at least 2 different vehicles and analyze their behavior. Make a summary conclusion about the topic.
+### Write a short essay [max 10-15 sentence] about the Braitenberg vehicles. Sketch at least 2 different vehicles and analyze their behavior. Make a summary conclusion about the topic
 
-   写一篇关于布拉伊滕贝格小车的短文 [最多 10-15 句话]。请绘制至少 2 种不同的车辆草图并分析它们的行为。对该主题做一个总结性结论。
+写一篇关于布拉伊滕贝格小车的短文 [最多 10-15 句话]。请绘制至少 2 种不同的车辆草图并分析它们的行为。对该主题做一个总结性结论。
 
-   布拉伊滕贝格小车是一类极简机器人模型，用于说明复杂行为可以由简单结构产生。  
-   每个小车只包含传感器、电机，以及它们之间的直接连接，没有规划和推理。  
-   行为的关键在于传感器与电机的连接方式。  
-   兴奋连接会加速电机，抑制连接会减速电机。
+Braitenberg vehicles are minimalistic thought-experiment robots introduced by Valentino Braitenberg.  
+They consist only of sensors, motors, and direct connections between them.  
+There is no internal model, memory, planning, or cognition.  
+Despite this simplicity, they exhibit complex, lifelike behaviors.
 
-   2a 型（恐惧）使用兴奋连接，当一侧光更强时，小车会转向远离光源。  
-   3a 型（爱）使用抑制连接，靠近刺激时逐渐减速并停在源附近。
+布拉伊滕贝格小车是由 Valentino Braitenberg 提出的极简机器人思想实验。  
+它们只包含 传感器、电机，以及两者之间的直接连接。  
+没有记忆、规划、推理或智能模块。  
+但却能表现出看似“智能”的复杂行为。
 
-   结论是：复杂行为 ≠ 复杂智能，简单结构就足够。
+The key idea is that behavior emerges from sensor–motor coupling.  
+Small changes in wiring structure can lead to dramatically different behaviors.  
+Observers often over-interpret these behaviors as intentional or emotional.
 
-2. Choose one vehicle from Task1. Your task is to make a project proposal to the realization of the hardware.
+核心思想是：行为来自传感器与电机之间的耦合关系。  
+微小的连接变化，就会产生完全不同的行为。  
+人类观察者往往会错误地赋予机器人情感或意图。
 
-   从任务 1 中选择一种车辆。你的任务是为硬件实现制定一份项目提案。
+---
 
-   a. Choose an actuator type option from the learnt ones and argue Your choice. [Compare the benefits and drawback with the other types.]
+基本组成模块
 
-   从学过的执行器类型中选择一种，并论证你的选择。[与其他类型比较优缺点。]
+Sensors（传感器）
 
-   我选择 直流电机（DC motor）。  
-   优点：结构简单、成本低、PWM 易控制。  
-   相比步进电机：控制更简单。  
-   相比舵机：更便宜，适合连续运动。  
-   缺点是定位精度低，但本项目不需要精确位置控制。
+- Light sensor
+- Sound sensor
+- Distance sensor
 
-   b. Make a simplified structural plan for the peripherals needed for the project [similar graph that we saw on lectures] and explain how You would use them in the project.
+Motors（电机）
 
-   为项目所需的外设制定一个简化的结构规划图 [类似于我们在讲座中看到的图表]，并解释你将如何在项目使用它们。
+- Left motor
+- Right motor
 
-   传感器采集光强 → 信号调理 → 控制器计算 → 电机驱动 → 小车运动。
+Connections（连接方式）
 
-3. What are the main signal types?
+- **Excitatory（兴奋）**：刺激 ↑ → 电机速度 ↑
+- **Inhibitory（抑制）**：刺激 ↑ → 电机速度 ↓
+- **Ipsilateral（同侧）**
+- **Contralateral（交叉）**
 
-   主要的信号类型有哪些？
+**所有行为只来自这四点**
 
-   Analog signals（模拟信号）  
-   Continuous values, e.g. light intensity
+---
 
-   Digital signals（数字信号）  
-   Discrete values, 0 or 1
+Braitenberg 按 **复杂度递增** 提出了多种车辆，常见分类如下：
 
-   PWM signals（脉宽调制信号）  
-   Digital signal used to control motor speed
+Vehicle 0 – No Sensors
 
-   Communication signals（通信信号）  
-   I²C, SPI, UART
+0 型：无传感器
 
-4. Draw a block diagram about the generalized control loop. What are the main components of it?
+Vehicle 0 has no sensors and moves at constant speed.  
+It shows no reaction to the environment.
 
-   画出通用控制回路的框图。它的主要组成部分是什么？
+0 型小车没有传感器，只是匀速运动。  
+对环境没有任何反应。
 
-   ```txt
-   [Reference]
+**意义**：作为对照组
+
+---
+
+Vehicle 1 – One Sensor
+
+1 型：单传感器
+
+Vehicle 1 has one sensor connected to both motors.  
+It moves faster when the stimulus is stronger.
+
+1 型只有一个传感器，控制两个电机。  
+刺激越强，运动越快。
+
+**行为**：简单反射
+
+---
+
+Vehicle 2 – Two Sensors, Direct Connections
+
+2 型：双传感器 + 同侧连接
+
+Vehicle 2a – Fear（恐惧）
+
+**Connection**
+
+- Sensor → **Excitatory** （兴奋） → same-side motor
+
+**Behavior**
+
+- Turns away from stimulus
+
+The vehicle speeds up the motor on the stimulated side and turns away from the source.
+
+受刺激一侧加速，车辆转向远离刺激源，看起来像“害怕”。
+
+---
+
+Vehicle 2b – Aggression（攻击）
+
+**Connection**
+
+- Sensor → **Inhibitory** （抑制） → same-side motor
+
+**Behavior**
+
+- Moves toward stimulus rapidly
+
+刺激越强，靠近越快，看起来像“攻击”。
+
+---
+
+Vehicle 3 – Two Sensors, Crossed Connections
+
+3 型：双传感器 + 交叉连接（最重要）
+
+Vehicle 3a – Love（爱）
+
+**Connection**
+
+- Sensor → **Inhibitory** → opposite motor
+
+**Behavior**
+
+- Approaches stimulus and stops near it
+
+The vehicle slows down as it approaches the stimulus and finally stops close to it.
+
+靠近刺激源时逐渐减速，最后停在附近，看起来像“爱”。
+
+---
+
+Vehicle 3b – Explorer / Curiosity（探索）
+
+**Connection**
+
+- Sensor → **Excitatory** → opposite motor
+
+**Behavior**
+
+- Actively seeks stimulus, may circle around it
+
+车辆不断主动接近并绕着刺激源运动，看起来像“好奇”。
+
+---
+
+Vehicle 4 – Nonlinear Connections
+
+4 型：非线性连接
+
+Vehicle 4 introduces nonlinear transfer functions.
+Small stimuli cause weak reactions, strong stimuli cause strong reactions.
+
+4 型引入非线性映射，刺激与行为不再线性对应。
+
+**意义**：更接近真实生物反应
+
+---
+
+Vehicle 5+ – Memory and Internal States
+
+高级型（5 及以上）
+
+Later vehicles introduce internal states and simple memory.
+Behavior depends on past stimulation.
+
+更高级的小车具有内部状态或记忆。
+行为不仅取决于当前刺激，还取决于过去。
+
+**已接近真正控制系统**
+
+---
+
+| Vehicle | Sensors | Connection            | Behavior        | Interpretation |
+| ------- | ------- | --------------------- | --------------- | -------------- |
+| 0       | 0       | –                     | Constant motion | 无反应         |
+| 1       | 1       | Direct                | Speed change    | 反射           |
+| 2a      | 2       | Excitatory, same side | Avoidance       | 恐惧           |
+| 2b      | 2       | Inhibitory, same side | Attack          | 攻击           |
+| 3a      | 2       | Inhibitory, crossed   | Stop near       | 爱             |
+| 3b      | 2       | Excitatory, crossed   | Active seeking  | 好奇           |
+| 4       | 2       | Nonlinear             | Complex         | 生物化         |
+| 5+      | ≥2      | Internal states       | Adaptive        | 学习           |
+
+### Choose one vehicle from Task1. Your task is to make a project proposal to the realization of the hardware
+
+从任务 1 中选择一种车辆。你的任务是为硬件实现制定一份项目提案。
+
+#### Choose an actuator type option from the learnt ones and argue Your choice. [Compare the benefits and drawback with the other types.]
+
+从学过的执行器类型中选择一种，并论证你的选择。[与其他类型比较优缺点。]
+
+I choose DC motors as actuators.  
+DC motors are simple, cheap, and easy to control using voltage or PWM signals.  
+They are sufficient for demonstrating Braitenberg vehicle behavior.
+
+Compared to stepper motors, DC motors require less control complexity and fewer resources.  
+Compared to servo motors, DC motors are cheaper and more flexible for continuous motion.  
+Their main drawback is lower position accuracy, but position control is not required here.
+
+我选择 直流电机（DC motor）。  
+优点：结构简单、成本低、PWM 易控制。  
+相比步进电机：控制更简单。  
+相比舵机：更便宜，适合连续运动。  
+缺点是定位精度低，但本项目不需要精确位置控制。
+
+#### Make a simplified structural plan for the peripherals needed for the project [similar graph that we saw on lectures] and explain how You would use them in the project
+
+为项目所需的外设制定一个简化的结构规划图 [类似于我们在讲座中看到的图表]，并解释你将如何在项目使用它们。
+
+```txt
+[Light Sensors]
         ↓
-   [Controller]
+[Signal Conditioning]
         ↓
-   [Actuator]
+[Microcontroller]
         ↓
-   [Plant / Robot]
+[Motor Driver]
         ↓
-   [Sensor]
-        └────── Feedback
-   ```
+[DC Motors]
+```
 
-   Reference（参考输入） – desired behavior
+Light sensors measure the stimulus intensity.  
+Signal conditioning converts raw signals to usable voltage levels.  
+The microcontroller processes sensor signals and applies inhibitory control logic.  
+The motor driver amplifies control signals.  
+DC motors generate movement.
 
-   Controller（控制器） – computes control action
+传感器采集光强 → 信号调理 → 控制器计算 → 电机驱动 → 小车运动。
 
-   Actuator（执行器） – produces motion
+### What are the main signal types?
 
-   Plant / System（被控对象） – robot
+主要的信号类型有哪些？
 
-   Sensor（传感器） – measures output
+Analog signals（模拟信号）  
+Continuous values, e.g. light intensity
 
-   Feedback（反馈） – closes the loop
+Digital signals（数字信号）  
+Discrete values, 0 or 1
+
+PWM signals（脉宽调制信号）  
+Digital signal used to control motor speed
+
+Communication signals（通信信号）  
+I²C, SPI, UART
+
+### Draw a block diagram about the generalized control loop. What are the main components of it?
+
+画出通用控制回路的框图。它的主要组成部分是什么？
+
+A generalized control loop is a closed-loop system that continuously regulates a process by comparing the desired reference with the measured output and applying corrective actions through feedback.
+
+通用控制回路是一种**闭环系统**，通过不断比较**期望值（参考输入）**与**实际输出**，并利用**反馈**进行修正，从而稳定和控制系统行为。
+
+基本框图
+
+```txt
+   Reference r(t)
+        ↓
+     [ Comparator ]
+        ↓  error e(t)
+     [ Controller ]
+        ↓  control u(t)
+     [ Actuator ]
+        ↓
+     [ Plant / System ]
+        ↓  output y(t)
+     [ Sensor ]
+        └──────── Feedback ────────┘
+```
+
+---
+
+主要组成部分
+
+1️⃣ Reference / Setpoint
+
+**参考输入 / 目标值**
+
+- English: Desired value the system should reach
+- 系统希望达到的目标
+- 例子：目标速度、目标位置、目标温度
+
+---
+
+2️⃣ Comparator
+
+**比较器（误差计算）**
+
+- English: Computes the error
+  $e(t) = r(t) - y(t)$
+- 计算误差 = 目标 − 实际输出
+
+**误差是控制的核心驱动力**
+
+---
+
+3️⃣ Controller
+
+**控制器**
+
+- English: Generates control signal based on the error
+- 根据误差计算控制量
+
+常见控制器：
+
+- **P** (Proportional)
+- **PI**
+- **PID**
+
+---
+
+4️⃣ Actuator
+
+**执行器**
+
+- English: Converts control signal into physical action
+- 把控制信号变成物理运动或能量
+
+例子：
+
+- DC motor
+- Servo motor
+- Hydraulic actuator
+
+---
+
+5️⃣ Plant / System
+
+**被控对象**
+
+- English: The physical system to be controlled
+- 真正要被控制的系统
+
+例子：
+
+- Robot
+- Motor system
+- Vehicle
+
+---
+
+6️⃣ Sensor
+
+**传感器**
+
+- English: Measures system output
+- 测量系统状态
+
+例子：
+
+- Encoder（位置/速度）
+- Camera
+- Temperature sensor
+
+---
+
+7️⃣ Feedback
+
+**反馈（闭环关键）**
+
+- English: Sends measured output back to the controller
+- 把输出返回用于修正误差
+
+**没有反馈 = 开环**
+
+---
+
+Signal Flow
+
+信号流向
+
+Reference → Error → Control signal → Physical action → Measured output → Feedback
+
+目标 → 误差 → 控制信号 → 物理作用 → 测量输出 → 反馈
+
+| Type        | Feedback | Accuracy | Robustness |
+| ----------- | -------- | -------- | ---------- |
+| Open-loop   | ❌ No    | Low      | Poor       |
+| Closed-loop | ✅ Yes   | High     | Strong     |
+
+---
+
+A control loop is stable if its output converges to the reference without oscillation or divergence.
+
+如果系统输出能稳定接近目标值，而不震荡或发散，则系统是稳定的。
