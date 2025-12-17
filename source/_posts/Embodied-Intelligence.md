@@ -2623,11 +2623,321 @@ Workspace Optimization 与任务的关系
 
 ## Biologically-inspired Robot Locomotion（生物启发的机器人运动）
 
+- 传统机器人运动方式：
+
+  - 轮式
+  - 履带
+
+- **在复杂环境中表现很差**
+
+  - 不平整地形
+  - 障碍物
+  - 柔性接触
+
+而自然界中：
+
+- 动物已经在这些环境中 **进化了几百万年**
+- 生物运动：
+
+  - 稳定
+  - 高效
+  - 自适应
+
+---
+
+“Inspired”是什么意思
+
+- ❌ 不是完全复制动物
+- ❌ 不是做“动物模型”
+- ✅ 是**借鉴原理**
+
+例如：
+
+- 步态
+- 协调方式
+- 神经控制机制
+
+---
+
+生物启发运动关注哪些方面？
+
+- **Gaits（步态）**
+- **Coordination（协调）**
+- **Stability（稳定性）**
+- **Energy efficiency（能效）**
+- **Adaptation（适应性）**
+
+---
+
+与 Evolutionary Robotics 的关系
+
+- 生物启发运动：
+
+  - 提供结构与控制思路
+
+- 进化机器人学：
+
+  - 自动优化这些运动模式
+
+> Biologically-inspired locomotion is often combined with evolutionary methods.
+
+---
+
+生物启发运动 vs 传统运动
+
+| 传统机器人运动 | 生物启发运动    |
+| -------------- | --------------- |
+| 规则控制       | 协调控制        |
+| 结构刚性       | 柔性 / 多自由度 |
+| 环境受限       | 环境适应性强    |
+
+> Biologically-inspired locomotion provides better adaptability to complex environments.
+
 ### Evolutionary-based Locomotion（基于进化的运动）
+
+基于进化的运动是通过进化算法自动生成和优化机器人的运动方式。
+
+为什么不用“手工设计步态”？
+
+- 多足机器人、柔性机器人
+- 自由度高
+- 动力学复杂
+- 人工设计步态 **困难且不鲁棒**
+
+因此：
+
+> **Locomotion is a suitable target for evolutionary methods.**
+
+> 当运动系统复杂时，进化方法比人工设计更合适。
+
+---
+
+Evolutionary-based Locomotion 的基本思想
+
+在这种方法中：
+
+- **不预定义步态**
+- 进化的是：
+
+  - 控制参数
+  - 传感器–执行器映射
+
+- 运动模式 **从行为中涌现**
+
+> Gaits emerge through evolution rather than being explicitly programmed.
+
+---
+
+“进化”是如何作用在运动上的？
+
+1. 生成多种运动控制方案（种群）
+2. 在环境中测试运动
+3. 评估运动表现（fitness）
+4. 选择更好的方案
+5. 迭代进化
+
+> Locomotion patterns are selected based on performance in the environment.
+
+---
+
+Fitness 在运动进化中的含义
+
+Fitness 通常反映：
+
+- 移动距离
+- 稳定性
+- 能耗
+- 是否跌倒
+
+> Fitness evaluates how well the robot moves.
+
+---
+
+Evolutionary-based Locomotion 的优势
+
+- 能发现非直观步态
+- 适应特定机器人结构
+- 适应特定环境
+
+> Evolutionary locomotion can discover efficient and unexpected movement strategies.
+
+---
+
+与 Biologically-inspired Locomotion 的关系
+
+- 生物启发 → 提供灵感
+- 进化方法 → 自动优化
+
+因此：
+
+> **Evolutionary-based locomotion often uses biologically inspired control principles.**
+
+局限性
+
+- 计算成本高
+- 仿真到现实存在差距
 
 ### Neurooscillator-based Locomotion Generation（基于神经振荡器的运动生成）
 
+为什么要用 Neurooscillators？
+
+- 动物的行走、游泳、爬行
+- 并不是每一步都“计算出来”
+- 而是由 **神经振荡器（Central Pattern Generators, CPGs）** 产生
+
+> 生物运动来源于神经振荡，而不是逐步计算。
+
+什么是 Neurooscillator
+
+神经振荡器是一种无需周期输入就能产生周期信号的系统。
+
+Locomotion Generation
+
+基于神经振荡器的运动生成利用振荡信号来驱动机器人运动。
+
+---
+
+神经振荡器如何产生运动？
+
+1. 振荡器产生周期信号
+2. 信号驱动关节或电机
+3. 多个振荡器相互耦合
+4. 形成协调的步态
+
+不需要显式规划步态
+
+> Coordinated locomotion emerges from coupled oscillators.
+
+为什么这种方法适合机器人运动？
+
+- **平滑运动**
+- **自然节律**
+- **对扰动鲁棒**
+- **易于适应不同速度**
+
+> Neurooscillator-based locomotion is robust and produces smooth, natural motion.
+
+---
+
+与 Biologically-inspired Locomotion 的关系
+
+> **This approach is directly inspired by biological central pattern generators.**
+
+也就是说：
+
+- 不是算法巧合
+- 是明确的生物启发
+
+与 Evolutionary-based Locomotion 的关系
+
+- 振荡器结构是生物启发的
+- **参数可以通过进化优化**
+
+> Neurooscillator parameters are often optimized using evolutionary algorithms.
+
+解决了什么问题？
+
+- 不需要复杂规划
+- 不需要精确模型
+- 行为自然、稳定
+
+> Neurooscillator-based locomotion simplifies control of complex robots.
+
 ### Evolving a Sensory-Motor Interconnection Structure（进化感觉-运动互连结构）
+
+感觉-运动互连结构就是“传感器如何影响执行器”。
+
+例如：
+
+- 哪个传感器连到哪个电机
+- 信号是增强还是抑制
+- 是否经过中间节点（如振荡器）
+
+什么是“Evolving” Sensory-Motor Structure？
+
+> 进化感觉-运动互连结构，就是用进化算法自动生成传感器到执行器的连接方式。
+
+---
+
+为什么要进化“结构”，而不是只进化参数？
+
+- 手工设计连接结构：
+
+  - 依赖经验
+  - 容易限制行为
+
+- 很多有效行为：
+
+  - **不是人类直觉能想到的**
+
+因此：
+
+> **The structure itself should be subject to evolution.**
+
+> 不只参数，连接方式本身也应该被进化。
+
+---
+
+进化互连结构 vs 固定互连结构
+
+| 固定结构 | 进化结构     |
+| -------- | ------------ |
+| 人工设计 | 自动发现     |
+| 行为受限 | 行为涌现     |
+| 可解释   | 可能不可解释 |
+| 适应性低 | 适应性高     |
+
+> Evolving interconnections allows more flexible and adaptive behavior.
+
+---
+
+进化的“结构”可能包括什么？
+
+- 哪些传感器连接到哪些电机
+- 连接强度的正负（兴奋/抑制）
+- 是否存在中间处理单元
+- 连接的拓扑结构
+
+---
+
+与 Braitenberg Vehicles 的直接联系
+
+- Braitenberg Vehicles：
+
+  - **手工设计**感觉-运动连接
+
+- 这里：
+
+  - **自动进化**感觉-运动连接
+
+> Evolving sensory-motor interconnections generalizes the idea of Braitenberg Vehicles.
+
+与 Neurooscillator-based Locomotion 的关系
+
+在生物启发运动中：
+
+- 传感器
+- 神经振荡器
+- 电机
+
+它们之间的连接方式可以：
+
+> **be evolved to produce stable and adaptive locomotion.**
+
+---
+
+为什么这种方法“很像生物”？
+
+- 生物的神经系统：
+
+  - 不是人工设计的
+  - 是进化结果
+
+- 机器人也可以：
+
+  - 通过进化形成有效连接结构
+
+> This approach is biologically inspired at the structural level.
 
 ## Exam
 
