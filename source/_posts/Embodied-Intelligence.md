@@ -3198,18 +3198,18 @@ A generalized control loop is a closed-loop system that continuously regulates a
 基本框图
 
 ```txt
-   Reference r(t)
-        ↓
-     [ Comparator ]
-        ↓  error e(t)
-     [ Controller ]
-        ↓  control u(t)
-     [ Actuator ]
-        ↓
-     [ Plant / System ]
-        ↓  output y(t)
-     [ Sensor ]
-        └──────── Feedback ────────┘
+Reference r(t)
+     ↓
+  [ Comparator ]
+     ↓  error e(t)
+  [ Controller ]
+     ↓  control u(t)
+  [ Actuator ]
+     ↓
+  [ Plant / System ]
+     ↓  output y(t)
+  [ Sensor ]
+     └──────── Feedback ────────┘
 ```
 
 ---
@@ -3220,7 +3220,7 @@ A generalized control loop is a closed-loop system that continuously regulates a
 
 **参考输入 / 目标值**
 
-- English: Desired value the system should reach
+- Desired value the system should reach
 - 系统希望达到的目标
 - 例子：目标速度、目标位置、目标温度
 
@@ -3230,7 +3230,7 @@ A generalized control loop is a closed-loop system that continuously regulates a
 
 **比较器（误差计算）**
 
-- English: Computes the error
+- Computes the error
   $e(t) = r(t) - y(t)$
 - 计算误差 = 目标 − 实际输出
 
@@ -3242,14 +3242,20 @@ A generalized control loop is a closed-loop system that continuously regulates a
 
 **控制器**
 
-- English: Generates control signal based on the error
+- Generates control signal based on the error
 - 根据误差计算控制量
 
 常见控制器：
 
 - **P** (Proportional)
-- **PI**
-- **PID**
+- **PI** (Proportional + Integral)
+- **PID** （Proportional + Integral + Derivative）
+
+| 控制器 | 用了什么信息           | 能消除稳态误差 | 稳定性 |
+| ------ | ---------------------- | -------------- | ------ |
+| P      | 当前误差               | ❌ 否          | 中     |
+| PI     | 当前 + 过去            | ✅ 是          | 中     |
+| PID    | 当前 + 过去 + 变化趋势 | ✅ 是          | 高     |
 
 ---
 
@@ -3257,7 +3263,7 @@ A generalized control loop is a closed-loop system that continuously regulates a
 
 **执行器**
 
-- English: Converts control signal into physical action
+- Converts control signal into physical action
 - 把控制信号变成物理运动或能量
 
 例子：
@@ -3272,7 +3278,7 @@ A generalized control loop is a closed-loop system that continuously regulates a
 
 **被控对象**
 
-- English: The physical system to be controlled
+- The physical system to be controlled
 - 真正要被控制的系统
 
 例子：
@@ -3287,7 +3293,7 @@ A generalized control loop is a closed-loop system that continuously regulates a
 
 **传感器**
 
-- English: Measures system output
+- Measures system output
 - 测量系统状态
 
 例子：
@@ -3302,7 +3308,7 @@ A generalized control loop is a closed-loop system that continuously regulates a
 
 **反馈（闭环关键）**
 
-- English: Sends measured output back to the controller
+- Sends measured output back to the controller
 - 把输出返回用于修正误差
 
 **没有反馈 = 开环**
