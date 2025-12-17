@@ -7,7 +7,7 @@ tags: [3D视觉, 考试]
 date: 2025-12-16 18:19:27
 ---
 
-我不中了
+欢乐挂科，我不中了
 
 <!-- more -->
 
@@ -781,7 +781,8 @@ $t = - R^T K^{-1} p_4$
 - 平面 ↔ 图像之间存在 **Homography**
 - 多个不同姿态 ⇒ 多个 Homography
 - 这些 Homography **共享同一个相机内参 K**
-  Chessboard-based Calibration 的整体流程（口语标准版）
+
+Chessboard-based Calibration 的整体流程
 
 ---
 
@@ -2878,10 +2879,7 @@ LM 的 λ 是干什么的？
 
 束调整
 
-> **Bundle Adjustment 是同时优化所有相机参数和所有 3D 点，使总重投影误差最小。**
-
-更口语一点：
-
+> **Bundle Adjustment 是同时优化所有相机参数和所有 3D 点，使总重投影误差最小。**  
 > **让所有相机看到的所有点，在图像中“对得最齐”。**
 
 ---
