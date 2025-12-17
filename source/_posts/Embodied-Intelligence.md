@@ -1787,17 +1787,512 @@ Strange Situation Test 与 Social Robotics 的关系
 
 ## Cognitive Robotics（认知机器人学）
 
+- 传统机器人：
+  → **按规则执行**
+- 真实世界：
+  → **不确定、变化、多样**
+
+因此，认知机器人学研究机器人如何“理解世界并作出决策”。
+
+> **Cognitive robotics is a field of robotics that studies robots capable of perception, reasoning, learning and decision-making.**
+
+认知机器人学研究具有感知、推理、学习和决策能力的机器人。
+
+- perception
+- reasoning
+- learning
+- decision-making
+
+| 传统机器人 | 认知机器人 |
+| ---------- | ---------- |
+| 固定规则   | 可适应     |
+| 预定义行为 | 决策行为   |
+| 环境简单   | 环境复杂   |
+| 不学习     | 能学习     |
+
+---
+
+认知机器人要实现类似生物的能力：
+
+- **Perception（感知）**
+- **Memory（记忆）**
+- **Attention（注意）**
+- **Decision making（决策）**
+- **Adaptivity（适应性）**
+
+Cognitive Robotics ≠ Artificial Intelligence
+
+- Cognitive robotics **使用 AI 方法**
+- 但重点是：
+
+  - **具身（embodied）**
+  - **与物理世界交互**
+
+---
+
+为什么“认知”对机器人很重要？
+
+因为现实环境中：
+
+- 信息不完整
+- 噪声存在
+- 人类行为不可预测
+
+因此机器人必须：
+
+- 解释感知结果
+- 在不确定性下决策
+- 根据经验调整行为
+
 ### Cognitive Architectures（认知架构）
+
+- 机器人需要 **感知、记忆、决策、行动**
+- 如果没有统一结构 → 系统会变成**零散模块的拼凑**
+
+因此需要：
+
+> **A structured organization of cognitive functions.**
+
+认知架构是用来组织机器人“如何思考”的整体结构。
+
+> **A cognitive architecture is a framework that defines how perception, memory, reasoning, decision-making and action are organized and interact in a cognitive robot.**
+
+认知架构规定了机器人中感知、记忆、推理、决策和行动如何协同工作。
+
+- perception
+- memory
+- reasoning
+- decision-making
+- action
+
+- 信息从哪里来？（感知）
+- 信息存到哪里？（记忆）
+- 如何使用信息？（推理）
+- 什么时候行动？（决策）
+- 如何执行？（行动）
+
+Cognitive Architecture ≠ 单一算法
+
+- ❌ 不是一个算法
+- ❌ 不是一个神经网络
+- ❌ 不是一个模块
+
+而是：
+
+> **An overall system-level organization.**
+
+---
+
+认知架构的典型组成
+
+1. **Perception module** （感知模块）
+2. **Memory**（短期 / 长期）
+3. **Reasoning / cognition** （推理 / 认知）
+4. **Decision-making** （决策）
+5. **Action / motor control** （行动 / 运动控制）
+
+为什么认知架构对 Cognitive Robotics 很重要？
+
+因为：
+
+- 认知机器人要 **长期运行**
+- 要 **在复杂环境中适应**
+- 要 **保持行为一致性**
+
+- 认知不是抽象的
+- 必须与身体和环境交互
+
+因此：
+
+> **Cognitive architectures must be embodied and connected to sensors and actuators.**
 
 ### Adaptivity（适应性）
 
+- 真实世界 **不确定**
+- 环境 **会变化**
+- 人类行为 **不可预测**
+
+如果机器人**不能改变自己的行为**，就只能在理想环境中工作。
+
+适应性是机器人在变化环境中生存和工作的关键能力。
+
+> **Adaptivity is the ability of a robot to change its behavior based on experience, feedback or environmental changes.**
+
+适应性是机器人根据环境变化或经验调整自身行为的能力。
+
+- change behavior
+- experience / feedback
+- environment
+
+---
+
+| 非适应型机器人  | 适应型机器人        |
+| --------------- | ------------------- |
+| 行为固定        | 行为可变            |
+| 预定义规则      | 根据情况调整        |
+| 环境变化 → 失败 | 环境变化 → 继续工作 |
+
+在认知机器人中，适应性通常体现在：
+
+- **Perception**：改变对环境的解释
+- **Decision-making**：选择不同策略
+- **Behavior**：调整动作方式
+
+---
+
+Adaptivity ≠ Learning
+
+- **Learning（学习）**：
+  → 获得新知识或模型
+- **Adaptivity（适应性）**：
+  → 使用已有或新知识调整行为
+
+认知机器人要：
+
+- 长时间运行
+- 与人互动
+- 面对未知情况
+
+没有适应性就会：
+
+- 行为僵化
+- 无法应对新情况
+
+> **Adaptivity does not necessarily require learning, but learning can enable adaptivity.**
+
+在社交机器人中：
+
+- 人类期望机器人：
+
+  - 学会合适的行为
+  - 不断调整互动方式
+
+因此：
+
+> **Adaptivity is also important for social interaction.**
+
 ### Braitenberg Vehicles（布雷滕伯格车辆）
+
+> **Braitenberg Vehicles are simple artificial agents that demonstrate complex behaviors through simple sensor–motor connections.**
+
+布雷滕伯格车辆是通过**非常简单的感知—运动连接**就能表现出复杂行为的简单机器人。
+
+- simple
+- sensor–motor connections
+- complex behavior
+
+> **Complex behavior does not require complex cognition.**
+
+也就是说：
+
+- 不一定需要记忆
+- 不一定需要规划
+- 不一定需要推理
+
+简单结构 + 正确连接 = 看起来“聪明”的行为
+
+---
+
+每一个 Braitenberg Vehicle 只有三样东西：
+
+1. **Sensors（传感器）**
+
+   - 通常是光传感器
+
+2. **Motors（电机）**
+
+   - 左轮 / 右轮
+
+3. **Connections（连接）**
+
+   - 传感器 → 电机（直接连）
+
+**行为不是“算出来的”，而是“连出来的”**。
+
+- 传感器感到刺激
+- 马上影响电机速度
+- 运动发生
+- 行为出现
+
+**没有中央控制器**。
+
+---
+
+连接方式决定行为
+
+(1) 同侧连接 vs 交叉连接
+
+- 左传感器 → 左电机（同侧）
+- 左传感器 → 右电机（交叉）
+
+(2) 兴奋型 vs 抑制型连接
+
+- 强刺激 → 电机更快
+- 强刺激 → 电机更慢
+
+不同组合会产生**完全不同的行为**。
+
+---
+
+看起来像“情绪”的行为（Ethorobotics 连接点）
+
+- 喜欢光（love）
+- 害怕光（fear）
+- 攻击（aggression）
+- 探索（exploration）
+
+**但这只是观察者的解释，不是真正的情感。**
+
+> Braitenberg vehicles appear emotional, but have no cognition or emotions.
+
+---
+
+Braitenberg Vehicles 在 Cognitive Robotics 中的意义
+
+> **They show that perception–action coupling can produce adaptive-looking behavior without internal representations.**
+
+仅靠感知—动作耦合，就能产生看似智能和适应性的行为。
+
+---
+
+和 Adaptivity 的关系
+
+- Braitenberg Vehicles：
+
+  - 没有学习
+  - 没有记忆
+
+- 但行为会随环境变化而变化
+
+> **They show a basic form of adaptivity without learning.**
 
 ### Cognitive Model of iPhonoid（iPhonoid 的认知模型）
 
+> **iPhonoid is a social robot used as a platform to study cognitive and social interaction.**
+
+iPhonoid 是一个用于研究认知与社交行为的机器人平台。
+
+- 认知不是抽象软件
+- 必须 **具身（embodied）**
+- 必须 **连接传感器与执行器**
+- 必须 **实时与人互动**
+
+iPhonoid 的认知模型不是“高智能规划”，而是：
+
+> **Perception → Internal state → Action**
+
+也就是一个**闭环的认知—行为系统**。
+
+---
+
+iPhonoid 认知模型的主要组成
+
+(1) **Perception（感知）**
+
+- 听觉（声音）
+- 视觉（人、环境）
+- 传感器输入
+
+用来获取外界信息。
+
+---
+
+(2) **Internal States（内部状态）**
+
+- 情绪状态
+- 动机状态
+- 压力 / 激活水平（后面会专门讲）
+
+决定机器人“当前处于什么状态”。
+
+---
+
+(3) **Decision / Mapping（决策映射）**
+
+- 根据感知 + 内部状态
+- 选择行为
+
+不是复杂规划，而是**状态驱动行为选择**。
+
+---
+
+(4) **Action（行为）**
+
+- 发声
+- 动作
+- 表情或姿态变化
+
+行为会反过来影响人 → 再被感知（闭环）。
+
+---
+
+Phonoid 的行为会根据内部状态发生变化，而不只是简单反射。
+
+| Braitenberg Vehicle | iPhonoid           |
+| ------------------- | ------------------ |
+| 无内部状态          | 有内部状态         |
+| 直接感知 → 行动     | 感知 → 状态 → 行动 |
+| 极简                | 更接近认知模型     |
+
+因为有内部状态：
+
+- 同样的刺激
+- 在不同状态下
+- 会产生不同反应
+
+因此：
+
+> **iPhonoid exhibits adaptive behavior based on its cognitive state.**
+
 ### Stress-inspired Working Memory（压力启发的工作记忆）
 
+- 人类和动物的行为 **会受到压力影响**
+- 压力会：
+
+  - 改变注意力
+  - 改变记忆容量
+  - 改变决策方式
+
+因此问题是：
+
+> **Can we model similar effects in robots?**
+
+压力会影响认知，所以认知机器人需要一个“受压力调节的记忆模型”。
+
+---
+
+什么是 Working Memory
+
+工作记忆是用于临时存储和处理信息的短期记忆。
+
+- 记忆不是固定大小
+- **压力水平会改变：**
+
+  - 能记住多少
+  - 记住什么
+  - 忘记什么
+
+---
+
+这里的压力 **不是心理学细节**，而是一个**内部状态变量**。
+
+- Stress ≠ 情绪
+- Stress = **系统的激活/负载水平**
+
+例如：
+
+- 刺激太多
+- 互动太频繁
+- 环境太复杂
+
+**类人生物行为**：
+
+低压力
+
+- 工作记忆容量较大
+- 可以处理更多信息
+- 行为更平稳
+
+高压力
+
+- 工作记忆容量下降
+- 只保留最重要的信息
+- 行为更简单、更反射化
+
+---
+
+在 iPhonoid 认知模型中：
+
+- 感知 → 增加或减少压力
+- 压力 → 调节工作记忆
+- 工作记忆 → 影响行为选择
+
+这是一个闭环过程
+
+为什么这个模型重要？
+
+因为它说明：
+
+- 机器人行为 **不是固定映射**
+- 内部状态会改变认知资源
+- 行为因此更像生物
+
+> Stress-inspired working memory enables more realistic and adaptive robot behavior.
+
+---
+
+- **Adaptivity**：
+  行为随内部状态变化
+- **Cognitive architecture**：
+  工作记忆是架构的一部分
+- **Ethorobotics**：
+  行为看起来更“自然”
+
 ### Robot Pianist（机器人钢琴家）
+
+机器人钢琴家是一个能够感知音乐并在钢琴上演奏的认知机器人。
+
+> **Playing music is not only a motor task, but a cognitive task.**
+
+原因是演奏需要同时处理：
+
+- 时间（节奏）
+- 顺序（音符先后）
+- 力度（强弱）
+- 错误修正
+- 感知反馈
+
+这是一个完整的认知—行动闭环示例。
+
+---
+
+(1) Perception（感知）
+
+- 读取乐谱 / 输入信息
+- 听到自己弹出的声音（听觉反馈）
+
+(2) Memory（记忆）
+
+- 记住音符序列
+- 记住节奏模式
+- 使用工作记忆处理当前音符
+
+(3) Timing（时间控制）
+
+- 演奏**必须严格按时间**
+- 与 **real-time** 强相关
+
+> Musical performance requires precise timing.
+
+(4) Decision-making（决策）
+
+- 何时弹哪个键
+- 力度如何
+- 是否需要纠错
+
+(5) Action（行动）
+
+- 精确控制手指或击键机构
+- 力与位置控制
+
+---
+
+- 机器人钢琴家不是“死弹”
+- 可以根据：
+
+  - 节奏变化
+  - 错误
+  - 外界干扰
+    来调整演奏
+
+与 Stress-inspired Working Memory 的联系
+
+- 演奏复杂段落 → 压力高
+- 工作记忆负载增加
+- 行为可能变简单或更保守
+
+> **The robot pianist demonstrates how perception, memory, timing, decision-making and motor control are integrated in a cognitive robotic system.**  
+> 机器人钢琴家展示了感知、记忆、时间控制、决策和运动控制如何在认知机器人系统中集成。
 
 ## Evolutionary Robotics（进化机器人学）
 
