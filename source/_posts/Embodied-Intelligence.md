@@ -3333,3 +3333,249 @@ Reference → Error → Control signal → Physical action → Measured output �
 A control loop is stable if its output converges to the reference without oscillation or divergence.
 
 如果系统输出能稳定接近目标值，而不震荡或发散，则系统是稳定的。
+
+### What does the Shannon theorem states?
+
+香农定理是什么？
+
+The Shannon theorem states that a band-limited continuous signal can be perfectly reconstructed from its samples if the sampling frequency is at least twice the highest frequency present in the signal.
+
+香农定理指出：
+如果一个连续信号是带限的，只要采样频率 ≥ 信号最高频率的两倍，就可以从离散采样中无失真地重建原信号。
+
+$$
+f_s \ge 2 f_{\max}
+$$
+
+- $f_s$：采样频率
+- $f_{\max}$：信号最高频率
+
+- 采样太慢 → **混叠（aliasing）**
+- 采样足够快 → **信息不丢失**
+
+### Illustrate the Uncanny Valley hypothesis and briefly explain the main idea
+
+The Uncanny Valley hypothesis states that as a robot becomes more human-like, people’s affinity increases, but when it becomes almost human (yet imperfect), affinity suddenly drops, causing discomfort or eeriness.
+
+恐怖谷假说认为：
+机器人越像人，人类越容易接受；
+但当“**几乎像人却又不像**”时，会引发**强烈不适和恐惧感**。
+
+```txt
+Affinity
+  ↑                 😊
+  |          😊
+  |        😊
+  |      😊
+  |    😊
+  |             😨  ← Uncanny Valley
+  |____________________________→ Human-likeness
+```
+
+### You have a differential drive mobile robot
+
+with wheel radius $r = 1 \text{ m}$ and wheel base $L = 2 \text{ m}$. The robot starts at the initial pose $(x, y, \theta) = (0, 0, 0)$ at $t = 0$.
+The profile of the angular velocities of the wheels is given below:
+
+| Time ($t$)      | Left Wheel ($\omega_L$) | Right Wheel ($\omega_R$) |
+| --------------- | ----------------------- | ------------------------ |
+| $0 \le t \le 2$ | $2 \text{ rad/s} $      | $2 \text{ rad/s}$        |
+| $2 \le t \le 4$ | $-2 \text{ rad/s}$      | $2 \text{ rad/s}$        |
+| $4 \le t \le 6$ | $3 \text{ rad/s} $      | $3 \text{ rad/s}$        |
+| $6 \le t \le 8$ | $4 \text{ rad/s} $      | $0 \text{ rad/s}$        |
+
+Calculate the robot's pose $(x, y, \theta)$ at $t = 8 \text{ s}$.
+_Hint: In case of curvilinear motions you can use the following relations:_
+
+$$
+\Delta x = \frac{v}{\omega}\left(\sin(\theta_0 + \omega \Delta t) - \sin \theta_0\right)
+$$
+
+$$
+\Delta y = \frac{v}{\omega}\left(-\cos(\theta_0 + \omega \Delta t) + \cos \theta_0\right)
+$$
+
+---
+
+差速机器人位姿计算
+
+基本公式
+
+线速度
+
+$v = \frac{r}{2}(\omega_R + \omega_L)$
+
+角速度
+
+$\omega = \frac{r}{L}(\omega_R - \omega_L)$
+
+分段计算
+
+---
+
+时间段 1：$0 \le t \le 2$
+
+$$
+\omega_L = 2,\quad \omega_R = 2
+$$
+
+$$
+v = \frac{1}{2}(2 + 2) = 2
+\quad
+\omega = \frac{1}{2}(2 - 2) = 0
+$$
+
+➡ Straight motion (直线运动)
+
+$$
+\Delta x = v \Delta t \cos\theta_0 = 2 \cdot 2 \cdot \cos 0
+$$
+
+$$
+\Delta y = v \Delta t \sin\theta_0 = 2 \cdot 2 \cdot \sin 0
+$$
+
+$$
+\Delta\theta = 0
+$$
+
+$$
+(x_1,y_1,\theta_1) = (4,0,0)
+$$
+
+---
+
+时间段 2：$2 \le t \le 4$
+
+$$
+\omega_L = -2,\quad \omega_R = 2
+$$
+
+$$
+v = \frac{1}{2}(2 + (-2)) = 0
+\quad
+\omega = \frac{1}{2}(2 - (-2)) = 2
+$$
+
+➡ Pure rotation (原地旋转)
+
+$$
+\Delta x = 0,\quad \Delta y = 0
+$$
+
+$$
+\Delta\theta = \omega \Delta t = 2 \cdot 2
+$$
+
+$$
+(x_2,y_2,\theta_2) = (4,0,4)
+$$
+
+---
+
+时间段 3：$4 \le t \le 6$
+
+- $\omega_L=3$, $\omega_R=3$
+
+$$
+v = \frac{1}{2}(3 + 3) = 3
+\quad
+\omega = 0
+$$
+
+➡ Straight motion with heading $\theta_2 = 4$
+
+$$
+\Delta x = v \Delta t \cos\theta_2
+= 3 \cdot 2 \cdot \cos 4
+$$
+
+$$
+\Delta y = v \Delta t \sin\theta_2
+= 3 \cdot 2 \cdot \sin 4
+$$
+
+$$
+\Delta\theta = 0
+$$
+
+$$
+(x_3,y_3,\theta_3) =
+\bigl(4 + 6\cos 4, 6\sin 4, 4\bigr)
+$$
+
+---
+
+时间段 4：$6 \le t \le 8$
+
+- $\omega_L=4$, $\omega_R=0$
+
+$$
+v = \frac{1}{2}(0 + 4) = 2
+\quad
+\omega = \frac{1}{2}(0 - 4) = -2
+$$
+
+$$
+\Delta t = 2,\quad
+\theta_3 = 4
+$$
+
+➡ Curvilinear motion (曲线运动)
+
+$$
+\theta_3 + \omega\Delta t = 4 - 4 = 0
+$$
+
+$$
+\frac{v}{\omega} = \frac{2}{-2} = -1
+$$
+
+Position increments
+
+$$
+\Delta x
+= -\bigl(\sin 0 - \sin 4\bigr)
+= -(-\sin 4)
+= \sin 4
+$$
+
+$$
+\Delta y
+= -\bigl(-\cos 0 + \cos 4\bigr)
+= 1 - \cos 4
+$$
+
+$$
+\Delta\theta = -2 \cdot 2 = -4
+$$
+
+---
+
+最终结果（t = 8 s）
+
+$$
+x = (4 + 6\cos 4) + \sin 4
+$$
+
+$$
+y = 6\sin 4 + (1 - \cos 4)
+$$
+
+$$
+\theta = 4 - 4 = 0
+$$
+
+$$
+\boxed{
+\begin{aligned}
+x &= 4 + 6\cos 4 + \sin 4 \
+y &= 6\sin 4 + 1 - \cos 4 \
+\theta &= 0
+\end{aligned}
+}
+$$
+
+$$
+(x, y, \theta) \approx (-0.67866422, -2.88717135, 0.0)
+$$
