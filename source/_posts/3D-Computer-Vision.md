@@ -601,36 +601,59 @@ Projection Matrix 的自由度
 
 ### Orthogonal projection
 
-正交投影
+Orthogonal projection 是一种平行投影模型，忽略深度对成像的影响，只保留 3D 点在成像平面方向上的分量。它数学简单但假设很强，仅适用于远距离或深度变化极小的场景，常作为弱透视模型的极限情况。
 
 所有点“垂直”投影到图像平面，不考虑深度。
 
 > 像工程制图
 > 或影子在正午阳光下
 
+| Perspective    | Orthogonal |
+| -------------- | ---------- |
+| 中心投影       | 平行投影   |
+| 有光心         | 无光心     |
+| 与深度有关     | 与深度无关 |
+| 有尺度不确定性 | 无尺度变化 |
+| 远小近大       | 尺寸恒定   |
+
 ---
 
-数学直觉
+投影关系（相机坐标系中）
 
-$u = R_{1:2} X + t$
+$u = X_c$
 
-- 只保留 X、Y
-- Z **完全被忽略**
+$v = Y_c$
 
-核心特性
+- **Z 坐标完全被忽略**
+- 没有除以 $Z_c$
 
-- **没有透视效应**
-- 远近大小完全一样
-- 模型最简单
+加上旋转和平移
+
+$$
+\begin{bmatrix}
+u\\
+v
+\end{bmatrix}
+=
+
+\begin{bmatrix}
+r_1^T\\
+r_2^T
+\end{bmatrix}
+(X - t)
+$$
+
+其中：
+
+- $r_1, r_2$：旋转矩阵 (R) 的前两行
 
 ---
 
 自由度
 
-- **5 DoF**
-
-  - 3（旋转）
-  - 2（平移）
+- 旋转 $R$：3 DoF
+- 平移（x, y）：2 DoF
+- **总计：5 DoF**
 
 ---
 
@@ -645,61 +668,128 @@ $u = R_{1:2} X + t$
 
 ### Weak-perspective camera
 
-弱透视相机
-
-> **真实透视太复杂，正交又太粗糙。**
-
-折中方案：**Weak-Perspective**
-
----
+Weak-perspective camera 是在物体深度变化较小的条件下，对真实透视投影的近似，用来在保持主要尺度效应的同时简化模型。是很多算法（尤其是 **Tomasi–Kanade factorization**）成立的前提。
 
 核心假设
 
-> **物体深度变化 ≪ 相机到物体的平均距离**
+> 物体的深度变化 $\Delta Z$ 相对于平均深度 $\bar Z$ 很小。
 
-换句话说：
+$$Z_c = \bar Z + \Delta Z, \quad \Delta Z \ll \bar Z$$
 
 - 所有点的 Z **几乎一样**
 
 ---
 
-投影思想
+从 Perspective 推导 Weak-perspective
 
-1. 先 **正交投影**
-2. 再整体 **缩放**
+$$
+u = \frac{f}{Z_c} X_c
+\quad
+v = \frac{f}{Z_c} Y_c
+$$
+
+代入 $Z_c = \bar Z + \Delta Z$：
+
+$$
+\frac{1}{Z_c} \approx \frac{1}{\bar Z}
+$$
+
+忽略高阶项，得到：
+
+$$
+u \approx \frac{f}{\bar Z} X_c
+\quad
+v \approx \frac{f}{\bar Z} Y_c
+$$
+
+定义全局尺度：
+
+$$
+q = \frac{f}{\bar Z}
+$$
 
 ---
 
-数学直觉
+Weak-perspective 的投影模型
 
-$u = s \cdot R_{1:2}(X - t)$
+$$
+u = q , r_1^T (X - t)
+$$
 
-- (s)：统一尺度因子
-- 不再随每个点的 Z 变化
+$$
+v = q , r_2^T (X - t)
+$$
+
+其中：
+
+- $r_1, r_2$：旋转矩阵 (R) 的前两行
+- $t$：平移
+- $q$：**全局尺度因子**
+
+**Weak-perspective 是带尺度的正交投影。**
+
+矩阵形式
+
+$$
+\begin{bmatrix}
+u\\
+v
+\end{bmatrix}
+=
+
+\underbrace{
+q
+\begin{bmatrix}
+r_1^T\\
+r_2^T
+\end{bmatrix}
+}_{M}
+X
++
+\underbrace{
+\begin{bmatrix}
+b_1\\
+b_2
+\end{bmatrix}
+}_{b}
+$$
+
+也常写成：
+
+$$
+\begin{bmatrix}
+u\\
+v
+\end{bmatrix}
+=
+
+[M \mid b]
+\begin{bmatrix}
+X\\
+1
+\end{bmatrix}
+$$
 
 ---
 
-| 特性     | 透视 | 弱透视    | 正交 |
-| -------- | ---- | --------- | ---- |
-| 透视缩放 | ✔    | ✔（统一） | ✘    |
-| 深度变化 | ✔    | ✘         | ✘    |
-| 非线性   | ✔    | ✘         | ✘    |
-| DoF      | 多   | **6**     | 5    |
+| 参数           | DoF       |
+| -------------- | --------- |
+| 旋转 R         | 3         |
+| 平移 t（x, y） | 2         |
+| 尺度 q         | 1         |
+| **总计**       | **6 DoF** |
 
-弱透视 = 缩放正交投影
+> 如果允许像素非正方形，可变成 7 DoF
 
----
+保留全局尺度
 
-优点
+- 远近物体大小一致
+- 但不同视角有不同缩放
 
-- 线性
-- 无尺度歧义
-- 易估计
-- 闭式解多
+不建模透视畸变
 
-缺点
-
-- 近距离或深度变化大时不准
+- 没有消失点
+- 平行线仍保持平行
 
 ---
 
@@ -708,8 +798,6 @@ $u = s \cdot R_{1:2}(X - t)$
 > **人脸、人体、刚体** > **中远距离、相对平坦结构**
 
 Tomasi–Kanade 因式分解就是用它
-
----
 
 为什么 Tomasi–Kanade 不能用透视？
 
