@@ -191,62 +191,39 @@ RANSAC 的核心思想
 
 ### The RANSAC method
 
-Step 1：随机采样（Random Sampling）
+Step 1：随机采样（Minimal Sample Set）
 
-- 随机选 **最小样本数** 的点
-- 这个数量 = **模型所需的最小点数**
-
-例子：
-
-- 直线：2 点
-- Homography：4 点
-- Fundamental matrix：7 或 8 点
-
-这一步的假设是：
-
-> “**这一次，抽到的点全是 inliers**”
-
----
-
-Step 2：模型估计（Model Estimation）
-
-- 用这几个点
-- 直接算一个模型（通常是**线性解**）
+- 随机选 **最小数量**的数据点
+- 刚好能确定模型参数
 
 例子：
 
-- 2 点 → 一条直线
-- 4 对点 → 一个 Homography
+| 模型               | 最小点数 |
+| ------------------ | -------- |
+| 2D 直线            | 2        |
+| 平面               | 3        |
+| Homography         | 4        |
+| Fundamental matrix | 7 / 8    |
 
----
+Step 2：模型估计（Hypothesis）
 
-Step 3：一致性检测（Consensus / Inlier Test）
+- 用这组点计算一个模型 $\theta$
 
-- 用这个模型
-- **测试所有数据点**
-- 计算误差（distance / reprojection error）
+Step 3：一致性检验（Consensus）
 
-判断规则：
+- 用模型 $\theta$ 计算所有点的误差
+- 若误差 < 阈值 → **inlier**
+- 否则 → outlier
 
-> “误差 < 阈值 → inlier
-> 误差 ≥ 阈值 → outlier”
+Step 4：记录最好模型
 
----
+- 统计 inliers 数量
+- 选择 **inliers 最多**的模型
 
-Step 4：记录支持度（Support）
+Step 5：重复 N 次
 
-- 统计：
-
-  > **有多少 inliers 支持这个模型**
-
-- 支持度 = inlier 数量
-
----
-
-Step 5：重复 + 选择最优
-
-- 重复以上步骤 N 次
-- 选择 **inlier 数最多** 的模型
+- 最终输出最优模型
+- 通常 **用所有 inliers 重新拟合一次**
 
 最后一步：
 
@@ -256,6 +233,15 @@ Step 5：重复 + 选择最优
 
 ---
 
+RANSAC 的“非线性”本质
+
+> RANSAC 本身不是最小化问题，而是一个**随机搜索 + 一致性验证**算法。
+
+- 不求梯度
+- 不连续
+- 不可导
+- 非 convex
+
 RANSAC 是“在参数空间里做投票”
 
 - 每一次随机采样 → 提出一个假设
@@ -264,20 +250,30 @@ RANSAC 是“在参数空间里做投票”
 
 ---
 
-最小样本数
-
-- 由模型决定
-- 决定了 RANSAC 的“基本成本”
-
-阈值（Threshold）
+距离阈值 $\tau$
 
 - 决定 inlier / outlier
-- 太小 → 好点被误删
-- 太大 → 坏点混进来
+- 太小 → inliers 变少
+- 太大 → outliers 被接收
 
-要跑多少次才够？
+迭代次数 (N)
 
-> “希望至少有一次，抽到的点全部是 inliers”
+由概率公式给出：
+
+$$N = \frac{\log(1-p)}{\log(1-w^s)}$$
+
+- $p$：成功概率（常用 0.99）
+- $w$：inlier 比例
+- $s$：最小样本数
+
+**一句话解释**
+
+> 迭代次数保证以高概率至少抽到一次全 inlier 的最小样本集。
+
+最小样本数 (s)
+
+- 由模型决定
+- 直接影响收敛速度
 
 ---
 
@@ -449,7 +445,8 @@ Step 4：重复
 
 ### Perspective camera
 
-透视 / 针孔相机
+在计算机视觉中，perspective camera 是最基本、最通用的成像模型，  
+它是大多数几何关系（如 homography、epipolar geometry、triangulation）的基础。
 
 > **离相机近的物体看起来大，远的看起来小。**
 
@@ -460,39 +457,147 @@ Step 4：重复
 
 ---
 
-$u \sim K ,[R \mid t], X$
+三个坐标系
 
-含义：
+**世界坐标系（World）**
 
-- $X$：世界坐标里的 3D 点
-- $R,t$：相机姿态
-- $K$：内参（焦距、主点等）
+$$X = [X, Y, Z]^T$$
 
-齐次坐标，只有比例意义
+- 物体真实 3D 位置
+- 任意选定
 
-核心特性
+**相机坐标系（Camera）**
 
-- **有尺度歧义（scale ambiguity）**
-- 深度 $Z$ 决定成像大小：
-  $u \propto \frac{1}{Z}$
+$$X_c = [X_c, Y_c, Z_c]^T$$
+
+变换关系：
+
+$$X_c = R (X - t)$$
+
+- $R$：旋转矩阵
+- $t$：相机中心在世界坐标中的位置
+
+**图像坐标系（Image）**
+
+$$u = [u, v]^T$$
+
+- 单位：像素
+- 原点通常在左上角
 
 ---
 
-优点
+Perspective 投影的几何关系
 
-- 最真实
-- 精确描述真实相机
-- 所有 3D 几何理论的基础
+**非齐次形式**
 
-缺点
+$$u = \frac{f}{Z_c} X_c + u_0$$
 
-- 参数多（内参 + 外参）
-- 非线性
-- 数学处理复杂
+$$v = \frac{f}{Z_c} Y_c + v_0$$
 
-什么时候用？
+关键点：
 
-> **近距离 / 大景深变化 / 精确 3D 重建**
+- $f$：焦距
+- $(u_0, v_0)$：主点（principal point）
+- $Z_c$：深度
+- 深度越大 → 投影越小
+
+- **尺度不确定性（scale ambiguity）**：
+
+  - 只能知道比例关系
+  - 不能知道绝对距离
+
+---
+
+齐次坐标表达（考试真正用的）
+
+$$
+\begin{bmatrix}
+u\\
+v\\
+1
+\end{bmatrix}
+\sim
+K
+\begin{bmatrix}
+X_c\\
+Y_c\\
+Z_c
+\end{bmatrix}
+$$
+
+其中 **K 是内参矩阵**
+
+---
+
+Camera Intrinsic Matrix (K)
+
+$$
+K =
+\begin{bmatrix}
+f k_u & s & u_0 \\
+0 & f k_v & v_0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+- $f$：焦距
+- $k_u, k_v$：像素尺度
+- $u_0, v_0$：主点（principal point）
+
+- $s$：skew（通常 0）
+  - 图像坐标系的 x、y 轴不正交
+  - 现代相机几乎没有这个问题
+
+> 内参描述的是相机本身的几何属性，与相机在世界中的位置无关。
+
+---
+
+完整投影模型，把外参和内参合起来：
+
+$$
+\lambda
+\begin{bmatrix}
+u\\
+v\\
+1
+\end{bmatrix}
+=
+K
+\begin{bmatrix}
+R & - Rt
+\end{bmatrix}
+\begin{bmatrix}
+X\\
+1
+\end{bmatrix}
+$$
+
+定义：
+
+$$
+P = K \begin{bmatrix} R & -Rt \end{bmatrix}
+$$
+
+- $P$：3x4 **投影矩阵（Projection Matrix）**，把 3D 点投影到图像上
+- 尺度 $\lambda$ 是未知的
+- $\begin{bmatrix} R & -Rt \end{bmatrix}$ 是一个横向拼接的外参矩阵
+- $K$：相机内参矩阵（焦距、主点等）
+- $R$：3x3 旋转矩阵，表示世界坐标系到相机坐标系的旋转，描述相机的朝向。
+- $t$：3x1 平移向量，表示相机在世界坐标系中的位置。
+- $Rt$：外参相乘，即将平移向量变换到相机坐标系下。
+
+---
+
+Projection Matrix 的自由度
+
+| 部分 | DoF |
+| ---- | --- |
+| K    | 5   |
+| R    | 3   |
+| t    | 3   |
+| 总计 | 11  |
+
+> 12 个参数 − 1 个 scale
 
 ### Orthogonal projection
 
