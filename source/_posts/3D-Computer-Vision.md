@@ -554,6 +554,8 @@ $$
 
 完整投影模型，把外参和内参合起来：
 
+{% raw %}
+
 $$
 \lambda
 \begin{bmatrix}
@@ -571,6 +573,8 @@ X\\
 1
 \end{bmatrix}
 $$
+
+{% endraw %}
 
 定义：
 
@@ -629,19 +633,22 @@ $v = Y_c$
 
 加上旋转和平移
 
+{% raw %}
+
 $$
 \begin{bmatrix}
 u\\
 v
 \end{bmatrix}
 =
-
 \begin{bmatrix}
 r_1^T\\
 r_2^T
 \end{bmatrix}
 (X - t)
 $$
+
+{% endraw %}
 
 其中：
 
@@ -730,13 +737,14 @@ $$
 
 矩阵形式
 
+{% raw %}
+
 $$
 \begin{bmatrix}
 u\\
 v
 \end{bmatrix}
 =
-
 \underbrace{
 q
 \begin{bmatrix}
@@ -754,7 +762,11 @@ b_2
 }_{b}
 $$
 
+{% endraw %}
+
 也常写成：
+
+{% raw %}
 
 $$
 \begin{bmatrix}
@@ -762,13 +774,14 @@ u\\
 v
 \end{bmatrix}
 =
-
 [M \mid b]
 \begin{bmatrix}
 X\\
 1
 \end{bmatrix}
 $$
+
+{% endraw %}
 
 ---
 
@@ -850,6 +863,8 @@ $$
 
 使得：
 
+{% raw %}
+
 $$
 \lambda_i
 \begin{bmatrix}
@@ -858,13 +873,14 @@ v_i\\
 1
 \end{bmatrix}
 =
-
 P
 \begin{bmatrix}
 X_i\\
 1
 \end{bmatrix}
 $$
+
+{% endraw %}
 
 ---
 
@@ -896,6 +912,8 @@ $$
 
 几何关系是（忽略尺度因子写法差异）：
 
+{% raw %}
+
 $$
 \lambda_i
 \begin{bmatrix}
@@ -904,6 +922,8 @@ u_i \\ v_i \\ 1
 =
 P X_i
 $$
+
+{% endraw %}
 
 ---
 
@@ -2671,7 +2691,8 @@ Measurement Matrix W（核心构造）
 
 把所有观测堆起来：
 
-<div>
+{% raw %}
+
 $$
 W =
 \begin{bmatrix}
@@ -2684,7 +2705,8 @@ u_{F1} & u_{F2} & \cdots & u_{FP} \\
 v_{F1} & v_{F2} & \cdots & v_{FP}
 \end{bmatrix}
 $$
-</div>
+
+{% endraw %}
 
 尺寸：**(2F) × P**
 
