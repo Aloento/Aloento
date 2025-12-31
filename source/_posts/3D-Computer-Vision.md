@@ -1446,6 +1446,8 @@ $$
 
 平面—平面单应变换
 
+![Image](https://www.researchgate.net/publication/363591280/figure/fig2/AS%3A11431281085560554%401663788470133/Plane-homography-transformation.jpg)
+
 如果所有点都在同一个平面上，那么两张图之间只需要一个 3×3 矩阵就能互相变换。
 
 一般情况：
@@ -1469,20 +1471,64 @@ $$
 
 数学形式
 
-$u' \sim H u$
+$$
+\lambda
+\begin{bmatrix}
+u'\\
+v'\\
+1
+\end{bmatrix}
+=
+H
+\begin{bmatrix}
+u\\
+v\\
+1
+\end{bmatrix}
+$$
 
-- $u, u'$：两张图里的像素点（齐次坐标）
-- $H$：3×3 非奇异矩阵
-- “$(\sim)$”：比例意义
+其中：
+
+- $H \in \mathbb{R}^{3\times3}$
+- 定义到一个尺度（scale ambiguity）
+
+- 9 个参数
+- 减去 1 个尺度
+- **8 个自由度**
+
+Homography 至少需要 4 对非共线点来估计。
 
 ---
 
-Homography 的自由度
+从 Perspective Camera 推导 Homography
 
-- 9 个元素
-- 1 个尺度不重要
+设：
 
-8 个自由度
+- 空间点 $X$ 落在某一平面 $\Pi$
+- 两个相机投影矩阵：
+  $$
+  P = K[R|t], \quad P' = K'[R'|t']
+  $$
+
+平面可表示为：
+
+$$
+\pi^T X = 0
+$$
+
+可以推导出：
+
+$$
+x' \sim H x
+$$
+
+其中：
+
+$$
+H = K'(R' - t'n^T/d)(R - tn^T/d)^{-1}K^{-1}
+$$
+
+Homography 同时依赖于相机运动和被观察平面。
 
 ---
 
@@ -1537,8 +1583,6 @@ Homography 是 **投影变换**
 ---
 
 全景拼接的几何原理
-
-### 关键公式
 
 $u' \sim K R_2 R_1^T K^{-1} u$
 
