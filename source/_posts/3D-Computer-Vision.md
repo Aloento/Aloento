@@ -531,6 +531,8 @@ $$
 
 Camera Intrinsic Matrix (K)
 
+{% raw %}
+
 $$
 K =
 \begin{bmatrix}
@@ -539,6 +541,8 @@ f k_u & s & u_0 \\
 0 & 0 & 1
 \end{bmatrix}
 $$
+
+{% endraw %}
 
 - $f$：焦距
 - $k_u, k_v$：像素尺度
