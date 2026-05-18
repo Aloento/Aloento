@@ -128,6 +128,120 @@ function Dijkstra(Graph, source, target):
 
 ## A-star
 
+### 1. 启发式函数 (Heuristic)
+
+A\*算法的核心在于一个优雅的数学公式。在探索每一个新网格时，A\* 都会计算一个综合得分 $f(n)$，并永远优先选择 $f(n)$ 最小（即总代价最低）的网格去走：
+
+$$f(n) = g(n) + h(n)$$
+
+- **$g(n)$（过去的代价）：** 从起点走到当前格子 $n$ 的实际已走步数。这和 Dijkstra 算法一模一样，代表了“踏实”。它确保算法不会为了抄近道而走入代价极其昂贵的死胡同。
+- **$h(n)$（未来的预估，即“指南针”）：** 从当前格子 $n$ 到终点的**预估代价**。这就是被称为**启发式函数（Heuristic）**的魔法部分，代表了**“聪明”**。它让算法具有了方向感，像有一股引力一样把搜索方向朝着终点拉扯。
+
+### 2. 未来的预估
+
+机器人在走到一半时，实际上并不知道前面有没有墙壁挡着，那它怎么“预估”到终点的距离呢？通常有两种最基础的预估方法：
+
+- **曼哈顿距离 (Manhattan Distance)：** 假设机器人只能上下左右走（像在纽约曼哈顿的街区穿梭）。预估距离就是两点在横纵坐标上的绝对差值之和：$h = |x_{goal} - x_n| + |y_{goal} - y_n|$。
+- **欧几里得距离 (Euclidean Distance)：** 就是两点之间的直线距离（类似于飞鸟的距离）。使用勾股定理计算：$h = \sqrt{(x_{goal} - x_n)^2 + (y_{goal} - y_n)^2}$。
+
+### 3. 看上去是什么样的？
+
+A\* 算法在运行时，它的形状更像是一束“手电筒的光”**或者一颗**“拉伸的水滴”，笔直地指向终点方向。
+
+1. 它站在起点，看向四周的邻居。
+2. 它在小本本上计算每个邻居的 $f(n)$。终点方向的邻居，因为 $h(n)$ 更小，所以总分 $f(n)$ 也更小。
+3. 它毫不犹豫地朝着终点方向迈出第一步。
+4. **遇到障碍物怎么办？** 假设它直直地撞向了一堵墙，它发现沿着墙走的 $g(n)$（已走步数）越来越大，导致总分 $f(n)$ 飙升。此时记录的、之前被忽略的那些稍微绕远但没有墙的格子的 $f(n)$ 反而变得更小了。于是，A\* 会聪明地“回退”或绕开墙壁，继续向终点探索。
+
+### 4. 可采纳的
+
+A\* 算法有一个非常重要的前提：**你的“指南针”可以不准，但绝对不能“夸大其词”。**
+
+在数学上，这被称为启发式函数必须是**可采纳的（Admissible）**。也就是说，你预估的距离 $h(n)$ 必须**小于或等于**实际真实的距离。
+
+- **如果不小心高估了（比如预估距离是实际距离的2倍）：** A\*可能会因为觉得某条路未来太难走而过早放弃，从而错过真正的绝对最短路径。此时 A\* 就退化成了单纯的贪心算法，虽然找路极快，但不保证路径最短。
+- **如果低估了（比如预估全都是0）：** 那 $h(n)$ 就失去了意义，$f(n) = g(n)$，A\* 就瞬间退化成了 Dijkstra 算法，慢吞吞地寻找绝对最优解。
+
+### 5. 伪代码
+
+A\* 的伪代码结构与 Dijkstra 非常相似，同样需要使用**优先队列**（小本本）来时刻挑出 $f(n)$ 最小的节点。
+
+```js
+// Graph: 地图网络
+// source: 起点
+// target: 终点
+// h(n): 启发函数，计算节点 n 到终点的预估距离
+// d(u, v): 节点 u 到相邻节点 v 的单步实际代价
+
+function A_Star(Graph, source, target):
+
+    // ---------------- 第 1 步：初始化 ----------------
+    // 创建一个优先队列 OpenSet，存放待探索的节点。按 f[n] 从小到大排序
+    OpenSet = PriorityQueue()
+    OpenSet.add(source)
+
+    // 记录路径回溯
+    came_from = {}
+
+    // g_score: 记录从起点到每个节点的最短实际代价，初始全部为无穷大
+    g_score = map with default value Infinity
+    g_score[source] = 0
+
+    // f_score: 记录每个节点的综合总代价 (g + h)，初始全部为无穷大
+    f_score = map with default value Infinity
+    f_score[source] = h(source) // 起点的 g 是 0，所以 f 就是 h
+
+    // ---------------- 第 2 步：主循环 ----------------
+    while OpenSet is not empty:
+
+        // 贪心策略：取出当前 OpenSet 中 f_score 最小的节点
+        current = OpenSet.extract_min()
+
+        // 如果已经走到了终点，开始回溯路径并结束算法
+        if current == target:
+            return reconstruct_path(came_from, current)
+
+        // ---------------- 第 3 步：扫描邻居与松弛 ----------------
+        for each neighbor of current:
+
+            // 计算：如果经过 current 走到 neighbor，新的 g 代价是多少
+            tentative_g_score = g_score[current] + d(current, neighbor)
+
+            // 如果发现了更短的实际路径（松弛操作）
+            if tentative_g_score < g_score[neighbor]:
+
+                // 1. 记录这步好棋是从哪走过来的
+                came_from[neighbor] = current
+
+                // 2. 更新该邻居的实际代价 g
+                g_score[neighbor] = tentative_g_score
+
+                // 3. 计算并更新该邻居的综合估价 f = g + h
+                f_score[neighbor] = tentative_g_score + h(neighbor)
+
+                // 4. 如果这个邻居还不在待探索队列里，把它加进去
+                if neighbor not in OpenSet:
+                    OpenSet.add(neighbor)
+                else:
+                    // 如果已经在队列里，更新它在队列里的排序优先级
+                    OpenSet.update_priority(neighbor, f_score[neighbor])
+
+    // 如果队列空了还没找到终点，说明没有路
+    return failure
+
+// ---------------- 辅助函数：回溯路径 ----------------
+function reconstruct_path(came_from, current):
+    total_path = [current]
+    while current in came_from.keys():
+        current = came_from[current]
+        total_path.insert_at_start(current)
+    return total_path
+
+```
+
+**对比总结：**
+你会发现，如果在上面的伪代码中，强制让所有的预估函数 **$h(n) = 0$**，那么 $f(n)$ 就完全等于 $g(n)$。此时，A*的代码逻辑就和 Dijkstra 变得一模一样了。所以，Dijkstra 只是 A* 在一种极端情况（毫无方向感）下的特例。
+
 # 采样算法
 
 ## RRT
