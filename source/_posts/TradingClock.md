@@ -17,11 +17,16 @@ date: 2026-03-21 15:02:31
 <link rel="stylesheet" crossorigin href="/TradingClock/index.css">
 
 <style>
+    html {
+    overflow: hidden;
+  }
   #root.fullscreen-modal {
+    all: initial;
     position: fixed;
     inset: 0;
     z-index: 999999;
     background: #fff;
+    overflow: auto;
   }
   #root, #root *:focus {
     outline: none !important;
