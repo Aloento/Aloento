@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>软件技术 - Aloento</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#f0f0f0"><meta name="application-name" content="Aloento"><meta name="msapplication-TileImage" content="/img/Aloento.png"><meta name="msapplication-TileColor" content="#f0f0f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aloento"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="72x72" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="96x96" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="128x128" href="/img/Aloento.png"><link rel="apple-touch-icon" sizes="256x256" href="/img/Aloento.png"><meta name="description" content="初创企业，传统的软件开发模型，UML，敏捷开发，用户体验，DevOps，MLOps，面向对象编程，设计模式"><meta property="og:type" content="blog"><meta property="og:title" content="软件技术"><meta property="og:url" content="https://aloen.to/Program/Theory/%E8%BD%AF%E4%BB%B6%E6%8A%80%E6%9C%AF/"><meta property="og:site_name" content="Aloento"><meta property="og:description" content="初创企业，传统的软件开发模型，UML，敏捷开发，用户体验，DevOps，MLOps，面向对象编程，设计模式"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://aloen.to/img/og_image.png"><meta property="article:published_time" content="2026-06-11T07:38:27.000Z"><meta property="article:modified_time" content="2026-06-11T17:30:23.041Z"><meta property="article:author" content="Aloento"><meta property="article:tag" content="笔记"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://aloen.to/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://aloen.to/Program/Theory/%E8%BD%AF%E4%BB%B6%E6%8A%80%E6%9C%AF/"},"headline":"软件技术","image":["https://aloen.to/img/og_image.png"],"datePublished":"2026-06-11T07:38:27.000Z","dateModified":"2026-06-11T17:30:23.041Z","author":{"@type":"Person","name":"Aloento"},"publisher":{"@type":"Organization","name":"Aloento","logo":{"@type":"ImageObject","url":"https://aloen.to/Program/Theory/%E8%BD%AF%E4%BB%B6%E6%8A%80%E6%9C%AF/"}},"description":"初创企业，传统的软件开发模型，UML，敏捷开发，用户体验，DevOps，MLOps，面向对象编程，设计模式"}</script><link rel="canonical" href="https://aloen.to/Program/Theory/%E8%BD%AF%E4%BB%B6%E6%8A%80%E6%9C%AF/"><link rel="icon" href="/img/Aloento.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Aloento</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" target="_blank" rel="noopener" href="https://Q-Audio.org/Aloento">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-06-11T07:38:27.000Z" title="6/11/2026, 7:38:27 AM">2026-06-11</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-06-11T17:30:23.041Z" title="6/11/2026, 5:30:23 PM">2026-06-12</time></span><span class="level-item"><a class="link-muted" href="/categories/Program/">Program</a><span> / </span><a class="link-muted" href="/categories/Program/Theory/">Theory</a></span><span class="level-item">23 minutes read (About 3437 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">软件技术</h1><div class="content"><p>初创企业，传统的软件开发模型，UML，敏捷开发，用户体验，DevOps，MLOps，面向对象编程，设计模式</p>
+<span id="more"></span>
+
+<h1 id="初创企业"><a href="#初创企业" class="headerlink" title="初创企业"></a>初创企业</h1><h2 id="1-创业资金阶段与生命周期-Startup-Funding-Lifecycle"><a href="#1-创业资金阶段与生命周期-Startup-Funding-Lifecycle" class="headerlink" title="1. 创业资金阶段与生命周期 (Startup Funding &amp; Lifecycle)"></a>1. 创业资金阶段与生命周期 (Startup Funding &amp; Lifecycle)</h2><p>初创企业的成长伴随着不同阶段的资金注入与核心任务：</p>
+<ul>
+<li><p><strong>种子轮前 (Pre-Seed)：</strong> 依靠<strong>个人存款</strong> 。核心任务是验证“问题&#x2F;解决方案匹配度” (Problem&#x2F;Solution Fit) 并打造出<strong>最小可行性产品 (MVP)</strong> 。</p>
+</li>
+<li><p><strong>种子轮 (Seed)：</strong> 资金来自<strong>天使投资人、独立投资人或早期风险投资 (VC)</strong> 。用于拓展团队、进一步开发产品并验证“产品&#x2F;市场匹配度” (Product&#x2F;Market Fit, PMF)<strong>，执行</strong>进入市场策略 (Go-To-Market, GTM) 。</p>
+</li>
+<li><p><strong>A 轮 (Series A)：</strong> 资金来自<strong>风险投资机构</strong> 。创业者必须证明企业已具备<strong>市场牵引力 (Traction)</strong> 和<strong>稳固的商业模式</strong> 。资金主要用于扩张、扩大市场份额、营销和招聘 。</p>
+</li>
+<li><p><strong>B 轮 (Series B)：</strong> 企业此时已具备<strong>被验证的 PMF、增长的客户群和明确的盈利路径</strong> 。资金用于开拓新市场、收购竞争对手并巩固市场地位 。</p>
+</li>
+<li><p><strong>C 轮及以后 (Series C &amp; Beyond)：</strong> 侧重于<strong>全球化规模扩张</strong> 。</p>
+</li>
+<li><p><strong>IPO（首次公开募股）：</strong> 在股票交易所上市，进入公开资本市场 。</p>
+</li>
+</ul>
+<h2 id="2-创业成功与失败的概率-Success-Failure-YC-Metrics"><a href="#2-创业成功与失败的概率-Success-Failure-YC-Metrics" class="headerlink" title="2. 创业成功与失败的概率 (Success, Failure &amp; YC Metrics)"></a>2. 创业成功与失败的概率 (Success, Failure &amp; YC Metrics)</h2><p>初创企业的淘汰率极高，指南引用了顶级加速器 Y Combinator（曾孵化 Airbnb, Stripe, Dropbox 等）的数据进行对照：</p>
+<ul>
+<li><p><strong>申请与录取率：</strong> YC 每 6 个月收到超过 10,000 家公司的申请，录取率仅为 <strong>1.5% - 2%</strong> 。</p>
+</li>
+<li><p><strong>YC 体系的成绩单：</strong> 累计融资超 1000 亿美元 ；超 100 家被巨头（Google, Meta, Stripe）收购 ；超 20 家成功上市 。其<strong>倒闭率&#x2F;违约率（Default Rate）低于 20%</strong>，远优于市场平均水平 。</p>
+</li>
+<li><p><strong>创业失败的 5 大主因：</strong></p>
+</li>
+</ul>
+<ol>
+<li><p>缺乏产品与市场的匹配度（PMF）</p>
+</li>
+<li><p>资金耗尽（现金流断裂）</p>
+</li>
+<li><p>团队执行力差</p>
+</li>
+<li><p>团队内部冲突</p>
+</li>
+<li><p>遭遇成熟企业的竞争压制</p>
+</li>
+</ol>
+<h2 id="3-寻找与验证“好问题”-Finding-Validating-the-Problem"><a href="#3-寻找与验证“好问题”-Finding-Validating-the-Problem" class="headerlink" title="3. 寻找与验证“好问题” (Finding &amp; Validating the Problem)"></a>3. 寻找与验证“好问题” (Finding &amp; Validating the Problem)</h2><p>指南强调：<strong>绝不要从“解决方案”开始，而要从“问题”开始。</strong></p>
+<h3 id="如何辨别一个“好问题”？"><a href="#如何辨别一个“好问题”？" class="headerlink" title="如何辨别一个“好问题”？"></a>如何辨别一个“好问题”？</h3><ul>
+<li><p><strong>特质：</strong> 极其痛苦（Highly Painful）且有海量人群（100万+用户）被其困扰 ；或者它是一个<strong>增速极快（年增长 20%+）</strong>、具有<strong>迫切性、高成本、强制性</strong>或高频发生（如每小时发生）的问题 。</p>
+</li>
+<li><p><strong>利基突破：</strong> 许多成功的企业（如 Airbnb、Uber）初期只专注于解决一个小众群体（Niche）的痛苦，而不是试图一开始就取悦所有人 。</p>
+</li>
+<li><p><strong>创始人优势：</strong> 初次创业者最好<strong>解决自己遇到的问题</strong>，因为这样反馈周期最短 。</p>
+</li>
+</ul>
+<h3 id="发现问题的技巧"><a href="#发现问题的技巧" class="headerlink" title="发现问题的技巧"></a>发现问题的技巧</h3><ul>
+<li><p>记录自己的<strong>挫败感（Frustration）</strong> ：有意识地写“问题日记”，数周后回顾 。不要过早筛选过滤 。</p>
+</li>
+<li><p><strong>跨界融合（Crossover）：</strong> 比如懂编程的人去学习其他行业知识，极易发现软件可以解决的痛点 。</p>
+</li>
+<li><p><strong>2x2 矩阵分析法：</strong> 寻找那些“显而易见但难以解决”（Obvious &amp; Hard）的问题。避开“显而易见且容易解决”的，因为它们早就被别人做完了 。</p>
+</li>
+</ul>
+<h3 id="验证方法"><a href="#验证方法" class="headerlink" title="验证方法"></a>验证方法</h3><ul>
+<li><p><strong>不要听客户提出的“解决方案”，而要听他们的“问题”。</strong></p>
+</li>
+<li><p><strong>“30&#x2F;27 原则”：</strong> B2B 创业 idea 的验证，创始人在确信想法靠谱前，<strong>中位数是向 30 个潜在客户进行深度访谈</strong> 。在此过程中，通过“访谈 $\rightarrow$ 原型 $\rightarrow$ 测试 $\rightarrow$ 失败 $\rightarrow$ 重来”的循环，通常要<strong>迭代循环约 27 次</strong> 。</p>
+</li>
+</ul>
+<h2 id="4-获取灵感与避免“焦油坑”（Startup-Ideas-Tar-Pit）"><a href="#4-获取灵感与避免“焦油坑”（Startup-Ideas-Tar-Pit）" class="headerlink" title="4. 获取灵感与避免“焦油坑”（Startup Ideas &amp; Tar Pit）"></a>4. 获取灵感与避免“焦油坑”（Startup Ideas &amp; Tar Pit）</h2><h3 id="寻找灵感的动词是“注意到”，而非“想出来”"><a href="#寻找灵感的动词是“注意到”，而非“想出来”" class="headerlink" title="寻找灵感的动词是“注意到”，而非“想出来”"></a>寻找灵感的动词是“注意到”，而非“想出来”</h3><ul>
+<li><p>很多创始人做出了没人要的产品，是因为他们闭门造车“想”点子 。好点子是<strong>身处未来时，“注意到”当前世界缺失了什么</strong> 。</p>
+</li>
+<li><p><strong>如果你觉得“自己来晚了”，通常是个好兆头。</strong> 因为好点子往往看起来很明显 。你不需要害怕进入“拥挤的市场”，只要你对现有玩家忽略了什么有着独特的见解（Market Thesis）即可 。</p>
+</li>
+</ul>
+<h3 id="必须避开的“焦油坑点子-Tar-Pit-Ideas-”"><a href="#必须避开的“焦油坑点子-Tar-Pit-Ideas-”" class="headerlink" title="必须避开的“焦油坑点子 (Tar Pit Ideas)”"></a>必须避开的“焦油坑点子 (Tar Pit Ideas)”</h3><ul>
+<li><p><strong>定义：</strong> 看起来是好点子、人们似乎想要、听起来也很有吸引力，但实际上是个大坑 。</p>
+</li>
+<li><p><strong>特征：</strong> 大多是“消费者端 (2C) 点子” 。像 Google&#x2F;Facebook 的成功是因为产品好到让用户痴迷、零成本自传播 。如果一个 2C 点子需要大量营销、且面临高供给（大量创始人扎堆想做，如社交、宠物网络、物品发现产品），就必须远离 。</p>
+</li>
+<li><p><strong>最佳选择：</strong> 选择“创始人供给极少”（门槛高、没人愿意做，如开源开发者编排工具、量子计算），但“客户需求极大”的领域进行转型（Pivot） 。</p>
+</li>
+</ul>
+<h2 id="5-评估创业想法与“不公平优势”-Evaluation-Unfair-Advantages"><a href="#5-评估创业想法与“不公平优势”-Evaluation-Unfair-Advantages" class="headerlink" title="5. 评估创业想法与“不公平优势” (Evaluation &amp; Unfair Advantages)"></a>5. 评估创业想法与“不公平优势” (Evaluation &amp; Unfair Advantages)</h2><p>一个合格的创业假设（Hypothesis）必须回答投资人的终极问题：<strong>你凭什么能赢？</strong> 初创公司必须在以下 <strong>“不公平优势”</strong> 中至少占据 1 项（最好 2-3 项）：</p>
+<ul>
+<li><p><strong>创始人优势 (Founders)：</strong> 创始人是解决该问题的绝对专家（10选1的顶尖人才，例如拥有该领域的 PhD 或特殊专利） 。</p>
+</li>
+<li><p><strong>市场优势 (Market)：</strong> 市场处于 20%+ 的高速增长期（但仅有这一项还不够） 。</p>
+</li>
+<li><p><strong>产品优势 (Product)：</strong> 产品比竞争对手<strong>好 10 倍</strong>（快10倍、便宜10倍等），从而能够打破高昂的用户切换成本 。</p>
+</li>
+<li><p><strong>获客优势 (Acquisition)：</strong> 能实现 <strong>$0 获客成本</strong>，纯靠用户口碑裂变 。</p>
+</li>
+<li><p><strong>垄断优势 (Monopoly)：</strong> 具备网络效应（Network Effects）或双边市场壁垒，随着公司规模扩大，对手变得极难超越 。</p>
+</li>
+</ul>
+<h2 id="6-垄断与价值捕捉-Monopoly-Value-Capture"><a href="#6-垄断与价值捕捉-Monopoly-Value-Capture" class="headerlink" title="6. 垄断与价值捕捉 (Monopoly &amp; Value Capture)"></a>6. 垄断与价值捕捉 (Monopoly &amp; Value Capture)</h2><p>指南引用了彼得·蒂尔的经典观点：<strong>“竞争是留给失败者的，创业的终极目标是形成垄断。”</strong></p>
+<ul>
+<li><p><strong>商业公式：</strong> 企业的真正价值 $&#x3D;$ 创造的价值 ($X$) $\times$ 捕捉到的价值 ($Y%$) 。比如航空公司创造了巨额价值，但由于竞争惨烈，捕捉到的利润率极其微薄；而 Google 处于垄断地位，捕捉到了极高比例的利润 。</p>
+</li>
+<li><p><strong>垄断者的谎言：</strong> 垄断者为了躲避监管，倾向于宣称自己竞争激烈（如 Google 会说自己只占全球广告市场的 3.5%） 。</p>
+</li>
+<li><p><strong>竞争者的谎言：</strong> 处于高度竞争中的人为了吸引资金，会宣称自己做的事情独一无二（即通过各种形容词堆砌成一个极度狭窄的伪蓝海，如“布达拉宫旁的尼泊尔移动社交分享App”） 。</p>
+</li>
+<li><p><strong>如何构建垄断：</strong> <strong>绝对不要一上来就进入大市场。</strong> 必须先从一个<strong>极小的、甚至别人觉得没有价值的细分市场</strong>切入，迅速做到垄断，然后再向外扩张 。</p>
+</li>
+<li><p><em>Amazon：</em> 从“网上书店”扩张到“万货商店” 。</p>
+</li>
+<li><p><em>PayPal：</em> 先拿下 eBay 上 20,000 个头部超级卖家，再普及到全网 。</p>
+</li>
+<li><p><em>Facebook：</em> 先服务哈佛大学的 10,000 个人，再推向全球 。</p>
+</li>
+</ul>
+<h2 id="7-商业设计、测试与-PMF-的衡量-Strategyzer-Methodology-PMF"><a href="#7-商业设计、测试与-PMF-的衡量-Strategyzer-Methodology-PMF" class="headerlink" title="7. 商业设计、测试与 PMF 的衡量 (Strategyzer Methodology &amp; PMF)"></a>7. 商业设计、测试与 PMF 的衡量 (Strategyzer Methodology &amp; PMF)</h2><p>指南引入了 <strong>Strategyzer 创新三联体 (The Innovation Trinity)</strong> 模型来全面拆解商业创意：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心提问</th>
+<th>Strategyzer 对应工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>期望性 (Desirable)</td>
+<td>客户真的想要这个吗？</td>
+<td>客户画像（Jobs 任务、Gains 收益、Pains 痛点）与价值主张画布匹配 。</td>
+</tr>
+<tr>
+<td>可行性 (Feasible)</td>
+<td>我们能把它做出来吗？</td>
+<td>评估技术&#x2F;资源、核心业务活动、合作伙伴 。</td>
+</tr>
+<tr>
+<td>生存能力 (Viable)</td>
+<td>这个能赚钱、能变现吗？</td>
+<td>收入&#x2F;定价模式、成本结构 。</td>
+</tr>
+</tbody></table>
+<h3 id="科学测试流程"><a href="#科学测试流程" class="headerlink" title="科学测试流程"></a>科学测试流程</h3><ol>
+<li><p><strong>明确假设 (Hypothesis)：</strong> 必须是<strong>可测试的、精确的、离散的</strong>（一次只描述一件特定的事） 。</p>
+</li>
+<li><p><strong>使用测试卡 (Test Card) 与学习卡 (Learning Card)：</strong> 严格按照“我们相信 $\rightarrow$ 为了验证我们将 $\rightarrow$ 并测量 $\rightarrow$ 如果…我们就是对的”四个步骤进行实验验证。</p>
+</li>
+<li><p><strong>如何知道自己达到了 PMF？</strong></p>
+</li>
+</ol>
+<ul>
+<li><p><strong>核心量化指标：</strong> <strong>留存率曲线（Day 1, 3, 7, 30 留存）最终能拉平并保持稳定</strong>；净推荐值 <strong>NPS &gt; 50</strong>；付费客户续费率高 。</p>
+</li>
+<li><p><em>注意：</em> <strong>注册量（Signups）和综合转化率（Conversion Rate）是虚荣指标</strong>，不能说明达到了 PMF 。</p>
+</li>
+<li><p><strong>B2B 寻找 PMF 的极简路径：</strong> 让 1 家公司爱上并使用 $\rightarrow$ 让这 1 家公司付大钱 $\rightarrow$ 让多间公司同时喜爱并付钱 $\rightarrow$ 感到市场产生的“拉动（Pull）效应”和有机增长 。</p>
+</li>
+</ul>
+<h2 id="8-最小可行性产品-vs-最小优秀产品-MVP-vs-MRP"><a href="#8-最小可行性产品-vs-最小优秀产品-MVP-vs-MRP" class="headerlink" title="8. 最小可行性产品 vs 最小优秀产品 (MVP vs MRP)"></a>8. 最小可行性产品 vs 最小优秀产品 (MVP vs MRP)</h2><ul>
+<li><p><strong>MVP 的硬核标准：</strong> 必须在<strong>几周内</strong>开发完成 。<strong>如果去掉某个功能，产品对早期核心用户而言依然具有非零价值，那么这个功能就不应该包含在 MVP 里面。</strong></p>
+</li>
+<li><p><strong>MVP 的本质：</strong> 一个“好”的 MVP 在质量和用户体验上通常是“糟糕”的 。它只需要<strong>把早期催迫用户最需要的核心功能做好</strong>即可 。</p>
+</li>
+<li><p><strong>MRP (Minimum Remarkable Product) 替代观念：</strong> “当你的产品在某一个核心维度上比市面上所有东西都好时，就立刻发布” 。把 slider 往回拨，在最初的几个月里，<strong>惊艳的不应该是产品本身（允许它满是 Bug），而应该是用户受到的特殊对待与无微不至的体验。</strong></p>
+</li>
+</ul>
+<h2 id="9-销售与获取首批客户-Sales-Early-Users"><a href="#9-销售与获取首批客户-Sales-Early-Users" class="headerlink" title="9. 销售与获取首批客户 (Sales &amp; Early Users)"></a>9. 销售与获取首批客户 (Sales &amp; Early Users)</h2><ul>
+<li><p><strong>创始人必须亲自做销售：</strong> 早期阶段<strong>绝对不要雇佣销售团队</strong> 。</p>
+</li>
+<li><p><strong>做不能规模化的事 (Do things that don’t scale)：</strong> 手动去拉前 100 个用户 。亲自帮用户做入职配置（Onboarding），甚至像 Wufoo 创业初期那样，给每一个新注册用户手写感谢信 。</p>
+</li>
+<li><p><strong>销售冷启动邮件 (Cold Email) 的黄金法则：</strong></p>
+</li>
+<li><p>短小精悍：控制在 6-8 句内 。</p>
+</li>
+<li><p>语言大白话：不用任何行业术语（Jargon）和吹嘘词汇（Buzzwords） 。</p>
+</li>
+<li><p>直击痛点，不带 HTML 格式 。</p>
+</li>
+<li><p>亮明身份：说明自己是创始人，并附带能证明自己实力的背书（如来自 YC 某期、上一家成功公司等） 。</p>
+</li>
+<li><p>给出明确的 Call to Action：约一个简短的电话或会议 。</p>
+</li>
+<li><p><strong>关于收费（Charging）：</strong> <strong>如果不敢向客户收费，你就不是一家真正的公司。</strong> 付费是验证产品价值的唯一铁证 。不要搞免费试用（Free Trials），而是提供退款保证（Money Back Guarantee）或年费合同随退随走 。<strong>不断提高价格，直到客户开始抱怨为止。</strong></p>
+</li>
+</ul>
+<h2 id="10-终极早期路演包结构-Early-Stage-Pitch-Deck-Structure"><a href="#10-终极早期路演包结构-Early-Stage-Pitch-Deck-Structure" class="headerlink" title="10. 终极早期路演包结构 (Early Stage Pitch Deck Structure)"></a>10. 终极早期路演包结构 (Early Stage Pitch Deck Structure)</h2><p>根据指南，VC 在 2022 年对单份 Pre-seed 商业计划书的平均查看时间仅为 <strong>4分10秒</strong>（平均每页不到14秒） 。他们把绝大部分时间花在 <strong>Product（产品）、Business Model（商业模式）和 Company Purpose（公司使命）</strong> 这三个部分 。</p>
+<p>成功获得融资的 Pitch Deck 推荐使用以下<strong>黄金排布顺序</strong> ：</p>
+<ol>
+<li><p><strong>Company Purpose (公司目标&#x2F;使命)：</strong> 1-2句话，决定投资人是否有兴趣读下去 。</p>
+</li>
+<li><p><strong>Problem (问题)</strong></p>
+</li>
+<li><p><strong>Solution (解决方案)</strong></p>
+</li>
+<li><p>Why now? (为什么是现在？)： 强调时机、外部环境、技术或政策的剧变 。</p>
+</li>
+<li><p><strong>Market Size (市场规模)：</strong> TAM (总主战场), SAM (可服务市场), SOM (可占领市场) 的测算 。</p>
+</li>
+<li><p><strong>Product (产品)：</strong> 尽量“多秀少说 (Show don’t tell)”，放截图、分步功能和技术路线图 。</p>
+</li>
+<li><p><strong>Team (团队)：</strong> 强调不公平执行优势 。</p>
+</li>
+<li><p><strong>Traction (市场牵引力&#x2F;数据进度)</strong></p>
+</li>
+<li><p><strong>Business Model (商业模式)：</strong> 包括变现计划和进入市场 (GTM) 策略 。</p>
+</li>
+<li><p><strong>Financials (财务预测)</strong></p>
+</li>
+<li><p><strong>Competition (竞争对手分析)</strong></p>
+</li>
+<li><p><strong>The Ask (募资需求&#x2F;本轮动作)</strong></p>
+</li>
+</ol>
+<ul>
+<li><em>写包核心技巧：</em> <strong>用故事代替死板的数据。</strong> 动工前先写出 10-15 个核心短标题（Headlines），让它们连起来就能成为一个环环相扣的创业故事，然后再去丰富幻灯片细节 。</li>
+</ul>
+<h1 id="软件开发模型"><a href="#软件开发模型" class="headerlink" title="软件开发模型"></a>软件开发模型</h1><h1 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h1><h1 id="敏捷开发"><a href="#敏捷开发" class="headerlink" title="敏捷开发"></a>敏捷开发</h1><h1 id="用户体验"><a href="#用户体验" class="headerlink" title="用户体验"></a>用户体验</h1><h1 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h1><h1 id="MLOps"><a href="#MLOps" class="headerlink" title="MLOps"></a>MLOps</h1><h1 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h1><h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1></div><div class="article-licensing box"><div class="licensing-title"><p>软件技术</p><p><a href="https://aloen.to/Program/Theory/软件技术/">https://aloen.to/Program/Theory/软件技术/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Aloento</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-06-11</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-06-12</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/AI/EI/EI-%E4%BC%A0%E6%84%9F%E6%89%A7%E8%A1%8C%E5%99%A8/"><span class="level-item">EI-传感执行器</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Aloento.png" alt="Aloento"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Aloento</p><p class="is-size-6 is-block">Reindeer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Foot of Sacred Mountain</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">23</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">40</p></a></div></div></nav></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">51</span></span></a><ul><li><a class="level is-mobile" href="/categories/AI/3D/"><span class="level-start"><span class="level-item">3D</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/CI/"><span class="level-start"><span class="level-item">CI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/CogSci/"><span class="level-start"><span class="level-item">CogSci</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/EI/"><span class="level-start"><span class="level-item">EI</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/NLP/"><span class="level-start"><span class="level-item">NLP</span></span><span class="level-end"><span class="level-item tag">30</span></span></a></li><li><a class="level is-mobile" href="/categories/AI/RL/"><span class="level-start"><span class="level-item">RL</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">9</span></span></a><ul><li><a class="level is-mobile" href="/categories/Algorithm/TM/"><span class="level-start"><span class="level-item">TM</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Cloud/"><span class="level-start"><span class="level-item">Cloud</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/Cloud/OpenStack/"><span class="level-start"><span class="level-item">OpenStack</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Data-Science/"><span class="level-start"><span class="level-item">Data Science</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Math/Logic/"><span class="level-start"><span class="level-item">Logic</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Math/Matlab/"><span class="level-start"><span class="level-item">Matlab</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Memo/"><span class="level-start"><span class="level-item">Memo</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/"><span class="level-start"><span class="level-item">Program</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Program/C/CLI/"><span class="level-start"><span class="level-item">CLI</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Program/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/Theory/"><span class="level-start"><span class="level-item">Theory</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Program/WebCodecs/"><span class="level-start"><span class="level-item">WebCodecs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/NET/"><span class="tag">.NET</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/3D%E8%A7%86%E8%A7%89/"><span class="tag">3D视觉</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">39</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C#</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CLI/"><span class="tag">CLI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LINQ/"><span class="tag">LINQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Matplotlib/"><span class="tag">Matplotlib</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NLP/"><span class="tag">NLP</span><span class="tag">30</span></a></div><div class="control"><a class="tags has-addons" href="/tags/OpenStack/"><span class="tag">OpenStack</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/RL/"><span class="tag">RL</span><span class="tag">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQL/"><span class="tag">SQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SQLServer/"><span class="tag">SQLServer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WebCodecs/"><span class="tag">WebCodecs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B9%A0%E9%A2%98/"><span class="tag">习题</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%A4%E6%98%93/"><span class="tag">交易</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/"><span class="tag">具身智能</span><span class="tag">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8C%88%E7%89%99%E5%88%A9/"><span class="tag">匈牙利</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E7%81%B5%E6%9C%BA/"><span class="tag">图灵机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%94%BB%E7%95%A5/"><span class="tag">攻略</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95/"><span class="tag">数值方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E5%AD%A6/"><span class="tag">数学</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"><span class="tag">数据科学</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%95%99%E5%AD%A6/"><span class="tag">留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">55</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/"><span class="tag">翻译</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%80%83%E8%AF%95/"><span class="tag">考试</span><span class="tag">14</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A4%E7%9F%A5%E7%A7%91%E5%AD%A6/"><span class="tag">认知科学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%BB%E8%BE%91/"><span class="tag">逻辑</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9B%86%E4%BD%93%E6%99%BA%E8%83%BD/"><span class="tag">集体智能</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"><span class="tag">音视频</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://Q-Audio.org" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Q-Audio</span></span><span class="level-right"><span class="level-item tag">q-audio.org</span></span></a></li><li><a class="level is-mobile" href="https://Musi.Land" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">MusiLand</span></span><span class="level-right"><span class="level-item tag">musi.land</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#初创企业"><span class="level-left"><span class="level-item">1</span><span class="level-item">初创企业</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-创业资金阶段与生命周期-Startup-Funding-Lifecycle"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">1. 创业资金阶段与生命周期 (Startup Funding &amp; Lifecycle)</span></span></a></li><li><a class="level is-mobile" href="#2-创业成功与失败的概率-Success-Failure-YC-Metrics"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">2. 创业成功与失败的概率 (Success, Failure &amp; YC Metrics)</span></span></a></li><li><a class="level is-mobile" href="#3-寻找与验证“好问题”-Finding-Validating-the-Problem"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">3. 寻找与验证“好问题” (Finding &amp; Validating the Problem)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#如何辨别一个“好问题”？"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">如何辨别一个“好问题”？</span></span></a></li><li><a class="level is-mobile" href="#发现问题的技巧"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">发现问题的技巧</span></span></a></li><li><a class="level is-mobile" href="#验证方法"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">验证方法</span></span></a></li></ul></li><li><a class="level is-mobile" href="#4-获取灵感与避免“焦油坑”（Startup-Ideas-Tar-Pit）"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">4. 获取灵感与避免“焦油坑”（Startup Ideas &amp; Tar Pit）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#寻找灵感的动词是“注意到”，而非“想出来”"><span class="level-left"><span class="level-item">1.4.1</span><span class="level-item">寻找灵感的动词是“注意到”，而非“想出来”</span></span></a></li><li><a class="level is-mobile" href="#必须避开的“焦油坑点子-Tar-Pit-Ideas-”"><span class="level-left"><span class="level-item">1.4.2</span><span class="level-item">必须避开的“焦油坑点子 (Tar Pit Ideas)”</span></span></a></li></ul></li><li><a class="level is-mobile" href="#5-评估创业想法与“不公平优势”-Evaluation-Unfair-Advantages"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">5. 评估创业想法与“不公平优势” (Evaluation &amp; Unfair Advantages)</span></span></a></li><li><a class="level is-mobile" href="#6-垄断与价值捕捉-Monopoly-Value-Capture"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">6. 垄断与价值捕捉 (Monopoly &amp; Value Capture)</span></span></a></li><li><a class="level is-mobile" href="#7-商业设计、测试与-PMF-的衡量-Strategyzer-Methodology-PMF"><span class="level-left"><span class="level-item">1.7</span><span class="level-item">7. 商业设计、测试与 PMF 的衡量 (Strategyzer Methodology &amp; PMF)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#科学测试流程"><span class="level-left"><span class="level-item">1.7.1</span><span class="level-item">科学测试流程</span></span></a></li></ul></li><li><a class="level is-mobile" href="#8-最小可行性产品-vs-最小优秀产品-MVP-vs-MRP"><span class="level-left"><span class="level-item">1.8</span><span class="level-item">8. 最小可行性产品 vs 最小优秀产品 (MVP vs MRP)</span></span></a></li><li><a class="level is-mobile" href="#9-销售与获取首批客户-Sales-Early-Users"><span class="level-left"><span class="level-item">1.9</span><span class="level-item">9. 销售与获取首批客户 (Sales &amp; Early Users)</span></span></a></li><li><a class="level is-mobile" href="#10-终极早期路演包结构-Early-Stage-Pitch-Deck-Structure"><span class="level-left"><span class="level-item">1.10</span><span class="level-item">10. 终极早期路演包结构 (Early Stage Pitch Deck Structure)</span></span></a></li></ul></li><li><a class="level is-mobile" href="#软件开发模型"><span class="level-left"><span class="level-item">2</span><span class="level-item">软件开发模型</span></span></a></li><li><a class="level is-mobile" href="#UML"><span class="level-left"><span class="level-item">3</span><span class="level-item">UML</span></span></a></li><li><a class="level is-mobile" href="#敏捷开发"><span class="level-left"><span class="level-item">4</span><span class="level-item">敏捷开发</span></span></a></li><li><a class="level is-mobile" href="#用户体验"><span class="level-left"><span class="level-item">5</span><span class="level-item">用户体验</span></span></a></li><li><a class="level is-mobile" href="#DevOps"><span class="level-left"><span class="level-item">6</span><span class="level-item">DevOps</span></span></a></li><li><a class="level is-mobile" href="#MLOps"><span class="level-left"><span class="level-item">7</span><span class="level-item">MLOps</span></span></a></li><li><a class="level is-mobile" href="#面向对象编程"><span class="level-left"><span class="level-item">8</span><span class="level-item">面向对象编程</span></span></a></li><li><a class="level is-mobile" href="#设计模式"><span class="level-left"><span class="level-item">9</span><span class="level-item">设计模式</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-11T07:38:27.000Z">2026-06-11</time></p><p class="title"><a href="/Program/Theory/%E8%BD%AF%E4%BB%B6%E6%8A%80%E6%9C%AF/">软件技术</a></p><p class="categories"><a href="/categories/Program/">Program</a> / <a href="/categories/Program/Theory/">Theory</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-11T05:42:15.000Z">2026-06-11</time></p><p class="title"><a href="/AI/EI/EI-%E4%BC%A0%E6%84%9F%E6%89%A7%E8%A1%8C%E5%99%A8/">EI-传感执行器</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/EI/">EI</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-11T05:04:38.000Z">2026-06-11</time></p><p class="title"><a href="/AI/EI/EI-%E6%8E%A7%E5%88%B6%E9%80%9A%E4%BF%A1/">EI-控制通信</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/EI/">EI</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-11T03:27:25.000Z">2026-06-11</time></p><p class="title"><a href="/AI/EI/EI-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/">EI-嵌入式系统</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/EI/">EI</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-10T08:11:35.000Z">2026-06-10</time></p><p class="title"><a href="/AI/EI/EI-%E5%8A%A8%E7%89%A9%E8%A1%8C%E4%B8%BA%E6%9C%BA%E5%99%A8%E4%BA%BA/">EI-动物行为机器人</a></p><p class="categories"><a href="/categories/AI/">AI</a> / <a href="/categories/AI/EI/">EI</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/03/"><span class="level-start"><span class="level-item">March 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/12/"><span class="level-start"><span class="level-item">December 2025</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/11/"><span class="level-start"><span class="level-item">November 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/06/"><span class="level-start"><span class="level-item">June 2025</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/05/"><span class="level-start"><span class="level-item">May 2025</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/04/"><span class="level-start"><span class="level-item">April 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/03/"><span class="level-start"><span class="level-item">March 2025</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/02/"><span class="level-start"><span class="level-item">February 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/12/"><span class="level-start"><span class="level-item">December 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/11/"><span class="level-start"><span class="level-item">November 2024</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/08/"><span class="level-start"><span class="level-item">August 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/12/"><span class="level-start"><span class="level-item">December 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">October 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">November 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><p class="is-size-7"><span>&copy; 2026 Aloento</span><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Q-Audio" href="https://Q-Audio.org"><i class="fas fa-compact-disc"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="MusiLand" href="https://Musi.Land/"><i class="fab fa-dashcube"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Aloento"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/katex.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.15.1/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
