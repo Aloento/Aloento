@@ -2167,7 +2167,11 @@ This enables LLMs to perform complex, multi-step tasks like: "Plan a trip" → s
 
 **InfoNCE (Info Noise Contrastive Estimation)** is the loss function that powers modern contrastive learning. Given a query $q$, one positive key $k^+$, and $M$ negative keys $k^-_i$:
 
+{% raw %}
+
 $$\mathcal{L}_{InfoNCE} = -\log\frac{\exp(S(q, k^+))}{\sum_{i=0}^{M+1}\exp(S(q, k[i]))}$$
+
+{% endraw %}
 
 _Intuition_: This is a softmax-based $(M+1)$-way classification task — "which key among these M+1 is the positive one?" The model must pull $q$ and $k^+$ together while pushing $q$ away from all negatives.
 
@@ -2193,7 +2197,11 @@ _Architecture_:
 
 _Training_: In each batch of $n$ (image, text) pairs, CLIP computes an $n \times n$ similarity matrix. The diagonal entries (matching pairs) should have high similarity; off-diagonal entries (mismatched pairs) should have low similarity. Loss = $0.5 \times \text{cross-entropy}(\text{columns}) + 0.5 \times \text{cross-entropy}(\text{rows})$.
 
+{% raw %}
+
 $$S_{scaled} = \frac{E_I W_I}{\|E_I W_I\|_{L2}} \cdot \left(\frac{E_T W_T}{\|E_T W_T\|_{L2}}\right)^T \cdot \exp(t)$$
+
+{% endraw %}
 
 _Zero-shot classification_: To classify an image, compute its similarity to text prompts like "a photo of a dog" and "a photo of a cat" — pick the class with highest similarity. No task-specific training data needed.
 
@@ -2330,7 +2338,11 @@ _Process_:
 
 _Benefits_: **Much faster** (48× fewer dimensions to process), **lower memory** (can run on consumer GPUs), while maintaining high image quality.
 
-_Classifier-free guidance_: During training, randomly drop the text condition (set to null). At inference, extrapolate between conditional and unconditional predictions: $\hat{\epsilon}_\theta = \epsilon_\theta(\text{uncond}) + s \cdot (\epsilon_\theta(\text{cond}) - \epsilon_\theta(\text{uncond}))$, where $s$ controls how strongly the model follows the prompt.
+_Classifier-free guidance_: During training, randomly drop the text condition (set to null). At inference, extrapolate between conditional and unconditional predictions:
+{% raw %}
+$\hat{\epsilon}_\theta = \epsilon_\theta(\text{uncond}) + s \cdot (\epsilon_\theta(\text{cond}) - \epsilon_\theta(\text{uncond}))$
+{% endraw %}
+, where $s$ controls how strongly the model follows the prompt.
 
 </details>
 
@@ -2344,7 +2356,11 @@ _Classifier-free guidance_: During training, randomly drop the text condition (s
 
 _The idea_: Train the model both **with** and **without** conditioning by randomly dropping the condition during training (e.g., 10% of the time, set the text to empty). At inference:
 
+{% raw %}
+
 $$\hat{\epsilon}_\theta(x_t, y) = \epsilon_\theta(x_t, \emptyset) + s \cdot (\epsilon_\theta(x_t, y) - \epsilon_\theta(x_t, \emptyset))$$
+
+{% endraw %}
 
 where $s$ is the **guidance scale**:
 
@@ -2352,7 +2368,11 @@ where $s$ is the **guidance scale**:
 - $s > 1$ (e.g., 7.5): Stronger adherence to the prompt (but can reduce diversity)
 - $s < 1$: More diverse, less prompt-faithful outputs
 
-_Why "classifier-free"?_ Earlier methods (GLIDE) used a separate classifier to guide the diffusion process: $\hat{\epsilon}_\theta(x_t, y) = \epsilon_\theta(x_t, y) + s \sigma_t \nabla_{x_t} \log p_\phi(y|x_t)$. CFG eliminates the need for this extra classifier and its gradients, making the system simpler and often more effective.
+_Why "classifier-free"?_ Earlier methods (GLIDE) used a separate classifier to guide the diffusion process:
+{% raw %}
+$\hat{\epsilon}_\theta(x_t, y) = \epsilon_\theta(x_t, y) + s \sigma_t \nabla_{x_t} \log p_\phi(y|x_t)$
+{% endraw %}
+. CFG eliminates the need for this extra classifier and its gradients, making the system simpler and often more effective.
 
 </details>
 
