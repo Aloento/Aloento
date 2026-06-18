@@ -69,7 +69,11 @@ date: 2026-05-20 21:37:36
 
 我们通常使用类似下面的数学公式（适应度函数）来给机器人的表现打分：
 
+{% raw %}
+
 $$F = w_1 \cdot \Delta x - w_2 \cdot \int_{0}^{T} \sum_{i=1}^{n} |\tau_i \cdot \dot{\theta}_i| dt - w_3 \cdot P_{\text{fall}}$$
+
+{% endraw %}
 
 在这个公式中，$F$ 代表最终的适应度得分，得分越高的基因越容易被保留：
 
