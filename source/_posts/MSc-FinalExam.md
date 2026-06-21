@@ -162,6 +162,10 @@ UX has **Three Pillars**:
 
 _Key insight_: A use case describes a **goal** the user wants to achieve. "Login" is a use case (user wants to prove identity). "Enter password" is NOT a use case (it's a step toward the goal).
 
+![UCD](ucd.png)
+
+<https://www.bilibili.com/video/BV1at411Z7Ni/>
+
 </details>
 
 ### user stories
@@ -336,6 +340,10 @@ Think of a class as a cookie cutter and objects as the cookies. One cookie cutte
 - **Hollow triangle (△)** = Inheritance (Is-A)
 
 Class diagrams show _what_ exists and _how_ things relate, not _how_ they run. They are the **blueprint** before coding begins.
+
+![CD](cd.png)
+
+<https://www.bilibili.com/video/BV1P741127u7>
 
 </details>
 
