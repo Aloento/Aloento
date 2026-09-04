@@ -1,4 +1,4 @@
-[![Aloento's GitHub stats](https://github-readme-stats.vercel.app/api?username=Aloento&count_private=true&show_icons=true&title_color=fff&text_color=fff&icon_color=fff&bg_color=35,ff5db1,4b88ac&hide_border=true)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub Stats](https://github-stats-extended.vercel.app/api?username=Aloento&show=reviews%2Cdiscussions_started%2Cdiscussions_answered%2Cprs_merged%2Cprs_merged_percentage%2Cprs_commented%2Cprs_reviewed%2Cissues_commented&show_icons=true)](https://github-stats-extended.vercel.app/api?username=Aloento&show=reviews%2Cdiscussions_started%2Cdiscussions_answered%2Cprs_merged%2Cprs_merged_percentage%2Cprs_commented%2Cprs_reviewed%2Cissues_commented&show_icons=true)
 
 <details>
   <summary>Click to see what I'm using</summary>
